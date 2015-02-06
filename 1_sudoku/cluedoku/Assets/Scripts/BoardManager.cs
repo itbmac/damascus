@@ -45,6 +45,53 @@ public class BoardManager : MonoBehaviour {
 			board[x,y] = tile;
 		}
 		
+		InvalidPair[] invalidPairs = gameObject.GetComponentsInChildren<InvalidPair>();
+		foreach (InvalidPair invalidPair in invalidPairs) {
+			GameObject someTile = invalidPair.SomeTile;
+			Vector3 pos = someTile.transform.position;
+			int someTilex = AdjustToInt(pos.x);
+			int someTiley = AdjustToInt(pos.y);
+			if (someTilex < 0 || someTilex > 3 || someTiley < 0 || someTiley > 3) {
+				continue;
+			}
+			
+			foreach (GameObject blockedTile in invalidPair.BlockedTiles) {
+				Vector3 blockedTilePos = blockedTile.transform.position;
+				int blockedTilex = AdjustToInt(blockedTilePos.x);
+				int blockedTiley = AdjustToInt(blockedTilePos.y);
+				if (blockedTilex < 0 || blockedTilex > 3 || blockedTiley < 0 || blockedTiley > 3) {
+					continue;
+				}
+				
+				if (someTilex == blockedTilex || someTiley == blockedTiley) {
+					Debug.Log ("Illegal pair found: " + someTile.name + " " + blockedTile.name);
+					return false;
+				}
+			}
+		}
+		
+//		Transform invalidPairsContainer = transform.Find("InvalidPairs");
+//		foreach (Transform invalidPairTransform in invalidPairsContainer) {
+//			GameObject invalidPair = 
+//		}
+		
+//		foreach (GameObject tile in tiles) {
+//			foreach (Transform invalidPairTransform in GetChild)
+//		
+//			Vector3 pos = tile.transform.position;
+//			int x = AdjustToInt(pos.x);
+//			int y = AdjustToInt(pos.y);
+//			if (x < 0 || x > 3 || y < 0 || y > 3) {
+//				continue;
+//			}
+//			
+//			for (int y2 = 0; y2 < 3; y2++) {
+//				if (y2 == y)
+//					continue;
+//				
+//			}
+//		}
+		
 		for (int x = 0; x < 4; x++) {
 			int[] test = new int[4];
 			int[] test2 = new int[4];
