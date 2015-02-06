@@ -5,6 +5,7 @@ using System.Collections;
 
 // from https://stackoverflow.com/questions/23152525/drag-object-in-unity-2d
 public class Drag : MonoBehaviour {
+	public AudioClip noisePickUp, noiseDropOff;
 	private Vector3 screenPoint;
 	private Vector3 offset;
 	private bool wasDragged;
@@ -17,6 +18,7 @@ public class Drag : MonoBehaviour {
 	void OnMouseDown() {
 		
 		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
+		audio.PlayOneShot(noisePickUp);
 	}
 	
 	void OnMouseDrag()
@@ -42,6 +44,7 @@ public class Drag : MonoBehaviour {
 		if (wasDragged) {
 			wasDragged = false;
 			Snap();
+			audio.PlayOneShot(noiseDropOff);
 		}
 	}
 }

@@ -4,6 +4,7 @@ using System.Linq;
 
 public class BoardManager : MonoBehaviour {
 
+	public AudioClip noiseWin;
 	const float SIZE = 2.5f;
 
 	private int AdjustToInt(float f) {
@@ -68,7 +69,9 @@ public class BoardManager : MonoBehaviour {
 				return false;
 			}
 		}
-		
+
+		if (!audio.isPlaying)
+			audio.PlayOneShot(noiseWin);
 		return true;
 	}
 

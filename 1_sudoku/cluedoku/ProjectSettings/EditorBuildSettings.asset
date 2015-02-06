@@ -5,13 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Sudoku Starter Kit/Scenes/MainMenu.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Sudoku Starter Kit/Scenes/NewGame.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Sudoku Starter Kit/Scenes/Options.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Sudoku Starter Kit/Scenes/Scores.unity
-  - enabled: 1
+  - enabled: 0
     path: Assets/Sudoku Starter Kit/Scenes/Game.unity
+  - enabled: 1
+    path: Assets/Main.unity
