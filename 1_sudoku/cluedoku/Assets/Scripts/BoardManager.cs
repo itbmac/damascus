@@ -134,4 +134,11 @@ public class BoardManager : MonoBehaviour {
 		}
 	}
 	
+	public void Submit() {
+		if (CheckBoard()) {
+			Debug.Log ("Valid board.");
+		} else {
+			Debug.Log ("Submitted. Invalid board.");
+		}
+	}
 }
