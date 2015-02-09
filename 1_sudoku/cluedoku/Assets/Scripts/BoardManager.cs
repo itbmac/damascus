@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using MiniJSON;
 using System.Linq;
 
 public class BoardManager : MonoBehaviour {
@@ -124,7 +126,12 @@ public class BoardManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		Debug.Log (DumpBoard());
+		
+		Transform premadeBoards = transform.Find("PremadeBoards");
+		if (premadeBoards && premadeBoards.childCount > 0) {
+			LoadBoard(premadeBoards.GetChild(0).GetComponent<BoardData>().Data);
+		}
 	}
 	
 	// Update is called once per frame
@@ -140,5 +147,33 @@ public class BoardManager : MonoBehaviour {
 		} else {
 			Debug.Log ("Submitted. Invalid board.");
 		}
+	}
+	
+	void LoadBoard(string board) {
+		var tiles = Json.Deserialize(board) as Dictionary<string, object>;
+		
+		foreach (var pair in tiles) {
+			string name = pair.Key;
+			var pos = pair.Value as Dictionary<string, object>;
+			var x = (double)pos["x"];
+			var y = (double)pos["y"];
+			
+			var go = GameObject.Find(name);
+			go.transform.position = new Vector2((float)x, (float)y);
+		}
+	}
+	
+	string DumpBoard() {
+		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+		var tilesDict = new Dictionary<string, object>();
+		
+		foreach (GameObject tile in tiles) {
+			tilesDict[tile.name] = new Dictionary<string, double> {
+				{"x", tile.transform.position.x},
+				{"y", tile.transform.position.y},
+			};
+		}
+		
+		return Json.Serialize(tilesDict);
 	}
 }

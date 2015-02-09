@@ -282,6 +282,46 @@ MonoBehaviour:
   SomeTile: {fileID: 1259180596}
   BlockedTiles:
   - {fileID: 1933366338}
+--- !u!1 &210047796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 210047797}
+  - 114: {fileID: 210047798}
+  m_Layer: 0
+  m_Name: BoardData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &210047797
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 210047796}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2027007775}
+  m_RootOrder: 0
+--- !u!114 &210047798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 210047796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: '{"park":{"x":8.75,"y":1.25},"factory":{"x":8.75,"y":3.75},"tile_knife":{"x":8.75,"y":-3.75},"tile_marathonrunners":{"x":-3.7400000095367432,"y":-1.309999942779541},"backalley":{"x":-1.2599999904632568,"y":1.2000000476837158},"tile_desperatehousewives":{"x":-6.25,"y":-1.25},"tomthemechanic":{"x":-6.25,"y":1.25},"tile_homelessguys":{"x":-8.75,"y":-3.75},"tile_gun":{"x":6.25,"y":-1.25},"penthouse":{"x":1.2699999809265137,"y":-1.2400000095367432},"tile_rope":{"x":6.25,"y":-3.75},"priscillatheteacher":{"x":-8.75,"y":3.75},"tile_blondecheerleaders":{"x":-8.75,"y":-1.25},"claudiathepolitician":{"x":1.2899999618530273,"y":3.690000057220459},"lorenzothedealer":{"x":-8.75,"y":1.25},"tile_poison":{"x":-3.7200000286102295,"y":3.6400001049041748}}'
 --- !u!1 &211325722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,7 +2284,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1395880215}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.97999954, y: 3.41000009, z: 10}
+  m_LocalPosition: {x: -6.57999992, y: 3.41000009, z: 10}
   m_LocalScale: {x: .666000009, y: .666000009, z: 1}
   m_Children: []
   m_Father: {fileID: 1914868603}
@@ -2516,6 +2556,46 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!1 &1506830259
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1506830260}
+  - 114: {fileID: 1506830261}
+  m_Layer: 0
+  m_Name: BoardData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1506830260
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506830259}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2027007775}
+  m_RootOrder: 1
+--- !u!114 &1506830261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1506830259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: '{"park":{"x":8.75,"y":1.25},"factory":{"x":8.75,"y":3.75},"tile_knife":{"x":8.75,"y":-3.75},"tile_marathonrunners":{"x":-3.7400000095367432,"y":-1.309999942779541},"backalley":{"x":-1.2599999904632568,"y":1.2000000476837158},"tile_desperatehousewives":{"x":-6.25,"y":-1.25},"tomthemechanic":{"x":-6.25,"y":1.25},"tile_homelessguys":{"x":-8.75,"y":-3.75},"tile_gun":{"x":6.25,"y":-1.25},"penthouse":{"x":1.2699999809265137,"y":-1.2400000095367432},"tile_rope":{"x":6.25,"y":-3.75},"priscillatheteacher":{"x":-6.25,"y":3.75},"tile_blondecheerleaders":{"x":-8.75,"y":-1.25},"claudiathepolitician":{"x":1.2899999618530273,"y":3.690000057220459},"lorenzothedealer":{"x":-8.75,"y":1.25},"tile_poison":{"x":-3.7599999904632568,"y":3.6400001049041748}}'
 --- !u!1 &1914868602
 GameObject:
   m_ObjectHideFlags: 0
@@ -2843,7 +2923,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1952439811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.72000003, y: 3.6400001, z: 10}
+  m_LocalPosition: {x: -3.75999999, y: 3.6400001, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1308971718}
@@ -2986,6 +3066,7 @@ Transform:
   - {fileID: 279460152}
   - {fileID: 211325723}
   - {fileID: 550793298}
+  - {fileID: 2027007775}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!114 &2013787585
@@ -3212,3 +3293,32 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &2027007774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2027007775}
+  m_Layer: 0
+  m_Name: PremadeBoards
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2027007775
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2027007774}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 210047797}
+  - {fileID: 1506830260}
+  m_Father: {fileID: 2013787584}
+  m_RootOrder: 6
