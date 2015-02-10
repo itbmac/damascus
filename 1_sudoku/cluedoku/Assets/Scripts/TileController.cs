@@ -4,19 +4,21 @@ using System.Collections;
 [RequireComponent(typeof(BoxCollider2D))]
 
 // from https://stackoverflow.com/questions/23152525/drag-object-in-unity-2d
-public class Drag : MonoBehaviour {
+public class TileController : MonoBehaviour {
 	public AudioClip noisePickUp, noiseDropOff;
+	public Sprite infoCard;
 	private Vector3 screenPoint;
 	private Vector3 offset;
-	private bool wasDragged;
 	const float SIZE = 2.5f;
+	const float CLICK_DISTANCE_THRESHOLD = 0.1f;
+	Vector3 mouseDownStartPos;
 	
 	void Start() {
 		Snap ();
 	}
 	
 	void OnMouseDown() {
-		
+		mouseDownStartPos = transform.position;
 		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 		audio.PlayOneShot(noisePickUp);
 	}
@@ -26,7 +28,6 @@ public class Drag : MonoBehaviour {
 		Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 		Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 		transform.position = curPosition;
-		wasDragged = true;
 	}
 	
 	private float Adjust(float f) {
@@ -41,9 +42,10 @@ public class Drag : MonoBehaviour {
 	}
 	
 	void OnMouseUp() {
-		if (wasDragged) {
-			wasDragged = false;
-			Snap();
+		Snap();
+		if (infoCard && Vector3.Distance(transform.position, mouseDownStartPos) < CLICK_DISTANCE_THRESHOLD) {
+			FileViewer.Instance.Show(infoCard);
+		} else {
 			audio.PlayOneShot(noiseDropOff);
 		}
 	}
