@@ -7,6 +7,8 @@ using System.Linq;
 public class BoardManager : MonoBehaviour {
 
 	public AudioClip noiseWin;
+	public AudioClip noiseLose;
+	public bool LoadBoardOnStart = true;
 	const float SIZE = 2.5f;
 
 	private int AdjustToInt(float f) {
@@ -119,8 +121,6 @@ public class BoardManager : MonoBehaviour {
 			}
 		}
 
-		if (!audio.isPlaying)
-			audio.PlayOneShot(noiseWin);
 		return true;
 	}
 
@@ -129,23 +129,24 @@ public class BoardManager : MonoBehaviour {
 		Debug.Log (DumpBoard());
 		
 		Transform premadeBoards = transform.Find("PremadeBoards");
-		if (premadeBoards && premadeBoards.childCount > 0) {
+		if (LoadBoardOnStart && premadeBoards && premadeBoards.childCount > 0) {
 			LoadBoard(premadeBoards.GetChild(0).GetComponent<BoardData>().Data);
 		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetMouseButtonUp(0)) {
-			Debug.Log (CheckBoard());
-		}
 	}
 	
 	public void Submit() {
 		if (CheckBoard()) {
 			Debug.Log ("Valid board.");
+			if (!audio.isPlaying)
+				audio.PlayOneShot(noiseWin);
+				
 		} else {
 			Debug.Log ("Submitted. Invalid board.");
+			audio.PlayOneShot(noiseLose);
 		}
 	}
 	
