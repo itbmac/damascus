@@ -1,8 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Text;
 using System.Collections.Generic;
 using MiniJSON;
 using System.Linq;
+
+public struct GridCoord {
+	public int x;
+	public int y;
+
+	public GridCoord(int x, int y) {
+		if (x < 0 || x > 3 || y < 0 || y > 3)
+			Debug.LogError("Invalid GridCoord " + x + " " + y);
+		
+		this.x = x;
+		this.y = y;
+	}
+}
 
 public class BoardManager : MonoBehaviour {
 
@@ -29,8 +43,8 @@ public class BoardManager : MonoBehaviour {
 		Debug.LogError("unknown " + n);
 		return 4;
 	}
-
-	bool CheckBoard() {
+	
+	bool CheckCurrentBoard() {
 		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
 		GameObject[,] board = new GameObject[4, 4];
 		
@@ -49,74 +63,119 @@ public class BoardManager : MonoBehaviour {
 			board[x,y] = tile;
 		}
 		
+		return CheckBoard(board);
+	}
+	
+	void GenerateBoard() {
+		GameObject[,] board = new GameObject[4,4];
+		GenerateBoard(board, 0, 0);
+	}
+	
+	void PrintBoard(GameObject[,] board) {
+		StringBuilder builder = new StringBuilder();
+		builder.Append("[");
+		for (int i = 0; i < board.GetLength(0); i++) {
+			builder.Append("[");
+			for (int j = 0; j < board.GetLength(1); j++) {
+				var e = board[i,j];
+				builder.Append(e.name);
+				if (j < board.GetLength(1) - 1)
+					builder.Append(",\t");
+			}
+			builder.Append("]");
+			if (i != board.GetLength(0) - 1) {
+				builder.Append(",\n");
+			}
+		}
+		builder.Append("]");
+		Debug.Log(builder.ToString());
+	}
+	
+	bool GenerateBoard(GameObject[,] board, int i, int j) {	
+		if (j >= board.GetLength(1)) {
+			i += 1;
+			j = 0;
+		}
+		if (i >= board.GetLength(0)) {
+			PrintBoard(board);
+			return true;
+		}
+
+		var d = new Dictionary<GameObject, bool>();
+		foreach (var t in board) {
+			if (t != null)
+				d[t] = true;
+		}
+
+		var tilesRemaining = GameObject.FindGameObjectsWithTag("Tile").Where(x => !d.ContainsKey(x)).AsRandom();
+		foreach (GameObject t in tilesRemaining) {
+			board[i,j] = t;
+			if (CheckBoard(board, true)) {
+				if (GenerateBoard(board, i, j + 1))
+					return true;
+			} 
+		}
+		
+		board[i,j] = null;
+		return false;
+	}
+
+	bool CheckBoard(GameObject[,] board, bool provisional = false) {
+		IDictionary<GameObject, GridCoord> tileCoords = new Dictionary<GameObject, GridCoord>();
+		
+		for (int i = 0; i < board.GetLength(0); i++) {
+			for (int j = 0; j < board.GetLength(1); j++) {
+				var e = board[i,j];
+				if (e != null)
+					tileCoords[e] = new GridCoord(i, j);
+			}
+		}
+	
+		// TODO: build tileCoords 
 		InvalidPair[] invalidPairs = gameObject.GetComponentsInChildren<InvalidPair>();
 		foreach (InvalidPair invalidPair in invalidPairs) {
 			GameObject someTile = invalidPair.SomeTile;
-			Vector3 pos = someTile.transform.position;
-			int someTilex = AdjustToInt(pos.x);
-			int someTiley = AdjustToInt(pos.y);
-			if (someTilex < 0 || someTilex > 3 || someTiley < 0 || someTiley > 3) {
+			if (!tileCoords.ContainsKey(someTile))
 				continue;
-			}
 			
+			GridCoord pos = tileCoords[someTile];
 			foreach (GameObject blockedTile in invalidPair.BlockedTiles) {
-				Vector3 blockedTilePos = blockedTile.transform.position;
-				int blockedTilex = AdjustToInt(blockedTilePos.x);
-				int blockedTiley = AdjustToInt(blockedTilePos.y);
-				if (blockedTilex < 0 || blockedTilex > 3 || blockedTiley < 0 || blockedTiley > 3) {
+				if (!tileCoords.ContainsKey(blockedTile))
 					continue;
-				}
+			
+				GridCoord blockedTilePos = tileCoords[blockedTile];
 				
-				if (someTilex == blockedTilex || someTiley == blockedTiley) {
-					Debug.Log ("Illegal pair found: " + someTile.name + " " + blockedTile.name);
+				if (pos.x == blockedTilePos.x || pos.y == blockedTilePos.y) {
+//					Debug.Log ("Illegal pair found: " + someTile.name + " " + blockedTile.name);
 					return false;
 				}
 			}
 		}
-		
-//		Transform invalidPairsContainer = transform.Find("InvalidPairs");
-//		foreach (Transform invalidPairTransform in invalidPairsContainer) {
-//			GameObject invalidPair = 
-//		}
-		
-//		foreach (GameObject tile in tiles) {
-//			foreach (Transform invalidPairTransform in GetChild)
-//		
-//			Vector3 pos = tile.transform.position;
-//			int x = AdjustToInt(pos.x);
-//			int y = AdjustToInt(pos.y);
-//			if (x < 0 || x > 3 || y < 0 || y > 3) {
-//				continue;
-//			}
-//			
-//			for (int y2 = 0; y2 < 3; y2++) {
-//				if (y2 == y)
-//					continue;
-//				
-//			}
-//		}
 		
 		for (int x = 0; x < 4; x++) {
 			int[] test = new int[4];
 			int[] test2 = new int[4];
 			
 			for (int y = 0; y < 4; y++) {
-				if (board[x,y] == null || board[y,x] == null)
+				if (!provisional && (board[x,y] == null || board[y,x] == null)) {
 					return false;
-					
-				test[Classify(board[x,y])] += 1;
-				test2[Classify(board[y,x])] += 1;
+				}
+				
+				if (board[x,y] != null)
+					test[Classify(board[x,y])] += 1;
+				if (board[y,x] != null)
+					test2[Classify(board[y,x])] += 1;
 			}
 			
-			if (test[0] != 1 || test[1] != 1 || test[2] != 1 || test[3] != 1) {
-				Debug.Log ("Fail col " + x);
-				Debug.Log (string.Join(",", test.Select(k => k.ToString()).ToArray()));
+			if (!test.All(k => k == 1 || (provisional && k <= 1))) {
+//				Debug.Log ("Fail col " + x);
+//				Debug.Log (string.Join(",", test.Select(k => k.ToString()).ToArray()));
 				return false;
 			}
 			
-			if (test2[0] != 1 || test2[1] != 1 || test2[2] != 1 || test2[3] != 1) {
-				Debug.Log ("Fail row " + x);
-				Debug.Log (string.Join(",", test2.Select(k => k.ToString()).ToArray()));
+			if (!test2.All(k => k == 1 || (provisional && k <= 1))) {
+//				Debug.Log ("Fail row " + x);
+//				Debug.Log (string.Join(",", test2.Select(k => k.ToString()).ToArray()));
 				return false;
 			}
 		}
@@ -132,14 +191,18 @@ public class BoardManager : MonoBehaviour {
 		if (LoadBoardOnStart && premadeBoards && premadeBoards.childCount > 0) {
 			LoadBoard(premadeBoards.GetChild(0).GetComponent<BoardData>().Data);
 		}
+		
+		GenerateBoard();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKeyDown(KeyCode.G))
+			GenerateBoard();
 	}
 	
 	public void Submit() {
-		if (CheckBoard()) {
+		if (CheckCurrentBoard()) {
 			Debug.Log ("Valid board.");
 			if (!audio.isPlaying)
 				audio.PlayOneShot(noiseWin);

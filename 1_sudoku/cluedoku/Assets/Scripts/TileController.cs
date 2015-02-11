@@ -15,6 +15,9 @@ public class TileController : MonoBehaviour {
 	
 	void Start() {
 		Snap ();
+		
+		if (tag != "Tile")
+			Debug.LogError("Must have tag Tile");
 	}
 	
 	void OnMouseDown() {
