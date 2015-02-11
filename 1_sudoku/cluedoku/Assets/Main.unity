@@ -1554,13 +1554,14 @@ GameObject:
   m_Component:
   - 4: {fileID: 1128375063}
   - 212: {fileID: 1128375062}
+  - 114: {fileID: 1128375064}
   m_Layer: 0
   m_Name: Instruction_Screen_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1128375062
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1580,7 +1581,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_Sprite: {fileID: 21300000, guid: cf4103a5e2d1a47329a375f4abe649b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1128375063
@@ -1595,6 +1596,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
+--- !u!114 &1128375064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128375061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a93cb02fbd884632b34d457ae46c410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followingItem: {fileID: 1311772833}
 --- !u!1 &1202789700
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,6 +1962,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1311772835}
   - 212: {fileID: 1311772834}
+  - 114: {fileID: 1311772836}
   m_Layer: 0
   m_Name: Instruction_Screen_1
   m_TagString: Untagged
@@ -1975,7 +1989,7 @@ SpriteRenderer:
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1000
   m_Sprite: {fileID: 21300000, guid: 121ef24cf1ad145d4a129f61547044ba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1311772835
@@ -1990,6 +2004,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
+--- !u!114 &1311772836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1311772833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a93cb02fbd884632b34d457ae46c410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followingItem: {fileID: 0}
 --- !u!1 &1356520005
 GameObject:
   m_ObjectHideFlags: 0
