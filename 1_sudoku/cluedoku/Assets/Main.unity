@@ -113,7 +113,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 13f72c03dab0244cda2c0630855ffa54, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35751a72a840443408bf55d8031cc47c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &51484449
 Transform:
@@ -123,7 +123,7 @@ Transform:
   m_GameObject: {fileID: 51484447}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -11.1800003, y: -4.51000023, z: 10}
-  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 134444668}
   m_RootOrder: 1
@@ -428,7 +428,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a4a849480aebf422e96fdfc620044718, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ba45e7de83911463eaf784c1b3e054dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &364685409
 Transform:
@@ -438,7 +438,7 @@ Transform:
   m_GameObject: {fileID: 364685407}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.6300001, y: -4.07999992, z: 10}
-  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 134444668}
   m_RootOrder: 3
@@ -891,7 +891,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d145a6f8b23a443f6bf530d1fc2c747f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3ed7c2386d0fa45138f6c93c65442609, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &588410251
 MonoBehaviour:
@@ -1057,7 +1057,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 14b1e48e6904f4f929d02624522e5229, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c222d5ecca00433389f984661e7c2ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &734074443
 Transform:
@@ -1067,7 +1067,7 @@ Transform:
   m_GameObject: {fileID: 734074441}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.25999999, y: 1.20000005, z: 10}
-  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 134444668}
   m_RootOrder: 2
@@ -1280,7 +1280,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cf4c2fccac5d74609ae214df45a33063, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a22e759f252e2430dbc80e8ae943db33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &924030247
 MonoBehaviour:
@@ -1596,7 +1596,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bd3dbcd031cd8452fbcf88ec5900e99a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b049876c0e6c3460c9f728e3f09ba91e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1202789703
 MonoBehaviour:
@@ -1929,7 +1929,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 072d7835bb3a548b0a48fe9ee1df1242, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d38094fd51644152b8ce60952304b9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1356520007
 Transform:
@@ -1939,7 +1939,7 @@ Transform:
   m_GameObject: {fileID: 1356520005}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.26999998, y: -1.24000001, z: 10}
-  m_LocalScale: {x: .5, y: .5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 134444668}
   m_RootOrder: 0
@@ -2422,7 +2422,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b7c3a1f2b05d74367bd8b11e6e3c0183, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a81898b2643594f49a751aaa13299bfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1437013225
 Transform:
@@ -3277,7 +3277,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: e1ae02e2d7263497bb6c8d9ee88831ab, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: .421000004
+  m_Volume: .169
   m_Pitch: 1
   Loop: 1
   Mute: 0
