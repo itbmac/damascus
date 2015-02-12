@@ -22,6 +22,7 @@ public class BoardManager : MonoBehaviour {
 
 	public AudioClip noiseWin;
 	public AudioClip noiseLose;
+	public GameObject failedArrestWarrent;
 	public bool LoadBoardOnStart = true;
 	const float SIZE = 2.95f;//.5f;
 
@@ -209,6 +210,7 @@ public class BoardManager : MonoBehaviour {
 				
 		} else {
 			Debug.Log ("Submitted. Invalid board.");
+			failedArrestWarrent.renderer.enabled = true;
 			audio.PlayOneShot(noiseLose);
 		}
 	}
