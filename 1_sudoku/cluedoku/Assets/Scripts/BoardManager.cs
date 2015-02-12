@@ -44,6 +44,28 @@ public class BoardManager : MonoBehaviour {
 		return 4;
 	}
 	
+	GameObject[,] GetCurrentBoard() {
+		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+		GameObject[,] board = new GameObject[4, 4];
+		
+		foreach (GameObject tile in tiles) {
+			Vector3 pos = tile.transform.position;
+			int x = AdjustToInt(pos.x);
+			int y = AdjustToInt(pos.y);
+			if (x < 0 || x > 3 || y < 0 || y > 3) {
+				continue;
+			}
+			
+			if (board[x,y] != null) {
+				Debug.LogWarning("duplicate tile");
+				continue;
+			}
+			board[x,y] = tile;
+		}
+		
+		return board;
+	}
+	
 	bool CheckCurrentBoard() {
 		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
 		GameObject[,] board = new GameObject[4, 4];
@@ -62,8 +84,18 @@ public class BoardManager : MonoBehaviour {
 			}
 			board[x,y] = tile;
 		}
-		
+	
 		return CheckBoard(board);
+	}
+	
+	bool IsCurrentBoardFilled() {
+		GameObject[,] board = GetCurrentBoard();
+		foreach (var t in board) {
+			if (t == null)
+				return false;
+		}
+	
+		return true;
 	}
 	
 	void GenerateBoard() {
@@ -199,6 +231,8 @@ public class BoardManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.G))
 			GenerateBoard();
+			
+		Debug.Log (IsCurrentBoardFilled());
 	}
 	
 	public void Submit() {

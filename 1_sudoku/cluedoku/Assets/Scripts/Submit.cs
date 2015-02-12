@@ -4,7 +4,9 @@ using System.Collections;
 [RequireComponent(typeof(BoxCollider2D))]
 public class Submit : MonoBehaviour {
 
-	BoardManager manager;
+	private BoardManager manager;
+	public Sprite spriteDisabled;
+	public Sprite spriteEnabled;
 	
 	void Start() {
 		manager = FindObjectOfType<BoardManager>();
