@@ -18,11 +18,11 @@ public class ClickToDisable : MonoBehaviour {
 		if (renderer.enabled && !mustClickOnObject && Input.GetMouseButtonDown(0)) {
 			ClickedOn();
 		}
-		else if (renderer.enabled) {
+		else if (followingItem && renderer.enabled) {
 			followingItem.SetActive(false);
 		}
 
-		if (!prevRendererState && renderer.enabled) {
+		if (!prevRendererState && renderer.enabled && AdvanceNoise) {
 			audio.PlayOneShot(AdvanceNoise);
 		}
 
