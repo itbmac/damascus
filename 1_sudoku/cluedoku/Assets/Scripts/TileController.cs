@@ -24,6 +24,8 @@ public class TileController : MonoBehaviour {
 		mouseDownStartPos = transform.position;
 		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 		audio.PlayOneShot(noisePickUp);
+		
+		((SpriteRenderer)renderer).sortingLayerName = "ActiveTile";
 	}
 	
 	void OnMouseDrag() {
@@ -36,12 +38,21 @@ public class TileController : MonoBehaviour {
 		transform.position = BoardManager.Instance.SnapPos(transform.position);
 	}
 	
+	private void SnapToNewPosIfOpen() {
+		if (BoardManager.Instance.IsPositionOpen(transform.position, gameObject))
+			Snap();
+		else
+			transform.position = mouseDownStartPos;
+	}
+	
 	void OnMouseUp() {
-		Snap();
 		if (infoCard && Vector3.Distance(transform.position, mouseDownStartPos) < CLICK_DISTANCE_THRESHOLD) {
 			FileViewer.Instance.Show(infoCard);
 		} else {
 			audio.PlayOneShot(noiseDropOff);
 		}
+		
+		SnapToNewPosIfOpen();
+		((SpriteRenderer)renderer).sortingLayerName = "Default";
 	}
 }

@@ -14,6 +14,8 @@ public class BoardManager : MonoBehaviour {
 	
 	public float Size = 2.95f;
 	public Vector2 OffsetPixel = new Vector2(.45f, -1.2f);
+	
+	public enum BoardState {Valid, Incomplete, Duplicates, InvalidPair, InvalidCounts}
 
 	private int AdjustToInt(float f) {
 		return Mathf.RoundToInt(.5f + (f / Size)) + 1;
@@ -56,15 +58,15 @@ public class BoardManager : MonoBehaviour {
 		GameObject[,] board = new GameObject[4, 4];
 		
 		foreach (GameObject tile in tiles) {
-			Vector3 pos = tile.transform.position;
-			int x = AdjustToInt(pos.x);
-			int y = AdjustToInt(pos.y);
+			GridCoord gc = GetGridCoord(tile.transform.position);
+			int x = gc.x;
+			int y = gc.y;
 			if (x < 0 || x > 3 || y < 0 || y > 3) {
 				continue;
 			}
 			
 			if (board[x,y] != null) {
-				Debug.LogWarning("duplicate tile");
+				Debug.LogWarning("Overlapping tiles: " + board[x,y].name + " and " + tile.name);
 				continue;
 			}
 			board[x,y] = tile;
@@ -73,34 +75,37 @@ public class BoardManager : MonoBehaviour {
 		return board;
 	}
 	
-	bool IsPositionOpen(Vector3 pos) {
+	public bool IsPositionOpen(Vector3 pos, GameObject forObject) {
 		GridCoord myGridCoord = GetGridCoord(pos);
 		
 		return GameObject.FindGameObjectsWithTag("Tile").All (
-			tile => GetGridCoord(tile.transform.position) != myGridCoord
+			tile => tile == forObject || GetGridCoord(tile.transform.position) != myGridCoord
 		);
 	}
 	
-	bool CheckCurrentBoard() {
+	BoardState GetCurrentBoardState() {
 		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
 		GameObject[,] board = new GameObject[4, 4];
 		
 		foreach (GameObject tile in tiles) {
-			Vector3 pos = tile.transform.position;
-			int x = AdjustToInt(pos.x);
-			int y = AdjustToInt(pos.y);
+			GridCoord gc = GetGridCoord(tile.transform.position);
+			int x = gc.x;
+			int y = gc.y;
 			if (x < 0 || x > 3 || y < 0 || y > 3) {
 				continue;
 			}
 			
 			if (board[x,y] != null) {
-				Debug.Log ("duplicate tile");
-				return false;
+				return BoardState.Duplicates;
 			}
 			board[x,y] = tile;
 		}
+		
+		return GetBoardState(board);
+	}
 	
-		return CheckBoard(board);
+	bool CheckCurrentBoard() {
+		return GetCurrentBoardState() == BoardState.Valid;
 	}
 	
 	public bool IsCurrentBoardFilled() {
@@ -119,18 +124,19 @@ public class BoardManager : MonoBehaviour {
 	}
 	
 	void PrintBoard(GameObject[,] board) {
+		// Note: does not print out as the physical board appears (specifically, prints out upside down)
 		StringBuilder builder = new StringBuilder();
 		builder.Append("[");
-		for (int i = 0; i < board.GetLength(0); i++) {
+		for (int j = 0; j < board.GetLength(1); j++) {
 			builder.Append("[");
-			for (int j = 0; j < board.GetLength(1); j++) {
+			for (int i = 0; i < board.GetLength(0); i++) {
 				var e = board[i,j];
 				builder.Append(e ? e.name : "_");
-				if (j < board.GetLength(1) - 1)
+				if (i < board.GetLength(1) - 1)
 					builder.Append(",\t");
 			}
 			builder.Append("]");
-			if (i != board.GetLength(0) - 1) {
+			if (j != board.GetLength(0) - 1) {
 				builder.Append(",\n");
 			}
 		}
@@ -157,7 +163,7 @@ public class BoardManager : MonoBehaviour {
 		var tilesRemaining = GameObject.FindGameObjectsWithTag("Tile").Where(x => !d.ContainsKey(x)).AsRandom();
 		foreach (GameObject t in tilesRemaining) {
 			board[i,j] = t;
-			if (CheckBoard(board, true)) {
+			if (GetBoardState(board, true) == BoardState.Valid) {
 				if (GenerateBoard(board, i, j + 1))
 					return true;
 			} 
@@ -167,18 +173,21 @@ public class BoardManager : MonoBehaviour {
 		return false;
 	}
 
-	bool CheckBoard(GameObject[,] board, bool provisional = false) {
+	BoardState GetBoardState(GameObject[,] board, bool provisional = false) {
 		IDictionary<GameObject, GridCoord> tileCoords = new Dictionary<GameObject, GridCoord>();
 		
 		for (int i = 0; i < board.GetLength(0); i++) {
 			for (int j = 0; j < board.GetLength(1); j++) {
 				var e = board[i,j];
-				if (e != null)
+				if (e == null) {
+					if (!provisional)
+						return BoardState.Incomplete;
+				} else {
 					tileCoords[e] = new GridCoord(i, j);
+				}
 			}
 		}
 	
-		// TODO: build tileCoords 
 		InvalidPair[] invalidPairs = gameObject.GetComponentsInChildren<InvalidPair>();
 		foreach (InvalidPair invalidPair in invalidPairs) {
 			GameObject someTile = invalidPair.SomeTile;
@@ -193,8 +202,7 @@ public class BoardManager : MonoBehaviour {
 				GridCoord blockedTilePos = tileCoords[blockedTile];
 				
 				if (pos.x == blockedTilePos.x || pos.y == blockedTilePos.y) {
-//					Debug.Log ("Illegal pair found: " + someTile.name + " " + blockedTile.name);
-					return false;
+					return BoardState.InvalidPair;
 				}
 			}
 		}
@@ -205,7 +213,7 @@ public class BoardManager : MonoBehaviour {
 			
 			for (int y = 0; y < 4; y++) {
 				if (!provisional && (board[x,y] == null || board[y,x] == null)) {
-					return false;
+					return BoardState.Incomplete;
 				}
 				
 				if (board[x,y] != null)
@@ -217,17 +225,17 @@ public class BoardManager : MonoBehaviour {
 			if (!test.All(k => k == 1 || (provisional && k <= 1))) {
 //				Debug.Log ("Fail col " + x);
 //				Debug.Log (string.Join(",", test.Select(k => k.ToString()).ToArray()));
-				return false;
+				return BoardState.InvalidCounts;
 			}
 			
 			if (!test2.All(k => k == 1 || (provisional && k <= 1))) {
 //				Debug.Log ("Fail row " + x);
 //				Debug.Log (string.Join(",", test2.Select(k => k.ToString()).ToArray()));
-				return false;
+				return BoardState.InvalidCounts;
 			}
 		}
 
-		return true;
+		return BoardState.Valid;
 	}
 	
 	public static BoardManager Instance;
@@ -238,7 +246,6 @@ public class BoardManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Debug.Log (DumpBoard());
-		PrintBoard(GetCurrentBoard());
 		
 		Transform premadeBoards = transform.Find("PremadeBoards");
 		if (LoadBoardOnStart && premadeBoards && premadeBoards.childCount > 0) {
