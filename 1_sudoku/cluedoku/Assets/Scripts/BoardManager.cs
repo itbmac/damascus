@@ -89,7 +89,7 @@ public class BoardManager : MonoBehaviour {
 		return CheckBoard(board);
 	}
 	
-	bool IsCurrentBoardFilled() {
+	public bool IsCurrentBoardFilled() {
 		GameObject[,] board = GetCurrentBoard();
 		foreach (var t in board) {
 			if (t == null)
@@ -215,6 +215,11 @@ public class BoardManager : MonoBehaviour {
 
 		return true;
 	}
+	
+	public static BoardManager Instance;
+	void Awake() {
+		Instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -232,8 +237,6 @@ public class BoardManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.G))
 			GenerateBoard();
-			
-		Debug.Log (IsCurrentBoardFilled());
 	}
 	
 	public void Submit() {

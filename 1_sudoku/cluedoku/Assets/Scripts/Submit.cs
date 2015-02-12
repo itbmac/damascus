@@ -2,17 +2,29 @@
 using System.Collections;
 
 [RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(AudioSource))]
 public class Submit : MonoBehaviour {
 
-	private BoardManager manager;
 	public Sprite spriteDisabled;
 	public Sprite spriteEnabled;
+	public AudioClip ClickedWhenDisabled;
 	
-	void Start() {
-		manager = FindObjectOfType<BoardManager>();
+	private bool submitEnabled;
+	
+	void Update() {
+		SpriteRenderer spriteRenderer = (SpriteRenderer)renderer;
+		
+		submitEnabled = BoardManager.Instance.IsCurrentBoardFilled();
+		if (submitEnabled)
+			spriteRenderer.sprite = spriteEnabled;
+		else
+			spriteRenderer.sprite = spriteDisabled;
 	}
 
 	void OnMouseDown() {
-		manager.SendMessage("Submit");
+		if (submitEnabled)
+			BoardManager.Instance.Submit();
+		else if (ClickedWhenDisabled)
+			audio.PlayOneShot(ClickedWhenDisabled);
 	}
 }
