@@ -2130,6 +2130,7 @@ MonoBehaviour:
   AdvanceNoise: {fileID: 8300000, guid: 042e0c0b8c2cc47d9bf8dff1d59f652d, type: 3}
   disableRendererOnClick: 1
   playSoundOnVisible: 1
+  mustClickOnObject: 0
 --- !u!82 &1128375065
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3517,6 +3518,7 @@ MonoBehaviour:
   AdvanceNoise: {fileID: 8300000, guid: 48e1327457c5f4b2189bab49b3a4b528, type: 3}
   disableRendererOnClick: 1
   playSoundOnVisible: 0
+  mustClickOnObject: 0
 --- !u!212 &1551032545
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3703,6 +3705,7 @@ GameObject:
   - 212: {fileID: 1706657770}
   - 82: {fileID: 1706657769}
   - 114: {fileID: 1706657768}
+  - 61: {fileID: 1706657771}
   m_Layer: 0
   m_Name: OpenInstructions
   m_TagString: Untagged
@@ -3738,6 +3741,7 @@ MonoBehaviour:
   AdvanceNoise: {fileID: 0}
   disableRendererOnClick: 0
   playSoundOnVisible: 0
+  mustClickOnObject: 1
 --- !u!82 &1706657769
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3818,6 +3822,17 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cf0bd82b4d7ee4af085d03ba64a5d605, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!61 &1706657771
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1706657766}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 8.63000011, y: 10.2399998}
+  m_Center: {x: 0, y: 0}
 --- !u!1 &1914868602
 GameObject:
   m_ObjectHideFlags: 0
