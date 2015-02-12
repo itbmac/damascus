@@ -23,7 +23,7 @@ public class BoardManager : MonoBehaviour {
 	public AudioClip noiseWin;
 	public AudioClip noiseLose;
 	public bool LoadBoardOnStart = true;
-	const float SIZE = 2.5f;
+	const float SIZE = 2.95f;//.5f;
 
 	private int AdjustToInt(float f) {
 		return Mathf.RoundToInt(.5f + f / SIZE) + 1;
