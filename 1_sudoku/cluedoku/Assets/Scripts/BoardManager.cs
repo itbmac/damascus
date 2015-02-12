@@ -5,29 +5,35 @@ using System.Collections.Generic;
 using MiniJSON;
 using System.Linq;
 
-public struct GridCoord {
-	public int x;
-	public int y;
-
-	public GridCoord(int x, int y) {
-		if (x < 0 || x > 3 || y < 0 || y > 3)
-			Debug.LogError("Invalid GridCoord " + x + " " + y);
-		
-		this.x = x;
-		this.y = y;
-	}
-}
-
 public class BoardManager : MonoBehaviour {
 
 	public AudioClip noiseWin;
 	public AudioClip noiseLose;
 	public GameObject failedArrestWarrent;
 	public bool LoadBoardOnStart = true;
-	const float SIZE = 2.95f;//.5f;
+	
+	public float Size = 2.95f;
+	public Vector2 OffsetPixel = new Vector2(.45f, -1.2f);
 
 	private int AdjustToInt(float f) {
-		return Mathf.RoundToInt(.5f + f / SIZE) + 1;
+		return Mathf.RoundToInt(.5f + (f / Size)) + 1;
+	}	
+	
+	public GridCoord GetGridCoord(Vector2 pos) {
+		pos -= OffsetPixel;
+	
+		return new GridCoord(AdjustToInt(pos.x), AdjustToInt(pos.y));
+	}
+	
+	public Vector2 GridCoord2Pos(GridCoord gc) {		
+		return new Vector2(
+			Size * (gc.x - 1.5f) + OffsetPixel.x,
+			Size * (gc.y - 1.5f) + OffsetPixel.y
+		);
+	}
+	
+	public Vector2 SnapPos(Vector2 pos) {
+		return GridCoord2Pos(GetGridCoord(pos));
 	}
 	
 	private int Classify(GameObject g) {
@@ -65,6 +71,14 @@ public class BoardManager : MonoBehaviour {
 		}
 		
 		return board;
+	}
+	
+	bool IsPositionOpen(Vector3 pos) {
+		GridCoord myGridCoord = GetGridCoord(pos);
+		
+		return GameObject.FindGameObjectsWithTag("Tile").All (
+			tile => GetGridCoord(tile.transform.position) != myGridCoord
+		);
 	}
 	
 	bool CheckCurrentBoard() {
@@ -111,7 +125,7 @@ public class BoardManager : MonoBehaviour {
 			builder.Append("[");
 			for (int j = 0; j < board.GetLength(1); j++) {
 				var e = board[i,j];
-				builder.Append(e.name);
+				builder.Append(e ? e.name : "_");
 				if (j < board.GetLength(1) - 1)
 					builder.Append(",\t");
 			}
@@ -224,6 +238,7 @@ public class BoardManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Debug.Log (DumpBoard());
+		PrintBoard(GetCurrentBoard());
 		
 		Transform premadeBoards = transform.Find("PremadeBoards");
 		if (LoadBoardOnStart && premadeBoards && premadeBoards.childCount > 0) {

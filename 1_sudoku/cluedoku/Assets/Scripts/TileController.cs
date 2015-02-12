@@ -9,8 +9,7 @@ public class TileController : MonoBehaviour {
 	public Sprite infoCard;
 	private Vector3 screenPoint;
 	private Vector3 offset;
-	public Vector2 offsetPixel = new Vector2(.45f, -1.2f);
-	const float SIZE = 2.95f;
+	
 	const float CLICK_DISTANCE_THRESHOLD = 0.1f;
 	Vector3 mouseDownStartPos;
 	
@@ -27,22 +26,14 @@ public class TileController : MonoBehaviour {
 		audio.PlayOneShot(noisePickUp);
 	}
 	
-	void OnMouseDrag()
-	{
+	void OnMouseDrag() {
 		Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 		Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 		transform.position = curPosition;
 	}
 	
-	private float Adjust(float f) {
-		return (Mathf.Round(.5f + f / SIZE) - .5f) * SIZE;
-	}
-	
 	private void Snap() {
-		Vector3 pos = transform.position;
-		pos.x = Adjust(pos.x) + offsetPixel.x;
-		pos.y = Adjust(pos.y) + offsetPixel.y;
-		transform.position = pos;
+		transform.position = BoardManager.Instance.SnapPos(transform.position);
 	}
 	
 	void OnMouseUp() {
