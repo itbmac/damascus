@@ -9,7 +9,8 @@ public class TileController : MonoBehaviour {
 	public Sprite infoCard;
 	private Vector3 screenPoint;
 	private Vector3 offset;
-	const float SIZE = 2.5f;
+	public Vector2 offsetPixel = new Vector2(.45f, -1.2f);
+	const float SIZE = 2.95f;
 	const float CLICK_DISTANCE_THRESHOLD = 0.1f;
 	Vector3 mouseDownStartPos;
 	
@@ -39,8 +40,8 @@ public class TileController : MonoBehaviour {
 	
 	private void Snap() {
 		Vector3 pos = transform.position;
-		pos.x = Adjust(pos.x);
-		pos.y = Adjust(pos.y);
+		pos.x = Adjust(pos.x) + offsetPixel.x;
+		pos.y = Adjust(pos.y) + offsetPixel.y;
 		transform.position = pos;
 	}
 	
