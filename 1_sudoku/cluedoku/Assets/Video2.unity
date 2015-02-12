@@ -170,6 +170,7 @@ GameObject:
   - 64: {fileID: 1273130661}
   - 23: {fileID: 1273130660}
   - 114: {fileID: 1273130664}
+  - 114: {fileID: 1273130665}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -241,3 +242,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movTexture: {fileID: 15200000, guid: f14a0da32ced5441086b927103265dde, type: 3}
+--- !u!114 &1273130665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1273130659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41c6a8947e654bd184d932998f17d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
