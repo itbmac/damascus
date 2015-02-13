@@ -79,7 +79,7 @@ GameObject:
   - 4: {fileID: 417958}
   - 114: {fileID: 11417956}
   m_Layer: 0
-  m_Name: BoardData
+  m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -909,7 +909,7 @@ GameObject:
   - 4: {fileID: 473240}
   - 114: {fileID: 11473240}
   m_Layer: 0
-  m_Name: BoardData
+  m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -944,7 +944,7 @@ GameObject:
   - 4: {fileID: 473244}
   - 114: {fileID: 11473244}
   m_Layer: 0
-  m_Name: BoardData
+  m_Name: 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -960,7 +960,7 @@ GameObject:
   - 4: {fileID: 477840}
   - 114: {fileID: 11477842}
   m_Layer: 0
-  m_Name: BoardData
+  m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -982,6 +982,102 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &199628
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 499628}
+  - 114: {fileID: 11499628}
+  m_Layer: 0
+  m_Name: 4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &199630
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 499630}
+  - 114: {fileID: 11499630}
+  m_Layer: 0
+  m_Name: 5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &199632
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 499632}
+  - 114: {fileID: 11499632}
+  m_Layer: 0
+  m_Name: 6
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &199634
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 499634}
+  - 114: {fileID: 11499634}
+  m_Layer: 0
+  m_Name: 8
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &199636
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 499636}
+  - 114: {fileID: 11499636}
+  m_Layer: 0
+  m_Name: 7
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &199638
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 499638}
+  - 114: {fileID: 11499638}
+  m_Layer: 0
+  m_Name: 10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &417950
 Transform:
   m_ObjectHideFlags: 1
@@ -989,7 +1085,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.03999996, y: -11.1199999, z: 10}
+  m_LocalPosition: {x: -9.77000046, y: -14.6999998, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418008}
@@ -1001,7 +1097,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.5999999, y: -4.26000023, z: 10}
+  m_LocalPosition: {x: -1.48000002, y: 4.48000002, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417954}
@@ -1047,7 +1143,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 2
+  m_RootOrder: 5
 --- !u!4 &417960
 Transform:
   m_ObjectHideFlags: 1
@@ -1079,7 +1175,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.0699997, y: -4.82000017, z: 10}
+  m_LocalPosition: {x: -12.04, y: -1.09000003, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417966}
@@ -1133,7 +1229,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.34000015, y: 4.46999979, z: 10}
+  m_LocalPosition: {x: 1.35000002, y: -1.08000004, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417954}
@@ -1157,7 +1253,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117974}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.09000015, y: .920000017, z: 10}
+  m_LocalPosition: {x: -4.32999992, y: 4.51000023, z: 10}
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 418038}
@@ -1181,7 +1277,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.0600004, y: 1.11000001, z: 10}
+  m_LocalPosition: {x: -4.4000001, y: 1.40999997, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417954}
@@ -1193,7 +1289,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117980}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.5799999, y: -4.84000015, z: 10}
+  m_LocalPosition: {x: -8.85000038, y: -1.64999998, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417954}
@@ -1205,7 +1301,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.21, y: -2.36999989, z: 10}
+  m_LocalPosition: {x: -14.2600002, y: -4.38000011, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417966}
@@ -1229,7 +1325,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117986}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.67999995, y: -1.26999998, z: 10}
+  m_LocalPosition: {x: -8.69999981, y: 1.57000005, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418008}
@@ -1241,7 +1337,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117988}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.25, y: -1.13, z: 10}
+  m_LocalPosition: {x: -15.0100002, y: -1.30999994, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417966}
@@ -1265,7 +1361,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117992}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.35000002, y: 1.45000005, z: 10}
+  m_LocalPosition: {x: -1.79999995, y: -14.2200003, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417954}
@@ -1309,7 +1405,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.33000004, y: 1.59000003, z: 10}
+  m_LocalPosition: {x: -14.5299997, y: -13.7399998, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417966}
@@ -1321,7 +1417,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.07000017, y: -1.17999995, z: 10}
+  m_LocalPosition: {x: -11.5100002, y: -4.3499999, z: 10}
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 418038}
@@ -1333,7 +1429,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.48999977, y: -4.23000002, z: 10}
+  m_LocalPosition: {x: -11.21, y: 4.38999987, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417966}
@@ -1345,7 +1441,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.5600004, y: -1.89999998, z: 10}
+  m_LocalPosition: {x: -11.04, y: -16.7099991, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418008}
@@ -1387,7 +1483,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118010}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.77999997, y: -1.15999997, z: 10}
+  m_LocalPosition: {x: 1.23000002, y: -10.6899996, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417954}
@@ -1411,7 +1507,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.51999998, y: 1.53999996, z: 10}
+  m_LocalPosition: {x: -4.44999981, y: -1.20000005, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418008}
@@ -1435,7 +1531,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118018}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.53999996, y: -4.32000017, z: 10}
+  m_LocalPosition: {x: -14.2200003, y: 1.46000004, z: 10}
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 418038}
@@ -1447,7 +1543,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.40999997, y: 4.4000001, z: 10}
+  m_LocalPosition: {x: -1.69000006, y: -11.0900002, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 417966}
@@ -1483,7 +1579,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.82999992, y: -4.9000001, z: 10}
+  m_LocalPosition: {x: -11.6499996, y: -12.8999996, z: 10}
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 418038}
@@ -1495,7 +1591,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118030}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.28999996, y: -2.22000003, z: 10}
+  m_LocalPosition: {x: -11.5200005, y: 1.57000005, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418008}
@@ -1561,7 +1657,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.39999998, y: 4.51999998, z: 10}
+  m_LocalPosition: {x: -8.97999954, y: -10.0200005, z: 10}
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 418038}
@@ -1573,7 +1669,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118042}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.5699997, y: 1.25, z: 10}
+  m_LocalPosition: {x: -8.57999992, y: 4.51999998, z: 10}
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 418038}
@@ -1585,7 +1681,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.19999981, y: 4.21000004, z: 10}
+  m_LocalPosition: {x: 4.48999977, y: 4.55999994, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418008}
@@ -1619,9 +1715,15 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 477840}
-  - {fileID: 473240}
+  - {fileID: 499634}
+  - {fileID: 499636}
+  - {fileID: 499632}
+  - {fileID: 499630}
+  - {fileID: 499628}
   - {fileID: 417958}
+  - {fileID: 473240}
+  - {fileID: 477840}
+  - {fileID: 499638}
   - {fileID: 473244}
   m_Father: {fileID: 418046}
   m_RootOrder: 6
@@ -1660,7 +1762,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 1
+  m_RootOrder: 6
 --- !u!4 &473242
 Transform:
   m_ObjectHideFlags: 1
@@ -1684,7 +1786,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 3
+  m_RootOrder: 9
 --- !u!4 &477840
 Transform:
   m_ObjectHideFlags: 1
@@ -1696,7 +1798,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 0
+  m_RootOrder: 7
 --- !u!4 &477842
 Transform:
   m_ObjectHideFlags: 1
@@ -1709,6 +1811,78 @@ Transform:
   m_Children: []
   m_Father: {fileID: 417996}
   m_RootOrder: 7
+--- !u!4 &499628
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199628}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418048}
+  m_RootOrder: 4
+--- !u!4 &499630
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199630}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418048}
+  m_RootOrder: 3
+--- !u!4 &499632
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199632}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418048}
+  m_RootOrder: 2
+--- !u!4 &499634
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418048}
+  m_RootOrder: 0
+--- !u!4 &499636
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199636}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418048}
+  m_RootOrder: 1
+--- !u!4 &499638
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199638}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418048}
+  m_RootOrder: 8
 --- !u!61 &6117950
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -2026,7 +2200,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 2.55999994, y: 2.55999994}
+  m_Size: {x: 14.2299995, y: 18.7799988}
   m_Center: {x: 0, y: 0}
 --- !u!61 &6173240
 BoxCollider2D:
@@ -3890,7 +4064,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-3.9750001430511475,"y":-5.625},"altar_boys":{"x":-3.9750001430511475,"y":-11.52500057220459},"factory":{"x":4.875,"y":3.2249999046325684},"paul":{"x":-11.77500057220459,"y":-11.925000190734863},"beach":{"x":-17.67500114440918,"y":-11.925000190734863},"movieset":{"x":-14.725000381469727,"y":-11.925000190734863},"movie_extras":{"x":-3.9750001430511475,"y":-11.52500057220459},"knife":{"x":-1.0250000953674316,"y":-2.6750001907348633},"marathon_runners":{"x":-3.9750001430511475,"y":-2.6750001907348633},"backalley":{"x":-1.0250000953674316,"y":0.27499997615814209},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":4.875,"y":-2.6750001907348633},"homeless_guys":{"x":4.875,"y":-5.625},"gun":{"x":-14.725000381469727,"y":-3.0750000476837158},"penthouse":{"x":1.9249999523162842,"y":-2.6750001907348633},"rope":{"x":4.875,"y":0.27499997615814209},"priscilla":{"x":-1.0250000953674316,"y":-5.625},"blonde_cheerleaders":{"x":-1.0250000953674316,"y":3.2249999046325684},"susan":{"x":1.9249999523162842,"y":-11.52500057220459},"gas":{"x":-1.0250000953674316,"y":-11.52500057220459},"claudia":{"x":1.9249999523162842,"y":3.2249999046325684},"lorenzo":{"x":-11.77500057220459,"y":-6.0250000953674316},"poison":{"x":-3.9750001430511475,"y":3.2249999046325684}}'
+  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-14.725000381469727,"y":-6.0250000953674316},"altar_boys":{"x":-11.77500057220459,"y":-14.875},"factory":{"x":-11.77500057220459,"y":2.8250002861022949},"paul":{"x":-8.8249998092651367,"y":-11.925000190734863},"beach":{"x":-11.77500057220459,"y":-11.925000190734863},"movieset":{"x":-14.725000381469727,"y":-14.875},"movie_extras":{"x":-11.77500057220459,"y":-11.925000190734863},"knife":{"x":-8.8249998092651367,"y":-0.125},"marathon_runners":{"x":-3.9750001430511475,"y":-2.6750001907348633},"backalley":{"x":-1.0250000953674316,"y":0.27499997615814209},"desperate_housewives":{"x":-8.8249998092651367,"y":-3.0750000476837158},"tom":{"x":-14.725000381469727,"y":-0.125},"homeless_guys":{"x":-8.8249998092651367,"y":-6.0250000953674316},"gun":{"x":-14.725000381469727,"y":-3.0750000476837158},"penthouse":{"x":1.9249999523162842,"y":-2.6750001907348633},"rope":{"x":-11.77500057220459,"y":-0.125},"priscilla":{"x":-11.77500057220459,"y":-6.0250000953674316},"blonde_cheerleaders":{"x":-11.77500057220459,"y":-3.0750000476837158},"susan":{"x":-8.8249998092651367,"y":-14.875},"gas":{"x":-8.8249998092651367,"y":-17.825000762939453},"claudia":{"x":1.9249999523162842,"y":3.2249999046325684},"lorenzo":{"x":-8.8249998092651367,"y":2.8250002861022949},"poison":{"x":-3.9750001430511475,"y":3.2249999046325684}}'
 --- !u!114 &11417958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4331,7 +4505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   board: {fileID: 118046}
-  clearNoise: {fileID: 8300000, guid: 080e38cce182d4fbdb353fc595b6e346, type: 3}
+  clearNoise: {fileID: 8300000, guid: 6cc85fbe9881b49e9a18d29a770e75a5, type: 3}
 --- !u!114 &11418024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4484,7 +4658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-3.9750001430511475,"y":-5.625},"altar_boys":{"x":-3.9750001430511475,"y":-11.52500057220459},"factory":{"x":4.875,"y":3.2249999046325684},"paul":{"x":-11.675000190734863,"y":-11.52500057220459},"beach":{"x":-17.575000762939453,"y":-11.52500057220459},"movieset":{"x":-14.625,"y":-11.52500057220459},"movie_extras":{"x":-3.9750001430511475,"y":-11.52500057220459},"knife":{"x":-1.0250000953674316,"y":-2.6750001907348633},"marathon_runners":{"x":-3.9750001430511475,"y":-2.6750001907348633},"backalley":{"x":-1.0250000953674316,"y":0.27499997615814209},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":4.875,"y":-2.6750001907348633},"homeless_guys":{"x":4.875,"y":-5.625},"gun":{"x":-14.625,"y":-2.6750001907348633},"penthouse":{"x":1.9249999523162842,"y":-2.6750001907348633},"rope":{"x":4.875,"y":0.27499997615814209},"priscilla":{"x":-1.0250000953674316,"y":-5.625},"blonde_cheerleaders":{"x":-1.0250000953674316,"y":3.2249999046325684},"susan":{"x":1.9249999523162842,"y":-11.52500057220459},"gas":{"x":-1.0250000953674316,"y":-11.52500057220459},"claudia":{"x":1.9249999523162842,"y":3.2249999046325684},"lorenzo":{"x":-3.9750001430511475,"y":0.27499997615814209},"poison":{"x":-3.9750001430511475,"y":3.2249999046325684}}'
+  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-14.725000381469727,"y":-6.0250000953674316},"altar_boys":{"x":-11.77500057220459,"y":-14.875},"factory":{"x":-11.77500057220459,"y":2.8250002861022949},"paul":{"x":-8.8249998092651367,"y":-11.925000190734863},"beach":{"x":-11.77500057220459,"y":-11.925000190734863},"movieset":{"x":-14.725000381469727,"y":-14.875},"movie_extras":{"x":-11.77500057220459,"y":-11.925000190734863},"knife":{"x":-3.9750001430511475,"y":-5.625},"marathon_runners":{"x":-8.8249998092651367,"y":-3.0750000476837158},"backalley":{"x":-8.8249998092651367,"y":-0.125},"desperate_housewives":{"x":4.875,"y":3.2249999046325684},"tom":{"x":-14.725000381469727,"y":-0.125},"homeless_guys":{"x":-8.8249998092651367,"y":-6.0250000953674316},"gun":{"x":-14.725000381469727,"y":-3.0750000476837158},"penthouse":{"x":-11.77500057220459,"y":-6.0250000953674316},"rope":{"x":-11.77500057220459,"y":-0.125},"priscilla":{"x":4.875,"y":-5.625},"blonde_cheerleaders":{"x":-11.77500057220459,"y":-3.0750000476837158},"susan":{"x":-8.8249998092651367,"y":-14.875},"gas":{"x":-8.8249998092651367,"y":-17.825000762939453},"claudia":{"x":1.9249999523162842,"y":0.27499997615814209},"lorenzo":{"x":-3.9750001430511475,"y":3.2249999046325684},"poison":{"x":-8.8249998092651367,"y":2.8250002861022949}}'
 --- !u!114 &11473242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4513,9 +4687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-3.9750001430511475,"y":-5.625},"altar_boys":{"x":-3.9750001430511475,"y":-11.52500057220459},"factory":{"x":4.875,"y":3.2249999046325684},"paul":{"x":-11.77500057220459,"y":-11.925000190734863},"beach":{"x":-17.67500114440918,"y":-11.925000190734863},"movieset":{"x":-14.725000381469727,"y":-11.925000190734863},"movie_extras":{"x":-3.9750001430511475,"y":-11.52500057220459},"knife":{"x":-1.0250000953674316,"y":-2.6750001907348633},"marathon_runners":{"x":-3.9750001430511475,"y":-2.6750001907348633},"backalley":{"x":-1.0250000953674316,"y":0.27499997615814209},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":4.875,"y":-2.6750001907348633},"homeless_guys":{"x":4.875,"y":-5.625},"gun":{"x":-14.725000381469727,"y":-3.0750000476837158},"penthouse":{"x":1.9249999523162842,"y":-2.6750001907348633},"rope":{"x":4.875,"y":0.27499997615814209},"priscilla":{"x":-1.0250000953674316,"y":-5.625},"blonde_cheerleaders":{"x":-1.0250000953674316,"y":3.2249999046325684},"susan":{"x":1.9249999523162842,"y":-11.52500057220459},"gas":{"x":-1.0250000953674316,"y":-11.52500057220459},"claudia":{"x":1.9249999523162842,"y":3.2249999046325684},"lorenzo":{"x":-14.725000381469727,"y":-0.125},"poison":{"x":-3.9750001430511475,"y":3.2249999046325684}}
-
-'
+  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-14.725000381469727,"y":-3.0750000476837158},"altar_boys":{"x":-11.77500057220459,"y":-14.875},"factory":{"x":-14.725000381469727,"y":-8.9750003814697266},"paul":{"x":-11.77500057220459,"y":-6.0250000953674316},"beach":{"x":1.9249999523162842,"y":-5.625},"movieset":{"x":-3.9750001430511475,"y":0.27499997615814209},"movie_extras":{"x":-1.0250000953674316,"y":3.2249999046325684},"knife":{"x":-8.8249998092651367,"y":-0.125},"marathon_runners":{"x":-3.9750001430511475,"y":-11.52500057220459},"backalley":{"x":-11.77500057220459,"y":2.8250002861022949},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":-14.725000381469727,"y":-0.125},"homeless_guys":{"x":-8.8249998092651367,"y":-6.0250000953674316},"gun":{"x":-14.725000381469727,"y":-14.875},"penthouse":{"x":1.9249999523162842,"y":-11.52500057220459},"rope":{"x":-11.77500057220459,"y":-0.125},"priscilla":{"x":-11.77500057220459,"y":-14.875},"blonde_cheerleaders":{"x":-11.77500057220459,"y":-3.0750000476837158},"susan":{"x":-8.8249998092651367,"y":-14.875},"gas":{"x":-3.9750001430511475,"y":-5.625},"claudia":{"x":-8.8249998092651367,"y":-3.0750000476837158},"lorenzo":{"x":-8.8249998092651367,"y":2.8250002861022949},"poison":{"x":4.875,"y":-2.6750001907348633}}'
 --- !u!114 &11477842
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4530,6 +4702,78 @@ MonoBehaviour:
   Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-8.8249998092651367,"y":3.2249999046325684},"altar_boys":{"x":-3.9750001430511475,"y":0.27499997615814209},"factory":{"x":4.875,"y":-14.475000381469727},"paul":{"x":-11.77500057220459,"y":-3.0750000476837158},"beach":{"x":-3.9750001430511475,"y":-5.625},"movieset":{"x":-14.725000381469727,"y":-11.925000190734863},"movie_extras":{"x":-8.8249998092651367,"y":-6.0250000953674316},"knife":{"x":-14.725000381469727,"y":-14.875},"marathon_runners":{"x":-3.9750001430511475,"y":-11.52500057220459},"backalley":{"x":-8.8249998092651367,"y":-0.125},"desperate_housewives":{"x":-1.0250000953674316,"y":-5.625},"tom":{"x":-8.8249998092651367,"y":-3.0750000476837158},"homeless_guys":{"x":4.875,"y":-11.52500057220459},"gun":{"x":-14.725000381469727,"y":-3.0750000476837158},"penthouse":{"x":-1.0250000953674316,"y":3.2249999046325684},"rope":{"x":-11.77500057220459,"y":-0.125},"priscilla":{"x":1.9249999523162842,"y":0.27499997615814209},"blonde_cheerleaders":{"x":1.9249999523162842,"y":3.2249999046325684},"susan":{"x":-14.725000381469727,"y":-6.0250000953674316},"gas":{"x":-11.77500057220459,"y":-6.0250000953674316},"claudia":{"x":1.9249999523162842,"y":-14.475000381469727},"lorenzo":{"x":-3.9750001430511475,"y":-14.475000381469727},"poison":{"x":-14.725000381469727,"y":-0.125}}
 
 '
+--- !u!114 &11499628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-14.725000381469727,"y":-3.0750000476837158},"altar_boys":{"x":-11.77500057220459,"y":-14.875},"factory":{"x":-14.725000381469727,"y":-8.9750003814697266},"paul":{"x":-11.77500057220459,"y":-6.0250000953674316},"beach":{"x":1.9249999523162842,"y":-5.625},"movieset":{"x":-3.9750001430511475,"y":0.27499997615814209},"movie_extras":{"x":-1.0250000953674316,"y":3.2249999046325684},"knife":{"x":-8.8249998092651367,"y":-0.125},"marathon_runners":{"x":-3.9750001430511475,"y":-11.52500057220459},"backalley":{"x":-11.77500057220459,"y":2.8250002861022949},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":-14.725000381469727,"y":-0.125},"homeless_guys":{"x":-8.8249998092651367,"y":-6.0250000953674316},"gun":{"x":-14.725000381469727,"y":-14.875},"penthouse":{"x":1.9249999523162842,"y":-11.52500057220459},"rope":{"x":-11.77500057220459,"y":-0.125},"priscilla":{"x":-11.77500057220459,"y":-14.875},"blonde_cheerleaders":{"x":-11.77500057220459,"y":-3.0750000476837158},"susan":{"x":-8.8249998092651367,"y":-14.875},"gas":{"x":-3.9750001430511475,"y":-5.625},"claudia":{"x":-8.8249998092651367,"y":-3.0750000476837158},"lorenzo":{"x":-8.8249998092651367,"y":2.8250002861022949},"poison":{"x":4.875,"y":-2.6750001907348633}}'
+--- !u!114 &11499630
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: '{"wrench":{"x":-3.9750001430511475,"y":-2.6750001907348633},"park":{"x":4.875,"y":3.2249999046325684},"altar_boys":{"x":1.9249999523162842,"y":-2.6750001907348633},"factory":{"x":1.9249999523162842,"y":0.27499997615814209},"paul":{"x":-11.77500057220459,"y":-6.0250000953674316},"beach":{"x":-8.8249998092651367,"y":-6.0250000953674316},"movieset":{"x":-3.9750001430511475,"y":-17.42500114440918},"movie_extras":{"x":-1.0250000953674316,"y":-11.52500057220459},"knife":{"x":-8.8249998092651367,"y":-14.875},"marathon_runners":{"x":-3.9750001430511475,"y":3.2249999046325684},"backalley":{"x":-1.0250000953674316,"y":-2.6750001907348633},"desperate_housewives":{"x":-14.725000381469727,"y":-6.0250000953674316},"tom":{"x":-14.725000381469727,"y":-11.925000190734863},"homeless_guys":{"x":-8.8249998092651367,"y":-8.9750003814697266},"gun":{"x":-11.77500057220459,"y":-0.125},"penthouse":{"x":1.9249999523162842,"y":-11.52500057220459},"rope":{"x":-11.77500057220459,"y":-14.875},"priscilla":{"x":-14.725000381469727,"y":-0.125},"blonde_cheerleaders":{"x":-11.77500057220459,"y":-3.0750000476837158},"susan":{"x":-8.8249998092651367,"y":-14.875},"gas":{"x":-8.8249998092651367,"y":-0.125},"claudia":{"x":-8.8249998092651367,"y":-3.0750000476837158},"lorenzo":{"x":-8.8249998092651367,"y":2.8250002861022949},"poison":{"x":-14.725000381469727,"y":-3.0750000476837158}}'
+--- !u!114 &11499632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: '"wrench":{"x":-8.8249998092651367,"y":-6.0250000953674316},"park":{"x":4.875,"y":0.27499997615814209},"altar_boys":{"x":-11.77500057220459,"y":-3.0750000476837158},"factory":{"x":1.9249999523162842,"y":-14.475000381469727},"paul":{"x":-11.77500057220459,"y":-14.875},"beach":{"x":-8.8249998092651367,"y":-11.925000190734863},"movieset":{"x":-3.9750001430511475,"y":-2.6750001907348633},"movie_extras":{"x":-14.725000381469727,"y":-6.0250000953674316},"knife":{"x":-8.8249998092651367,"y":-0.125},"marathon_runners":{"x":-3.9750001430511475,"y":-11.52500057220459},"backalley":{"x":-1.0250000953674316,"y":-5.625},"desperate_housewives":{"x":-14.725000381469727,"y":-14.875},"tom":{"x":-14.725000381469727,"y":-11.925000190734863},"homeless_guys":{"x":-11.77500057220459,"y":2.8250002861022949},"gun":{"x":-11.77500057220459,"y":-17.825000762939453},"penthouse":{"x":1.9249999523162842,"y":3.2249999046325684},"rope":{"x":-11.77500057220459,"y":-0.125},"priscilla":{"x":-14.725000381469727,"y":-0.125},"blonde_cheerleaders":{"x":-1.0250000953674316,"y":3.2249999046325684},"susan":{"x":-11.77500057220459,"y":-6.0250000953674316},"gas":{"x":-3.9750001430511475,"y":-17.42500114440918},"claudia":{"x":-8.8249998092651367,"y":-3.0750000476837158},"lorenzo":{"x":-8.8249998092651367,"y":2.8250002861022949},"poison":{"x":-14.725000381469727,"y":-3.0750000476837158}}'
+--- !u!114 &11499634
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-14.725000381469727,"y":-3.0750000476837158},"altar_boys":{"x":-11.77500057220459,"y":-14.875},"factory":{"x":-14.725000381469727,"y":-8.9750003814697266},"paul":{"x":-11.77500057220459,"y":-6.0250000953674316},"beach":{"x":1.9249999523162842,"y":-5.625},"movieset":{"x":-3.9750001430511475,"y":0.27499997615814209},"movie_extras":{"x":-1.0250000953674316,"y":3.2249999046325684},"knife":{"x":-8.8249998092651367,"y":-0.125},"marathon_runners":{"x":-3.9750001430511475,"y":-11.52500057220459},"backalley":{"x":-11.77500057220459,"y":2.8250002861022949},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":-14.725000381469727,"y":-0.125},"homeless_guys":{"x":-8.8249998092651367,"y":-6.0250000953674316},"gun":{"x":-14.725000381469727,"y":-14.875},"penthouse":{"x":1.9249999523162842,"y":-11.52500057220459},"rope":{"x":-11.77500057220459,"y":-0.125},"priscilla":{"x":-11.77500057220459,"y":-14.875},"blonde_cheerleaders":{"x":-11.77500057220459,"y":-3.0750000476837158},"susan":{"x":-8.8249998092651367,"y":-14.875},"gas":{"x":-3.9750001430511475,"y":-5.625},"claudia":{"x":-8.8249998092651367,"y":-3.0750000476837158},"lorenzo":{"x":-8.8249998092651367,"y":2.8250002861022949},"poison":{"x":4.875,"y":-2.6750001907348633}}'
+--- !u!114 &11499636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: '{"wrench":{"x":-8.8249998092651367,"y":-17.825000762939453},"park":{"x":-1.0250000953674316,"y":3.2249999046325684},"altar_boys":{"x":-11.77500057220459,"y":-3.0750000476837158},"factory":{"x":1.9249999523162842,"y":-2.6750001907348633},"paul":{"x":-3.9750001430511475,"y":3.2249999046325684},"beach":{"x":-3.9750001430511475,"y":0.27499997615814209},"movieset":{"x":-8.8249998092651367,"y":-3.0750000476837158},"movie_extras":{"x":-14.725000381469727,"y":-6.0250000953674316},"knife":{"x":-8.8249998092651367,"y":-0.125},"marathon_runners":{"x":-14.725000381469727,"y":-3.0750000476837158},"backalley":{"x":-1.0250000953674316,"y":-14.475000381469727},"desperate_housewives":{"x":-14.725000381469727,"y":-14.875},"tom":{"x":-11.77500057220459,"y":-6.0250000953674316},"homeless_guys":{"x":-11.77500057220459,"y":2.8250002861022949},"gun":{"x":-11.77500057220459,"y":-17.825000762939453},"penthouse":{"x":1.9249999523162842,"y":-11.52500057220459},"rope":{"x":-3.9750001430511475,"y":-2.6750001907348633},"priscilla":{"x":-14.725000381469727,"y":-0.125},"blonde_cheerleaders":{"x":-1.0250000953674316,"y":-11.52500057220459},"susan":{"x":-11.77500057220459,"y":-14.875},"gas":{"x":-11.77500057220459,"y":-0.125},"claudia":{"x":-8.8249998092651367,"y":-11.925000190734863},"lorenzo":{"x":-8.8249998092651367,"y":2.8250002861022949},"poison":{"x":4.875,"y":3.2249999046325684}}'
+--- !u!114 &11499638
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-14.725000381469727,"y":-3.0750000476837158},"altar_boys":{"x":-11.77500057220459,"y":-14.875},"factory":{"x":-14.725000381469727,"y":-8.9750003814697266},"paul":{"x":-11.77500057220459,"y":-6.0250000953674316},"beach":{"x":1.9249999523162842,"y":-5.625},"movieset":{"x":-3.9750001430511475,"y":0.27499997615814209},"movie_extras":{"x":-1.0250000953674316,"y":3.2249999046325684},"knife":{"x":-8.8249998092651367,"y":-0.125},"marathon_runners":{"x":-3.9750001430511475,"y":-11.52500057220459},"backalley":{"x":-11.77500057220459,"y":2.8250002861022949},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":-14.725000381469727,"y":-0.125},"homeless_guys":{"x":-8.8249998092651367,"y":-6.0250000953674316},"gun":{"x":-14.725000381469727,"y":-14.875},"penthouse":{"x":1.9249999523162842,"y":-11.52500057220459},"rope":{"x":-11.77500057220459,"y":-0.125},"priscilla":{"x":-11.77500057220459,"y":-14.875},"blonde_cheerleaders":{"x":-11.77500057220459,"y":-3.0750000476837158},"susan":{"x":-8.8249998092651367,"y":-14.875},"gas":{"x":-3.9750001430511475,"y":-5.625},"claudia":{"x":-8.8249998092651367,"y":-3.0750000476837158},"lorenzo":{"x":-8.8249998092651367,"y":2.8250002861022949},"poison":{"x":4.875,"y":-2.6750001907348633}}'
 --- !u!212 &21217950
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -5012,7 +5256,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 2688436225
   m_SortingOrder: -20
-  m_Sprite: {fileID: 21300000, guid: 3b6c33a4315bf452d876b54e4c47f7cf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8196c9bf7023b4951bb24a12f8c3551b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!212 &21217994
 SpriteRenderer:

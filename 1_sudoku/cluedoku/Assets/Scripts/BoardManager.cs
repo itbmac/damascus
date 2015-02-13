@@ -284,7 +284,7 @@ public class BoardManager : MonoBehaviour {
 	List<int> randomBoards;
 	int randomBoardIndex;
 	
-	public void Reset() {
+	public void NewBoard() {
 		if (boardSelector == BoardSelector.FirstChildBoard || boardSelector == BoardSelector.RandomBoard) {
 			Transform premadeBoards = transform.Find("PremadeBoards");
 			if (premadeBoards && premadeBoards.childCount > 0) {
@@ -307,12 +307,18 @@ public class BoardManager : MonoBehaviour {
 		}
 	}
 
+	public void Reset() {
+		Transform premadeBoards = transform.Find("PremadeBoards");
+		int boardIndex = randomBoards[randomBoardIndex-1];
+		LoadBoard(premadeBoards.GetChild(boardIndex).GetComponent<BoardData>().Data);
+	}
+
 	void Start () {
 		Debug.Log ("Current board:\n" + DumpBoard());
 		
 		GenerateBoard();
 		
-		Reset();
+		NewBoard();
 	}
 	
 	// Update is called once per frame
