@@ -22,20 +22,21 @@ public class BoardManager : MonoBehaviour {
 	public GridCoord GetGridCoord(Vector2 pos) {
 		pos -= OffsetPixel;
 		
-		if (pos.x < MackenzieThreshold)
-			pos.x += MackenzieOffset;
+		if (pos.x < MacKenzieThreshold)
+			pos.x += MacKenzieOffsetX;
 	
 		return new GridCoord(AdjustToInt(pos.x), AdjustToInt(pos.y));
 	}
 	
-	const float MackenzieThreshold = -6.5f;
-	const float MackenzieOffset = 1.8f;
+	const float MacKenzieThreshold = -6.5f;
+	const float MacKenzieOffsetX = 1.9f;
+	const float MacKenzieOffsetY = 0.4f;
 	
 	public Vector2 GridCoord2Pos(GridCoord gc) {
 		if (gc.x < 0)
 			return new Vector2(
-				Size * (gc.x - 1.5f) + OffsetPixel.x - MackenzieOffset,
-				Size * (gc.y - 1.5f) + OffsetPixel.y
+				Size * (gc.x - 1.5f) + OffsetPixel.x - MacKenzieOffsetX,
+				Size * (gc.y - 1.5f) + OffsetPixel.y - MacKenzieOffsetY
 			);
 		else
 			return new Vector2(
