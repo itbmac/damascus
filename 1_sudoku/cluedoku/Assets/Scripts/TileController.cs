@@ -9,6 +9,7 @@ public class TileController : MonoBehaviour {
 	public Sprite infoCard;
 	private Vector3 screenPoint;
 	private Vector3 offset;
+	private bool pickedUp;
 	
 	const float CLICK_DISTANCE_THRESHOLD = 0.1f;
 	Vector3 mouseDownStartPos;
@@ -21,14 +22,20 @@ public class TileController : MonoBehaviour {
 	}
 	
 	void OnMouseDown() {
+		if (GameManager.Instance.CurrentPopup != null)
+			return;
+	
+		pickedUp = true;
 		mouseDownStartPos = transform.position;
 		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 		audio.PlayOneShot(noisePickUp);
-		
 		((SpriteRenderer)renderer).sortingLayerName = "ActiveTile";
 	}
 	
 	void OnMouseDrag() {
+		if (!pickedUp)
+			return;
+			
 		Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z);
 		Vector3 curPosition = Camera.main.ScreenToWorldPoint(curScreenPoint) + offset;
 		transform.position = curPosition;
@@ -46,6 +53,10 @@ public class TileController : MonoBehaviour {
 	}
 	
 	void OnMouseUp() {
+		if (!pickedUp)
+			return;
+		pickedUp = false;
+			
 		if (infoCard && Vector3.Distance(transform.position, mouseDownStartPos) < CLICK_DISTANCE_THRESHOLD) {
 			FileViewer.Instance.Show(infoCard);
 		} else {

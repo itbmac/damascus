@@ -8,6 +8,8 @@ public class Submit : MonoBehaviour {
 	public Sprite spriteDisabled;
 	public Sprite spriteEnabled;
 	public AudioClip ClickedWhenDisabled;
+	public GameObject PopupValid;
+	public GameObject PopupInvalid;
 	
 	private bool submitEnabled;
 	
@@ -22,9 +24,24 @@ public class Submit : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
+		if (GameManager.Instance.CurrentPopup != null)
+			return;
+	
 		if (submitEnabled)
-			BoardManager.Instance.Submit();
-		else if (ClickedWhenDisabled)
+			SubmitBoard();
+		else if (ClickedWhenDisabled) {
 			audio.PlayOneShot(ClickedWhenDisabled);
+		}
+	}
+	
+	void SubmitBoard() {	
+		BoardState bs = BoardManager.Instance.GetCurrentBoardState();
+		if (bs == BoardState.Valid) {
+			Debug.Log ("Valid board.");
+			PopupValid.SendMessage("Trigger");			
+		} else {
+			Debug.Log ("Submitted. Invalid board. Reason: " + bs.ToString ());
+			PopupInvalid.SendMessage("Trigger");
+		}
 	}
 }

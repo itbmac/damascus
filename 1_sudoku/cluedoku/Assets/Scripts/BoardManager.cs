@@ -5,17 +5,17 @@ using System.Collections.Generic;
 using MiniJSON;
 using System.Linq;
 
+public enum BoardState {Valid, Incomplete, Duplicates, InvalidPair, InvalidCounts}
+
 public class BoardManager : MonoBehaviour {
 
-	public AudioClip noiseWin;
-	public AudioClip noiseLose;
 	public GameObject failedArrestWarrent;
-	public bool LoadBoardOnStart = true;
+	
+	public enum BoardSelector {NoLoad, FirstChildBoard, RandomBoard}
+	public BoardSelector boardSelector = BoardSelector.NoLoad;
 	
 	public float Size = 2.95f;
-	public Vector2 OffsetPixel = new Vector2(.45f, -1.2f);
-	
-	public enum BoardState {Valid, Incomplete, Duplicates, InvalidPair, InvalidCounts}
+	public Vector2 OffsetPixel = new Vector2(.45f, -1.2f);	
 
 	private int AdjustToInt(float f) {
 		return Mathf.RoundToInt(.5f + (f / Size)) + 1;
@@ -83,7 +83,7 @@ public class BoardManager : MonoBehaviour {
 		);
 	}
 	
-	BoardState GetCurrentBoardState() {
+	public BoardState GetCurrentBoardState() {
 		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
 		GameObject[,] board = new GameObject[4, 4];
 		
@@ -202,6 +202,7 @@ public class BoardManager : MonoBehaviour {
 				GridCoord blockedTilePos = tileCoords[blockedTile];
 				
 				if (pos.x == blockedTilePos.x || pos.y == blockedTilePos.y) {
+					Debug.Log ("Invalid pair: " + someTile.name + " and " + blockedTile.name);
 					return BoardState.InvalidPair;
 				}
 			}
@@ -223,14 +224,14 @@ public class BoardManager : MonoBehaviour {
 			}
 			
 			if (!test.All(k => k == 1 || (provisional && k <= 1))) {
-//				Debug.Log ("Fail col " + x);
-//				Debug.Log (string.Join(",", test.Select(k => k.ToString()).ToArray()));
+				Debug.Log ("Fail col " + x);
+				Debug.Log (string.Join(",", test.Select(k => k.ToString()).ToArray()));
 				return BoardState.InvalidCounts;
 			}
 			
 			if (!test2.All(k => k == 1 || (provisional && k <= 1))) {
-//				Debug.Log ("Fail row " + x);
-//				Debug.Log (string.Join(",", test2.Select(k => k.ToString()).ToArray()));
+				Debug.Log ("Fail row " + x);
+				Debug.Log (string.Join(",", test2.Select(k => k.ToString()).ToArray()));
 				return BoardState.InvalidCounts;
 			}
 		}
@@ -245,11 +246,19 @@ public class BoardManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log (DumpBoard());
+		Debug.Log (DumpBoard());		
 		
-		Transform premadeBoards = transform.Find("PremadeBoards");
-		if (LoadBoardOnStart && premadeBoards && premadeBoards.childCount > 0) {
-			LoadBoard(premadeBoards.GetChild(0).GetComponent<BoardData>().Data);
+		if (boardSelector == BoardSelector.FirstChildBoard || boardSelector == BoardSelector.RandomBoard) {
+			Transform premadeBoards = transform.Find("PremadeBoards");
+			if (premadeBoards && premadeBoards.childCount > 0) {
+				int boardIndex = 0;
+				if (boardSelector == BoardSelector.RandomBoard)
+					boardIndex = Random.Range(0, premadeBoards.childCount - 1);
+			
+				LoadBoard(premadeBoards.GetChild(boardIndex).GetComponent<BoardData>().Data);
+			} else {
+				Debug.LogWarning("Could not find board to load!");
+			}
 		}
 		
 		GenerateBoard();
@@ -259,19 +268,6 @@ public class BoardManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.G))
 			GenerateBoard();
-	}
-	
-	public void Submit() {
-		if (CheckCurrentBoard()) {
-			Debug.Log ("Valid board.");
-			if (!audio.isPlaying)
-				audio.PlayOneShot(noiseWin);
-				
-		} else {
-			Debug.Log ("Submitted. Invalid board.");
-			failedArrestWarrent.renderer.enabled = true;
-			audio.PlayOneShot(noiseLose);
-		}
 	}
 	
 	void LoadBoard(string board) {
