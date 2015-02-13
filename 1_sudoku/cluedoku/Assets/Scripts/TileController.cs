@@ -15,12 +15,16 @@ public class TileController : MonoBehaviour {
 	Vector3 mouseDownStartPos;
 	private bool locked = false;
 	
-	void Start() {
-		Snap ();
-		locked = BoardManager.Instance.IsOnBoard(transform.position);
-		
+	void Start() {		
 		if (tag != "Tile")
 			Debug.LogError("Must have tag Tile");
+			
+		Reset();
+	}
+	
+	public void Reset() {
+		Snap ();
+		locked = BoardManager.Instance.IsOnBoard(transform.position);	
 	}
 	
 	void OnMouseDown() {

@@ -8,8 +8,6 @@ using System.Linq;
 public enum BoardState {Valid, Incomplete, Duplicates, InvalidPair, InvalidCounts}
 
 public class BoardManager : MonoBehaviour {
-
-	public GameObject failedArrestWarrent;
 	
 	public enum BoardSelector {NoLoad, FirstChildBoard, RandomBoard}
 	public BoardSelector boardSelector = BoardSelector.NoLoad;
@@ -153,7 +151,7 @@ public class BoardManager : MonoBehaviour {
 		GenerateBoard(board, 0, 0);
 	}
 	
-	void PrintBoard(GameObject[,] board) {
+	string BoardToString(GameObject[,] board) {
 		// Note: does not print out as the physical board appears (specifically, prints out upside down)
 		StringBuilder builder = new StringBuilder();
 		builder.Append("[");
@@ -171,7 +169,11 @@ public class BoardManager : MonoBehaviour {
 			}
 		}
 		builder.Append("]");
-		Debug.Log(builder.ToString());
+		return builder.ToString();
+	}
+	
+	void PrintBoard(GameObject[,] board) {
+		Debug.Log(board);
 	}
 	
 	bool GenerateBoard(GameObject[,] board, int i, int j) {	
@@ -180,7 +182,7 @@ public class BoardManager : MonoBehaviour {
 			j = 0;
 		}
 		if (i >= board.GetLength(0)) {
-			PrintBoard(board);
+			Debug.Log ("Generated new board for designer, press G for more: \n" + BoardToString(board));
 			return true;
 		}
 
@@ -276,15 +278,16 @@ public class BoardManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Debug.Log (DumpBoard());		
+		Debug.Log ("Current board:\n" + DumpBoard());		
 		
 		if (boardSelector == BoardSelector.FirstChildBoard || boardSelector == BoardSelector.RandomBoard) {
 			Transform premadeBoards = transform.Find("PremadeBoards");
 			if (premadeBoards && premadeBoards.childCount > 0) {
 				int boardIndex = 0;
 				if (boardSelector == BoardSelector.RandomBoard)
-					boardIndex = Random.Range(0, premadeBoards.childCount - 1);
+					boardIndex = Random.Range(0, premadeBoards.childCount);
 			
+				Debug.Log ("Loading new board...");
 				LoadBoard(premadeBoards.GetChild(boardIndex).GetComponent<BoardData>().Data);
 			} else {
 				Debug.LogWarning("Could not find board to load!");
@@ -311,6 +314,7 @@ public class BoardManager : MonoBehaviour {
 			
 			var go = GameObject.Find(name);
 			go.transform.position = new Vector2((float)x, (float)y);
+			go.SendMessage("Reset");
 		}
 	}
 	
