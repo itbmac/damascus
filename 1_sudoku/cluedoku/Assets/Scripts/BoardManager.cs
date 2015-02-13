@@ -54,6 +54,13 @@ public class BoardManager : MonoBehaviour {
 		return gc;
 	}
 	
+	public bool IsOutOfGame(Vector2 pos) {
+		var gc = GetGridCoord(pos);
+		var gcs = SnapGridCoord(gc);
+		
+		return gc != gcs;
+	}
+	
 	public bool IsOnBoard(Vector2 pos) {
 		var gc = GetGridCoord(pos);
 		return 0 <= gc.x && gc.x < 4 && 0 <= gc.y && gc.y < 4;
@@ -205,6 +212,52 @@ public class BoardManager : MonoBehaviour {
 		board[i,j] = null;
 		return false;
 	}
+	
+	int CountSolutions() {
+		GameObject[,] board = GetCurrentBoard();
+		return CountSolutions(board, 0, 0);
+	}
+	
+	int CountSolutions(GameObject[,] board, int i, int j) {	
+		// Counts the number of possible solutions formed by filling in the remaining
+		// open slots on the board. 
+		
+		if (j >= board.GetLength(1)) {
+			i += 1;
+			j = 0;
+		}
+		if (i >= board.GetLength(0)) {
+			return 1;
+		}
+		
+		if (board[i,j] != null)
+			return CountSolutions(board, i, j + 1)	;
+			
+		
+		var d = new Dictionary<GameObject, bool>();
+		foreach (var t in board) {
+			if (t != null)
+				d[t] = true;
+		}
+		
+		GameObject original = board[i,j];
+		
+		// TODO: not excluded
+		var tilesRemaining =
+			GameObject
+			.FindGameObjectsWithTag("Tile")
+			.Where(x => !d.ContainsKey(x) && !IsOnBoard(x.transform.position) && !IsOutOfGame(x.transform.position));
+		int totalSolutions = 0;
+		foreach (GameObject t in tilesRemaining) {
+			board[i,j] = t;
+			if (GetBoardState(board, true) == BoardState.Valid) {
+				totalSolutions += CountSolutions(board, i, j + 1);
+			} 
+		}
+		
+		board[i,j] = original;
+		return totalSolutions;
+	}
 
 	BoardState GetBoardState(GameObject[,] board, bool provisional = false) {
 		IDictionary<GameObject, GridCoord> tileCoords = new Dictionary<GameObject, GridCoord>();
@@ -317,6 +370,8 @@ public class BoardManager : MonoBehaviour {
 			GenerateBoard();
 		else if (Input.GetKeyDown(KeyCode.S))
 			Reset ();
+		else if (Input.GetKeyDown(KeyCode.C))
+			Debug.Log (CountSolutions());
 	}
 	
 	void LoadBoard(string board) {
