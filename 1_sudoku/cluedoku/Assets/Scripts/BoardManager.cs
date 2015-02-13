@@ -57,7 +57,6 @@ public class BoardManager : MonoBehaviour {
 	
 	public bool IsOnBoard(Vector2 pos) {
 		var gc = GetGridCoord(pos);
-		Debug.Log (gc);
 		return 0 <= gc.x && gc.x < 4 && 0 <= gc.y && gc.y < 4;
 	}
 	
@@ -97,7 +96,7 @@ public class BoardManager : MonoBehaviour {
 			}
 			
 			if (board[x,y] != null) {
-				Debug.LogWarning("Overlapping tiles: " + board[x,y].name + " and " + tile.name);
+//				Debug.LogWarning("Overlapping tiles: " + board[x,y].name + " and " + tile.name);
 				continue;
 			}
 			board[x,y] = tile;
@@ -233,7 +232,7 @@ public class BoardManager : MonoBehaviour {
 				GridCoord blockedTilePos = tileCoords[blockedTile];
 				
 				if (pos.x == blockedTilePos.x || pos.y == blockedTilePos.y) {
-					Debug.Log ("Invalid pair: " + someTile.name + " and " + blockedTile.name);
+//					Debug.Log ("Invalid pair: " + someTile.name + " and " + blockedTile.name);
 					return BoardState.InvalidPair;
 				}
 			}
@@ -255,14 +254,14 @@ public class BoardManager : MonoBehaviour {
 			}
 			
 			if (!test.All(k => k == 1 || (provisional && k <= 1))) {
-				Debug.Log ("Fail col " + x);
-				Debug.Log (string.Join(",", test.Select(k => k.ToString()).ToArray()));
+//				Debug.Log ("Fail col " + x);
+//				Debug.Log (string.Join(",", test.Select(k => k.ToString()).ToArray()));
 				return BoardState.InvalidCounts;
 			}
 			
 			if (!test2.All(k => k == 1 || (provisional && k <= 1))) {
-				Debug.Log ("Fail row " + x);
-				Debug.Log (string.Join(",", test2.Select(k => k.ToString()).ToArray()));
+//				Debug.Log ("Fail row " + x);
+//				Debug.Log (string.Join(",", test2.Select(k => k.ToString()).ToArray()));
 				return BoardState.InvalidCounts;
 			}
 		}
