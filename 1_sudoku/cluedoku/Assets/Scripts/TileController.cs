@@ -43,11 +43,11 @@ public class TileController : MonoBehaviour {
 	
 	private void Snap() {
 		transform.position = BoardManager.Instance.SnapPos(transform.position);
-	}
+	}	
 	
 	private void SnapToNewPosIfOpen() {
 		if (BoardManager.Instance.IsPositionOpen(transform.position, gameObject))
-			Snap();
+			transform.position = BoardManager.Instance.SnapPosConstrained(transform.position);
 		else
 			transform.position = mouseDownStartPos;
 	}

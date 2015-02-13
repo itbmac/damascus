@@ -34,8 +34,18 @@ public class BoardManager : MonoBehaviour {
 		);
 	}
 	
+	public GridCoord SnapGridCoord(GridCoord gc) {
+		gc.x = Mathf.Clamp(gc.x, -4, 3);
+		gc.y = Mathf.Clamp(gc.y, 0, 3);
+		return gc;
+	}
+	
 	public Vector2 SnapPos(Vector2 pos) {
 		return GridCoord2Pos(GetGridCoord(pos));
+	}
+	
+	public Vector2 SnapPosConstrained(Vector2 pos) {
+		return GridCoord2Pos(SnapGridCoord(GetGridCoord(pos)));
 	}
 	
 	private int Classify(GameObject g) {
@@ -76,7 +86,7 @@ public class BoardManager : MonoBehaviour {
 	}
 	
 	public bool IsPositionOpen(Vector3 pos, GameObject forObject) {
-		GridCoord myGridCoord = GetGridCoord(pos);
+		GridCoord myGridCoord = SnapGridCoord(GetGridCoord(pos));
 		
 		return GameObject.FindGameObjectsWithTag("Tile").All (
 			tile => tile == forObject || GetGridCoord(tile.transform.position) != myGridCoord
