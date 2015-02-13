@@ -1003,7 +1003,7 @@ Prefab:
       objectReference: {fileID: 1540955391}
     - target: {fileID: 129046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: AdvanceNoise
@@ -2739,7 +2739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &824558748
 Transform:
   m_ObjectHideFlags: 0
@@ -3229,6 +3229,10 @@ Prefab:
       propertyPath: Data
       value: '{"wrench":{"x":-1.0250000953674316,"y":0.27499997615814209},"park":{"x":-3.9750001430511475,"y":-14.475000381469727},"altar_boys":{"x":-14.725000381469727,"y":-3.0750000476837158},"factory":{"x":4.875,"y":3.2249999046325684},"paul":{"x":-8.8249998092651367,"y":-3.0750000476837158},"beach":{"x":1.9249999523162842,"y":0.27499997615814209},"movieset":{"x":-1.0250000953674316,"y":-2.6750001907348633},"movie_extras":{"x":-14.725000381469727,"y":-14.875},"knife":{"x":-14.725000381469727,"y":-0.125},"marathon_runners":{"x":-11.77500057220459,"y":-14.875},"backalley":{"x":-8.8249998092651367,"y":-11.925000190734863},"desperate_housewives":{"x":-11.77500057220459,"y":-3.0750000476837158},"tom":{"x":-8.8249998092651367,"y":2.8250002861022949},"homeless_guys":{"x":-11.77500057220459,"y":2.8250002861022949},"gun":{"x":-8.8249998092651367,"y":-0.125},"penthouse":{"x":-3.9750001430511475,"y":-5.625},"rope":{"x":-8.8249998092651367,"y":-6.0250000953674316},"priscilla":{"x":-14.725000381469727,"y":-11.925000190734863},"blonde_cheerleaders":{"x":-14.725000381469727,"y":-6.0250000953674316},"susan":{"x":-11.77500057220459,"y":-6.0250000953674316},"gas":{"x":1.9249999523162842,"y":-11.52500057220459},"claudia":{"x":-11.77500057220459,"y":-0.125},"lorenzo":{"x":-8.8249998092651367,"y":-14.875},"poison":{"x":4.875,"y":-11.52500057220459}}'
       objectReference: {fileID: 0}
+    - target: {fileID: 117996, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
   m_RootGameObject: {fileID: 824558747}
@@ -3391,7 +3395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1128375062
 SpriteRenderer:
   m_ObjectHideFlags: 0
