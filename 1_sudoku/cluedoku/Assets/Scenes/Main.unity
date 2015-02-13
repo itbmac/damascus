@@ -470,7 +470,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-9.875,"y":-5.625},"altar_boys":{"x":-3.3999998569488525,"y":-12.550000190734863},"factory":{"x":-12.824999809265137,"y":-5.625},"paul":{"x":-9.875,"y":-11.52500057220459},"beach":{"x":-6.9250001907348633,"y":-5.625},"movieset":{"x":-12.824999809265137,"y":-11.52500057220459},"movie_extras":{"x":-7.130000114440918,"y":-11.940000534057617},"knife":{"x":-6.9250001907348633,"y":-2.6750001907348633},"marathon_runners":{"x":-3.7799999713897705,"y":-2.4800000190734863},"backalley":{"x":-0.87999999523162842,"y":0.10000002384185791},"desperate_housewives":{"x":-9.875,"y":0.27499997615814209},"tom":{"x":-6.9250001907348633,"y":3.2249999046325684},"homeless_guys":{"x":-6.9250001907348633,"y":0.27499997615814209},"gun":{"x":-12.824999809265137,"y":-2.6750001907348633},"penthouse":{"x":2.25,"y":-2.5099999904632568},"rope":{"x":-9.875,"y":-2.6750001907348633},"priscilla":{"x":-12.824999809265137,"y":3.2249999046325684},"blonde_cheerleaders":{"x":-12.824999809265137,"y":0.27499997615814209},"susan":{"x":1.9249999523162842,"y":-11.52500057220459},"gas":{"x":-1.0250000953674316,"y":-11.52500057220459},"claudia":{"x":1.8700000047683716,"y":3.1700000762939453},"lorenzo":{"x":-9.875,"y":3.2249999046325684},"poison":{"x":-3.7299997806549072,"y":2.8600001335144043}}'
+  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-3.9750001430511475,"y":-5.625},"altar_boys":{"x":-3.9750001430511475,"y":-11.52500057220459},"factory":{"x":4.875,"y":3.2249999046325684},"paul":{"x":-11.77500057220459,"y":-11.925000190734863},"beach":{"x":-17.67500114440918,"y":-11.925000190734863},"movieset":{"x":-14.725000381469727,"y":-11.925000190734863},"movie_extras":{"x":-3.9750001430511475,"y":-11.52500057220459},"knife":{"x":-1.0250000953674316,"y":-2.6750001907348633},"marathon_runners":{"x":-3.9750001430511475,"y":-2.6750001907348633},"backalley":{"x":-1.0250000953674316,"y":0.27499997615814209},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":4.875,"y":-2.6750001907348633},"homeless_guys":{"x":4.875,"y":-5.625},"gun":{"x":-14.725000381469727,"y":-3.0750000476837158},"penthouse":{"x":1.9249999523162842,"y":-2.6750001907348633},"rope":{"x":4.875,"y":0.27499997615814209},"priscilla":{"x":-1.0250000953674316,"y":-5.625},"blonde_cheerleaders":{"x":-1.0250000953674316,"y":3.2249999046325684},"susan":{"x":1.9249999523162842,"y":-11.52500057220459},"gas":{"x":-1.0250000953674316,"y":-11.52500057220459},"claudia":{"x":1.9249999523162842,"y":3.2249999046325684},"lorenzo":{"x":-8.8249998092651367,"y":-0.125},"poison":{"x":-3.9750001430511475,"y":3.2249999046325684}}
+
+'
 --- !u!1 &211325722
 GameObject:
   m_ObjectHideFlags: 0
@@ -2620,6 +2622,47 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &959928189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 117958, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 959928190}
+  - 114: {fileID: 959928191}
+  m_Layer: 0
+  m_Name: BoardData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &959928190
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 417958, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 959928189}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2027007775}
+  m_RootOrder: 2
+--- !u!114 &959928191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11417956, guid: c387b0d9e4a4549c28bed6a3a012502a,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 959928189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-3.9750001430511475,"y":-5.625},"altar_boys":{"x":-3.9750001430511475,"y":-11.52500057220459},"factory":{"x":4.875,"y":3.2249999046325684},"paul":{"x":-11.77500057220459,"y":-11.925000190734863},"beach":{"x":-17.67500114440918,"y":-11.925000190734863},"movieset":{"x":-14.725000381469727,"y":-11.925000190734863},"movie_extras":{"x":-3.9750001430511475,"y":-11.52500057220459},"knife":{"x":-1.0250000953674316,"y":-2.6750001907348633},"marathon_runners":{"x":-3.9750001430511475,"y":-2.6750001907348633},"backalley":{"x":-1.0250000953674316,"y":0.27499997615814209},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":4.875,"y":-2.6750001907348633},"homeless_guys":{"x":4.875,"y":-5.625},"gun":{"x":-14.725000381469727,"y":-3.0750000476837158},"penthouse":{"x":1.9249999523162842,"y":-2.6750001907348633},"rope":{"x":4.875,"y":0.27499997615814209},"priscilla":{"x":-1.0250000953674316,"y":-5.625},"blonde_cheerleaders":{"x":-1.0250000953674316,"y":3.2249999046325684},"susan":{"x":1.9249999523162842,"y":-11.52500057220459},"gas":{"x":-1.0250000953674316,"y":-11.52500057220459},"claudia":{"x":1.9249999523162842,"y":3.2249999046325684},"lorenzo":{"x":-11.77500057220459,"y":-6.0250000953674316},"poison":{"x":-3.9750001430511475,"y":3.2249999046325684}}'
 --- !u!1 &1121832848
 GameObject:
   m_ObjectHideFlags: 0
@@ -3073,6 +3116,28 @@ Prefab:
       propertyPath: followingItem
       value: 
       objectReference: {fileID: 1128375061}
+    - target: {fileID: 418042, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -14.5699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 11418032, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: boardSelector
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11477842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: Data
+      value: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-3.9750001430511475,"y":-5.625},"altar_boys":{"x":-3.9750001430511475,"y":-11.52500057220459},"factory":{"x":4.875,"y":3.2249999046325684},"paul":{"x":-11.77500057220459,"y":-11.925000190734863},"beach":{"x":-17.67500114440918,"y":-11.925000190734863},"movieset":{"x":-14.725000381469727,"y":-11.925000190734863},"movie_extras":{"x":-3.9750001430511475,"y":-11.52500057220459},"knife":{"x":-1.0250000953674316,"y":-2.6750001907348633},"marathon_runners":{"x":-3.9750001430511475,"y":-2.6750001907348633},"backalley":{"x":-1.0250000953674316,"y":0.27499997615814209},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":4.875,"y":-2.6750001907348633},"homeless_guys":{"x":4.875,"y":-5.625},"gun":{"x":-14.725000381469727,"y":-3.0750000476837158},"penthouse":{"x":1.9249999523162842,"y":-2.6750001907348633},"rope":{"x":4.875,"y":0.27499997615814209},"priscilla":{"x":-1.0250000953674316,"y":-5.625},"blonde_cheerleaders":{"x":-1.0250000953674316,"y":3.2249999046325684},"susan":{"x":1.9249999523162842,"y":-11.52500057220459},"gas":{"x":-1.0250000953674316,"y":-11.52500057220459},"claudia":{"x":1.9249999523162842,"y":3.2249999046325684},"lorenzo":{"x":-8.8249998092651367,"y":-0.125},"poison":{"x":-3.9750001430511475,"y":3.2249999046325684}}
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 418042, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11435366, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: OnDismiss
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
   m_RootGameObject: {fileID: 824558747}
@@ -4845,7 +4910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ceb4e13a844c4e588c0fb2c40de512a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDismiss: 2
+  OnDismiss: 5
   OtherPopup: {fileID: 0}
   TriggerSound: {fileID: 8300000, guid: 384a125fb5a6f4446a3c2421a4236359, type: 3}
   DismissSound: {fileID: 0}
@@ -5132,7 +5197,7 @@ Transform:
   m_PrefabInternal: {fileID: 1215106868}
   m_GameObject: {fileID: 1933366338}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.44999981, y: 1.84000003, z: 10}
+  m_LocalPosition: {x: -14.5699997, y: 1.25, z: 10}
   m_LocalScale: {x: .800000012, y: .800000012, z: 1}
   m_Children: []
   m_Father: {fileID: 1914868603}
@@ -5363,6 +5428,49 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &1981115771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 117958, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1981115772}
+  - 114: {fileID: 1981115773}
+  m_Layer: 0
+  m_Name: BoardData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1981115772
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 417958, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1981115771}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2027007775}
+  m_RootOrder: 3
+--- !u!114 &1981115773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11417956, guid: c387b0d9e4a4549c28bed6a3a012502a,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1981115771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Data: '{"wrench":{"x":4.875,"y":-11.52500057220459},"park":{"x":-3.9750001430511475,"y":-5.625},"altar_boys":{"x":-3.9750001430511475,"y":-11.52500057220459},"factory":{"x":4.875,"y":3.2249999046325684},"paul":{"x":-11.77500057220459,"y":-11.925000190734863},"beach":{"x":-17.67500114440918,"y":-11.925000190734863},"movieset":{"x":-14.725000381469727,"y":-11.925000190734863},"movie_extras":{"x":-3.9750001430511475,"y":-11.52500057220459},"knife":{"x":-1.0250000953674316,"y":-2.6750001907348633},"marathon_runners":{"x":-3.9750001430511475,"y":-2.6750001907348633},"backalley":{"x":-1.0250000953674316,"y":0.27499997615814209},"desperate_housewives":{"x":1.9249999523162842,"y":0.27499997615814209},"tom":{"x":4.875,"y":-2.6750001907348633},"homeless_guys":{"x":4.875,"y":-5.625},"gun":{"x":-14.725000381469727,"y":-3.0750000476837158},"penthouse":{"x":1.9249999523162842,"y":-2.6750001907348633},"rope":{"x":4.875,"y":0.27499997615814209},"priscilla":{"x":-1.0250000953674316,"y":-5.625},"blonde_cheerleaders":{"x":-1.0250000953674316,"y":3.2249999046325684},"susan":{"x":1.9249999523162842,"y":-11.52500057220459},"gas":{"x":-1.0250000953674316,"y":-11.52500057220459},"claudia":{"x":1.9249999523162842,"y":3.2249999046325684},"lorenzo":{"x":-14.725000381469727,"y":-0.125},"poison":{"x":-3.9750001430511475,"y":3.2249999046325684}}
+
+'
 --- !u!1 &2013787583
 GameObject:
   m_ObjectHideFlags: 0
@@ -5670,6 +5778,8 @@ Transform:
   m_Children:
   - {fileID: 210047797}
   - {fileID: 1424132494}
+  - {fileID: 959928190}
+  - {fileID: 1981115772}
   m_Father: {fileID: 2013787584}
   m_RootOrder: 6
 --- !u!1 &2113721763

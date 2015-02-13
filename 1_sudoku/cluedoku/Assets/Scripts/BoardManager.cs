@@ -276,32 +276,47 @@ public class BoardManager : MonoBehaviour {
 	void Awake() {
 		Instance = this;
 	}
-
-	// Use this for initialization
-	void Start () {
-		Debug.Log ("Current board:\n" + DumpBoard());		
-		
+	
+	List<int> randomBoards;
+	int randomBoardIndex;
+	
+	public void Reset() {
 		if (boardSelector == BoardSelector.FirstChildBoard || boardSelector == BoardSelector.RandomBoard) {
 			Transform premadeBoards = transform.Find("PremadeBoards");
 			if (premadeBoards && premadeBoards.childCount > 0) {
 				int boardIndex = 0;
-				if (boardSelector == BoardSelector.RandomBoard)
-					boardIndex = Random.Range(0, premadeBoards.childCount);
-			
-				Debug.Log ("Loading new board...");
+				if (boardSelector == BoardSelector.RandomBoard) {
+					if (randomBoards == null || randomBoardIndex >= randomBoards.Count) {
+						randomBoards = Enumerable.Range(0, premadeBoards.childCount).AsRandom().ToList();
+						randomBoardIndex = 0;
+					}
+					
+					boardIndex = randomBoards[randomBoardIndex];
+					randomBoardIndex += 1;
+				}
+				
+				Debug.Log ("Loading new board... " + boardIndex);
 				LoadBoard(premadeBoards.GetChild(boardIndex).GetComponent<BoardData>().Data);
 			} else {
 				Debug.LogWarning("Could not find board to load!");
 			}
 		}
+	}
+
+	void Start () {
+		Debug.Log ("Current board:\n" + DumpBoard());
 		
 		GenerateBoard();
+		
+		Reset();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.G))
 			GenerateBoard();
+		else if (Input.GetKeyDown(KeyCode.S))
+			Reset ();
 	}
 	
 	void LoadBoard(string board) {

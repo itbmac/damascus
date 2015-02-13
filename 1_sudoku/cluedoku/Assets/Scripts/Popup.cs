@@ -6,7 +6,7 @@ using System;
 [RequireComponent(typeof(AudioSource))]
 public class Popup : MonoBehaviour {
 
-	public enum DismissBehavior {DoNothing, LoadNextScene, ReloadCurrentScene, RestartGame, TriggerOtherPopup}
+	public enum DismissBehavior {DoNothing, LoadNextScene, ReloadCurrentScene, RestartGame, TriggerOtherPopup, LoadNextBoard}
 	
 	public DismissBehavior OnDismiss;
 	public GameObject OtherPopup;
@@ -81,5 +81,8 @@ public class Popup : MonoBehaviour {
 			Application.LoadLevel(0);
 		else if (OnDismiss == DismissBehavior.TriggerOtherPopup)
 			OtherPopup.SendMessage("Trigger");
+		else if (OnDismiss == DismissBehavior.LoadNextBoard)
+			BoardManager.Instance.Reset();
+		
 	}
 }
