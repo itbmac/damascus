@@ -13,17 +13,31 @@ public class TileController : MonoBehaviour {
 	
 	const float CLICK_DISTANCE_THRESHOLD = 0.1f;
 	Vector3 mouseDownStartPos;
+	private bool locked = false;
 	
 	void Start() {
 		Snap ();
+		
+		locked = BoardManager.Instance.IsOnBoard(transform.position);
+		Debug.Log (name + " " + BoardManager.Instance.GetGridCoord(transform.position) + " " + locked);
+		
+		if (locked)
+			((SpriteRenderer)renderer).color = Color.red;
 		
 		if (tag != "Tile")
 			Debug.LogError("Must have tag Tile");
 	}
 	
 	void OnMouseDown() {
+		Debug.Log (BoardManager.Instance.IsOnBoard(transform.position));
 		if (GameManager.Instance.CurrentPopup != null)
 			return;
+			
+		if (locked) {
+			if (infoCard)
+				FileViewer.Instance.Show(infoCard);
+			return;
+		}
 	
 		pickedUp = true;
 		mouseDownStartPos = transform.position;

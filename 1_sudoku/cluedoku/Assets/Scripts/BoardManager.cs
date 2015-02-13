@@ -23,21 +23,42 @@ public class BoardManager : MonoBehaviour {
 	
 	public GridCoord GetGridCoord(Vector2 pos) {
 		pos -= OffsetPixel;
+		
+		if (pos.x < MackenzieThreshold)
+			pos.x += MackenzieOffset;
 	
 		return new GridCoord(AdjustToInt(pos.x), AdjustToInt(pos.y));
 	}
 	
-	public Vector2 GridCoord2Pos(GridCoord gc) {		
-		return new Vector2(
-			Size * (gc.x - 1.5f) + OffsetPixel.x,
-			Size * (gc.y - 1.5f) + OffsetPixel.y
-		);
+	const float MackenzieThreshold = -6.5f;
+	const float MackenzieOffset = 1.8f;
+	
+	public Vector2 GridCoord2Pos(GridCoord gc) {
+		if (gc.x < 0)
+			return new Vector2(
+				Size * (gc.x - 1.5f) + OffsetPixel.x - MackenzieOffset,
+				Size * (gc.y - 1.5f) + OffsetPixel.y
+			);
+		else
+			return new Vector2(
+				Size * (gc.x - 1.5f) + OffsetPixel.x,
+				Size * (gc.y - 1.5f) + OffsetPixel.y
+			);
 	}
 	
 	public GridCoord SnapGridCoord(GridCoord gc) {
-		gc.x = Mathf.Clamp(gc.x, -4, 3);
-		gc.y = Mathf.Clamp(gc.y, 0, 3);
+		gc.x = Mathf.Clamp(gc.x, -3, 3);
+		if (gc.x < 0)
+			gc.y = Mathf.Clamp(gc.y, 0, 2);
+		else
+			gc.y = Mathf.Clamp(gc.y, 0, 3);
 		return gc;
+	}
+	
+	public bool IsOnBoard(Vector2 pos) {
+		var gc = GetGridCoord(pos);
+		Debug.Log (gc);
+		return 0 <= gc.x && gc.x < 4 && 0 <= gc.y && gc.y < 4;
 	}
 	
 	public Vector2 SnapPos(Vector2 pos) {
