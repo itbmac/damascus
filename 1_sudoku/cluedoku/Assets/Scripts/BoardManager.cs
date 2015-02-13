@@ -47,8 +47,12 @@ public class BoardManager : MonoBehaviour {
 	
 	public GridCoord SnapGridCoord(GridCoord gc) {
 		gc.x = Mathf.Clamp(gc.x, -3, 3);
-		if (gc.x < 0)
-			gc.y = Mathf.Clamp(gc.y, 0, 2);
+		if (gc.x < 0) {
+			gc.y = Mathf.Clamp(gc.y, 0, 3);
+
+			if ((gc.y == 3) && (gc.x == -3))
+				gc.y = 2;
+		}
 		else
 			gc.y = Mathf.Clamp(gc.y, 0, 3);
 		return gc;
@@ -315,8 +319,8 @@ public class BoardManager : MonoBehaviour {
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.G))
 			GenerateBoard();
-		else if (Input.GetKeyDown(KeyCode.S))
-			Reset ();
+//		else if (Input.GetKeyDown(KeyCode.S))
+//			Reset ();
 	}
 	
 	void LoadBoard(string board) {

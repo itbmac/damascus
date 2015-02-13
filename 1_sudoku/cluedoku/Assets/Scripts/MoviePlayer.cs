@@ -9,12 +9,13 @@ public class MoviePlayer : MonoBehaviour {
 	void Start () {
 		renderer.material.mainTexture = movTexture;
 		movTexture.Play();
+		audio.Play();
 		Debug.Log (movTexture.duration);
 		StartCoroutine(AdvanceToNextLevelAfter(movTexture.duration));
 	}
 	
 	IEnumerator AdvanceToNextLevelAfter(float seconds) {
-		yield return new WaitForSeconds(seconds);
+		yield return new WaitForSeconds(seconds-1);
 		Application.LoadLevel(Application.loadedLevel + 1);
 	}
 }
