@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movTexture: {fileID: 15200000, guid: de099c4bfd3964182bccf283883f3ee3, type: 3}
+  numSecondsToEndEarly: 2.5
 --- !u!114 &1273130665
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Collections;
 public class MoviePlayer : MonoBehaviour {
 
 	public MovieTexture movTexture;
+	public float numSecondsToEndEarly = 2.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -15,7 +16,7 @@ public class MoviePlayer : MonoBehaviour {
 	}
 	
 	IEnumerator AdvanceToNextLevelAfter(float seconds) {
-		yield return new WaitForSeconds(seconds-1);
+		yield return new WaitForSeconds(seconds - numSecondsToEndEarly);
 		Application.LoadLevel(Application.loadedLevel + 1);
 	}
 }
