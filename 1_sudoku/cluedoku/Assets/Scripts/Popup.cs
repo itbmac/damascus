@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System;
 
@@ -82,7 +82,7 @@ public class Popup : MonoBehaviour {
 		else if (OnDismiss == DismissBehavior.TriggerOtherPopup)
 			OtherPopup.SendMessage("Trigger");
 		else if (OnDismiss == DismissBehavior.LoadNextBoard)
-			BoardManager.Instance.Reset();
+			BoardManager.Instance.NewBoard();
 		
 	}
 }

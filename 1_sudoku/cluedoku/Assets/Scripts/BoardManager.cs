@@ -47,8 +47,12 @@ public class BoardManager : MonoBehaviour {
 	
 	public GridCoord SnapGridCoord(GridCoord gc) {
 		gc.x = Mathf.Clamp(gc.x, -3, 3);
-		if (gc.x < 0)
-			gc.y = Mathf.Clamp(gc.y, 0, 2);
+		if (gc.x < 0) {
+			gc.y = Mathf.Clamp(gc.y, 0, 3);
+
+			if ((gc.y == 3) && (gc.x == -3))
+				gc.y = 2;
+		}
 		else
 			gc.y = Mathf.Clamp(gc.y, 0, 3);
 		return gc;
@@ -213,9 +217,13 @@ public class BoardManager : MonoBehaviour {
 		return false;
 	}
 	
+	const int MAX_SOLUTIONS_TO_FIND = 1000;
 	int CountSolutions() {
 		GameObject[,] board = GetCurrentBoard();
-		return CountSolutions(board, 0, 0);
+		int result = CountSolutions(board, 0, 0);
+		if (result > MAX_SOLUTIONS_TO_FIND)
+			return MAX_SOLUTIONS_TO_FIND;
+		return result;
 	}
 	
 	int CountSolutions(GameObject[,] board, int i, int j) {	
@@ -253,6 +261,10 @@ public class BoardManager : MonoBehaviour {
 			if (GetBoardState(board, true) == BoardState.Valid) {
 				totalSolutions += CountSolutions(board, i, j + 1);
 			} 
+			
+			// for performance reasons, if there's too many solutions break out of everything
+			if (totalSolutions > MAX_SOLUTIONS_TO_FIND)
+				break;
 		}
 		
 		board[i,j] = original;
@@ -333,7 +345,7 @@ public class BoardManager : MonoBehaviour {
 	List<int> randomBoards;
 	int randomBoardIndex;
 	
-	public void Reset() {
+	public void NewBoard() {
 		if (boardSelector == BoardSelector.FirstChildBoard || boardSelector == BoardSelector.RandomBoard) {
 			Transform premadeBoards = transform.Find("PremadeBoards");
 			if (premadeBoards && premadeBoards.childCount > 0) {
@@ -356,22 +368,33 @@ public class BoardManager : MonoBehaviour {
 		}
 	}
 
+	public void Reset() {
+		Transform premadeBoards = transform.Find("PremadeBoards");
+		int boardIndex = randomBoards[randomBoardIndex-1];
+		LoadBoard(premadeBoards.GetChild(boardIndex).GetComponent<BoardData>().Data);
+	}
+
 	void Start () {
 		Debug.Log ("Current board:\n" + DumpBoard());
 		
 		GenerateBoard();
 		
-		Reset();
+		NewBoard();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetKeyDown(KeyCode.G))
 			GenerateBoard();
-		else if (Input.GetKeyDown(KeyCode.S))
-			Reset ();
-		else if (Input.GetKeyDown(KeyCode.C))
-			Debug.Log (CountSolutions());
+//		else if (Input.GetKeyDown(KeyCode.S))
+//			Reset ();
+		else if (Input.GetKeyDown(KeyCode.C)) {
+			int numSolutions = CountSolutions();
+			if (numSolutions == MAX_SOLUTIONS_TO_FIND)
+				Debug.Log(numSolutions + " or more possible solutions");
+			else
+				Debug.Log(numSolutions + " possible solutions");
+		}
 	}
 	
 	void LoadBoard(string board) {

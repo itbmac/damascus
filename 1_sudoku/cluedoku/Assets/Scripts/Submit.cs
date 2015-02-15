@@ -7,18 +7,24 @@ public class Submit : MonoBehaviour {
 
 	public Sprite spriteDisabled;
 	public Sprite spriteEnabled;
+	public Sprite spriteHighlighted;
 	public AudioClip ClickedWhenDisabled;
 	public GameObject PopupValid;
 	public GameObject PopupInvalid;
-	
+	private SpriteRenderer spriteRenderer;
+
 	private bool submitEnabled;
-	
+	private bool currentlyHovering = false;
+
+	void Start(){
+		spriteRenderer = (SpriteRenderer)renderer;
+	}
+
 	void Update() {
-		SpriteRenderer spriteRenderer = (SpriteRenderer)renderer;
-		
 		submitEnabled = BoardManager.Instance.IsCurrentBoardFilled();
 		if (submitEnabled)
-			spriteRenderer.sprite = spriteEnabled;
+			if(currentlyHovering) spriteRenderer.sprite = spriteHighlighted;
+		else spriteRenderer.sprite = spriteEnabled;
 		else
 			spriteRenderer.sprite = spriteDisabled;
 	}
@@ -43,5 +49,13 @@ public class Submit : MonoBehaviour {
 			Debug.Log ("Submitted. Invalid board. Reason: " + bs.ToString ());
 			PopupInvalid.SendMessage("Trigger");
 		}
+	}
+
+	void OnMouseEnter() {
+		currentlyHovering = true;
+	}
+	
+	void OnMouseExit() {
+		currentlyHovering = false;
 	}
 }

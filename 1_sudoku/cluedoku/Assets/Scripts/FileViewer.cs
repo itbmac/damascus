@@ -38,8 +38,15 @@ public class FileViewer : MonoBehaviour {
 //			transform.position = AlternatePosition;
 //		}
 	
-		lastShown = Time.time;
 		var sr = (SpriteRenderer)renderer;
+		if (sprite == sr.sprite && sr.enabled) {
+			Hide();
+			return;
+		}
+
+
+		lastShown = Time.time;
+		
 		sr.sprite = sprite;
 		renderer.enabled = true;
 		audio.PlayOneShot(PickUpFile);
