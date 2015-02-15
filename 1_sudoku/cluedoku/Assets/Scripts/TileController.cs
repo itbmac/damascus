@@ -14,6 +14,7 @@ public class TileController : MonoBehaviour {
 	const float CLICK_DISTANCE_THRESHOLD = 0.1f;
 	Vector3 mouseDownStartPos;
 	private bool locked = false;
+	public GameObject pin;
 	
 	void Start() {		
 		if (tag != "Tile")
@@ -25,6 +26,11 @@ public class TileController : MonoBehaviour {
 	public void Reset() {
 		Snap ();
 		locked = BoardManager.Instance.IsOnBoard(transform.position);	
+
+		if (locked) {
+			pin.renderer.enabled = true;
+		}
+		else pin.renderer.enabled = false;
 	}
 	
 	void OnMouseDown() {

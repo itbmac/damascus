@@ -2,7 +2,11 @@ fileFormatVersion: 2
 guid: c1fce65fd10ad45119a543161cff858b
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - noisePickUp: {instanceID: 0}
+  - noiseDropOff: {instanceID: 0}
+  - infoCard: {instanceID: 0}
+  - pin: {fileID: 100000, guid: 9770f57a605864549bb89f7533b310fa, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
