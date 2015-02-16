@@ -4,6 +4,7 @@ using System.Text;
 using System.Collections.Generic;
 using MiniJSON;
 using System.Linq;
+using System;
 
 public enum BoardState {Valid, Incomplete, Duplicates, InvalidPair, InvalidCounts}
 
@@ -37,8 +38,8 @@ public class BoardManager : MonoBehaviour {
 	public Vector2 GridCoord2Pos(GridCoord gc) {
 		if (gc.x < 0)
 			return new Vector2(
-				MacKenzieSize * (gc.x - 1.5f) + OffsetPixel.x - MacKenzieOffsetX + Random.Range(-1 * MacKenzieRandomness, MacKenzieRandomness),
-				MacKenzieSize * (gc.y - 1.5f) + OffsetPixel.y - MacKenzieOffsetY + Random.Range(-1 * MacKenzieRandomness, MacKenzieRandomness)
+				MacKenzieSize * (gc.x - 1.5f) + OffsetPixel.x - MacKenzieOffsetX + UnityEngine.Random.Range(-1 * MacKenzieRandomness, MacKenzieRandomness),
+				MacKenzieSize * (gc.y - 1.5f) + OffsetPixel.y - MacKenzieOffsetY + UnityEngine.Random.Range(-1 * MacKenzieRandomness, MacKenzieRandomness)
 			);
 		else
 			return new Vector2(
@@ -550,8 +551,9 @@ public class BoardManager : MonoBehaviour {
 				Debug.Log(numSolutions + " or more possible solutions");
 			else
 				Debug.Log(numSolutions + " possible solutions");
-		} else if (Input.GetKeyDown(KeyCode.T))
-			ShakeInvalidTiles();
+		}
+//		else if (Input.GetKeyDown(KeyCode.T))
+//			ShakeInvalidTiles();
 	}
 	
 	void LoadBoard(string board) {
@@ -564,6 +566,8 @@ public class BoardManager : MonoBehaviour {
 			var y = (double)pos["y"];
 			
 			var go = GameObject.Find(name);
+			if (go == null)
+				Debug.LogError("Tile not found " + name);
 			go.transform.position = new Vector2((float)x, (float)y);
 			go.SendMessage("Reset");
 		}
@@ -581,5 +585,48 @@ public class BoardManager : MonoBehaviour {
 		}
 		
 		return Json.Serialize(tilesDict);
+	}
+	
+	GameObject[] GetAllTiles() {
+		return GameObject.FindGameObjectsWithTag("Tile");
+	}
+	
+	
+	void MoveAllTilesOffBoard() {
+		foreach (var tile in GetAllTiles()) {
+			tile.transform.position = new Vector2(-10, -10);
+		}
+	}
+	
+	void LoadFullBoard(string board, string side) {
+		MoveAllTilesOffBoard();
+		
+		var boardParsed = JaggedArrayParser.Parse(board);
+		if (boardParsed.Length != 4)
+			Debug.LogError("parse error, must have 4 rows per board");
+		
+		if (!boardParsed.All(x => x.Length == 4))
+			Debug.LogError("parse error, each board row must have 4 entries");
+			
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				var go = boardParsed[i][j];
+				go.transform.position = (new GridCoord(i, j)).ToVector2();
+			}
+		}
+		
+		for (int i = 0; i <= 4; i++) {
+			if (i == 3) {
+				for (int j = -2; j <= -1; j++) {
+					var go = boardParsed[i][j + 2];
+					go.transform.position = (new GridCoord(i, j)).ToVector2();
+				}
+			} else {
+				for (int j = -3; j <= -1; j++) {
+					var go = boardParsed[i][j + 3];
+					go.transform.position = (new GridCoord(i, j)).ToVector2();
+				}
+			}
+		}
 	}
 }
