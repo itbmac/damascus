@@ -87,7 +87,7 @@ GameObject:
   - 114: {fileID: 13055232}
   - 82: {fileID: 13055231}
   m_Layer: 0
-  m_Name: wrench
+  m_Name: t_wrench
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,7 +270,7 @@ GameObject:
   - 114: {fileID: 51484450}
   - 82: {fileID: 51484452}
   m_Layer: 0
-  m_Name: park
+  m_Name: t_park
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,8 +700,8 @@ Transform:
   - {fileID: 540850047}
   - {fileID: 1389870574}
   - {fileID: 395669287}
-  - {fileID: 1449955868}
   - {fileID: 321391195}
+  - {fileID: 1449955868}
   - {fileID: 688810547}
   - {fileID: 198688532}
   - {fileID: 1372721378}
@@ -723,7 +723,7 @@ GameObject:
   - 114: {fileID: 226217014}
   - 82: {fileID: 226217013}
   m_Layer: 0
-  m_Name: altar_boys
+  m_Name: t_altar_boys
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1096,7 +1096,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 211325723}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!114 &321391196
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,6 +1112,7 @@ MonoBehaviour:
   SomeTile: {fileID: 521180634}
   BlockedTiles:
   - {fileID: 1519525189}
+  - {fileID: 1121832848}
   - {fileID: 539766653}
 --- !u!1001 &332739397
 Prefab:
@@ -1162,7 +1163,7 @@ Prefab:
       objectReference: {fileID: 1540955391}
     - target: {fileID: 129046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: AdvanceNoise
@@ -1254,7 +1255,7 @@ GameObject:
   - 114: {fileID: 364685410}
   - 82: {fileID: 364685412}
   m_Layer: 0
-  m_Name: factory
+  m_Name: t_factory
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1477,6 +1478,7 @@ MonoBehaviour:
   SomeTile: {fileID: 1356520005}
   BlockedTiles:
   - {fileID: 1933366338}
+  - {fileID: 1519525189}
   - {fileID: 1202789700}
 --- !u!1 &396743819
 GameObject:
@@ -1491,7 +1493,7 @@ GameObject:
   - 114: {fileID: 396743822}
   - 82: {fileID: 396743821}
   m_Layer: 0
-  m_Name: paul
+  m_Name: t_paul
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1664,6 +1666,7 @@ MonoBehaviour:
   BlockedTiles:
   - {fileID: 1922706041}
   - {fileID: 1437013223}
+  - {fileID: 529004610}
 --- !u!1 &439464791
 GameObject:
   m_ObjectHideFlags: 0
@@ -1883,7 +1886,7 @@ GameObject:
   - 114: {fileID: 521180637}
   - 82: {fileID: 521180636}
   m_Layer: 0
-  m_Name: beach
+  m_Name: t_beach
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2025,7 +2028,7 @@ GameObject:
   - 114: {fileID: 529004613}
   - 82: {fileID: 529004612}
   m_Layer: 0
-  m_Name: movieset
+  m_Name: t_movieset
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2167,7 +2170,7 @@ GameObject:
   - 114: {fileID: 539766656}
   - 82: {fileID: 539766655}
   m_Layer: 0
-  m_Name: movie_extras
+  m_Name: t_movie_extras
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2339,7 +2342,9 @@ MonoBehaviour:
   SomeTile: {fileID: 734074441}
   BlockedTiles:
   - {fileID: 1121832848}
+  - {fileID: 1922706041}
   - {fileID: 588410248}
+  - {fileID: 226217011}
 --- !u!1 &541429415
 GameObject:
   m_ObjectHideFlags: 0
@@ -2353,7 +2358,7 @@ GameObject:
   - 114: {fileID: 541429418}
   - 82: {fileID: 541429420}
   m_Layer: 0
-  m_Name: knife
+  m_Name: t_knife
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2607,7 +2612,7 @@ GameObject:
   - 114: {fileID: 588410251}
   - 82: {fileID: 588410253}
   m_Layer: 0
-  m_Name: marathon_runners
+  m_Name: t_marathon_runners
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3022,7 +3027,7 @@ GameObject:
   - 114: {fileID: 734074444}
   - 82: {fileID: 734074446}
   m_Layer: 0
-  m_Name: backalley
+  m_Name: t_backalley
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3309,7 +3314,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &824558748
 Transform:
   m_ObjectHideFlags: 0
@@ -3563,7 +3568,7 @@ GameObject:
   - 114: {fileID: 924030247}
   - 82: {fileID: 924030249}
   m_Layer: 0
-  m_Name: desperate_housewives
+  m_Name: t_desperate_housewives
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4080,7 +4085,7 @@ GameObject:
   - 114: {fileID: 1121832851}
   - 82: {fileID: 1121832853}
   m_Layer: 0
-  m_Name: tom
+  m_Name: t_tom
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4226,7 +4231,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1128375062
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4572,7 +4577,7 @@ GameObject:
   - 114: {fileID: 1202789703}
   - 82: {fileID: 1202789705}
   m_Layer: 0
-  m_Name: homeless_guys
+  m_Name: t_homeless_guys
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4838,7 +4843,7 @@ GameObject:
   - 114: {fileID: 1259180599}
   - 82: {fileID: 1259180601}
   m_Layer: 0
-  m_Name: gun
+  m_Name: t_gun
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5199,7 +5204,7 @@ GameObject:
   - 114: {fileID: 1356520008}
   - 82: {fileID: 1356520010}
   m_Layer: 0
-  m_Name: penthouse
+  m_Name: t_penthouse
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5435,7 +5440,7 @@ GameObject:
   - 114: {fileID: 1387019834}
   - 82: {fileID: 1387019836}
   m_Layer: 0
-  m_Name: rope
+  m_Name: t_rope
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5607,6 +5612,7 @@ MonoBehaviour:
   SomeTile: {fileID: 364685407}
   BlockedTiles:
   - {fileID: 1395880215}
+  - {fileID: 396743819}
   - {fileID: 924030244}
 --- !u!1 &1391430058
 GameObject:
@@ -5672,7 +5678,7 @@ GameObject:
   - 114: {fileID: 1395880218}
   - 82: {fileID: 1395880220}
   m_Layer: 0
-  m_Name: priscilla
+  m_Name: t_priscilla
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5855,7 +5861,7 @@ GameObject:
   - 114: {fileID: 1437013226}
   - 82: {fileID: 1437013228}
   m_Layer: 0
-  m_Name: blonde_cheerleaders
+  m_Name: t_blonde_cheerleaders
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6061,7 +6067,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 211325723}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &1449955869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6077,7 +6083,9 @@ MonoBehaviour:
   SomeTile: {fileID: 529004610}
   BlockedTiles:
   - {fileID: 396743819}
+  - {fileID: 1395880215}
   - {fileID: 226217011}
+  - {fileID: 924030244}
 --- !u!1 &1488387708
 GameObject:
   m_ObjectHideFlags: 0
@@ -6142,7 +6150,7 @@ GameObject:
   - 114: {fileID: 1519525192}
   - 82: {fileID: 1519525191}
   m_Layer: 0
-  m_Name: susan
+  m_Name: t_susan
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6595,7 +6603,7 @@ GameObject:
   - 114: {fileID: 1566184287}
   - 82: {fileID: 1566184286}
   m_Layer: 0
-  m_Name: gas
+  m_Name: t_gas
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7017,6 +7025,30 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 11417970, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417978, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11418006, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417966, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417962, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11418012, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 417996, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7061,6 +7093,166 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 117996, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417970, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 529004610}
+    - target: {fileID: 118004, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 118044, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_poison
+      objectReference: {fileID: 0}
+    - target: {fileID: 118014, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_rope
+      objectReference: {fileID: 0}
+    - target: {fileID: 117986, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_knife
+      objectReference: {fileID: 0}
+    - target: {fileID: 118030, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_gas
+      objectReference: {fileID: 0}
+    - target: {fileID: 117950, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_wrench
+      objectReference: {fileID: 0}
+    - target: {fileID: 118042, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_lorenzo
+      objectReference: {fileID: 0}
+    - target: {fileID: 118000, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_tom
+      objectReference: {fileID: 0}
+    - target: {fileID: 118018, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_priscilla
+      objectReference: {fileID: 0}
+    - target: {fileID: 118040, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_claudia
+      objectReference: {fileID: 0}
+    - target: {fileID: 117974, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_paul
+      objectReference: {fileID: 0}
+    - target: {fileID: 118028, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_susan
+      objectReference: {fileID: 0}
+    - target: {fileID: 118010, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_penthouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 117952, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_park
+      objectReference: {fileID: 0}
+    - target: {fileID: 117992, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_backalley
+      objectReference: {fileID: 0}
+    - target: {fileID: 117970, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_factory
+      objectReference: {fileID: 0}
+    - target: {fileID: 117980, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_movieset
+      objectReference: {fileID: 0}
+    - target: {fileID: 117978, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_beach
+      objectReference: {fileID: 0}
+    - target: {fileID: 118020, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_blonde_cheerleaders
+      objectReference: {fileID: 0}
+    - target: {fileID: 117998, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_desperate_housewives
+      objectReference: {fileID: 0}
+    - target: {fileID: 118002, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_homeless_guys
+      objectReference: {fileID: 0}
+    - target: {fileID: 117988, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_marathon_runners
+      objectReference: {fileID: 0}
+    - target: {fileID: 117962, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_altar_boys
+      objectReference: {fileID: 0}
+    - target: {fileID: 117982, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Name
+      value: t_movie_extras
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417978, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 588410248}
+    - target: {fileID: 11417978, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[3]
+      value: 
+      objectReference: {fileID: 226217011}
+    - target: {fileID: 11417978, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1922706041}
+    - target: {fileID: 11418006, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 924030244}
+    - target: {fileID: 11418006, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 396743819}
+    - target: {fileID: 11417966, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 1202789700}
+    - target: {fileID: 11417966, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1519525189}
+    - target: {fileID: 417968, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 418024, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417962, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 539766653}
+    - target: {fileID: 11417962, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1121832848}
+    - target: {fileID: 11418012, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[2]
+      value: 
+      objectReference: {fileID: 226217011}
+    - target: {fileID: 11418012, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[3]
+      value: 
+      objectReference: {fileID: 924030244}
+    - target: {fileID: 11418012, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: BlockedTiles.Array.data[1]
+      value: 
+      objectReference: {fileID: 1395880215}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
   m_RootGameObject: {fileID: 824558747}
@@ -7357,7 +7549,7 @@ GameObject:
   - 114: {fileID: 1922706044}
   - 82: {fileID: 1922706046}
   m_Layer: 0
-  m_Name: claudia
+  m_Name: t_claudia
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7499,7 +7691,7 @@ GameObject:
   - 114: {fileID: 1933366341}
   - 82: {fileID: 1933366343}
   m_Layer: 0
-  m_Name: lorenzo
+  m_Name: t_lorenzo
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7682,7 +7874,7 @@ GameObject:
   - 114: {fileID: 1952439814}
   - 82: {fileID: 1952439816}
   m_Layer: 0
-  m_Name: poison
+  m_Name: t_poison
   m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
