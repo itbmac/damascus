@@ -24,8 +24,8 @@ public class BoardManager : MonoBehaviour {
 		
 		if (pos.x < MacKenzieThreshold)
 			pos.x += MacKenzieOffsetX;
-	
-		return new GridCoord(AdjustToInt(pos.x), AdjustToInt(pos.y));
+		
+		return new GridCoord(AdjustToInt(pos.x), AdjustToInt(pos.y));		
 	}
 	
 	const float MacKenzieThreshold = -6.5f;
@@ -57,6 +57,85 @@ public class BoardManager : MonoBehaviour {
 			gc.y = Mathf.Clamp(gc.y, 0, 3);
 		return gc;
 	}
+	
+	public List<GridCoord> GetAllPossibleBoardPositions() {
+		var result = new List<GridCoord>();
+		
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				result.Add(new GridCoord(i, j));
+			}
+		}
+		
+		return result;
+	}
+	
+	public IEnumerable<GridCoord> GetAllPossibleSidePositions() {
+		var result = new List<GridCoord>();
+		
+		for (int j = 0; j <= 2; j++)
+			result.Add(new GridCoord(-3, j));
+	
+		for (int i = -2; i <= -1; i++) {
+			for (int j = 0; j <= 3; j++) {
+				result.Add(new GridCoord(i, j));
+			}
+		}
+		
+		return result;
+	}
+	
+	public GameObject GetTileAtPosition(GridCoord pos, GameObject exceptObject) {
+		GridCoord myGridCoord = SnapGridCoord(pos);
+		// assumes only one tile at a position
+		
+		var tilesAtPosition = GameObject.FindGameObjectsWithTag("Tile").Where(
+			tile => tile != exceptObject && GetGridCoord(tile.transform.position) == myGridCoord
+		);
+		
+		return tilesAtPosition.FirstOrDefault();
+	}
+	
+	public IEnumerable<GridCoord> FilterForOpenPositions(IEnumerable<GridCoord> positions, GameObject forObject) {
+		// currently inefficient
+		
+		return positions.Where(x => IsPositionOpen(x.ToVector2(), forObject));
+	}
+	
+	private Dictionary<GridCoord, GameObject> GetTileDictionary() {
+		var result = new Dictionary<GridCoord, GameObject>();
+		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
+		
+		// does not account for more than one piece at a GridCoord
+		foreach (GameObject tile in tiles)
+			result[tile.transform.position.ToGridCoord()] = tile;
+			
+		return result;		
+	}
+	
+	private static Vector2? FindClosestPosition(Vector2 pos, IEnumerable<Vector2> positions) {
+		Vector2? bestPosition = null;
+		float bestDistance = Mathf.Infinity;
+				
+		foreach (var boardPosition in positions) {
+			float distance = Vector2.Distance(boardPosition, pos);
+			
+			if (distance < bestDistance) {
+				bestDistance = distance;
+				bestPosition = boardPosition;
+			}
+		}
+		
+		return bestPosition	;
+	}
+	
+	public Vector2? FindClosestOpenPositionOnBoard(Vector2 pos, GameObject forObject) {
+		return FindClosestPosition(pos, FilterForOpenPositions(GetAllPossibleBoardPositions(), forObject).Select(x => x.ToVector2()));
+	}
+	
+	public Vector2? FindClosestOpenPositionOnSide(Vector2 pos, GameObject forObject) {
+		return FindClosestPosition(pos, FilterForOpenPositions(GetAllPossibleSidePositions(), forObject).Select(x => x.ToVector2()));
+	}	
 	
 	public bool IsOutOfGame(Vector2 pos) {
 		var gc = GetGridCoord(pos);

@@ -14,6 +14,13 @@ public class TileController : MonoBehaviour {
 	const float CLICK_DISTANCE_THRESHOLD = 0.1f;
 	Vector3 mouseDownStartPos;
 	private bool locked = false;
+	
+	public bool Locked {
+		get {
+			return locked;
+		}
+	}
+	
 	public GameObject pin;
 	
 	void Start() {		
@@ -63,11 +70,83 @@ public class TileController : MonoBehaviour {
 		transform.position = BoardManager.Instance.SnapPos(transform.position);
 	}	
 	
+	
+	int activeSlide = 0;
+	const float SLIDE_TIME = 1.0F; // not exactly time...
+	private IEnumerator SlideToPos(Vector2 pos) {
+		activeSlide += 1;
+		int mySlide = activeSlide;
+	
+		((SpriteRenderer)renderer).sortingLayerName = "SlidingTile";
+		// Note: during sliding time, normal tile rules aren't enforced >.>
+		while (Vector2.Distance(transform.position, pos) > 0.1F) {
+			if (activeSlide != mySlide)
+				return false; // another slide is active
+		
+			transform.position = Vector2.Lerp(transform.position, pos, 0.4f);
+			yield return new WaitForSeconds(0.025f);
+		}
+		((SpriteRenderer)renderer).sortingLayerName = "Default";
+	}
+	
+	
+	public bool RequestMove(Vector2 pos) {	
+		if (!locked) {
+			StartCoroutine(SlideToPos(pos));
+			return true;
+		}
+		
+		return false;
+	}
+	
 	private void SnapToNewPosIfOpen() {
+		Vector2 attemptedPosition = BoardManager.Instance.SnapPosConstrained(transform.position);
+	
 		if (BoardManager.Instance.IsPositionOpen(transform.position, gameObject))
-			transform.position = BoardManager.Instance.SnapPosConstrained(transform.position);
-		else
-			transform.position = mouseDownStartPos;
+			transform.position = attemptedPosition;
+		else {
+			var mouseDownStartCoord = mouseDownStartPos.ToGridCoord();
+			var newGridCoord = transform.position.ToGridCoord();
+			
+			var other = BoardManager.Instance.GetTileAtPosition(newGridCoord, gameObject);
+			TileController otherController = null;
+			if (other)
+				otherController = other.GetComponent<TileController>();
+			else
+				Debug.LogError("This shouldn't happen"); // because the position isn't open
+			
+			if (Mathf.Sign(mouseDownStartCoord.x) == Mathf.Sign(newGridCoord.x)) {
+				// didn't change regions, attempt swap
+				
+				if (otherController.RequestMove(mouseDownStartPos)) {				
+					transform.position = attemptedPosition;
+				} else {
+					transform.position = mouseDownStartPos;
+				}				
+				
+			} else {
+				// find nearest
+				
+				Vector2? closest;
+				if (newGridCoord.x >= 0)
+					closest = BoardManager.Instance.FindClosestOpenPositionOnBoard(transform.position, gameObject);
+				else
+					closest = BoardManager.Instance.FindClosestOpenPositionOnSide(transform.position, gameObject);
+				
+				if (closest.HasValue)
+					transform.position = closest.Value;
+				else {
+					if (otherController.RequestMove(mouseDownStartPos)) {				
+						transform.position = attemptedPosition;
+					} else {
+						transform.position = mouseDownStartPos;
+					}
+				}	
+			}
+		
+			
+		}
+			
 	}
 	
 	void OnMouseUp() {

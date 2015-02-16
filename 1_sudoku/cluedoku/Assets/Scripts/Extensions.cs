@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 
 public static class Extensions {
-
-	static Random random = new Random();
 
 	public static IEnumerable<T> AsRandom<T>(this IEnumerable<T> sequence)
 	{
@@ -13,8 +11,11 @@ public static class Extensions {
 		
 		for (int i = 0; i < retArray.Length - 1; i += 1)
 		{
-			int swapIndex = random.Next(i, retArray.Length);
+			int swapIndex = Random.Range(i, retArray.Length);
+			
 			if (swapIndex != i) {
+				// don't waste time swapping an object to its current position
+				
 				T temp = retArray[i];
 				retArray[i] = retArray[swapIndex];
 				retArray[swapIndex] = temp;
@@ -22,5 +23,17 @@ public static class Extensions {
 		}
 		
 		return retArray;
+	}
+	
+	public static GridCoord ToGridCoord(this Vector2 pos) {
+		return BoardManager.Instance.GetGridCoord(pos);
+	}
+	
+	public static GridCoord ToGridCoord(this Vector3 pos) {
+		return BoardManager.Instance.GetGridCoord(pos);
+	}
+	
+	public static Vector2 ToVector2(this GridCoord gridCoord) {
+		return BoardManager.Instance.GridCoord2Pos(gridCoord);
 	}
 }
