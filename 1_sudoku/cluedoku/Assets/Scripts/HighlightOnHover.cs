@@ -24,4 +24,8 @@ public class HighlightOnHover : MonoBehaviour {
 	void OnMouseExit() {
 		sr.sprite = spriteUnhighlighted;
 	}
+
+	void OnMouseDown() {
+		sr.sprite = spriteUnhighlighted;
+	}
 }

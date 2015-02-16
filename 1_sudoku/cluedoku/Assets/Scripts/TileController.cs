@@ -15,11 +15,15 @@ public class TileController : MonoBehaviour {
 	Vector3 mouseDownStartPos;
 	private bool locked = false;
 	public GameObject pin;
+	const float pinRandomness = -0.2f;
+	private Vector3 pinPositionOriginal;
 	
 	void Start() {		
 		if (tag != "Tile")
 			Debug.LogError("Must have tag Tile");
-			
+
+		pinPositionOriginal = pin.transform.localPosition;
+
 		Reset();
 	}
 	
@@ -29,6 +33,9 @@ public class TileController : MonoBehaviour {
 
 		if (locked) {
 			pin.renderer.enabled = true;
+			pin.transform.localPosition = new Vector3(pinPositionOriginal.x + Random.Range(-2 * pinRandomness, -1 * pinRandomness),
+			                                     	  pinPositionOriginal.y + Random.Range(-2 * pinRandomness, -1 * pinRandomness),
+			                                          pinPositionOriginal.z);
 		}
 		else pin.renderer.enabled = false;
 	}
