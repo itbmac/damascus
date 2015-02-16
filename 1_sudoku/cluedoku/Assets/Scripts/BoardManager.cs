@@ -11,9 +11,11 @@ public enum BoardState {Valid, Incomplete, Duplicates, InvalidPair, InvalidCount
 public class BoardManager : MonoBehaviour {
 	public enum BoardSelector {NoLoad, FirstChildBoard, RandomBoard}
 	public BoardSelector boardSelector = BoardSelector.NoLoad;
-	
+
 	public float Size = 2.95f;
 	public Vector2 OffsetPixel = new Vector2(.45f, -1.2f);	
+
+	public GameObject HintObj;
 
 	private int AdjustToInt(float f) {
 		return Mathf.RoundToInt(.5f + (f / Size)) + 1;
@@ -542,6 +544,8 @@ public class BoardManager : MonoBehaviour {
 				Debug.LogWarning("Could not find board to load!");
 			}
 		}
+
+		HintObj.GetComponent<ClickForHint>().Reset();
 	}
 
 	void Start () {

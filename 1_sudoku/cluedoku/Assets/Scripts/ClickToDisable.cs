@@ -4,7 +4,7 @@ using System.Collections;
 public class ClickToDisable : MonoBehaviour {
 
 	public GameObject followingItem, additionalObjDisableOnClick;
-	public AudioClip AdvanceNoise;
+	public AudioClip OnVisibleNoise, AdvanceNoise;
 	public bool disableRendererOnClick = true, playSoundOnVisible = false, mustClickOnObject = false;
 	private bool prevRendererState = false;
 
@@ -22,8 +22,8 @@ public class ClickToDisable : MonoBehaviour {
 			followingItem.SetActive(false);
 		}
 
-		if (!prevRendererState && renderer.enabled && AdvanceNoise) {
-			audio.PlayOneShot(AdvanceNoise);
+		if (!prevRendererState && renderer.enabled && OnVisibleNoise) {
+			audio.PlayOneShot(OnVisibleNoise);
 		}
 
 		prevRendererState = renderer.enabled;

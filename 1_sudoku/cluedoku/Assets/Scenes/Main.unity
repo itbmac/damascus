@@ -1152,7 +1152,7 @@ Prefab:
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: AdvanceNoise
       value: 
-      objectReference: {fileID: 8300000, guid: 042e0c0b8c2cc47d9bf8dff1d59f652d, type: 3}
+      objectReference: {fileID: 8300000, guid: 7dafd47f7c6cc41b98d9e70a517352b6, type: 3}
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: playSoundOnVisible
       value: 1
@@ -1170,6 +1170,10 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.45000005
       objectReference: {fileID: 0}
+    - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
+      propertyPath: OnVisibleNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 91a38864fd68943bb93622044b9830b8, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
   m_RootGameObject: {fileID: 1128375061}
@@ -2630,6 +2634,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: ef09470cca6e54b80b3c9eedab65cd76,
         type: 3}
+    - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
+      propertyPath: AdvanceNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 0ab7d194742584b5187f335262b3953e, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
   m_RootGameObject: {fileID: 1551032542}
@@ -2831,7 +2839,7 @@ Prefab:
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: AdvanceNoise
       value: 
-      objectReference: {fileID: 8300000, guid: 042e0c0b8c2cc47d9bf8dff1d59f652d, type: 3}
+      objectReference: {fileID: 8300000, guid: 7dafd47f7c6cc41b98d9e70a517352b6, type: 3}
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: playSoundOnVisible
       value: 0
@@ -3287,7 +3295,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3395,9 +3403,8 @@ GameObject:
   - 4: {fileID: 860194123}
   - 212: {fileID: 860194128}
   - 82: {fileID: 860194127}
-  - 114: {fileID: 860194126}
   - 60: {fileID: 860194125}
-  - 114: {fileID: 860194124}
+  - 114: {fileID: 860194126}
   m_Layer: 0
   m_Name: CoffeeHint
   m_TagString: Untagged
@@ -3417,21 +3424,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 824558748}
   m_RootOrder: 7
---- !u!114 &860194124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11407568, guid: c387b0d9e4a4549c28bed6a3a012502a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1478339233}
-  m_GameObject: {fileID: 860194122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74a52d4c772eb1a42a4c0e2eaf67a418, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteUnhighlighted: {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f,
-    type: 3}
-  spriteHighlighted: {fileID: 21300000, guid: c260d381547974806912a9f9fea8d818, type: 3}
 --- !u!60 &860194125
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3494,21 +3486,22 @@ PolygonCollider2D:
 --- !u!114 &860194126
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11473242, guid: c387b0d9e4a4549c28bed6a3a012502a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1478339233}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 860194122}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a93cb02fbd884632b34d457ae46c410, type: 3}
+  m_Script: {fileID: 11500000, guid: a8c0fb5f6b9344a059986db3ac6bad99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followingItem: {fileID: 0}
-  additionalObjDisableOnClick: {fileID: 0}
-  AdvanceNoise: {fileID: 8300000, guid: 48e1327457c5f4b2189bab49b3a4b528, type: 3}
-  disableRendererOnClick: 0
-  playSoundOnVisible: 0
-  mustClickOnObject: 1
+  SpriteStates:
+  - {fileID: 21300000, guid: 0f2552121cc9c488095197c72e273326, type: 3}
+  - {fileID: 21300000, guid: 26b2ec1245ca649c5b001d43e05b83c2, type: 3}
+  - {fileID: 21300000, guid: c260d381547974806912a9f9fea8d818, type: 3}
+  - {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f, type: 3}
+  HintNoise: {fileID: 8300000, guid: 9b425bb63569a4970af6235276d10064, type: 3}
+  board: {fileID: 2013787583}
+  remainingNumHints: 0
 --- !u!82 &860194127
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3887,7 +3880,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followingItem: {fileID: 824558747}
   additionalObjDisableOnClick: {fileID: 0}
-  AdvanceNoise: {fileID: 8300000, guid: 48e1327457c5f4b2189bab49b3a4b528, type: 3}
+  OnVisibleNoise: {fileID: 8300000, guid: f86e5fa9db7ce451ea33cd25529ee71a, type: 3}
+  AdvanceNoise: {fileID: 8300000, guid: f86e5fa9db7ce451ea33cd25529ee71a, type: 3}
   disableRendererOnClick: 1
   playSoundOnVisible: 1
   mustClickOnObject: 0
@@ -4276,7 +4270,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followingItem: {fileID: 1540955391}
   additionalObjDisableOnClick: {fileID: 0}
-  AdvanceNoise: {fileID: 8300000, guid: 042e0c0b8c2cc47d9bf8dff1d59f652d, type: 3}
+  OnVisibleNoise: {fileID: 8300000, guid: 91a38864fd68943bb93622044b9830b8, type: 3}
+  AdvanceNoise: {fileID: 8300000, guid: 7dafd47f7c6cc41b98d9e70a517352b6, type: 3}
   disableRendererOnClick: 1
   playSoundOnVisible: 1
   mustClickOnObject: 0
@@ -4458,6 +4453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followingItem: {fileID: 1068705798}
   additionalObjDisableOnClick: {fileID: 824558747}
+  OnVisibleNoise: {fileID: 0}
   AdvanceNoise: {fileID: 0}
   disableRendererOnClick: 0
   playSoundOnVisible: 0
@@ -4472,7 +4468,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4820,6 +4816,14 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
+      propertyPath: OnVisibleNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: f86e5fa9db7ce451ea33cd25529ee71a, type: 3}
+    - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
+      propertyPath: AdvanceNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: f86e5fa9db7ce451ea33cd25529ee71a, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
   m_RootGameObject: {fileID: 1068705798}
@@ -6051,7 +6055,33 @@ Prefab:
       propertyPath: followingItem
       value: 
       objectReference: {fileID: 1128375061}
-    m_RemovedComponents: []
+    - target: {fileID: 11418032, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: HintObj
+      value: 
+      objectReference: {fileID: 860194122}
+    - target: {fileID: 11407568, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11442080, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: AdvanceNoise
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8217950, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_Volume
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242080, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11442080, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+      propertyPath: OnVisibleNoise
+      value: 
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11473242, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+    - {fileID: 11407568, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
   m_RootGameObject: {fileID: 824558747}
   m_IsPrefabParent: 0
@@ -6340,7 +6370,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followingItem: {fileID: 1551032542}
   additionalObjDisableOnClick: {fileID: 0}
-  AdvanceNoise: {fileID: 8300000, guid: 042e0c0b8c2cc47d9bf8dff1d59f652d, type: 3}
+  OnVisibleNoise: {fileID: 0}
+  AdvanceNoise: {fileID: 8300000, guid: 7dafd47f7c6cc41b98d9e70a517352b6, type: 3}
   disableRendererOnClick: 1
   playSoundOnVisible: 0
   mustClickOnObject: 0
@@ -6470,7 +6501,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followingItem: {fileID: 824558747}
   additionalObjDisableOnClick: {fileID: 0}
-  AdvanceNoise: {fileID: 8300000, guid: 48e1327457c5f4b2189bab49b3a4b528, type: 3}
+  OnVisibleNoise: {fileID: 0}
+  AdvanceNoise: {fileID: 8300000, guid: 0ab7d194742584b5187f335262b3953e, type: 3}
   disableRendererOnClick: 1
   playSoundOnVisible: 0
   mustClickOnObject: 0
@@ -6793,6 +6825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followingItem: {fileID: 1128375061}
   additionalObjDisableOnClick: {fileID: 824558747}
+  OnVisibleNoise: {fileID: 0}
   AdvanceNoise: {fileID: 0}
   disableRendererOnClick: 0
   playSoundOnVisible: 0
@@ -7810,6 +7843,7 @@ MonoBehaviour:
   boardSelector: 1
   Size: 2.95000005
   OffsetPixel: {x: 0, y: -1.79999995}
+  HintObj: {fileID: 860194122}
 --- !u!61 &2013787586
 BoxCollider2D:
   m_ObjectHideFlags: 0
