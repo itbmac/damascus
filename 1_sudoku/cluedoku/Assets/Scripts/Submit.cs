@@ -22,9 +22,12 @@ public class Submit : MonoBehaviour {
 
 	void Update() {
 		submitEnabled = BoardManager.Instance.IsCurrentBoardFilled();
-		if (submitEnabled)
-			if(currentlyHovering) spriteRenderer.sprite = spriteHighlighted;
-		else spriteRenderer.sprite = spriteEnabled;
+		if (submitEnabled) {
+			if(currentlyHovering) 
+				spriteRenderer.sprite = spriteHighlighted;
+			else 
+				spriteRenderer.sprite = spriteEnabled;
+		}
 		else
 			spriteRenderer.sprite = spriteDisabled;
 	}
