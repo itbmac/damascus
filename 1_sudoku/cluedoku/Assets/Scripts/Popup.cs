@@ -17,6 +17,8 @@ public class Popup : MonoBehaviour {
 	
 	private bool triggered;
 	private float triggerTime;
+	
+	public event Action Dismissed;
 
 	// Use this for initialization
 	void Start () {
@@ -38,7 +40,7 @@ public class Popup : MonoBehaviour {
 			Dismiss();
 	}
 	
-	public void Trigger() {
+	public void Trigger() {		
 		triggered = true;
 		triggerTime = Time.time;
 		((SpriteRenderer)renderer).enabled = true;
@@ -72,6 +74,9 @@ public class Popup : MonoBehaviour {
 		
 		if (DismissSound)
 			audio.PlayOneShot(DismissSound);
+			
+		if (Dismissed != null)
+			Dismissed();
 		
 		if (OnDismiss == DismissBehavior.LoadNextScene)
 			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);

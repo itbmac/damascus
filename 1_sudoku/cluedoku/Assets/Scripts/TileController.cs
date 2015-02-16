@@ -170,4 +170,36 @@ public class TileController : MonoBehaviour {
 		SnapToNewPosIfOpen();
 		((SpriteRenderer)renderer).sortingLayerName = "Default";
 	}
+	
+	const int SHAKE_SIZE = 20;
+	const int SHAKE_SPEED = 5;
+	IEnumerator ShakeCoroutine() {
+//		transform.rotation.eulerAngles.z
+		
+		Vector3 rot = transform.eulerAngles;
+		for (int i = 0; i <= SHAKE_SIZE; i += SHAKE_SPEED) {
+			rot.z = i;			
+			transform.eulerAngles = rot;			
+			yield return new WaitForSeconds(0.01f);
+		}
+		for (int i = SHAKE_SIZE; i >= -SHAKE_SIZE; i -= SHAKE_SPEED) {
+			rot.z = i;			
+			transform.eulerAngles = rot;			
+			yield return new WaitForSeconds(0.01f);
+		}
+		for (int i = -SHAKE_SIZE; i <= 0; i += SHAKE_SPEED) {
+			rot.z = i;			
+			transform.eulerAngles = rot;			
+			yield return new WaitForSeconds(0.01f);
+		}
+		rot.z = 0;			
+		transform.eulerAngles = rot;
+		
+		
+	}
+	
+	public void Shake() {
+		if (!locked)
+			StartCoroutine(ShakeCoroutine());
+	}
 }

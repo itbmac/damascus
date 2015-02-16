@@ -418,6 +418,81 @@ public class BoardManager : MonoBehaviour {
 		return BoardState.Valid;
 	}
 	
+	public void ShakeInvalidTiles() {
+		var invalidTiles = GetInvalidTiles();
+		
+		foreach (var tile in invalidTiles) {
+			tile.SendMessage("Shake");
+		}
+	}
+	
+	IEnumerable<GameObject> GetInvalidTiles() {
+		GameObject[,] board = GetCurrentBoard();
+	
+		var result = new HashSet<GameObject>();
+	
+		IDictionary<GameObject, GridCoord> tileCoords = new Dictionary<GameObject, GridCoord>();
+		
+		for (int i = 0; i < board.GetLength(0); i++) {
+			for (int j = 0; j < board.GetLength(1); j++) {
+				var e = board[i,j];
+				if (e == null) {
+					
+				} else {
+					tileCoords[e] = new GridCoord(i, j);
+				}
+			}
+		}
+		
+		InvalidPair[] invalidPairs = gameObject.GetComponentsInChildren<InvalidPair>();
+		foreach (InvalidPair invalidPair in invalidPairs) {
+			GameObject someTile = invalidPair.SomeTile;
+			if (!tileCoords.ContainsKey(someTile))
+				continue;
+			
+			GridCoord pos = tileCoords[someTile];
+			foreach (GameObject blockedTile in invalidPair.BlockedTiles) {
+				if (!tileCoords.ContainsKey(blockedTile))
+					continue;
+				
+				GridCoord blockedTilePos = tileCoords[blockedTile];
+				
+				if (pos.x == blockedTilePos.x || pos.y == blockedTilePos.y) {
+					result.Add(someTile);
+					result.Add(blockedTile);
+				}
+			}
+		}
+		
+		for (int x = 0; x < 4; x++) {
+			List<GameObject>[] testList = new [] {new List<GameObject>(), new List<GameObject>(), new List<GameObject>(), new List<GameObject>()};
+			List<GameObject>[] testList2 = new [] {new List<GameObject>(), new List<GameObject>(), new List<GameObject>(), new List<GameObject>()};
+			
+			for (int y = 0; y < 4; y++) {
+				var e1 = board[x,y];
+				var e2 = board[y,x];
+				
+				if (e1 != null)
+					testList[Classify(e1)].Add(e1);
+					
+				if (e2 != null)
+					testList2[Classify(e2)].Add(e2);
+			}
+			
+			foreach (var t in testList) {
+				if (t.Count > 1)
+					result.UnionWith(t);
+			}
+			
+			foreach (var t in testList2) {
+				if (t.Count > 1)
+					result.UnionWith(t);
+			}
+		}
+		
+		return result;
+	}
+	
 	public static BoardManager Instance;
 	void Awake() {
 		Instance = this;
@@ -475,7 +550,8 @@ public class BoardManager : MonoBehaviour {
 				Debug.Log(numSolutions + " or more possible solutions");
 			else
 				Debug.Log(numSolutions + " possible solutions");
-		}
+		} else if (Input.GetKeyDown(KeyCode.T))
+			ShakeInvalidTiles();
 	}
 	
 	void LoadBoard(string board) {

@@ -18,6 +18,10 @@ public class Submit : MonoBehaviour {
 
 	void Start(){
 		spriteRenderer = (SpriteRenderer)renderer;
+		
+		PopupInvalid.GetComponent<Popup>().Dismissed += delegate() {
+			 BoardManager.Instance.ShakeInvalidTiles();
+		};
 	}
 
 	void Update() {
@@ -47,7 +51,8 @@ public class Submit : MonoBehaviour {
 			PopupValid.SendMessage("Trigger");			
 		} else {
 			Debug.Log ("Submitted. Invalid board. Reason: " + bs.ToString ());
-			PopupInvalid.SendMessage("Trigger");
+			PopupInvalid.
+			SendMessage("Trigger");
 		}
 	}
 
