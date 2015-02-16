@@ -20,8 +20,16 @@ public class JaggedArrayParser {
 	private GameObject StringToGameObject(string s) {
 		if (s == "_")
 			return null;
+			
+		Debug.Log ("found " + s);
 		
-		return GameObject.Find(s);
+		var result = GameObject.Find("t_" + s);
+		if (result == null)
+			result = GameObject.Find(s);
+		if (result == null)
+			Debug.LogError("load error, could not find tile " + s);
+		
+		return result;
 	}
 	
 	private GameObject[][] ParseToGameObjectJaggedArray() {
@@ -77,10 +85,15 @@ public class JaggedArrayParser {
 					accumulator.Append(c);
 				}
 			} else if (state == ParseState.EndInner) {
-				if (c != ',')
-					LogError(",", c, i);
-				
-				state = ParseState.BeginInner;
+				if (c == ']') {
+					if (i < serialized.Length - 1)
+						Debug.LogError("Parse error; reached end of outer list before end of string"); 
+					
+					return outerArrayAccumulator.Select(x => x.ToArray()).ToArray();
+				} else if (c == ',')
+					state = ParseState.BeginInner;
+				else
+					LogError(", or ]", c, i);
 			}
 		}
 		

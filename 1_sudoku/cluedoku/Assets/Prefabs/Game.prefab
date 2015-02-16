@@ -823,7 +823,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &117998
 GameObject:
   m_ObjectHideFlags: 1
@@ -1308,6 +1308,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &152958
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 452958}
+  - 114: {fileID: 11499638}
+  m_Layer: 0
+  m_Name: 10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &173240
 GameObject:
   m_ObjectHideFlags: 1
@@ -1480,9 +1496,9 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 499638}
-  - 114: {fileID: 11499638}
+  - 114: {fileID: 11452958}
   m_Layer: 0
-  m_Name: 10
+  m_Name: NewFormatTest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1855,7 +1871,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!4 &417960
 Transform:
   m_ObjectHideFlags: 1
@@ -2439,6 +2455,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 499638}
+  - {fileID: 452958}
   - {fileID: 473244}
   - {fileID: 499634}
   - {fileID: 499636}
@@ -2486,6 +2503,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 417996}
   m_RootOrder: 5
+--- !u!4 &452958
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 152958}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418048}
+  m_RootOrder: 1
 --- !u!4 &473240
 Transform:
   m_ObjectHideFlags: 1
@@ -2497,7 +2526,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!4 &473242
 Transform:
   m_ObjectHideFlags: 1
@@ -2521,7 +2550,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &477840
 Transform:
   m_ObjectHideFlags: 1
@@ -2533,7 +2562,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!4 &477842
 Transform:
   m_ObjectHideFlags: 1
@@ -2557,7 +2586,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!4 &499630
 Transform:
   m_ObjectHideFlags: 1
@@ -2569,7 +2598,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &499632
 Transform:
   m_ObjectHideFlags: 1
@@ -2581,7 +2610,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!4 &499634
 Transform:
   m_ObjectHideFlags: 1
@@ -2593,7 +2622,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &499636
 Transform:
   m_ObjectHideFlags: 1
@@ -2605,7 +2634,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &499638
 Transform:
   m_ObjectHideFlags: 1
@@ -5095,6 +5124,7 @@ MonoBehaviour:
   SomeTile: {fileID: 118004}
   BlockedTiles:
   - {fileID: 118042}
+  - {fileID: 118018}
 --- !u!114 &11417956
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5334,7 +5364,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteDisabled: {fileID: 21300000, guid: 044df8f8b4fad4a76be1a1d3b8f8ee0c, type: 3}
   spriteEnabled: {fileID: 21300000, guid: cdb9fddc7881148289acc3c9ea1b3d7c, type: 3}
-  spriteHighlighted: {fileID: 21300002, guid: d23cd8ccc25675e42b2579d006b444bb, type: 3}
+  spriteHighlighted: {fileID: 21300000, guid: d23cd8ccc25675e42b2579d006b444bb, type: 3}
   ClickedWhenDisabled: {fileID: 8300000, guid: 63357887e0bfb406b82784beef0c0d70, type: 3}
   PopupValid: {fileID: 135362}
   PopupInvalid: {fileID: 117964}
@@ -5412,6 +5442,7 @@ MonoBehaviour:
   SomeTile: {fileID: 118044}
   BlockedTiles:
   - {fileID: 118000}
+  - {fileID: 118042}
 --- !u!114 &11418000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5441,6 +5472,7 @@ MonoBehaviour:
   SomeTile: {fileID: 118014}
   BlockedTiles:
   - {fileID: 118018}
+  - {fileID: 118042}
 --- !u!114 &11418004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5563,6 +5595,7 @@ MonoBehaviour:
   SomeTile: {fileID: 118030}
   BlockedTiles:
   - {fileID: 118028}
+  - {fileID: 118018}
 --- !u!114 &11418022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5590,6 +5623,7 @@ MonoBehaviour:
   SomeTile: {fileID: 117950}
   BlockedTiles:
   - {fileID: 117974}
+  - {fileID: 118042}
 --- !u!114 &11418026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5646,7 +5680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb2311e7484843c590d0d2eb0ee700c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardSelector: 2
+  boardSelector: 1
   Size: 2.95000005
   OffsetPixel: {x: 0, y: -1.79999995}
 --- !u!114 &11418034
@@ -5751,6 +5785,31 @@ MonoBehaviour:
   spriteUnhighlighted: {fileID: 21300000, guid: 7064631adf1f6e44f840ad85f3f6e26d,
     type: 3}
   spriteHighlighted: {fileID: 21300000, guid: 8847cddedc23bfd43a8b14eec9ab7dcd, type: 3}
+--- !u!114 &11452958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 199638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Board: '[[wrench, lorenzo, _, _],
+
+    [_, _, tom, _],
+
+    [park, _, gun, _],
+
+    [_, movie_extras, movieset, _]]'
+  Side: '[[_, susan, _],
+
+    [_, _, _],
+
+    [_, poison, _],
+
+    [_, _]]'
 --- !u!114 &11473240
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5871,7 +5930,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 199638}
+  m_GameObject: {fileID: 152958}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11f544f981cce4351b65451aa8185f3a, type: 3}

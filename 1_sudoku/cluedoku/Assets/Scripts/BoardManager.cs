@@ -9,7 +9,6 @@ using System;
 public enum BoardState {Valid, Incomplete, Duplicates, InvalidPair, InvalidCounts}
 
 public class BoardManager : MonoBehaviour {
-	
 	public enum BoardSelector {NoLoad, FirstChildBoard, RandomBoard}
 	public BoardSelector boardSelector = BoardSelector.NoLoad;
 	
@@ -502,6 +501,25 @@ public class BoardManager : MonoBehaviour {
 	List<int> randomBoards;
 	int randomBoardIndex;
 	
+	private GameObject lastBoardContainer;
+	private void LoadBoardFromObject(GameObject boardContainer) {
+		lastBoardContainer = boardContainer;
+		var oldData = boardContainer.GetComponent<BoardData>();
+		if (oldData != null) {
+			LoadBoard(oldData.Data);
+		} else {
+			var newData = boardContainer.GetComponent<NewBoardData>();
+			LoadFullBoard(newData.Board, newData.Side);
+		}
+	}
+	
+	public void LoadLastBoard() {
+		if (lastBoardContainer == null)
+			Debug.LogError("No previous board to load");
+		else
+			LoadBoardFromObject(lastBoardContainer);
+	}
+	
 	public void NewBoard() {
 		if (boardSelector == BoardSelector.FirstChildBoard || boardSelector == BoardSelector.RandomBoard) {
 			Transform premadeBoards = transform.Find("PremadeBoards");
@@ -517,18 +535,13 @@ public class BoardManager : MonoBehaviour {
 					randomBoardIndex += 1;
 				}
 				
-				Debug.Log ("Loading new board... " + boardIndex);
-				LoadBoard(premadeBoards.GetChild(boardIndex).GetComponent<BoardData>().Data);
+				var boardContainer = premadeBoards.GetChild(boardIndex).gameObject;
+				Debug.Log ("Loading new board... " + boardContainer.name + ", #" + boardIndex);
+				LoadBoardFromObject(boardContainer);
 			} else {
 				Debug.LogWarning("Could not find board to load!");
 			}
 		}
-	}
-
-	public void Reset() {
-		Transform premadeBoards = transform.Find("PremadeBoards");
-		int boardIndex = randomBoards[randomBoardIndex-1];
-		LoadBoard(premadeBoards.GetChild(boardIndex).GetComponent<BoardData>().Data);
 	}
 
 	void Start () {
@@ -566,6 +579,8 @@ public class BoardManager : MonoBehaviour {
 			var y = (double)pos["y"];
 			
 			var go = GameObject.Find(name);
+			if (go == null)
+				go = GameObject.Find ("t_" + name);
 			if (go == null)
 				Debug.LogError("Tile not found " + name);
 			go.transform.position = new Vector2((float)x, (float)y);
@@ -611,20 +626,27 @@ public class BoardManager : MonoBehaviour {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) {
 				var go = boardParsed[i][j];
-				go.transform.position = (new GridCoord(i, j)).ToVector2();
+				if (go == null) continue;
+				go.transform.position = (new GridCoord(j, 4 - i - 1)).ToVector2();
 			}
 		}
 		
-		for (int i = 0; i <= 4; i++) {
+		var sideParsed = JaggedArrayParser.Parse(side);
+		if (boardParsed.Length != 4)
+			Debug.LogError("parse error, must have 4 rows on the side");
+		
+		for (int i = 0; i <= 3; i++) {
 			if (i == 3) {
 				for (int j = -2; j <= -1; j++) {
-					var go = boardParsed[i][j + 2];
+					var go = sideParsed[i][j + 2];
+					if (go == null) continue;
 					go.transform.position = (new GridCoord(i, j)).ToVector2();
 				}
 			} else {
 				for (int j = -3; j <= -1; j++) {
-					var go = boardParsed[i][j + 3];
-					go.transform.position = (new GridCoord(i, j)).ToVector2();
+					var go = sideParsed[i][j + 3];
+					if (go == null) continue;
+					go.transform.position = (new GridCoord(j, 4 - i - 1)).ToVector2();
 				}
 			}
 		}
