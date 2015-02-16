@@ -628,6 +628,7 @@ public class BoardManager : MonoBehaviour {
 				var go = boardParsed[i][j];
 				if (go == null) continue;
 				go.transform.position = (new GridCoord(j, 4 - i - 1)).ToVector2();
+				go.SendMessage("Reset");
 			}
 		}
 		
@@ -636,7 +637,7 @@ public class BoardManager : MonoBehaviour {
 			Debug.LogError("parse error, must have 4 rows on the side");
 		
 		for (int i = 0; i <= 3; i++) {
-			if (i == 3) {
+			if (false) { //(i == 3) {
 				for (int j = -2; j <= -1; j++) {
 					var go = sideParsed[i][j + 2];
 					if (go == null) continue;
