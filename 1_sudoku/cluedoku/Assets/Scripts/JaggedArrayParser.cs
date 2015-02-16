@@ -20,8 +20,6 @@ public class JaggedArrayParser {
 	private GameObject StringToGameObject(string s) {
 		if (s == "_")
 			return null;
-			
-		Debug.Log ("found " + s);
 		
 		var result = GameObject.Find("t_" + s);
 		if (result == null)
