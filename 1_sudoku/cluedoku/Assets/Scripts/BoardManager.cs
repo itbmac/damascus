@@ -29,14 +29,16 @@ public class BoardManager : MonoBehaviour {
 	}
 	
 	const float MacKenzieThreshold = -6.5f;
-	const float MacKenzieOffsetX = 1.9f;
-	const float MacKenzieOffsetY = 0.4f;
+	const float MacKenzieSize = 2.7f;
+	const float MacKenzieOffsetX = 1.75f;
+	const float MacKenzieOffsetY = 0.15f;
+	const float MacKenzieRandomness = 0.1f;
 	
 	public Vector2 GridCoord2Pos(GridCoord gc) {
 		if (gc.x < 0)
 			return new Vector2(
-				Size * (gc.x - 1.5f) + OffsetPixel.x - MacKenzieOffsetX,
-				Size * (gc.y - 1.5f) + OffsetPixel.y - MacKenzieOffsetY
+				MacKenzieSize * (gc.x - 1.5f) + OffsetPixel.x - MacKenzieOffsetX + Random.Range(-1 * MacKenzieRandomness, MacKenzieRandomness),
+				MacKenzieSize * (gc.y - 1.5f) + OffsetPixel.y - MacKenzieOffsetY + Random.Range(-1 * MacKenzieRandomness, MacKenzieRandomness)
 			);
 		else
 			return new Vector2(
