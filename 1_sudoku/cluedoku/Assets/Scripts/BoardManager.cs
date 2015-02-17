@@ -544,6 +544,10 @@ public class BoardManager : MonoBehaviour {
 				Debug.LogWarning("Could not find board to load!");
 			}
 		}
+		
+		foreach (var tile in GameObject.FindGameObjectsWithTag("Tile")) {
+			tile.GetComponent<TileController>().Reset();
+		}
 
 		HintObj.GetComponent<ClickForHint>().Reset();
 	}
@@ -561,7 +565,7 @@ public class BoardManager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.G))
 			GenerateBoard();
 //		else if (Input.GetKeyDown(KeyCode.S))
-//			Reset ();
+//			NewBoard ();
 		else if (Input.GetKeyDown(KeyCode.C)) {
 			int numSolutions = CountSolutions();
 			if (numSolutions == MAX_SOLUTIONS_TO_FIND)
@@ -613,7 +617,7 @@ public class BoardManager : MonoBehaviour {
 	
 	void MoveAllTilesOffBoard() {
 		foreach (var tile in GetAllTiles()) {
-			tile.transform.position = new Vector2(-10, -10);
+			tile.transform.position = new Vector2(-20, -20);
 		}
 	}
 	
@@ -641,19 +645,19 @@ public class BoardManager : MonoBehaviour {
 			Debug.LogError("parse error, must have 4 rows on the side");
 		
 		for (int i = 0; i <= 3; i++) {
-			if (false) { //(i == 3) {
-				for (int j = -2; j <= -1; j++) {
-					var go = sideParsed[i][j + 2];
-					if (go == null) continue;
-					go.transform.position = (new GridCoord(i, j)).ToVector2();
-				}
-			} else {
+//			if (false) { //(i == 3) {
+//				for (int j = -2; j <= -1; j++) {
+//					var go = sideParsed[i][j + 2];
+//					if (go == null) continue;
+//					go.transform.position = (new GridCoord(i, j)).ToVector2();
+//				}
+//			} else {
 				for (int j = -3; j <= -1; j++) {
 					var go = sideParsed[i][j + 3];
 					if (go == null) continue;
 					go.transform.position = (new GridCoord(j, 4 - i - 1)).ToVector2();
 				}
-			}
+//			}
 		}
 	}
 }

@@ -5,12 +5,15 @@ public class ClickToDisable : MonoBehaviour {
 
 	public GameObject followingItem, additionalObjDisableOnClick;
 	public AudioClip OnVisibleNoise, AdvanceNoise;
-	public bool disableRendererOnClick = true, playSoundOnVisible = false, mustClickOnObject = false;
+	public bool disableRendererOnClick = true, playSoundOnVisible = false, mustClickOnObject = false, runOnStartIfNotEditor = false;
 	private bool prevRendererState = false;
 
 	// Use this for initialization
 	void Start () {
-	
+#if !UNITY_EDITOR
+		if (runOnStartIfNotEditor)
+			Run();
+#endif
 	}
 	
 	// Update is called once per frame
@@ -33,21 +36,25 @@ public class ClickToDisable : MonoBehaviour {
 		if (renderer.enabled && mustClickOnObject)
 			ClickedOn();
 	}
+	
+	void Run() {
+		audio.PlayOneShot(AdvanceNoise);
+		if (followingItem) {
+			followingItem.SetActive(true);
+			if (followingItem.renderer)
+				followingItem.renderer.enabled = true;
+		}
+		
+		if (disableRendererOnClick)
+			renderer.enabled = false;
+		
+		if (additionalObjDisableOnClick)
+			additionalObjDisableOnClick.SetActive(false);
+	}
 
 	void ClickedOn() {
 		if (prevRendererState) {
-			audio.PlayOneShot(AdvanceNoise);
-			if (followingItem) {
-				followingItem.SetActive(true);
-				if (followingItem.renderer)
-					followingItem.renderer.enabled = true;
-			}
-			
-			if (disableRendererOnClick)
-				renderer.enabled = false;
-			
-			if (additionalObjDisableOnClick)
-				additionalObjDisableOnClick.SetActive(false);
+			Run();
 		}
 	}
 }

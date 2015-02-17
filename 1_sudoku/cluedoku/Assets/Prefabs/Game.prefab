@@ -801,6 +801,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 417996}
   - 114: {fileID: 11435364}
+  - 114: {fileID: 11429730}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -1334,9 +1335,8 @@ GameObject:
   - 4: {fileID: 473242}
   - 212: {fileID: 21273240}
   - 82: {fileID: 8273240}
-  - 114: {fileID: 11473242}
   - 60: {fileID: 6007566}
-  - 114: {fileID: 11407568}
+  - 114: {fileID: 11429732}
   m_Layer: 0
   m_Name: CoffeeHint
   m_TagString: Untagged
@@ -1709,7 +1709,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .469999999, y: -1.35000002, z: 0}
+  m_LocalPosition: {x: .469999999, y: -19.4899998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418010}
@@ -1788,7 +1788,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 117966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .469999999, y: -1.35000002, z: 0}
+  m_LocalPosition: {x: .469999999, y: -19.4899998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418020}
@@ -2067,7 +2067,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118008}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .469999999, y: -1.35000002, z: 0}
+  m_LocalPosition: {x: .469999999, y: -19.4899998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418004}
@@ -2235,7 +2235,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .469999999, y: -1.35000002, z: 0}
+  m_LocalPosition: {x: .469999999, y: -19.4899998, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418042}
@@ -2326,7 +2326,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 118050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.29, y: -3.97000003, z: 10}
+  m_LocalPosition: {x: -11.29, y: -2.75999999, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418046}
@@ -2943,7 +2943,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -4624,7 +4624,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -4803,20 +4803,6 @@ MonoBehaviour:
   spriteUnhighlighted: {fileID: 21300000, guid: 693b24fc3f1bad544a1cc95bcccf3428,
     type: 3}
   spriteHighlighted: {fileID: 21300000, guid: c9ccb6c7ad03d514db36335ee896b5b3, type: 3}
---- !u!114 &11407568
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74a52d4c772eb1a42a4c0e2eaf67a418, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteUnhighlighted: {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f,
-    type: 3}
-  spriteHighlighted: {fileID: 21300000, guid: c260d381547974806912a9f9fea8d818, type: 3}
 --- !u!114 &11407570
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4830,10 +4816,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followingItem: {fileID: 0}
   additionalObjDisableOnClick: {fileID: 117996}
+  OnVisibleNoise: {fileID: 0}
   AdvanceNoise: {fileID: 0}
   disableRendererOnClick: 0
   playSoundOnVisible: 0
   mustClickOnObject: 1
+  runOnStartIfNotEditor: 1
 --- !u!114 &11407572
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4924,6 +4912,7 @@ MonoBehaviour:
   - {fileID: 118042}
   - {fileID: 118040}
   - {fileID: 117982}
+  - {fileID: 117974}
 --- !u!114 &11417964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5444,9 +5433,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb2311e7484843c590d0d2eb0ee700c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardSelector: 1
+  boardSelector: 2
   Size: 2.95000005
   OffsetPixel: {x: 0, y: -1.79999995}
+  HintObj: {fileID: 173242}
 --- !u!114 &11418034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5472,6 +5462,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PickUpFile: {fileID: 8300000, guid: 042e0c0b8c2cc47d9bf8dff1d59f652d, type: 3}
   PutDownFile: {fileID: 8300000, guid: 48e1327457c5f4b2189bab49b3a4b528, type: 3}
+--- !u!114 &11429730
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 117996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 570683c02c2cb4eb4b48b35512fa8af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11429732
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c0fb5f6b9344a059986db3ac6bad99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpriteStates:
+  - {fileID: 21300000, guid: 0f2552121cc9c488095197c72e273326, type: 3}
+  - {fileID: 21300000, guid: 26b2ec1245ca649c5b001d43e05b83c2, type: 3}
+  - {fileID: 21300000, guid: c260d381547974806912a9f9fea8d818, type: 3}
+  - {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f, type: 3}
+  HintNoise: {fileID: 8300000, guid: 9b425bb63569a4970af6235276d10064, type: 3}
+  board: {fileID: 118046}
+  remainingNumHints: 0
 --- !u!114 &11435362
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5576,10 +5596,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   followingItem: {fileID: 0}
   additionalObjDisableOnClick: {fileID: 117996}
+  OnVisibleNoise: {fileID: 0}
   AdvanceNoise: {fileID: 0}
   disableRendererOnClick: 0
   playSoundOnVisible: 0
   mustClickOnObject: 1
+  runOnStartIfNotEditor: 0
 --- !u!114 &11442082
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5619,23 +5641,6 @@ MonoBehaviour:
     [t_desperate_housewives, t_altar_boys, t_homeless_guys],
 
     [t_backalley, t_movieset, t_beach]]'
---- !u!114 &11473242
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 173242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a93cb02fbd884632b34d457ae46c410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followingItem: {fileID: 0}
-  additionalObjDisableOnClick: {fileID: 0}
-  AdvanceNoise: {fileID: 8300000, guid: 48e1327457c5f4b2189bab49b3a4b528, type: 3}
-  disableRendererOnClick: 0
-  playSoundOnVisible: 0
-  mustClickOnObject: 1
 --- !u!212 &21207566
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -6820,7 +6825,7 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayerID: 0
+  m_SortingLayerID: 118389871
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7950035de30ba4a699dc854a5438a288, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

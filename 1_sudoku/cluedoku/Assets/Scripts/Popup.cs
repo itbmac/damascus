@@ -22,10 +22,13 @@ public class Popup : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		var sr = (SpriteRenderer)renderer;
 		triggered = false;
-		((SpriteRenderer)renderer).enabled = false;
+		sr.enabled = false;
 		collider2D.enabled = false;
 		
+		if (sr.sortingLayerName != "Popup")
+			Debug.LogWarning("Popup" + name + " must have renderer in sorting layer Popup -- and this must be fixed outside of play mode.");
 	}
 	
 	// Update is called once per frame
