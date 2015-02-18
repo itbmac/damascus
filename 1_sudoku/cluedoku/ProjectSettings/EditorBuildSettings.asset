@@ -6,9 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/DamascusIntro.unity
+  - enabled: 1
     path: Assets/Scenes/Splash.unity
   - enabled: 1
-    path: Assets/Scenes/Video.unity
+    path: Assets/Scenes/OpeningAnimation.unity
   - enabled: 1
     path: Assets/Scenes/Main.unity
   - enabled: 0

@@ -16,6 +16,7 @@ public class BoardManager : MonoBehaviour {
 	public Vector2 OffsetPixel = new Vector2(.45f, -1.2f);	
 
 	public GameObject HintObj;
+	public AudioClip HintSound;
 
 	private int AdjustToInt(float f) {
 		return Mathf.RoundToInt(.5f + (f / Size)) + 1;
@@ -421,10 +422,20 @@ public class BoardManager : MonoBehaviour {
 	}
 	
 	public void ShakeInvalidTiles() {
+		audio.clip = HintSound;
+		audio.loop = true;
+
 		var invalidTiles = GetInvalidTiles();
-		
-		foreach (var tile in invalidTiles) {
-			tile.SendMessage("Shake");
+
+		if (invalidTiles.Count() == 0) {
+
+		}
+		else {
+			audio.Play();
+
+			foreach (var tile in invalidTiles) {
+				tile.SendMessage("Shake");
+			}
 		}
 	}
 	
