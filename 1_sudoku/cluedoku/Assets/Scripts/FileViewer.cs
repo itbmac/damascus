@@ -37,6 +37,8 @@ public class FileViewer : MonoBehaviour {
 //		} else {
 //			transform.position = AlternatePosition;
 //		}
+
+		collider2D.enabled = true;
 	
 		var sr = (SpriteRenderer)renderer;
 		if (sprite == sr.sprite && sr.enabled) {
@@ -57,6 +59,7 @@ public class FileViewer : MonoBehaviour {
 			return;
 			
 		renderer.enabled = false;
+		collider2D.enabled = false;
 		if (!silent)
 			audio.PlayOneShot(PutDownFile);
 	}

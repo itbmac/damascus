@@ -215,6 +215,8 @@ public class TileController : MonoBehaviour {
 			yield return new WaitForSeconds(0.01f);
 		}
 
+		BoardManager.Instance.audio.loop = false;
+
 		rot.z = 0;			
 		transform.eulerAngles = rot;
 		

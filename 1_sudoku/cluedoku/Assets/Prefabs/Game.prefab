@@ -1325,6 +1325,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &155514
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 455514}
+  - 114: {fileID: 11455514}
+  m_Layer: 0
+  m_Name: b_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &173242
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,7 +1386,7 @@ GameObject:
   - 4: {fileID: 499638}
   - 114: {fileID: 11452958}
   m_Layer: 0
-  m_Name: b_2
+  m_Name: b_tutorial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2315,6 +2331,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 499638}
+  - {fileID: 455514}
   - {fileID: 440840}
   - {fileID: 440842}
   m_Father: {fileID: 418046}
@@ -2354,7 +2371,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &440842
 Transform:
   m_ObjectHideFlags: 1
@@ -2366,7 +2383,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 418048}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &442080
 Transform:
   m_ObjectHideFlags: 1
@@ -2379,6 +2396,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 417996}
   m_RootOrder: 5
+--- !u!4 &455514
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 418048}
+  m_RootOrder: 1
 --- !u!4 &473242
 Transform:
   m_ObjectHideFlags: 1
@@ -4509,7 +4538,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .0900000036
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5433,10 +5462,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: beb2311e7484843c590d0d2eb0ee700c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardSelector: 2
+  boardSelector: 1
   Size: 2.95000005
   OffsetPixel: {x: 0, y: -1.79999995}
   HintObj: {fileID: 173242}
+  HintSound: {fileID: 8300000, guid: 554eb3a8b40c84d1b8aebff06df5ec7c, type: 3}
 --- !u!114 &11418034
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5481,7 +5511,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 173242}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8c0fb5f6b9344a059986db3ac6bad99, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fe2195f23c6645b1bdc7c2ace89238a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SpriteStates:
@@ -5622,6 +5652,25 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 199638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Board: "[[_, _, _, _],\n[t_movie_extras,\tt_claudia,\tt_gun,\tt_penthouse],\n[t_wrench,\tt_factory,\tt_tom,\tt_blonde_cheerleaders],\n[t_backalley,\tt_gas,\tt_desperate_housewives,\tt_lorenzo]]"
+  Side: '[[_, t_park, _],
+
+    [_, t_marathon_runners, _],
+
+    [_, t_priscilla, _],
+
+    [_, t_knife, _]]'
+--- !u!114 &11455514
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155514}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
