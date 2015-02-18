@@ -48,7 +48,7 @@ public class TileController : MonoBehaviour {
 	}
 	
 	void OnMouseDown() {
-		if (GameManager.Instance.CurrentPopup != null)
+		if (GameManager.Instance.CurrentPopup)
 			return;
 			
 		if (locked) {
@@ -80,7 +80,7 @@ public class TileController : MonoBehaviour {
 	
 	int activeSlide = 0;
 	const float SLIDE_TIME = 1.0F; // not exactly time...
-	private IEnumerator SlideToPos(Vector2 pos) {
+	private IEnumerator SlideToPos(Vector2 pos, bool resetAfter = false) {
 		activeSlide += 1;
 		int mySlide = activeSlide;
 	
@@ -94,8 +94,10 @@ public class TileController : MonoBehaviour {
 			yield return new WaitForSeconds(0.025f);
 		}
 		((SpriteRenderer)renderer).sortingLayerName = "Default";
-	}
-	
+		
+		if (resetAfter)
+			Reset ();
+	}	
 	
 	public bool RequestMove(Vector2 pos) {	
 		if (!locked) {
@@ -104,6 +106,10 @@ public class TileController : MonoBehaviour {
 		}
 		
 		return false;
+	}
+	
+	public void MoveAndReset(Vector2 pos) {
+		StartCoroutine(SlideToPos(pos, true));
 	}
 	
 	private void SnapToNewPosIfOpen() {

@@ -6,13 +6,29 @@ public class ClickForHint : MonoBehaviour {
 
 	public List<Sprite> SpriteStates = new List<Sprite>();
 	public AudioClip HintNoise;
-	public GameObject board;
-	public int remainingNumHints;
+	private int remainingNumHints;
 	private SpriteRenderer sr;
+	public HintPopup hintPopup;
+	
+	public int RemainingNumHints {
+		set {
+			remainingNumHints = value;
+			sr.sprite = SpriteStates[remainingNumHints];
+		}
+		
+		get {
+			return remainingNumHints;
+		}
+	}
+	
+	void Awake() {
+		hintPopup = FindObjectOfType<HintPopup>();
+	}
 	
 	// Use this for initialization
 	void Start () {
 		sr = (SpriteRenderer)renderer;
+		
 		Reset();
 	}
 	
@@ -23,9 +39,7 @@ public class ClickForHint : MonoBehaviour {
 	
 	void OnMouseDown() {
 		if (remainingNumHints > 0) {
-			board.GetComponent<BoardManager>().ShakeInvalidTiles();
-			remainingNumHints--;
-			sr.sprite = SpriteStates[remainingNumHints];
+			hintPopup.Trigger();
 			audio.PlayOneShot(HintNoise);
 		}
 	}

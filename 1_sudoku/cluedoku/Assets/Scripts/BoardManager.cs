@@ -2,19 +2,15 @@
 using System.Collections;
 using System.Text;
 using System.Collections.Generic;
-using MiniJSON;
 using System.Linq;
 using System;
 
-public enum BoardState {Valid, Incomplete, Duplicates, InvalidPair, InvalidCounts}
-
 public class BoardManager : MonoBehaviour {
 	public enum BoardSelector {NoLoad, FirstChildBoard, RandomBoard}
+	
 	public BoardSelector boardSelector = BoardSelector.NoLoad;
-
 	public float Size = 2.95f;
-	public Vector2 OffsetPixel = new Vector2(.45f, -1.2f);	
-
+	public Vector2 OffsetPixel = new Vector2(.45f, -1.2f);
 	public GameObject HintObj;
 
 	private int AdjustToInt(float f) {
@@ -161,27 +157,12 @@ public class BoardManager : MonoBehaviour {
 		return GridCoord2Pos(SnapGridCoord(GetGridCoord(pos)));
 	}
 	
-	private int Classify(GameObject g) {
-		string n = g.transform.parent.name;
-		if (n == "Suspects")
-			return 0;
-		else if (n == "Locations")
-			return 1;
-		else if (n == "Victims")
-			return 2;
-		else if (n == "Weapons")
-			return 3;
-		
-		Debug.LogError("unknown " + n);
-		return 4;
-	}
-	
 	GameObject[,] GetCurrentBoard() {
 		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
 		GameObject[,] board = new GameObject[4, 4];
 		
 		foreach (GameObject tile in tiles) {
-			GridCoord gc = GetGridCoord(tile.transform.position);
+			GridCoord gc = tile.transform.position.ToGridCoord();
 			int x = gc.x;
 			int y = gc.y;
 			if (x < 0 || x > 3 || y < 0 || y > 3) {
@@ -207,28 +188,7 @@ public class BoardManager : MonoBehaviour {
 	}
 	
 	public BoardState GetCurrentBoardState() {
-		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
-		GameObject[,] board = new GameObject[4, 4];
-		
-		foreach (GameObject tile in tiles) {
-			GridCoord gc = GetGridCoord(tile.transform.position);
-			int x = gc.x;
-			int y = gc.y;
-			if (x < 0 || x > 3 || y < 0 || y > 3) {
-				continue;
-			}
-			
-			if (board[x,y] != null) {
-				return BoardState.Duplicates;
-			}
-			board[x,y] = tile;
-		}
-		
-		return GetBoardState(board);
-	}
-	
-	bool CheckCurrentBoard() {
-		return GetCurrentBoardState() == BoardState.Valid;
+		return BoardSolver.GetBoardState(GetCurrentBoard());
 	}
 	
 	public bool IsCurrentBoardFilled() {
@@ -242,8 +202,8 @@ public class BoardManager : MonoBehaviour {
 	}
 	
 	void GenerateBoard() {
-		GameObject[,] board = new GameObject[4,4];
-		GenerateBoard(board, 0, 0);
+		GameObject[,] board = BoardSolver.GenerateBoard(GetAllTiles());	
+		Debug.Log ("Generated new board for designer, press G for more: \n" + BoardToString(board));
 	}
 	
 	string BoardToString(GameObject[,] board) {
@@ -253,7 +213,7 @@ public class BoardManager : MonoBehaviour {
 		for (int j = 0; j < board.GetLength(1); j++) {
 			builder.Append("[");
 			for (int i = 0; i < board.GetLength(0); i++) {
-				var e = board[i,j];
+				var e = board[i, board.GetLength(1) - j - 1];
 				builder.Append(e ? e.name : "_");
 				if (i < board.GetLength(1) - 1)
 					builder.Append(",\t");
@@ -267,232 +227,44 @@ public class BoardManager : MonoBehaviour {
 		return builder.ToString();
 	}
 	
-	void PrintBoard(GameObject[,] board) {
-		Debug.Log(board);
+	int CountSolutions() {
+		return BoardSolver.CountSolutions(GetCurrentBoard(), GetSideTiles());
 	}
 	
-	bool GenerateBoard(GameObject[,] board, int i, int j) {	
-		if (j >= board.GetLength(1)) {
-			i += 1;
-			j = 0;
-		}
-		if (i >= board.GetLength(0)) {
-			Debug.Log ("Generated new board for designer, press G for more: \n" + BoardToString(board));
-			return true;
-		}
-
-		var d = new Dictionary<GameObject, bool>();
-		foreach (var t in board) {
-			if (t != null)
-				d[t] = true;
-		}
-
-		var tilesRemaining = GameObject.FindGameObjectsWithTag("Tile").Where(x => !d.ContainsKey(x)).AsRandom();
-		foreach (GameObject t in tilesRemaining) {
-			board[i,j] = t;
-			if (GetBoardState(board, true) == BoardState.Valid) {
-				if (GenerateBoard(board, i, j + 1))
-					return true;
-			} 
-		}
+	public bool PlaceValidTile() {
+		var solvedBoard = GetSolvedBoard();
+		var currentBoard = GetCurrentBoard();
 		
-		board[i,j] = null;
+		for (int i = 0; i < solvedBoard.GetLength(0); i++) {
+			for (int j = 0; j < solvedBoard.GetLength(1); j++) {
+				var currentTile = currentBoard[i,j];
+				var solvedTile = solvedBoard[i,j];
+				if (solvedTile == null)
+					Debug.Log ("We gotta problem");
+				if (solvedTile != currentTile) {
+					if (currentTile != null) {
+						currentTile.GetComponent<TileController>().MoveAndReset(solvedTile.transform.position);
+					}
+					
+					solvedTile.GetComponent<TileController>().MoveAndReset((new GridCoord(i, j)).ToVector2());
+					
+					return true;
+				}				
+			}
+		}	
+		Debug.Log ("All good");
+		
 		return false;
 	}
 	
-	const int MAX_SOLUTIONS_TO_FIND = 1000;
-	int CountSolutions() {
-		GameObject[,] board = GetCurrentBoard();
-		int result = CountSolutions(board, 0, 0);
-		if (result > MAX_SOLUTIONS_TO_FIND)
-			return MAX_SOLUTIONS_TO_FIND;
-		return result;
-	}
-	
-	int CountSolutions(GameObject[,] board, int i, int j) {	
-		// Counts the number of possible solutions formed by filling in the remaining
-		// open slots on the board. 
-		
-		if (j >= board.GetLength(1)) {
-			i += 1;
-			j = 0;
-		}
-		if (i >= board.GetLength(0)) {
-			return 1;
-		}
-		
-		if (board[i,j] != null)
-			return CountSolutions(board, i, j + 1)	;
-			
-		
-		var d = new Dictionary<GameObject, bool>();
-		foreach (var t in board) {
-			if (t != null)
-				d[t] = true;
-		}
-		
-		GameObject original = board[i,j];
-		
-		// TODO: not excluded
-		var tilesRemaining =
-			GameObject
-			.FindGameObjectsWithTag("Tile")
-			.Where(x => !d.ContainsKey(x) && !IsOnBoard(x.transform.position) && !IsOutOfGame(x.transform.position));
-		int totalSolutions = 0;
-		foreach (GameObject t in tilesRemaining) {
-			board[i,j] = t;
-			if (GetBoardState(board, true) == BoardState.Valid) {
-				totalSolutions += CountSolutions(board, i, j + 1);
-			} 
-			
-			// for performance reasons, if there's too many solutions break out of everything
-			if (totalSolutions > MAX_SOLUTIONS_TO_FIND)
-				break;
-		}
-		
-		board[i,j] = original;
-		return totalSolutions;
-	}
-
-	BoardState GetBoardState(GameObject[,] board, bool provisional = false) {
-		IDictionary<GameObject, GridCoord> tileCoords = new Dictionary<GameObject, GridCoord>();
-		
-		for (int i = 0; i < board.GetLength(0); i++) {
-			for (int j = 0; j < board.GetLength(1); j++) {
-				var e = board[i,j];
-				if (e == null) {
-					if (!provisional)
-						return BoardState.Incomplete;
-				} else {
-					tileCoords[e] = new GridCoord(i, j);
-				}
-			}
-		}
-	
-		InvalidPair[] invalidPairs = gameObject.GetComponentsInChildren<InvalidPair>();
-		foreach (InvalidPair invalidPair in invalidPairs) {
-			GameObject someTile = invalidPair.SomeTile;
-			if (!tileCoords.ContainsKey(someTile))
-				continue;
-			
-			GridCoord pos = tileCoords[someTile];
-			foreach (GameObject blockedTile in invalidPair.BlockedTiles) {
-				if (!tileCoords.ContainsKey(blockedTile))
-					continue;
-			
-				GridCoord blockedTilePos = tileCoords[blockedTile];
-				
-				if (pos.x == blockedTilePos.x || pos.y == blockedTilePos.y) {
-//					Debug.Log ("Invalid pair: " + someTile.name + " and " + blockedTile.name);
-					return BoardState.InvalidPair;
-				}
-			}
-		}
-		
-		for (int x = 0; x < 4; x++) {
-			int[] test = new int[4];
-			int[] test2 = new int[4];
-			
-			for (int y = 0; y < 4; y++) {
-				if (!provisional && (board[x,y] == null || board[y,x] == null)) {
-					return BoardState.Incomplete;
-				}
-				
-				if (board[x,y] != null)
-					test[Classify(board[x,y])] += 1;
-				if (board[y,x] != null)
-					test2[Classify(board[y,x])] += 1;
-			}
-			
-			if (!test.All(k => k == 1 || (provisional && k <= 1))) {
-//				Debug.Log ("Fail col " + x);
-//				Debug.Log (string.Join(",", test.Select(k => k.ToString()).ToArray()));
-				return BoardState.InvalidCounts;
-			}
-			
-			if (!test2.All(k => k == 1 || (provisional && k <= 1))) {
-//				Debug.Log ("Fail row " + x);
-//				Debug.Log (string.Join(",", test2.Select(k => k.ToString()).ToArray()));
-				return BoardState.InvalidCounts;
-			}
-		}
-
-		return BoardState.Valid;
-	}
-	
-	public void ShakeInvalidTiles() {
-		var invalidTiles = GetInvalidTiles();
+	public int ShakeInvalidTiles() {
+		var invalidTiles = BoardSolver.GetInvalidTiles(GetCurrentBoard());
 		
 		foreach (var tile in invalidTiles) {
 			tile.SendMessage("Shake");
 		}
-	}
-	
-	IEnumerable<GameObject> GetInvalidTiles() {
-		GameObject[,] board = GetCurrentBoard();
-	
-		var result = new HashSet<GameObject>();
-	
-		IDictionary<GameObject, GridCoord> tileCoords = new Dictionary<GameObject, GridCoord>();
 		
-		for (int i = 0; i < board.GetLength(0); i++) {
-			for (int j = 0; j < board.GetLength(1); j++) {
-				var e = board[i,j];
-				if (e == null) {
-					
-				} else {
-					tileCoords[e] = new GridCoord(i, j);
-				}
-			}
-		}
-		
-		InvalidPair[] invalidPairs = gameObject.GetComponentsInChildren<InvalidPair>();
-		foreach (InvalidPair invalidPair in invalidPairs) {
-			GameObject someTile = invalidPair.SomeTile;
-			if (!tileCoords.ContainsKey(someTile))
-				continue;
-			
-			GridCoord pos = tileCoords[someTile];
-			foreach (GameObject blockedTile in invalidPair.BlockedTiles) {
-				if (!tileCoords.ContainsKey(blockedTile))
-					continue;
-				
-				GridCoord blockedTilePos = tileCoords[blockedTile];
-				
-				if (pos.x == blockedTilePos.x || pos.y == blockedTilePos.y) {
-					result.Add(someTile);
-					result.Add(blockedTile);
-				}
-			}
-		}
-		
-		for (int x = 0; x < 4; x++) {
-			List<GameObject>[] testList = new [] {new List<GameObject>(), new List<GameObject>(), new List<GameObject>(), new List<GameObject>()};
-			List<GameObject>[] testList2 = new [] {new List<GameObject>(), new List<GameObject>(), new List<GameObject>(), new List<GameObject>()};
-			
-			for (int y = 0; y < 4; y++) {
-				var e1 = board[x,y];
-				var e2 = board[y,x];
-				
-				if (e1 != null)
-					testList[Classify(e1)].Add(e1);
-					
-				if (e2 != null)
-					testList2[Classify(e2)].Add(e2);
-			}
-			
-			foreach (var t in testList) {
-				if (t.Count > 1)
-					result.UnionWith(t);
-			}
-			
-			foreach (var t in testList2) {
-				if (t.Count > 1)
-					result.UnionWith(t);
-			}
-		}
-		
-		return result;
+		return invalidTiles.Count();
 	}
 	
 	public static BoardManager Instance;
@@ -506,13 +278,10 @@ public class BoardManager : MonoBehaviour {
 	private GameObject lastBoardContainer;
 	private void LoadBoardFromObject(GameObject boardContainer) {
 		lastBoardContainer = boardContainer;
-		var oldData = boardContainer.GetComponent<BoardData>();
-		if (oldData != null) {
-			LoadBoard(oldData.Data);
-		} else {
-			var newData = boardContainer.GetComponent<NewBoardData>();
-			LoadFullBoard(newData.Board, newData.Side);
-		}
+		lastSolution = null;
+		
+		var newData = boardContainer.GetComponent<NewBoardData>();
+		LoadFullBoard(newData.Board, newData.Side);
 	}
 	
 	public void LoadLastBoard() {
@@ -552,9 +321,7 @@ public class BoardManager : MonoBehaviour {
 		HintObj.GetComponent<ClickForHint>().Reset();
 	}
 
-	void Start () {
-		Debug.Log ("Current board:\n" + DumpBoard());
-		
+	void Start () {		
 		GenerateBoard();
 		
 		NewBoard();
@@ -567,51 +334,28 @@ public class BoardManager : MonoBehaviour {
 //		else if (Input.GetKeyDown(KeyCode.S))
 //			NewBoard ();
 		else if (Input.GetKeyDown(KeyCode.C)) {
-			int numSolutions = CountSolutions();
-			if (numSolutions == MAX_SOLUTIONS_TO_FIND)
+			int numSolutions = BoardSolver.CountSolutions(GetCurrentBoard(), GetSideTiles());
+			if (numSolutions == BoardSolver.MAX_SOLUTIONS_TO_FIND)
 				Debug.Log(numSolutions + " or more possible solutions");
 			else
 				Debug.Log(numSolutions + " possible solutions");
+		}
+		else if (Input.GetKeyDown(KeyCode.S)) {
+			var solved = BoardSolver.SolveBoard(GetCurrentBoard(), GetSideTiles());
+			Debug.Log ("Solution to board as currently placed: \n" + BoardToString(solved));
 		}
 //		else if (Input.GetKeyDown(KeyCode.T))
 //			ShakeInvalidTiles();
 	}
 	
-	void LoadBoard(string board) {
-		var tiles = Json.Deserialize(board) as Dictionary<string, object>;
-		
-		foreach (var pair in tiles) {
-			string name = pair.Key;
-			var pos = pair.Value as Dictionary<string, object>;
-			var x = (double)pos["x"];
-			var y = (double)pos["y"];
-			
-			var go = GameObject.Find(name);
-			if (go == null)
-				go = GameObject.Find ("t_" + name);
-			if (go == null)
-				Debug.LogError("Tile not found " + name);
-			go.transform.position = new Vector2((float)x, (float)y);
-			go.SendMessage("Reset");
-		}
-	}
-	
-	string DumpBoard() {
-		GameObject[] tiles = GameObject.FindGameObjectsWithTag("Tile");
-		var tilesDict = new Dictionary<string, object>();
-		
-		foreach (GameObject tile in tiles) {
-			tilesDict[tile.name] = new Dictionary<string, double> {
-				{"x", tile.transform.position.x},
-				{"y", tile.transform.position.y},
-			};
-		}
-		
-		return Json.Serialize(tilesDict);
-	}
-	
 	GameObject[] GetAllTiles() {
 		return GameObject.FindGameObjectsWithTag("Tile");
+	}
+	
+	IEnumerable<GameObject> GetSideTiles() {
+		var sidePositions = GetAllPossibleSidePositions();
+	
+		return GetAllTiles().Where(x => sidePositions.Contains(x.transform.position.ToGridCoord()));		
 	}
 	
 	
@@ -619,6 +363,42 @@ public class BoardManager : MonoBehaviour {
 		foreach (var tile in GetAllTiles()) {
 			tile.transform.position = new Vector2(-20, -20);
 		}
+	}
+	
+	GameObject[,] lastSolution;
+	
+	GameObject[,] GetSolvedBoard() {
+		if (lastSolution != null)
+			return lastSolution;
+	
+		var newData = lastBoardContainer.GetComponent<NewBoardData>();
+		
+		var sideTiles = JaggedArrayParser.Parse(newData.Side).SelectMany(x => x).Where(x => x != null);
+		
+		lastSolution = BoardSolver.SolveBoard(
+			ParseBoard(newData.Board),
+			sideTiles
+		);
+		
+		return lastSolution;
+	}
+	
+	GameObject[,] ParseBoard(string board) {
+		var boardParsed = JaggedArrayParser.Parse(board);
+		if (boardParsed.Length != 4)
+			Debug.LogError("parse error, must have 4 rows per board");
+		
+		if (!boardParsed.All(x => x.Length == 4))
+			Debug.LogError("parse error, each board row must have 4 entries");
+		
+		var boardFixed = new GameObject[4,4];
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				boardFixed[j,4 - i - 1] = boardParsed[i][j];
+			}
+		}
+		
+		return boardFixed;
 	}
 	
 	void LoadFullBoard(string board, string side) {
@@ -641,7 +421,7 @@ public class BoardManager : MonoBehaviour {
 		}
 		
 		var sideParsed = JaggedArrayParser.Parse(side);
-		if (boardParsed.Length != 4)
+		if (sideParsed.Length != 4)
 			Debug.LogError("parse error, must have 4 rows on the side");
 		
 		for (int i = 0; i <= 3; i++) {

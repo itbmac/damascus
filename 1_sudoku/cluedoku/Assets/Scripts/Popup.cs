@@ -48,7 +48,7 @@ public class Popup : MonoBehaviour {
 		triggerTime = Time.time;
 		((SpriteRenderer)renderer).enabled = true;
 		collider2D.enabled = true;
-		GameManager.Instance.CurrentPopup = this;
+		GameManager.Instance.CurrentPopup = true;
 		if (TriggerSound)
 			audio.PlayOneShot(TriggerSound);
 	}
@@ -73,7 +73,7 @@ public class Popup : MonoBehaviour {
 		triggered = false;
 		((SpriteRenderer)renderer).enabled = false;
 		collider2D.enabled = false;
-		GameManager.Instance.CurrentPopup = null;
+		GameManager.Instance.CurrentPopup = false;
 		
 		if (DismissSound)
 			audio.PlayOneShot(DismissSound);

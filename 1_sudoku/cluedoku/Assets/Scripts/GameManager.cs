@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
 
-	public Popup CurrentPopup;
+	public bool CurrentPopup;
 	
 	public static GameManager Instance;
 
