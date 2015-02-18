@@ -8,6 +8,7 @@ public class ClickForHint : MonoBehaviour {
 	public AudioClip HintNoise;
 	public GameObject board;
 	public int remainingNumHints;
+	public int startingNumHints;
 	private SpriteRenderer sr;
 	
 	// Use this for initialization
@@ -43,7 +44,7 @@ public class ClickForHint : MonoBehaviour {
 	}
 	
 	public void Reset() {
-		remainingNumHints = SpriteStates.Count - 1;
+		remainingNumHints = startingNumHints; //SpriteStates.Count - 1;
 		sr.sprite = SpriteStates[remainingNumHints];
 	}
 }
