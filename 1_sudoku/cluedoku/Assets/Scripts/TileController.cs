@@ -108,6 +108,10 @@ public class TileController : MonoBehaviour {
 		return false;
 	}
 	
+	public void Move(Vector2 pos) {
+		StartCoroutine(SlideToPos(pos, false));
+	}
+	
 	public void MoveAndReset(Vector2 pos) {
 		StartCoroutine(SlideToPos(pos, true));
 	}

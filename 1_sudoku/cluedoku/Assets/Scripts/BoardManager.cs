@@ -244,7 +244,7 @@ public class BoardManager : MonoBehaviour {
 					Debug.Log ("We gotta problem");
 				if (solvedTile != currentTile) {
 					if (currentTile != null) {
-						currentTile.GetComponent<TileController>().MoveAndReset(solvedTile.transform.position);
+						currentTile.GetComponent<TileController>().Move(solvedTile.transform.position);
 					}
 					
 					solvedTile.GetComponent<TileController>().MoveAndReset((new GridCoord(i, j)).ToVector2());
@@ -348,6 +348,11 @@ public class BoardManager : MonoBehaviour {
 			var solved = BoardSolver.SolveBoard(GetCurrentBoard(), GetSideTiles());
 			Debug.Log ("Solution to board as currently placed: \n" + BoardToString(solved));
 		}
+#if UNITY_EDITOR
+		if (Input.GetKeyDown(KeyCode.H)) {
+			PlaceValidTile();
+		}
+#endif
 //		else if (Input.GetKeyDown(KeyCode.T))
 //			ShakeInvalidTiles();
 	}

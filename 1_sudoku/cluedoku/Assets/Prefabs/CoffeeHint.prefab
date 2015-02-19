@@ -165,8 +165,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f, type: 3}
   HintNoise: {fileID: 8300000, guid: 9b425bb63569a4970af6235276d10064, type: 3}
   board: {fileID: 0}
-  remainingNumHints: 0
   startingNumHints: 3
+  hintPopup: {fileID: 0}
 --- !u!212 &21215050
 SpriteRenderer:
   m_ObjectHideFlags: 1

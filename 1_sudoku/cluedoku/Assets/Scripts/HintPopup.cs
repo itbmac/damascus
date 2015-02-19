@@ -1,21 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class HintPopup : MonoBehaviour {
 
 	private ClickForHint clickForHint;
 	public GameObject HintAllTilesValidPopup;
+	private bool open;
 
 	// Use this for initialization
 	void Start () {
 		clickForHint = FindObjectOfType<ClickForHint>();		
-		gameObject.SetActive(false);		
+		gameObject.SetActive(false);
+		open = false	;	
 	}
 	
 	public void Trigger() {
 		GameManager.Instance.CurrentPopup = true;
 		gameObject.SetActive(true);	
+		((SpriteRenderer)renderer).enabled = true;
+		open = true;
 	}
 	
 	public void PopupButtonClicked(string buttonName) {
@@ -36,8 +39,17 @@ public class HintPopup : MonoBehaviour {
 		Dismiss();
 	}
 	
+	void OnMouseDown() {
+		if (!open)
+			return;
+		
+		Dismiss();
+	}
+	
 	void Dismiss() {
-		GameManager.Instance.CurrentPopup = false;		
+		GameManager.Instance.CurrentPopup = false;	
+		((SpriteRenderer)renderer).enabled = false;	
 		gameObject.SetActive(false);
+		open = false;
 	}
 }
