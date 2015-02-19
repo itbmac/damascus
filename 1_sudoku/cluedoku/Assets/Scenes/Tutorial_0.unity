@@ -3395,7 +3395,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5d8eeada7fa4a3fbaa3aef8e8911ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentPopup: {fileID: 0}
 --- !u!114 &824558750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3517,8 +3516,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f, type: 3}
   HintNoise: {fileID: 8300000, guid: 9b425bb63569a4970af6235276d10064, type: 3}
   board: {fileID: 2013787583}
-  remainingNumHints: 0
   startingNumHints: 0
+  hintPopup: {fileID: 0}
 --- !u!82 &860194127
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4020,7 +4019,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: 02a25ab903b584d7d8a34bebd6706762, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a24f40fb90ea34fd2821e3f75c585616, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1083283993
 GameObject:
@@ -4918,7 +4917,7 @@ Prefab:
     - target: {fileID: 21229046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 02a25ab903b584d7d8a34bebd6706762,
+      objectReference: {fileID: 21300000, guid: a24f40fb90ea34fd2821e3f75c585616,
         type: 3}
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: playSoundOnVisible

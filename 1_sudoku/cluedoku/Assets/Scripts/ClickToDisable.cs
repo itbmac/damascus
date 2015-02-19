@@ -5,7 +5,7 @@ public class ClickToDisable : MonoBehaviour {
 
 	public GameObject followingItem, additionalObjDisableOnClick;
 	public AudioClip OnVisibleNoise, AdvanceNoise;
-	public bool disableRendererOnClick = true, playSoundOnVisible = false, mustClickOnObject = false, runOnStartIfNotEditor = false;
+	public bool disableRendererOnClick = true, playSoundOnVisible = false, mustClickOnObject = false, runOnStartIfNotEditor = false, enableAllChildren = false;
 	private bool prevRendererState = false;
 
 	// Use this for initialization
@@ -27,6 +27,12 @@ public class ClickToDisable : MonoBehaviour {
 
 		if (!prevRendererState && renderer.enabled && OnVisibleNoise) {
 			audio.PlayOneShot(OnVisibleNoise);
+
+			if (enableAllChildren) {
+				foreach (Transform child in transform) {
+					child.gameObject.SetActive(true);
+				}
+			}
 		}
 
 		prevRendererState = renderer.enabled;
@@ -45,8 +51,15 @@ public class ClickToDisable : MonoBehaviour {
 				followingItem.renderer.enabled = true;
 		}
 		
-		if (disableRendererOnClick)
+		if (disableRendererOnClick) {
 			renderer.enabled = false;
+
+			if (enableAllChildren) {
+				foreach (Transform child in transform) {
+					child.gameObject.SetActive(false);
+				}
+			}
+		}
 		
 		if (additionalObjDisableOnClick)
 			additionalObjDisableOnClick.SetActive(false);
