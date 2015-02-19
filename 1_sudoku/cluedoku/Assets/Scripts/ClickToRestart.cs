@@ -14,7 +14,7 @@ public class ClickToRestart : MonoBehaviour {
 	void OnMouseDown() {
 		if (renderer.enabled) {
 			audio.PlayOneShot(clearNoise);
-			board.GetComponent<BoardManager>().LoadLastBoard();
+			board.GetComponent<BoardManager>().RecallTiles();
 		}
 	}
 }

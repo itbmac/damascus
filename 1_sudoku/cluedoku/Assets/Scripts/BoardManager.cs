@@ -288,11 +288,24 @@ public class BoardManager : MonoBehaviour {
 		LoadFullBoard(newData.Board, newData.Side);
 	}
 	
-	public void LoadLastBoard() {
+	private void LoadLastBoard() {
 		if (lastBoardContainer == null)
 			Debug.LogError("No previous board to load");
 		else
 			LoadBoardFromObject(lastBoardContainer);
+	}
+	
+	public void RecallTiles() {
+		var tiles = GetBoardTiles().Where(x => !x.GetComponent<TileController>().Locked);
+		
+		var sidePositions = GetAllPossibleSidePositions().Where(x => IsPositionOpen(x.ToVector2(), null)).GetEnumerator();
+		
+		foreach (var tile in tiles) {
+			if (sidePositions.MoveNext())
+				tile.GetComponent<TileController>().Move(sidePositions.Current.ToVector2());
+			else
+				Debug.LogWarning("No open spots!");
+		}
 	}
 	
 	public void NewBoard() {
@@ -365,6 +378,12 @@ public class BoardManager : MonoBehaviour {
 		var sidePositions = GetAllPossibleSidePositions();
 	
 		return GetAllTiles().Where(x => sidePositions.Contains(x.transform.position.ToGridCoord()));		
+	}
+	
+	IEnumerable<GameObject> GetBoardTiles() {
+		var boardPositions = GetAllPossibleBoardPositions();
+		
+		return GetAllTiles().Where(x => boardPositions.Contains(x.transform.position.ToGridCoord()));		
 	}
 	
 	
