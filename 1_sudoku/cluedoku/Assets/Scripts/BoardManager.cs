@@ -236,26 +236,40 @@ public class BoardManager : MonoBehaviour {
 		var solvedBoard = GetSolvedBoard();
 		var currentBoard = GetCurrentBoard();
 		
+		var tileSwapDictionary = new Dictionary<GameObject, GameObject>();
+		var tileSwapPos = new Dictionary<GameObject, GridCoord>();
+		
 		for (int i = 0; i < solvedBoard.GetLength(0); i++) {
 			for (int j = 0; j < solvedBoard.GetLength(1); j++) {
 				var currentTile = currentBoard[i,j];
 				var solvedTile = solvedBoard[i,j];
 				if (solvedTile == null)
-					Debug.Log ("We gotta problem");
+					Debug.LogError("Null tile in solution");
+					
+				
 				if (solvedTile != currentTile) {
-					if (currentTile != null) {
-						currentTile.GetComponent<TileController>().Move(solvedTile.transform.position);
-					}
-					
-					solvedTile.GetComponent<TileController>().MoveAndReset((new GridCoord(i, j)).ToVector2());
-					
-					return true;
+					tileSwapDictionary[solvedTile] = currentTile;
+					tileSwapPos[solvedTile] = new GridCoord(i,j);
 				}				
 			}
-		}	
-		Debug.Log ("All good");
+		}
 		
-		return false;
+		var tileSwaps = tileSwapDictionary.Keys.ToArray();
+		if (tileSwaps.Count() == 0)
+			return false;
+			
+		int tileSwapIndex = UnityEngine.Random.Range(0, tileSwaps.Count());
+		var solvedTileSelected = tileSwaps[tileSwapIndex];
+		var currentTileSelected = tileSwapDictionary[solvedTileSelected];
+		var solvedGridCoord = tileSwapPos[solvedTileSelected];
+		
+		if (currentTileSelected != null) {
+			currentTileSelected.GetComponent<TileController>().Move(solvedTileSelected.transform.position);
+		}
+		
+		solvedTileSelected.GetComponent<TileController>().MoveAndReset(solvedGridCoord.ToVector2());
+		
+		return true;
 	}
 	
 	public int ShakeInvalidTiles() {
