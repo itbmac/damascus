@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ClickForHint : MonoBehaviour {
 
 	public List<Sprite> SpriteStates = new List<Sprite>();
-	public AudioClip HintNoise;
+	public AudioClip HintNoisePopUp, HintNoiseUse, HintNoiseCancel;
 	private int remainingNumHints;
 	public GameObject board;
 	public int startingNumHints;
@@ -42,7 +42,7 @@ public class ClickForHint : MonoBehaviour {
 	void OnMouseDown() {
 		if (remainingNumHints > 0) {
 			hintPopup.Trigger();
-			audio.PlayOneShot(HintNoise);
+			audio.PlayOneShot(HintNoisePopUp);
 		}
 	}
 
@@ -56,6 +56,15 @@ public class ClickForHint : MonoBehaviour {
 		if (remainingNumHints > 0) {
 			sr.sprite = SpriteStates[remainingNumHints];
 		}
+	}
+
+	public void UseAHint() {
+		remainingNumHints--;
+		audio.PlayOneShot(HintNoiseUse);
+	}
+
+	public void CancelHintUse() {
+		audio.PlayOneShot(HintNoiseCancel);
 	}
 	
 	public void Reset() {

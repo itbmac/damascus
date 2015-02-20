@@ -12,7 +12,7 @@ public class ClickToRestart : MonoBehaviour {
 	}
 	
 	void OnMouseDown() {
-		if (GameManager.Instance.ClickBlocked);
+		if (GameManager.Instance.ClickBlocked)
 			return;		
 	
 		if (renderer.enabled) {

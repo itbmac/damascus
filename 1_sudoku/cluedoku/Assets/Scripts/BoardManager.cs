@@ -272,7 +272,7 @@ public class BoardManager : MonoBehaviour {
 		return true;
 	}
 	
-	public int ShakeInvalidTiles() {
+	public int ShakeInvalidTiles(bool pinCorrectTiles = true) {
 		var solvedBoard = GetSolvedBoard();
 		var currentBoard = GetCurrentBoard();
 		
@@ -288,8 +288,8 @@ public class BoardManager : MonoBehaviour {
 					
 				var currentTileController = currentTile.GetComponent<TileController>();
 				
-				if (solvedTile == currentTile) {
-					currentTileController.Locked = true;
+				if (!currentTileController.Locked && (solvedTile == currentTile)) {
+					currentTileController.Locked = pinCorrectTiles;
 				} else {
 					currentTile.SendMessage("Shake");
 					numInvalidTiles += 1;
@@ -371,7 +371,8 @@ public class BoardManager : MonoBehaviour {
 			Debug.LogWarning("Could not find board group to load!");
 		}
 
-		HintObj.GetComponent<ClickForHint>().Reset();
+		if (HintObj && HintObj.GetComponent<ClickForHint>())
+			HintObj.GetComponent<ClickForHint>().Reset();
 	}
 
 	void Start () {				

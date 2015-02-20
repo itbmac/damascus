@@ -485,61 +485,6 @@ SpriteRenderer:
   m_SortingOrder: 1010
   m_Sprite: {fileID: 21300000, guid: 693b24fc3f1bad544a1cc95bcccf3428, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &78301365
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 155514, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 78301366}
-  - 114: {fileID: 78301367}
-  m_Layer: 0
-  m_Name: b_2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &78301366
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 455514, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 78301365}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 727487103}
-  m_RootOrder: 1
---- !u!114 &78301367
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11455514, guid: c387b0d9e4a4549c28bed6a3a012502a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 78301365}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Board: '[[t_priscilla, _, _, _],
-
-    [_, _, _, t_lorenzo],
-
-    [_, t_tom, t_park, _],
-
-    [_, _, t_susan, _]]'
-  Side: '[[_, t_knife, t_rope],
-
-    [t_blonde_cheerleaders, t_poison, t_gas],
-
-    [t_desperate_housewives, t_altar_boys, t_homeless_guys],
-
-    [t_backalley, t_movieset, t_beach]]'
-  DontLockTiles: 0
 --- !u!1 &92506108
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +546,7 @@ GameObject:
   - 4: {fileID: 113426131}
   - 114: {fileID: 113426132}
   m_Layer: 0
-  m_Name: b_1
+  m_Name: b_tutorial_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,21 +576,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Board: '[[t_knife, t_susan, _, _],
+  Board: "[[t_claudia,\tt_factory,\tt_gas,\tt_rope],\n[t_movie_extras,\tt_susan,\tt_wrench,\tt_movieset],\n[t_penthouse,\tt_desperate_housewives,\tt_priscilla,\tt_blonde_cheerleaders],\n[t_knife,\tt_homeless_guys,\tt_beach,\tt_tom]]"
+  Side: '[[_, _, _],
 
-    [_, t_gun, _, _],
+    [_, _, _],
 
-    [t_park, t_homeless_guys, _, t_wrench],
+    [_, _, _],
 
-    [_, t_factory, _, t_blonde_cheerleaders]]'
-  Side: '[[_, t_poison, _],
-
-    [t_movieset, t_beach, _],
-
-    [t_priscilla, t_tom, t_paul],
-
-    [_, t_desperate_housewives, t_altar_boys]]'
-  DontLockTiles: 0
+    [_, _, _]]'
+  DontLockTiles: 1
 --- !u!1 &123552950
 GameObject:
   m_ObjectHideFlags: 0
@@ -2124,7 +2063,7 @@ Transform:
   m_Children:
   - {fileID: 113426131}
   m_Father: {fileID: 2027007775}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!1 &519823796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2504,56 +2443,6 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 09c0d058223c5492fb0adc77b6fe1b35, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &534213856
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 140842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 534213857}
-  - 114: {fileID: 534213858}
-  m_Layer: 0
-  m_Name: b_0
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &534213857
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 440842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 534213856}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 727487103}
-  m_RootOrder: 0
---- !u!114 &534213858
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11440842, guid: c387b0d9e4a4549c28bed6a3a012502a,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 534213856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Board: "[[t_priscilla, _,\tt_park,\t_],\n[_, t_claudia, _, _],\n[_, _, _, t_blonde_cheerleaders],\n[_,
-    _, t_desperate_housewives, t_lorenzo]]"
-  Side: '[[_, t_tom, t_wrench],
-
-    [t_gas, t_knife, t_gun],
-
-    [_, t_marathon_runners, t_movie_extras],
-
-    [t_backalley, t_penthouse, t_factory]]'
-  DontLockTiles: 0
 --- !u!1 &539639347
 GameObject:
   m_ObjectHideFlags: 0
@@ -3682,35 +3571,6 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f91b15888a0aa8945900572cd538ad6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!1 &727487102
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 727487103}
-  m_Layer: 0
-  m_Name: Group1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &727487103
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 727487102}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 534213857}
-  - {fileID: 78301366}
-  m_Father: {fileID: 2027007775}
-  m_RootOrder: 0
 --- !u!1001 &730728463
 Prefab:
   m_ObjectHideFlags: 0
@@ -4058,7 +3918,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &824558748
 Transform:
   m_ObjectHideFlags: 0
@@ -4076,6 +3936,7 @@ Transform:
   - {fileID: 1828391567}
   - {fileID: 1164596074}
   - {fileID: 1706657767}
+  - {fileID: 1588627230}
   - {fileID: 860194123}
   - {fileID: 1275910644}
   - {fileID: 1882565022}
@@ -4123,7 +3984,7 @@ Transform:
   m_LocalScale: {x: .699999988, y: .699999988, z: 1}
   m_Children: []
   m_Father: {fileID: 824558748}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!60 &860194125
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4406,10 +4267,10 @@ Prefab:
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: followingItem
       value: 
-      objectReference: {fileID: 1551032542}
+      objectReference: {fileID: 824558747}
     - target: {fileID: 129046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: AdvanceNoise
@@ -4417,7 +4278,7 @@ Prefab:
       objectReference: {fileID: 8300000, guid: 7dafd47f7c6cc41b98d9e70a517352b6, type: 3}
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: playSoundOnVisible
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 21229046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: m_Sprite
@@ -4440,6 +4301,10 @@ Prefab:
       propertyPath: OverrideClickBlock
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
+      propertyPath: OnVisibleNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 7dafd47f7c6cc41b98d9e70a517352b6, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
   m_RootGameObject: {fileID: 1503390309}
@@ -6124,7 +5989,7 @@ Transform:
   - {fileID: 519823797}
   - {fileID: 1889312212}
   m_Father: {fileID: 824558748}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!114 &1275910645
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6240,7 +6105,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 415050, guid: a63f45ec872e542988aa81b616dd9f1c, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11415050, guid: a63f45ec872e542988aa81b616dd9f1c, type: 2}
       propertyPath: board
@@ -6250,6 +6115,10 @@ Prefab:
       propertyPath: hintPopup
       value: 
       objectReference: {fileID: 1275910645}
+    - target: {fileID: 11415050, guid: a63f45ec872e542988aa81b616dd9f1c, type: 2}
+      propertyPath: HintNoise
+      value: 
+      objectReference: {fileID: 8300000, guid: 94803f6c8189e44f1b9bfb433d3ade04, type: 3}
     - target: {fileID: 11415050, guid: a63f45ec872e542988aa81b616dd9f1c, type: 2}
       propertyPath: HintNoisePopUp
       value: 
@@ -7245,7 +7114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1503390310
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7317,12 +7186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a93cb02fbd884632b34d457ae46c410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followingItem: {fileID: 1551032542}
+  followingItem: {fileID: 824558747}
   additionalObjDisableOnClick: {fileID: 0}
-  OnVisibleNoise: {fileID: 0}
+  OnVisibleNoise: {fileID: 8300000, guid: 7dafd47f7c6cc41b98d9e70a517352b6, type: 3}
   AdvanceNoise: {fileID: 8300000, guid: 7dafd47f7c6cc41b98d9e70a517352b6, type: 3}
   disableRendererOnClick: 1
-  playSoundOnVisible: 0
+  playSoundOnVisible: 1
   mustClickOnObject: 0
   runOnStartIfNotEditor: 0
   enableAllChildren: 0
@@ -8016,6 +7885,97 @@ Prefab:
   m_RootGameObject: {fileID: 2113721763}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &1588627229
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1588627230}
+  - 212: {fileID: 1588627232}
+  - 114: {fileID: 1588627231}
+  - 114: {fileID: 1588627233}
+  m_Layer: 0
+  m_Name: CoffeeWalkthrough
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1588627230
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1588627229}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5, y: -.600000024, z: 0}
+  m_LocalScale: {x: .709999979, y: .709999979, z: 1}
+  m_Children: []
+  m_Father: {fileID: 824558748}
+  m_RootOrder: 7
+--- !u!114 &1588627231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1588627229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a93cb02fbd884632b34d457ae46c410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  followingItem: {fileID: 0}
+  additionalObjDisableOnClick: {fileID: 0}
+  OnVisibleNoise: {fileID: 0}
+  AdvanceNoise: {fileID: 0}
+  disableRendererOnClick: 1
+  playSoundOnVisible: 0
+  mustClickOnObject: 0
+  runOnStartIfNotEditor: 0
+  enableAllChildren: 0
+  OverrideClickBlock: 0
+--- !u!212 &1588627232
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1588627229}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 118389871
+  m_SortingOrder: 1000
+  m_Sprite: {fileID: 21300000, guid: b4ad714b3ad4f4aaab8f0197672c5cd9, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1588627233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1588627229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8343f45116b84faebf8d6b4d3afeccd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpriteStates:
+  - {fileID: 21300000, guid: b4ad714b3ad4f4aaab8f0197672c5cd9, type: 3}
+  - {fileID: 21300000, guid: c6749d52351204d87a263f56584c4b1f, type: 3}
+  - {fileID: 21300000, guid: e428fc4ee704346859ac233ca24c53df, type: 3}
+  - {fileID: 21300000, guid: e8c2af47b82ad414b81d41972ca52574, type: 3}
+  HintPopUpObj: {fileID: 1275910643}
+  currentStateNum: 0
 --- !u!1001 &1655313285
 Prefab:
   m_ObjectHideFlags: 0
@@ -8864,7 +8824,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 824558748}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!114 &1882565023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10036,7 +9996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BlockFileViewer: 0
-  tutorialState: 0
+  tutorialState: 1
   PinDrop: {fileID: 8300000, guid: 6571b0c69654a45e0b94bd6ddf5244d8, type: 3}
 --- !u!1001 &2025019861
 Prefab:
@@ -10107,7 +10067,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 727487103}
   - {fileID: 517770047}
   m_Father: {fileID: 2013787584}
   m_RootOrder: 6

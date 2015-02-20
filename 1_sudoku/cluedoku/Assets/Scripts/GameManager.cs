@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 	}
 	
 	void Start() {
-		Debug.LogWarning("Missing pin drop sound!");
+
 	}
 	
 	public void AddClickBlock() {

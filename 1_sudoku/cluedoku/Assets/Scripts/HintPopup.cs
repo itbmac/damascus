@@ -47,7 +47,7 @@ public class HintPopup : MonoBehaviour {
 			}
 		}
 		
-		clickForHint.RemainingNumHints -= 1;
+		clickForHint.UseAHint();
 		
 		Dismiss();
 	}
@@ -58,7 +58,9 @@ public class HintPopup : MonoBehaviour {
 			
 		if (GameManager.Instance.tutorialState != GameManager.TutorialState.None)
 			return;
-		
+
+		clickForHint.CancelHintUse();
+
 		Dismiss();
 	}
 	

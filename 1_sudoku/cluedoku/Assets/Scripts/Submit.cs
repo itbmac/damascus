@@ -5,6 +5,7 @@ using System.Collections;
 [RequireComponent(typeof(AudioSource))]
 public class Submit : MonoBehaviour {
 
+	public bool pinCorrectlyPlacedTilesOnSubmit = false;
 	public Sprite spriteDisabled;
 	public Sprite spriteEnabled;
 	public Sprite spriteHighlighted;
@@ -29,7 +30,7 @@ public class Submit : MonoBehaviour {
 		spriteRenderer = (SpriteRenderer)renderer;
 		
 		PopupInvalid.GetComponent<Popup>().Dismissed += delegate() {
-			 BoardManager.Instance.ShakeInvalidTiles();
+			BoardManager.Instance.ShakeInvalidTiles(pinCorrectlyPlacedTilesOnSubmit);
 		};
 	}
 
