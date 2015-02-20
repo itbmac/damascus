@@ -66,6 +66,9 @@ public class ClickToDisable : MonoBehaviour {
 	}
 
 	void ClickedOn() {
+		if (GameManager.Instance.ClickBlocked)
+			return;
+	
 		if (prevRendererState) {
 			Run();
 		}

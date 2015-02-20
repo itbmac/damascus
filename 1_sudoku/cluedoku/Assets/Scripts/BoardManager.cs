@@ -273,16 +273,34 @@ public class BoardManager : MonoBehaviour {
 	}
 	
 	public int ShakeInvalidTiles() {
-		var invalidTiles = BoardSolver.GetInvalidTiles(GetCurrentBoard());
+		var solvedBoard = GetSolvedBoard();
+		var currentBoard = GetCurrentBoard();
 		
-		if (invalidTiles.Count() > 0)
-			audio.Play();
-			
-		foreach (var tile in invalidTiles) {
-			tile.SendMessage("Shake");
+		int numInvalidTiles = 0;
+		for (int i = 0; i < solvedBoard.GetLength(0); i++) {
+			for (int j = 0; j < solvedBoard.GetLength(1); j++) {
+				var currentTile = currentBoard[i,j];
+				var solvedTile = solvedBoard[i,j];
+				if (solvedTile == null)
+					Debug.LogError("Null tile in solution");
+				if (currentTile == null)
+					continue;
+					
+				var currentTileController = currentTile.GetComponent<TileController>();
+				
+				if (solvedTile == currentTile) {
+					currentTileController.Locked = true;
+				} else {
+					currentTile.SendMessage("Shake");
+					numInvalidTiles += 1;
+				}				
+			}
 		}
 		
-		return invalidTiles.Count();
+		if (numInvalidTiles > 0)
+			audio.Play();
+		
+		return numInvalidTiles;
 	}
 	
 	public static BoardManager Instance;
@@ -352,9 +370,7 @@ public class BoardManager : MonoBehaviour {
 		HintObj.GetComponent<ClickForHint>().Reset();
 	}
 
-	void Start () {		
-		GenerateBoard();
-		
+	void Start () {				
 		NewBoard();
 	}
 	
@@ -458,7 +474,7 @@ public class BoardManager : MonoBehaviour {
 				var go = boardParsed[i][j];
 				if (go == null) continue;
 				go.transform.position = (new GridCoord(j, 4 - i - 1)).ToVector2();
-				go.SendMessage("Reset");
+				go.GetComponent<TileController>().Reset();
 			}
 		}
 		

@@ -37,7 +37,7 @@ public class Submit : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		if (GameManager.Instance.CurrentPopup)
+		if (GameManager.Instance.ClickBlocked)
 			return;
 	
 		if (submitEnabled)

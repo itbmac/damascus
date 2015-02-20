@@ -15,9 +15,55 @@ public class TileController : MonoBehaviour {
 	Vector3 mouseDownStartPos;
 	private bool locked = false;
 	
+	private IEnumerator SlidePinToPos(Vector2 pos) {
+		GameManager.Instance.AddClickBlock();
+		
+		pin.transform.localPosition = pos + new Vector2(0, 10);
+		
+		while (Vector2.Distance(pin.transform.localPosition, pos) > 0.1F) {
+			pin.transform.localPosition = Vector2.Lerp(pin.transform.localPosition, pos, 0.4f);
+			yield return new WaitForSeconds(0.025f);
+		}
+		pin.transform.localPosition = pos;
+		
+		if (GameManager.Instance.PinDrop != null)
+			audio.PlayOneShot(GameManager.Instance.PinDrop);
+		
+		GameManager.Instance.RemoveClickBlock();
+	}
+		
 	public bool Locked {
 		get {
 			return locked;
+		}
+		
+		set {
+			if (value == locked)
+				return;
+		
+			SetLockedAndSlide(value);
+		}
+	}
+	
+	private void SetLockedAndSlide(bool newLocked) {
+		locked = newLocked;
+		pin.renderer.enabled = locked;
+		
+		if (locked) {
+			Vector3 pinDisplacement = (new Vector3(Random.Range(-2F, -1F), Random.Range(-2F, -1F), 0)) * pinRandomness;
+			Vector2 newPinPosition = pinPositionOriginal + pinDisplacement;
+			StartCoroutine(SlidePinToPos(newPinPosition));
+		}
+	}
+	
+	private void SetLocked(bool newLocked) {
+		locked = newLocked;
+		pin.renderer.enabled = locked;
+		
+		if (locked) {
+			Vector3 pinDisplacement = (new Vector3(Random.Range(-2F, -1F), Random.Range(-2F, -1F), 0)) * pinRandomness;
+			Vector2 newPinPosition = pinPositionOriginal + pinDisplacement;
+			pin.transform.localPosition = newPinPosition;
 		}
 	}
 	
@@ -34,24 +80,20 @@ public class TileController : MonoBehaviour {
 		Reset();
 	}
 	
-	public void Reset() {
+	public void Reset(bool slide = false) {
 		Snap ();
-		locked = BoardManager.Instance.IsOnBoard(transform.position);	
-
-		if (locked) {
-			pin.renderer.enabled = true;
-			pin.transform.localPosition = new Vector3(pinPositionOriginal.x + Random.Range(-2 * pinRandomness, -1 * pinRandomness),
-			                                     	  pinPositionOriginal.y + Random.Range(-2 * pinRandomness, -1 * pinRandomness),
-			                                          pinPositionOriginal.z);
-		}
-		else pin.renderer.enabled = false;
+		
+		if (slide)
+			SetLockedAndSlide(BoardManager.Instance.IsOnBoard(transform.position));
+		else
+			SetLocked(BoardManager.Instance.IsOnBoard(transform.position));		
 	}
 	
 	void OnMouseDown() {
-		if (GameManager.Instance.CurrentPopup)
+		if (GameManager.Instance.ClickBlocked)
 			return;
 			
-		if (locked) {
+		if (Locked) {
 			if (infoCard)
 				FileViewer.Instance.Show(infoCard);
 			return;
@@ -77,7 +119,6 @@ public class TileController : MonoBehaviour {
 		transform.position = BoardManager.Instance.SnapPos(transform.position);
 	}	
 	
-	
 	int activeSlide = 0;
 	const float SLIDE_TIME = 1.0F; // not exactly time...
 	private IEnumerator SlideToPos(Vector2 pos, bool resetAfter = false) {
@@ -96,11 +137,11 @@ public class TileController : MonoBehaviour {
 		((SpriteRenderer)renderer).sortingLayerName = "Default";
 		
 		if (resetAfter)
-			Reset ();
+			Reset (true);
 	}	
 	
 	public bool RequestMove(Vector2 pos) {	
-		if (!locked) {
+		if (!Locked) {
 			StartCoroutine(SlideToPos(pos));
 			return true;
 		}
@@ -228,7 +269,7 @@ public class TileController : MonoBehaviour {
 	}
 	
 	public void Shake() {
-		if (!locked)
+		if (!Locked)
 			StartCoroutine(ShakeCoroutine());
 	}
 }
