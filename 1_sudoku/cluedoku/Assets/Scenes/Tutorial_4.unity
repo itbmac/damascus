@@ -2312,6 +2312,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11437076, guid: 9e143ef022df941dab41e5dce9960445, type: 2}
+      propertyPath: OnDismiss
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e143ef022df941dab41e5dce9960445, type: 2}
   m_RootGameObject: {fileID: 1828391566}
@@ -8815,7 +8819,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ceb4e13a844c4e588c0fb2c40de512a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OnDismiss: 5
+  OnDismiss: 1
   OtherPopup: {fileID: 0}
   TriggerSound: {fileID: 8300000, guid: 384a125fb5a6f4446a3c2421a4236359, type: 3}
   DismissSound: {fileID: 0}
