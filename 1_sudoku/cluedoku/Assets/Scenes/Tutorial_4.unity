@@ -86,6 +86,7 @@ GameObject:
   - 61: {fileID: 13055233}
   - 114: {fileID: 13055232}
   - 82: {fileID: 13055231}
+  - 114: {fileID: 13055235}
   m_Layer: 0
   m_Name: t_wrench
   m_TagString: Tile
@@ -216,6 +217,21 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5013a9bc81e0d40cca055533812003a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &13055235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 13055229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0b665af87ec4c23a9de26b960f6386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verifyOkayToMoveOffOfObj: {fileID: 2113721763}
+  desiredTilePlacement: {x: 2, y: 2}
+  desiredTilePlacementLoc: {x: 0, y: 0}
+  hasMoved: 0
 --- !u!1 &51484447
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,14 +592,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Board: "[[t_claudia,\tt_factory,\tt_gas,\tt_rope],\n[t_movie_extras,\tt_susan,\tt_wrench,\tt_movieset],\n[t_penthouse,\tt_desperate_housewives,\tt_priscilla,\tt_blonde_cheerleaders],\n[t_knife,\tt_homeless_guys,\tt_beach,\tt_tom]]"
+  Board: "[[t_claudia,\tt_factory,\t_,\tt_rope],\n[_,\t_,\t_,\tt_movieset],\n[t_penthouse,\t_,\tt_priscilla,\t_],\n[_,\tt_homeless_guys,\tt_beach,\t_]]"
   Side: '[[_, _, _],
 
-    [_, _, _],
+    [t_gas, t_wrench, t_knife],
 
-    [_, _, _],
+    [t_blonde_cheerleaders, t_desperate_housewives, t_movie_extras],
 
-    [_, _, _]]'
+    [t_tom, t_susan, _]]'
   DontLockTiles: 1
 --- !u!1 &123552950
 GameObject:
@@ -2506,6 +2522,7 @@ GameObject:
   - 61: {fileID: 539766657}
   - 114: {fileID: 539766656}
   - 82: {fileID: 539766655}
+  - 114: {fileID: 539766659}
   m_Layer: 0
   m_Name: t_movie_extras
   m_TagString: Tile
@@ -2636,6 +2653,21 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: e07068c3542b24e52af6b184c3a7196f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &539766659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 539766653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0b665af87ec4c23a9de26b960f6386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verifyOkayToMoveOffOfObj: {fileID: 2113721763}
+  desiredTilePlacement: {x: 0, y: 2}
+  desiredTilePlacementLoc: {x: 0, y: 0}
+  hasMoved: 0
 --- !u!1 &540850046
 GameObject:
   m_ObjectHideFlags: 0
@@ -2695,6 +2727,7 @@ GameObject:
   - 61: {fileID: 541429419}
   - 114: {fileID: 541429418}
   - 82: {fileID: 541429420}
+  - 114: {fileID: 541429421}
   m_Layer: 0
   m_Name: t_knife
   m_TagString: Tile
@@ -2825,6 +2858,21 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &541429421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541429415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0b665af87ec4c23a9de26b960f6386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verifyOkayToMoveOffOfObj: {fileID: 2113721763}
+  desiredTilePlacement: {x: 0, y: 0}
+  desiredTilePlacementLoc: {x: 0, y: 0}
+  hasMoved: 0
 --- !u!1 &566360976
 GameObject:
   m_ObjectHideFlags: 0
@@ -4322,6 +4370,7 @@ GameObject:
   - 61: {fileID: 924030248}
   - 114: {fileID: 924030247}
   - 82: {fileID: 924030249}
+  - 114: {fileID: 924030250}
   m_Layer: 0
   m_Name: t_desperate_housewives
   m_TagString: Tile
@@ -4452,6 +4501,21 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &924030250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 924030244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0b665af87ec4c23a9de26b960f6386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verifyOkayToMoveOffOfObj: {fileID: 2113721763}
+  desiredTilePlacement: {x: 1, y: 1}
+  desiredTilePlacementLoc: {x: 0, y: 0}
+  hasMoved: 0
 --- !u!1 &972697484
 GameObject:
   m_ObjectHideFlags: 0
@@ -4908,6 +4972,7 @@ GameObject:
   - 61: {fileID: 1121832852}
   - 114: {fileID: 1121832851}
   - 82: {fileID: 1121832853}
+  - 114: {fileID: 1121832854}
   m_Layer: 0
   m_Name: t_tom
   m_TagString: Tile
@@ -5038,6 +5103,21 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1121832854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1121832848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0b665af87ec4c23a9de26b960f6386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verifyOkayToMoveOffOfObj: {fileID: 2113721763}
+  desiredTilePlacement: {x: 3, y: 0}
+  desiredTilePlacementLoc: {x: 0, y: 0}
+  hasMoved: 0
 --- !u!1 &1128375061
 GameObject:
   m_ObjectHideFlags: 0
@@ -6766,6 +6846,7 @@ GameObject:
   - 61: {fileID: 1437013227}
   - 114: {fileID: 1437013226}
   - 82: {fileID: 1437013228}
+  - 114: {fileID: 1437013229}
   m_Layer: 0
   m_Name: t_blonde_cheerleaders
   m_TagString: Tile
@@ -6896,6 +6977,21 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &1437013229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1437013223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0b665af87ec4c23a9de26b960f6386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verifyOkayToMoveOffOfObj: {fileID: 2113721763}
+  desiredTilePlacement: {x: 3, y: 1}
+  desiredTilePlacementLoc: {x: 0, y: 0}
+  hasMoved: 0
 --- !u!1 &1446816222
 GameObject:
   m_ObjectHideFlags: 0
@@ -7243,6 +7339,7 @@ GameObject:
   - 61: {fileID: 1519525193}
   - 114: {fileID: 1519525192}
   - 82: {fileID: 1519525191}
+  - 114: {fileID: 1519525195}
   m_Layer: 0
   m_Name: t_susan
   m_TagString: Tile
@@ -7373,6 +7470,21 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 55ddc79217992474194749fd3afd30d8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1519525195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1519525189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0b665af87ec4c23a9de26b960f6386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verifyOkayToMoveOffOfObj: {fileID: 2113721763}
+  desiredTilePlacement: {x: 1, y: 2}
+  desiredTilePlacementLoc: {x: 0, y: 0}
+  hasMoved: 0
 --- !u!1 &1540955391
 GameObject:
   m_ObjectHideFlags: 0
@@ -7658,6 +7770,7 @@ GameObject:
   - 61: {fileID: 1566184288}
   - 114: {fileID: 1566184287}
   - 82: {fileID: 1566184286}
+  - 114: {fileID: 1566184290}
   m_Layer: 0
   m_Name: t_gas
   m_TagString: Tile
@@ -7788,6 +7901,21 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 76aad2b410e2f4f58a1961a9d0039e28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1566184290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1566184284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa0b665af87ec4c23a9de26b960f6386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  verifyOkayToMoveOffOfObj: {fileID: 2113721763}
+  desiredTilePlacement: {x: 2, y: 3}
+  desiredTilePlacementLoc: {x: 0, y: 0}
+  hasMoved: 0
 --- !u!1 &1570132921
 GameObject:
   m_ObjectHideFlags: 0
