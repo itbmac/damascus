@@ -12,11 +12,20 @@ public class Submit : MonoBehaviour {
 	public GameObject PopupValid;
 	public GameObject PopupInvalid;
 	private SpriteRenderer spriteRenderer;
+	
+	public Sprite InvalidCounts;
+	public Sprite InvalidPair;
 
 	private bool submitEnabled;
 	private bool currentlyHovering = false;
 
 	void Start(){
+		if (InvalidCounts == null)
+			Debug.LogWarning("Missing InvalidCounts");
+	
+		if (InvalidPair == null)
+			Debug.LogWarning("Missing InvalidPair");
+	
 		spriteRenderer = (SpriteRenderer)renderer;
 		
 		PopupInvalid.GetComponent<Popup>().Dismissed += delegate() {
@@ -53,9 +62,16 @@ public class Submit : MonoBehaviour {
 			Debug.Log ("Valid board.");
 			PopupValid.SendMessage("Trigger");			
 		} else {
+			var PopupInvalidScript = PopupInvalid.GetComponent<Popup>();
 			Debug.Log ("Submitted. Invalid board. Reason: " + bs.ToString ());
-			PopupInvalid.
-			SendMessage("Trigger");
+			
+			if (bs == BoardState.InvalidCounts) {
+				PopupInvalidScript.MySprite = InvalidCounts;
+			} else if (bs == BoardState.InvalidPair) {
+				PopupInvalidScript.MySprite = InvalidPair;
+			}		
+			
+			PopupInvalidScript.Trigger ();
 		}
 	}
 

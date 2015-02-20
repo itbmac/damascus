@@ -2549,7 +2549,7 @@ MonoBehaviour:
     [_, t_marathon_runners, t_movie_extras],
 
     [t_backalley, t_penthouse, t_factory]]'
-  DontLockTiles: 1
+  DontLockTiles: 0
 --- !u!1 &539639347
 GameObject:
   m_ObjectHideFlags: 0
@@ -3922,6 +3922,8 @@ MonoBehaviour:
   ClickedWhenDisabled: {fileID: 8300000, guid: 63357887e0bfb406b82784beef0c0d70, type: 3}
   PopupValid: {fileID: 1828391566}
   PopupInvalid: {fileID: 278069346}
+  InvalidCounts: {fileID: 21300000, guid: e2be6e0db00554ab1bdf28027ede7564, type: 3}
+  InvalidPair: {fileID: 21300000, guid: 8b7fe781fd3c14488b71d5544d7a6b59, type: 3}
 --- !u!212 &780191747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4641,6 +4643,16 @@ Prefab:
       propertyPath: PopupInvalid
       value: 
       objectReference: {fileID: 278069346}
+    - target: {fileID: 11440588, guid: f0b461bee28e34e518c3f4ad00901d27, type: 2}
+      propertyPath: InvalidPair
+      value: 
+      objectReference: {fileID: 21300000, guid: 8b7fe781fd3c14488b71d5544d7a6b59,
+        type: 3}
+    - target: {fileID: 11440588, guid: f0b461bee28e34e518c3f4ad00901d27, type: 2}
+      propertyPath: InvalidCounts
+      value: 
+      objectReference: {fileID: 21300000, guid: e2be6e0db00554ab1bdf28027ede7564,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f0b461bee28e34e518c3f4ad00901d27, type: 2}
   m_RootGameObject: {fileID: 780191745}
@@ -8896,6 +8908,10 @@ Prefab:
     - target: {fileID: 494748, guid: 00b925ca627fb4493a48de34c86dc697, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 21294748, guid: 00b925ca627fb4493a48de34c86dc697, type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 00b925ca627fb4493a48de34c86dc697, type: 2}

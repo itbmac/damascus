@@ -19,6 +19,13 @@ public class Popup : MonoBehaviour {
 	private float triggerTime;
 	
 	public event Action Dismissed;
+	
+	public Sprite MySprite {
+		set {
+			var sr = (SpriteRenderer)renderer;
+			sr.sprite = value;
+		}
+	}
 
 	// Use this for initialization
 	void Start () {

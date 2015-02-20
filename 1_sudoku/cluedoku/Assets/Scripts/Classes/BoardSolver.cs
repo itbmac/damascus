@@ -135,26 +135,6 @@ public static class BoardSolver {
 			}
 		}
 		
-		InvalidPair[] invalidPairs = MonoBehaviour.FindObjectsOfType<InvalidPair>();
-		foreach (InvalidPair invalidPair in invalidPairs) {
-			GameObject someTile = invalidPair.SomeTile;
-			if (!tileCoords.ContainsKey(someTile))
-				continue;
-			
-			GridCoord pos = tileCoords[someTile];
-			foreach (GameObject blockedTile in invalidPair.BlockedTiles) {
-				if (!tileCoords.ContainsKey(blockedTile))
-					continue;
-				
-				GridCoord blockedTilePos = tileCoords[blockedTile];
-				
-				if (pos.x == blockedTilePos.x || pos.y == blockedTilePos.y) {
-					// Debug.Log ("Invalid pair: " + someTile.name + " and " + blockedTile.name);
-					return BoardState.InvalidPair;
-				}
-			}
-		}
-		
 		for (int x = 0; x < 4; x++) {
 			int[] test = new int[4];
 			int[] test2 = new int[4];
@@ -176,6 +156,26 @@ public static class BoardSolver {
 				//				Debug.Log ("Fail row " + x);
 				//				Debug.Log (string.Join(",", test2.Select(k => k.ToString()).ToArray()));
 				return BoardState.InvalidCounts;
+			}
+		}
+		
+		InvalidPair[] invalidPairs = MonoBehaviour.FindObjectsOfType<InvalidPair>();
+		foreach (InvalidPair invalidPair in invalidPairs) {
+			GameObject someTile = invalidPair.SomeTile;
+			if (!tileCoords.ContainsKey(someTile))
+				continue;
+			
+			GridCoord pos = tileCoords[someTile];
+			foreach (GameObject blockedTile in invalidPair.BlockedTiles) {
+				if (!tileCoords.ContainsKey(blockedTile))
+					continue;
+				
+				GridCoord blockedTilePos = tileCoords[blockedTile];
+				
+				if (pos.x == blockedTilePos.x || pos.y == blockedTilePos.y) {
+					// Debug.Log ("Invalid pair: " + someTile.name + " and " + blockedTile.name);
+					return BoardState.InvalidPair;
+				}
 			}
 		}
 		
