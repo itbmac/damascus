@@ -22,12 +22,25 @@ public class HintPopup : MonoBehaviour {
 	}
 	
 	public void PopupButtonClicked(string buttonName) {
+		if (GameManager.Instance.tutorialState == GameManager.TutorialState.MustCheckConsistency &&
+		    buttonName != "ShakeInvalidTiles")
+		    return;
+		if (GameManager.Instance.tutorialState == GameManager.TutorialState.MustHaveEpiphany &&
+		    buttonName != "PlaceValidTile")
+			return;	
+	
 		if (buttonName == "PlaceValidTile") {
+			if (GameManager.Instance.tutorialState == GameManager.TutorialState.MustHaveEpiphany)
+				GameManager.Instance.tutorialState = GameManager.TutorialState.None;
+				
 			bool tilePlaced = BoardManager.Instance.PlaceValidTile();
 			if (!tilePlaced)
 				HintAllTilesValidPopup.SendMessage("Trigger");
 		
 		} else if (buttonName == "ShakeInvalidTiles") {
+			if (GameManager.Instance.tutorialState == GameManager.TutorialState.MustCheckConsistency)
+				GameManager.Instance.tutorialState = GameManager.TutorialState.MustHaveEpiphany;
+		
 			int numInvalidTiles = BoardManager.Instance.ShakeInvalidTiles();
 			if (numInvalidTiles == 0) {
 				HintAllTilesValidPopup.SendMessage("Trigger");
@@ -41,6 +54,9 @@ public class HintPopup : MonoBehaviour {
 	
 	void OnMouseDown() {
 		if (!open)
+			return;
+			
+		if (GameManager.Instance.tutorialState != GameManager.TutorialState.None)
 			return;
 		
 		Dismiss();

@@ -7,6 +7,7 @@ public class ClickToDisable : MonoBehaviour {
 	public AudioClip OnVisibleNoise, AdvanceNoise;
 	public bool disableRendererOnClick = true, playSoundOnVisible = false, mustClickOnObject = false, runOnStartIfNotEditor = false, enableAllChildren = false;
 	private bool prevRendererState = false;
+	public bool OverrideClickBlock = false;
 
 	// Use this for initialization
 	void Start () {
@@ -66,7 +67,7 @@ public class ClickToDisable : MonoBehaviour {
 	}
 
 	void ClickedOn() {
-		if (GameManager.Instance.ClickBlocked)
+		if (GameManager.Instance.ClickBlocked && !OverrideClickBlock)
 			return;
 	
 		if (prevRendererState) {

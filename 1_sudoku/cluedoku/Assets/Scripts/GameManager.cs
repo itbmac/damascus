@@ -8,11 +8,14 @@ public class GameManager : MonoBehaviour {
 	
 	public bool BlockFileViewer = false;
 	
+	public enum TutorialState {None, MustCheckConsistency, MustHaveEpiphany}
+	public TutorialState tutorialState = TutorialState.None;
+	
 	private int clickBlockSemaphore = 0;
 	
 	public bool ClickBlocked {
 		get {
-			return clickBlockSemaphore > 0 || CurrentPopup;
+			return clickBlockSemaphore > 0 || CurrentPopup || tutorialState != TutorialState.None;
 		}
 	}
 	
