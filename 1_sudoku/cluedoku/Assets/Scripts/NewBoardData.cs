@@ -5,5 +5,5 @@ public class NewBoardData : MonoBehaviour {
 
 	public string Board;
 	public string Side;
-	
+	public bool DontLockTiles = false;
 }

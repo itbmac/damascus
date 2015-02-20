@@ -80,13 +80,17 @@ public class TileController : MonoBehaviour {
 		Reset();
 	}
 	
-	public void Reset(bool slide = false) {
+	public void Reset(bool slide = false, bool dontLockTiles = false) {
 		Snap ();
 		
-		if (slide)
-			SetLockedAndSlide(BoardManager.Instance.IsOnBoard(transform.position));
-		else
-			SetLocked(BoardManager.Instance.IsOnBoard(transform.position));		
+		if (dontLockTiles) {
+			Locked = false;
+		} else {
+			if (slide)
+				SetLockedAndSlide(BoardManager.Instance.IsOnBoard(transform.position));
+			else
+				SetLocked(BoardManager.Instance.IsOnBoard(transform.position));		
+		}
 	}
 	
 	void OnMouseDown() {

@@ -6,9 +6,9 @@ using System.Linq;
 using System;
 
 public class BoardManager : MonoBehaviour {
-	public enum BoardSelector {NoLoad, FirstChildBoard, RandomBoard}
+	public enum BoardSelector {FirstChildBoard, RandomBoard}
 	
-	public BoardSelector boardSelector = BoardSelector.NoLoad;
+	public BoardSelector boardSelector = BoardSelector.RandomBoard;
 	public float Size = 2.95f;
 	public Vector2 OffsetPixel = new Vector2(.45f, -1.2f);
 	public GameObject HintObj;
@@ -314,20 +314,19 @@ public class BoardManager : MonoBehaviour {
 	List<int> randomBoards;
 	int randomBoardIndex;
 	
-	private GameObject lastBoardContainer;
-	private void LoadBoardFromObject(GameObject boardContainer) {
-		lastBoardContainer = boardContainer;
+	private NewBoardData lastBoardData;
+	private void LoadBoardFromObject(NewBoardData newData) {
+		lastBoardData = newData;
 		lastSolution = null;
 		
-		var newData = boardContainer.GetComponent<NewBoardData>();
-		LoadFullBoard(newData.Board, newData.Side);
+		LoadFullBoard(newData.Board, newData.Side, newData.DontLockTiles);
 	}
 	
 	private void LoadLastBoard() {
-		if (lastBoardContainer == null)
+		if (lastBoardData == null)
 			Debug.LogError("No previous board to load");
 		else
-			LoadBoardFromObject(lastBoardContainer);
+			LoadBoardFromObject(lastBoardData);
 	}
 	
 	public void RecallTiles() {
@@ -343,31 +342,33 @@ public class BoardManager : MonoBehaviour {
 		}
 	}
 	
+	int boardGroupIndex = -1;
 	public void NewBoard() {
-		if (boardSelector == BoardSelector.FirstChildBoard || boardSelector == BoardSelector.RandomBoard) {
-			Transform premadeBoards = transform.Find("PremadeBoards");
-			if (premadeBoards && premadeBoards.childCount > 0) {
-				int boardIndex = 0;
-				if (boardSelector == BoardSelector.RandomBoard) {
-					if (randomBoards == null || randomBoardIndex >= randomBoards.Count) {
-						randomBoards = Enumerable.Range(0, premadeBoards.childCount).AsRandom().ToList();
-						randomBoardIndex = 0;
-					}
-					
-					boardIndex = randomBoards[randomBoardIndex];
-					randomBoardIndex += 1;
-				}
-				
-				var boardContainer = premadeBoards.GetChild(boardIndex).gameObject;
-				Debug.Log ("Loading new board... " + boardContainer.name + ", #" + boardIndex);
-				LoadBoardFromObject(boardContainer);
-			} else {
-				Debug.LogWarning("Could not find board to load!");
-			}
+		Transform premadeBoardGroups = transform.Find("PremadeBoards");
+		if (boardGroupIndex <= premadeBoardGroups.childCount - 2) {
+			boardGroupIndex += 1;
+			randomBoards = null;
 		}
 		
-		foreach (var tile in GameObject.FindGameObjectsWithTag("Tile")) {
-			tile.GetComponent<TileController>().Reset();
+		var premadeBoards = premadeBoardGroups.GetChild(boardGroupIndex);
+		
+		if (premadeBoards && premadeBoards.childCount > 0) {
+			int boardIndex = 0;
+			if (boardSelector == BoardSelector.RandomBoard) {
+				if (randomBoards == null || randomBoardIndex >= randomBoards.Count) {
+					randomBoards = Enumerable.Range(0, premadeBoards.childCount).AsRandom().ToList();
+					randomBoardIndex = 0;
+				}
+				
+				boardIndex = randomBoards[randomBoardIndex];
+				randomBoardIndex += 1;
+			}
+			
+			var boardContainer = premadeBoards.GetChild(boardIndex).gameObject.GetComponent<NewBoardData>();
+			Debug.Log ("Loading new board... " + boardContainer.gameObject.name + ", #" + boardIndex);
+			LoadBoardFromObject(boardContainer);
+		} else {
+			Debug.LogWarning("Could not find board group to load!");
 		}
 
 		HintObj.GetComponent<ClickForHint>().Reset();
@@ -432,7 +433,7 @@ public class BoardManager : MonoBehaviour {
 		if (lastSolution != null)
 			return lastSolution;
 	
-		var newData = lastBoardContainer.GetComponent<NewBoardData>();
+		var newData = lastBoardData.GetComponent<NewBoardData>();
 		
 		var sideTiles = JaggedArrayParser.Parse(newData.Side).SelectMany(x => x).Where(x => x != null);
 		
@@ -462,7 +463,7 @@ public class BoardManager : MonoBehaviour {
 		return boardFixed;
 	}
 	
-	void LoadFullBoard(string board, string side) {
+	void LoadFullBoard(string board, string side, bool dontLockTiles) {
 		MoveAllTilesOffBoard();
 		
 		var boardParsed = JaggedArrayParser.Parse(board);
@@ -477,7 +478,7 @@ public class BoardManager : MonoBehaviour {
 				var go = boardParsed[i][j];
 				if (go == null) continue;
 				go.transform.position = (new GridCoord(j, 4 - i - 1)).ToVector2();
-				go.GetComponent<TileController>().Reset();
+				go.GetComponent<TileController>().Reset(false, dontLockTiles);
 			}
 		}
 		
@@ -497,6 +498,7 @@ public class BoardManager : MonoBehaviour {
 					var go = sideParsed[i][j + 3];
 					if (go == null) continue;
 					go.transform.position = (new GridCoord(j, 4 - i - 1)).ToVector2();
+					go.GetComponent<TileController>().Reset();
 				}
 //			}
 		}
