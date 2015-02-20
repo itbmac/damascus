@@ -31,6 +31,9 @@ public class FileViewer : MonoBehaviour {
 	}
 	
 	public void Show(Sprite sprite) {
+		if (GameManager.Instance.BlockFileViewer)
+			return;
+			
 //		Vector3 curScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
 //		if (Vector3.Distance(DefaultPosition, curScreenPoint) > Vector3.Distance(AlternatePosition, curScreenPoint)) {
 //			transform.position = DefaultPosition;

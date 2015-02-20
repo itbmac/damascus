@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
 	[System.NonSerialized]
 	public bool CurrentPopup = false;
 	
+	public bool BlockFileViewer = false;
+	
 	private int clickBlockSemaphore = 0;
 	
 	public bool ClickBlocked {
