@@ -60,6 +60,7 @@ public class ClickForHint : MonoBehaviour {
 
 	public void UseAHint() {
 		remainingNumHints--;
+		sr.sprite = SpriteStates[remainingNumHints];
 		audio.PlayOneShot(HintNoiseUse);
 	}
 

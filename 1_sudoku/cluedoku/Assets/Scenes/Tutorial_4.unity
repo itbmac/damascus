@@ -4107,13 +4107,13 @@ MonoBehaviour:
   SpriteStates:
   - {fileID: 21300000, guid: 0f2552121cc9c488095197c72e273326, type: 3}
   - {fileID: 21300000, guid: 26b2ec1245ca649c5b001d43e05b83c2, type: 3}
-  - {fileID: 21300000, guid: c260d381547974806912a9f9fea8d818, type: 3}
+  - {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f, type: 3}
   - {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f, type: 3}
   HintNoisePopUp: {fileID: 8300000, guid: 94803f6c8189e44f1b9bfb433d3ade04, type: 3}
   HintNoiseUse: {fileID: 8300000, guid: 9b425bb63569a4970af6235276d10064, type: 3}
   HintNoiseCancel: {fileID: 8300000, guid: 36352d10a098a40549863ab1d8593adc, type: 3}
   board: {fileID: 2013787583}
-  startingNumHints: 3
+  startingNumHints: 2
   hintPopup: {fileID: 1275910645}
 --- !u!82 &860194127
 AudioSource:
@@ -6211,6 +6211,15 @@ Prefab:
       propertyPath: HintNoiseCancel
       value: 
       objectReference: {fileID: 8300000, guid: 36352d10a098a40549863ab1d8593adc, type: 3}
+    - target: {fileID: 11415050, guid: a63f45ec872e542988aa81b616dd9f1c, type: 2}
+      propertyPath: startingNumHints
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415050, guid: a63f45ec872e542988aa81b616dd9f1c, type: 2}
+      propertyPath: SpriteStates.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a63f45ec872e542988aa81b616dd9f1c, type: 2}
   m_RootGameObject: {fileID: 860194122}

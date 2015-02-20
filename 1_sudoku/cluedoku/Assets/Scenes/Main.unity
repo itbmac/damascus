@@ -216,6 +216,34 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5013a9bc81e0d40cca055533812003a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &48026736
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 48026737}
+  m_Layer: 0
+  m_Name: 04-Mid-Medium
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &48026737
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 48026736}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1321296695}
+  m_Father: {fileID: 2027007775}
+  m_RootOrder: 4
 --- !u!1 &51484447
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,7 +523,7 @@ GameObject:
   - 4: {fileID: 78301366}
   - 114: {fileID: 78301367}
   m_Layer: 0
-  m_Name: b_2
+  m_Name: b_51
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -511,7 +539,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 727487103}
+  m_Father: {fileID: 517770047}
   m_RootOrder: 1
 --- !u!114 &78301367
 MonoBehaviour:
@@ -601,7 +629,7 @@ GameObject:
   - 4: {fileID: 113426131}
   - 114: {fileID: 113426132}
   m_Layer: 0
-  m_Name: b_1
+  m_Name: b_50
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,20 +659,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Board: '[[t_knife, t_susan, _, _],
+  Board: "[[t_priscilla, _,\tt_park,\t_],\n[_, t_claudia, _, _],\n[_, _, _, t_blonde_cheerleaders],\n[_,
+    _, t_desperate_housewives, t_lorenzo]]"
+  Side: '[[_, t_tom, t_wrench],
 
-    [_, t_gun, _, _],
+    [t_gas, t_knife, t_gun],
 
-    [t_park, t_homeless_guys, _, t_wrench],
+    [_, t_marathon_runners, t_movie_extras],
 
-    [_, t_factory, _, t_blonde_cheerleaders]]'
-  Side: '[[_, t_poison, _],
-
-    [t_movieset, t_beach, _],
-
-    [t_priscilla, t_tom, t_paul],
-
-    [_, t_desperate_housewives, t_altar_boys]]'
+    [t_backalley, t_penthouse, t_factory]]'
   DontLockTiles: 0
 --- !u!1 &123552950
 GameObject:
@@ -1802,6 +1825,55 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fd4e2c6baafe747cdb3874bdf6cd37e8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &398410673
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 140842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 398410674}
+  - 114: {fileID: 398410675}
+  m_Layer: 0
+  m_Name: b_30
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &398410674
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 440842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 398410673}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1863561449}
+  m_RootOrder: 0
+--- !u!114 &398410675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11440842, guid: c387b0d9e4a4549c28bed6a3a012502a,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 398410673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Board: "[[t_desperate_housewives,\t_,\t_,\tt_movieset],\n[_,\t_,\tt_penthouse,\tt_blonde_cheerleaders],\n[t_park,\tt_marathon_runners,\t_,\t_],\n[_,\tt_factory,\tt_movie_extras,\t_]]"
+  Side: '[[_, t_knife, t_rope],
+
+    [t_wrench, t_gas, _],
+
+    [t_susan, t_claudia, t_lorenzo],
+
+    [_, _, t_tom]]'
+  DontLockTiles: 0
 --- !u!1 &412025464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2106,7 +2178,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 517770047}
   m_Layer: 0
-  m_Name: FinalGroup
+  m_Name: 05-Hard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2123,8 +2195,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 113426131}
+  - {fileID: 78301366}
   m_Father: {fileID: 2027007775}
-  m_RootOrder: 1
+  m_RootOrder: 5
 --- !u!1 &519823796
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,7 +2587,7 @@ GameObject:
   - 4: {fileID: 534213857}
   - 114: {fileID: 534213858}
   m_Layer: 0
-  m_Name: b_0
+  m_Name: b_00
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2544,15 +2617,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Board: "[[t_priscilla, _,\tt_park,\t_],\n[_, t_claudia, _, _],\n[_, _, _, t_blonde_cheerleaders],\n[_,
-    _, t_desperate_housewives, t_lorenzo]]"
-  Side: '[[_, t_tom, t_wrench],
+  Board: "[[t_park,\tt_susan,\tt_desperate_housewives,\tt_knife],\n[t_tom,\t_,\tt_gun,\t_],\n[t_gas,\tt_marathon_runners,\tt_penthouse,\tt_lorenzo],\n[_,\t_,\tt_claudia,\t_]]"
+  Side: '[[_, t_factory, t_beach],
 
-    [t_gas, t_knife, t_gun],
+    [t_blonde_cheerleaders, t_homeless_guys, _],
 
-    [_, t_marathon_runners, t_movie_extras],
+    [_, t_rope, _],
 
-    [t_backalley, t_penthouse, t_factory]]'
+    [_, _, _]]'
   DontLockTiles: 0
 --- !u!1 &539639347
 GameObject:
@@ -3103,6 +3175,34 @@ Prefab:
   m_RootGameObject: {fileID: 61090146}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &584109043
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 584109044}
+  m_Layer: 0
+  m_Name: 01-Mid-Easy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &584109044
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 584109043}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1270375744}
+  m_Father: {fileID: 2027007775}
+  m_RootOrder: 1
 --- !u!1001 &585934629
 Prefab:
   m_ObjectHideFlags: 0
@@ -3152,12 +3252,12 @@ Prefab:
       objectReference: {fileID: 824558747}
     - target: {fileID: 129046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 21229046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d999c6ebbeaff42e68b2729adca736db,
+      objectReference: {fileID: 21300000, guid: fa3975c0e653b46adaaa9d7f85ddcd91,
         type: 3}
     - target: {fileID: 11429046, guid: ee59a1b595ef84ced89f34c9b99ce7be, type: 2}
       propertyPath: AdvanceNoise
@@ -3691,7 +3791,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 727487103}
   m_Layer: 0
-  m_Name: Group1
+  m_Name: 00-Easy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3708,7 +3808,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 534213857}
-  - {fileID: 78301366}
   m_Father: {fileID: 2027007775}
   m_RootOrder: 0
 --- !u!1001 &730728463
@@ -3897,6 +3996,34 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &778400562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 778400563}
+  m_Layer: 0
+  m_Name: 02-Easy-Medium
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &778400563
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 778400562}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 952909158}
+  m_Father: {fileID: 2027007775}
+  m_RootOrder: 2
 --- !u!1 &780191745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4058,7 +4185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &824558748
 Transform:
   m_ObjectHideFlags: 0
@@ -4198,13 +4325,13 @@ MonoBehaviour:
   SpriteStates:
   - {fileID: 21300000, guid: 0f2552121cc9c488095197c72e273326, type: 3}
   - {fileID: 21300000, guid: 26b2ec1245ca649c5b001d43e05b83c2, type: 3}
-  - {fileID: 21300000, guid: c260d381547974806912a9f9fea8d818, type: 3}
+  - {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f, type: 3}
   - {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f, type: 3}
   HintNoisePopUp: {fileID: 8300000, guid: 94803f6c8189e44f1b9bfb433d3ade04, type: 3}
   HintNoiseUse: {fileID: 8300000, guid: 9b425bb63569a4970af6235276d10064, type: 3}
   HintNoiseCancel: {fileID: 8300000, guid: 36352d10a098a40549863ab1d8593adc, type: 3}
   board: {fileID: 2013787583}
-  startingNumHints: 3
+  startingNumHints: 2
   hintPopup: {fileID: 1275910645}
 --- !u!82 &860194127
 AudioSource:
@@ -4587,6 +4714,55 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &952909157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 140842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 952909158}
+  - 114: {fileID: 952909159}
+  m_Layer: 0
+  m_Name: b_20
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &952909158
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 440842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 952909157}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 778400563}
+  m_RootOrder: 0
+--- !u!114 &952909159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11440842, guid: c387b0d9e4a4549c28bed6a3a012502a,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 952909157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Board: "[[t_tom,\tt_wrench,\t_,\t_],\n[t_homeless_guys,\tt_priscilla,\tt_poison,\t_],\n[_,\tt_marathon_runners,\tt_susan,\t_],\n[_,\t_,\tt_blonde_cheerleaders,\tt_lorenzo]]"
+  Side: '[[_, t_park, _],
+
+    [t_factory, t_beach, t_penthouse],
+
+    [t_altar_boys, _, _],
+
+    [t_knife, t_gas, _]]'
+  DontLockTiles: 0
 --- !u!1 &972697484
 GameObject:
   m_ObjectHideFlags: 0
@@ -5998,6 +6174,55 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f91b15888a0aa8945900572cd538ad6a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!1 &1270375743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 140842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1270375744}
+  - 114: {fileID: 1270375745}
+  m_Layer: 0
+  m_Name: b_10
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1270375744
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 440842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1270375743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 584109044}
+  m_RootOrder: 0
+--- !u!114 &1270375745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11440842, guid: c387b0d9e4a4549c28bed6a3a012502a,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1270375743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Board: "[[t_movie_extras,\t_,\t_,\tt_movieset],\n[_,\tt_beach,\t_,\tt_desperate_housewives],\n[_,\tt_marathon_runners,\tt_park,\t_],\n[t_factory,\tt_gun,\tt_homeless_guys,\tt_susan]]"
+  Side: '[[_, _, _],
+
+    [_, _, _],
+
+    [t_poison, t_wrench,t_knife],
+
+    [t_paul, t_priscilla, t_tom]]'
+  DontLockTiles: 0
 --- !u!1 &1271470583
 GameObject:
   m_ObjectHideFlags: 0
@@ -6203,6 +6428,61 @@ Transform:
   - {fileID: 13055230}
   m_Father: {fileID: 2013787584}
   m_RootOrder: 1
+--- !u!1 &1321296694
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 140842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1321296695}
+  - 114: {fileID: 1321296696}
+  m_Layer: 0
+  m_Name: b_40
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1321296695
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 440842, guid: c387b0d9e4a4549c28bed6a3a012502a, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1321296694}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 48026737}
+  m_RootOrder: 0
+--- !u!114 &1321296696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11440842, guid: c387b0d9e4a4549c28bed6a3a012502a,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1321296694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b14ea8cc94c6a42dca9994a36c714c3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Board: '[[t_knife, t_susan, _, _],
+
+    [_, t_gun, _, _],
+
+    [t_park, t_homeless_guys, _, t_wrench],
+
+    [_, t_factory, _, t_blonde_cheerleaders]]'
+  Side: '[[_, t_poison, _],
+
+    [t_movieset, t_beach, _],
+
+    [t_priscilla, t_tom, t_paul],
+
+    [_, t_desperate_housewives, t_altar_boys]]'
+  DontLockTiles: 0
 --- !u!1001 &1323195973
 Prefab:
   m_ObjectHideFlags: 0
@@ -6262,6 +6542,15 @@ Prefab:
       propertyPath: HintNoiseCancel
       value: 
       objectReference: {fileID: 8300000, guid: 36352d10a098a40549863ab1d8593adc, type: 3}
+    - target: {fileID: 11415050, guid: a63f45ec872e542988aa81b616dd9f1c, type: 2}
+      propertyPath: startingNumHints
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11415050, guid: a63f45ec872e542988aa81b616dd9f1c, type: 2}
+      propertyPath: SpriteStates.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: db0f1092357e84bd7980bb661280f96f,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a63f45ec872e542988aa81b616dd9f1c, type: 2}
   m_RootGameObject: {fileID: 860194122}
@@ -7655,7 +7944,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &1551032543
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7758,7 +8047,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 1000
-  m_Sprite: {fileID: 21300000, guid: d999c6ebbeaff42e68b2729adca736db, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fa3975c0e653b46adaaa9d7f85ddcd91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1551032546
 Transform:
@@ -8783,6 +9072,34 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!1 &1863561448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1863561449}
+  m_Layer: 0
+  m_Name: 03-Medium
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1863561449
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1863561448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 398410674}
+  m_Father: {fileID: 2027007775}
+  m_RootOrder: 3
 --- !u!1 &1871156353
 GameObject:
   m_ObjectHideFlags: 0
@@ -10108,6 +10425,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 727487103}
+  - {fileID: 584109044}
+  - {fileID: 778400563}
+  - {fileID: 1863561449}
+  - {fileID: 48026737}
   - {fileID: 517770047}
   m_Father: {fileID: 2013787584}
   m_RootOrder: 6
