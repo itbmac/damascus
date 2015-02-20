@@ -4019,6 +4019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb5d8eeada7fa4a3fbaa3aef8e8911ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PinDrop: {fileID: 0}
 --- !u!114 &824558750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9475,7 +9476,7 @@ MonoBehaviour:
   Size: 2.95000005
   OffsetPixel: {x: 0, y: -1.79999995}
   HintObj: {fileID: 860194122}
-  HintSound: {fileID: 0}
+  HintSound: {fileID: 8300000, guid: 554eb3a8b40c84d1b8aebff06df5ec7c, type: 3}
 --- !u!61 &2013787586
 BoxCollider2D:
   m_ObjectHideFlags: 0

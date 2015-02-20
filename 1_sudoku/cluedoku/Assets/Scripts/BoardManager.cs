@@ -297,8 +297,11 @@ public class BoardManager : MonoBehaviour {
 			}
 		}
 		
-		if (numInvalidTiles > 0)
+		if (numInvalidTiles > 0) {
+			audio.clip = HintSound;
 			audio.Play();
+			audio.loop = true;
+		}			
 		
 		return numInvalidTiles;
 	}
