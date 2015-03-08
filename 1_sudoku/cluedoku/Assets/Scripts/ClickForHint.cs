@@ -70,6 +70,7 @@ public class ClickForHint : MonoBehaviour {
 	
 	public void Reset() {
 		remainingNumHints = startingNumHints; //SpriteStates.Count - 1;
+		sr = (SpriteRenderer)renderer;
 		sr.sprite = SpriteStates[remainingNumHints];
 	}
 }

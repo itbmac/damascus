@@ -113,7 +113,7 @@ PlayerSettings:
     - m_Icon: {fileID: 2800000, guid: 018326dab81304006b4c39c28eb37893, type: 3}
       m_Size: 128
   m_BuildTargetBatching: []
-  webPlayerTemplate: APPLICATION:Default
+  webPlayerTemplate: APPLICATION:Black Background
   m_TemplateCustomTags: {}
   locationUsageDescription: 
   XboxTitleId: 
@@ -249,7 +249,9 @@ PlayerSettings:
   tizenMicrophonePermissions: 0
   stvDeviceAddress: 
   wp8UnprocessedPlugins: []
-  intPropertyNames: []
+  intPropertyNames:
+  - iOS::Architecture
+  iOS::Architecture: 2
   firstStreamedLevelWithResources: 0
   unityRebuildLibraryVersion: 9
   unityForwardCompatibleVersion: 39
