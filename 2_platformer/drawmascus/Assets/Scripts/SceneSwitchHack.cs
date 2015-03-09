@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class SceneSwitchHack : MonoBehaviour {
+	const int numLevels = 4;
 
 	// Use this for initialization
 	void Start () {
@@ -10,13 +11,9 @@ public class SceneSwitchHack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown("0"))
-			Application.LoadLevel (0);
-		if (Input.GetKeyDown("1"))
-			Application.LoadLevel (1);
-		if (Input.GetKeyDown("2"))
-			Application.LoadLevel (2);
-		if (Input.GetKeyDown("3"))
-			Application.LoadLevel (3);
+		for(int i = 0; i < numLevels; i++){
+			if (Input.GetKeyDown(i.ToString()))
+				Application.LoadLevel (i);
+		}
 	}
 }
