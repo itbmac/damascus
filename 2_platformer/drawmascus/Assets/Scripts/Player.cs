@@ -53,20 +53,21 @@ public class Player : MonoBehaviour {
 		
 	}
 	
-	void Update() {
-		//This keeps breaking on uneven platforms.....
-
-		/*
+	void Update() {		
 		Vector2 pos = transform.position;
 		Vector2 groundPos = pos - new Vector2(0, collider2D.bounds.extents.y + .1f);
 		Vector2 velocity = rigidbody2D.velocity;
 		
-		int layerMask = LayerMask.GetMask("Level");
+		// check every layer except player and real
+		int layerMask = ~LayerMask.GetMask("Player", "Real");
+		
+		var bounds = collider2D.bounds;
+		var bottomLeft = bounds.min;
+		var underBottomRight = new Vector2(bounds.max.x, bounds.min.y - bounds.size.y * 0.1f);
+		bool grounded = Physics2D.OverlapArea(bottomLeft, underBottomRight, layerMask);
+		Debug.DrawRay(pos, groundPos - pos);
 
-		// TODO: convert to box check
-		bool grounded = Physics2D.Linecast(pos, groundPos, layerMask);
-
-		if (grounded) {			
+		if (grounded) {
 			if (Input.GetAxisRaw("Vertical") > 0)
 				// jump triggered
 				velocity.y = JumpSpeed;
@@ -86,23 +87,9 @@ public class Player : MonoBehaviour {
 		
 		velocity.x = Input.GetAxis("Horizontal") * HorizontalSpeed;
 		rigidbody2D.velocity = velocity;
-		*/
 
-		Vector2 velocity = rigidbody2D.velocity;
+		// Fix orientation so wolf doesn't end up upside down.
 		Vector3 normal = transform.up;
-
-		//Update up/down movement.
-
-		//Update right/left movement.
-		if (Input.GetAxis("Horizontal") > 0)
-			FacingRight = true;
-		else if (Input.GetAxis("Horizontal") < 0)
-			FacingRight = false;
-		
-		velocity.x = Input.GetAxis("Horizontal") * HorizontalSpeed;
-		rigidbody2D.velocity = velocity;
-
-		//Fix orientation so wolf doesn't end up upside down.
 		if(normal.y < 0.9f){
 			normal.y = 0.9f;
 			transform.up = normal;
