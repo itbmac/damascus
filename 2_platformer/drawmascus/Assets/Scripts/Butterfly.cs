@@ -10,6 +10,8 @@ public class Butterfly : Colorable {
 	private Vector2 CurrentDirection;
 	private float NextChangeTime;
 	public GameObject PlayerObject;
+	private bool Ensnared;
+	private float EnsnareMultiplier = 1.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -18,15 +20,20 @@ public class Butterfly : Colorable {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Ensnared)
+			return;
+			
 		if (Time.time > NextChangeTime)
 			ChangeDirection();
+			
+		EnsnareMultiplier = Mathf.Clamp01(EnsnareMultiplier * 1.01f);
 			
 		Vector2 playerAvoidVelocity = transform.position - PlayerObject.transform.position;
 		float distanceToPlayer = playerAvoidVelocity.magnitude;
 		playerAvoidVelocity /= distanceToPlayer;
 		playerAvoidVelocity *= 3.0f / distanceToPlayer*distanceToPlayer;
 		
-		rigidbody2D.velocity = (0.5f * CurrentDirection + 0.5f * playerAvoidVelocity) * Speed;
+		rigidbody2D.velocity = (0.5f * CurrentDirection + 0.5f * playerAvoidVelocity) * Speed * EnsnareMultiplier;
 		
 		Vector3 eulerAngles = transform.eulerAngles;
 		if (eulerAngles.z > 180f) eulerAngles.z -= 360f;
@@ -37,7 +44,6 @@ public class Butterfly : Colorable {
 	}
 	
 	void ChangeDirection() {
-		Debug.Log ("change");
 		CurrentDirection = Random.insideUnitCircle;
 		if (CurrentDirection == Vector2.zero)
 			CurrentDirection = Vector2.up;
@@ -58,5 +64,14 @@ public class Butterfly : Colorable {
 		CurrentDirection = coll.contacts[0].normal;
 	
 //		ChangeDirection();
+	}
+	
+	public void Ensnare() {
+		EnsnareMultiplier *= 0.9f;
+		if (EnsnareMultiplier < 0.01f) {
+			rigidbody2D.isKinematic = true;
+			rigidbody2D.velocity = Vector2.zero;
+			Ensnared = true;
+		}
 	}
 }
