@@ -704,13 +704,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wolf: {fileID: 0}
-  wolfSr: {fileID: 0}
-  wolfInRange: 0
-  realColor: {r: 1, g: 0, b: 0, a: 1}
-  hasColor: 1
-  realSprite: {fileID: 21300000, guid: 69c2a2839e308444f9e7f5352f6846d6, type: 3}
-  drawingSprite: {fileID: 21300000, guid: 499b3557d73a0c6469594f51dde04bdd, type: 3}
+  RealColor: {r: 1, g: 0, b: 0, a: 1}
+  RealSprite: {fileID: 21300000, guid: 69c2a2839e308444f9e7f5352f6846d6, type: 3}
+  DrawingSprite: {fileID: 21300000, guid: 499b3557d73a0c6469594f51dde04bdd, type: 3}
 --- !u!61 &897567526
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1927,10 +1923,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2ffbedaed7443fe9bb037b3594ead8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HorizontalSpeed: 20
   JumpSpeed: 24
   NormalGravity: 12
   JumpGravity: 4
-  currentColor: {r: 1, g: 1, b: 1, a: 1}
+  CurrentColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!50 &1972158163
 Rigidbody2D:
   m_ObjectHideFlags: 0

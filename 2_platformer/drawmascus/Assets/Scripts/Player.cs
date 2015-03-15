@@ -5,13 +5,12 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour {
 
-	[System.NonSerialized]
 	public float HorizontalSpeed = 20.0f;
 	public float JumpSpeed = 24.0f;
 	public float NormalGravity = 12.0f;
 	public float JumpGravity = 4.0f;
 
-	public Color currentColor = Color.white;
+	public Color CurrentColor = Color.white;
 	
 	private void UpdateLocalScale() {
 		Vector3 newLocalScale = transform.localScale;
@@ -33,19 +32,6 @@ public class Player : MonoBehaviour {
 		get {
 			return _facingRight;
 		}
-	}
-
-	private void colorToggle(){
-		print("colorToggle called.");
-
-		//If the wolf is white, then it is trying to take a color.
-		if(currentColor == Color.white){
-		}
-
-		//Otherwise, the wolf is trying to give a color.
-		else{
-		}
-
 	}
 
 	// Use this for initialization
