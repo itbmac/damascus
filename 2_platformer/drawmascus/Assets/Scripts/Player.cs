@@ -33,19 +33,6 @@ public class Player : MonoBehaviour {
 			return _facingRight;
 		}
 	}
-
-	private void colorToggle(){
-		print("colorToggle called.");
-
-		//If the wolf is white, then it is trying to take a color.
-		if(currentColor == Color.white){
-		}
-
-		//Otherwise, the wolf is trying to give a color.
-		else{
-		}
-
-	}
 	
 	public static Player Instance {
 		get; private set;
