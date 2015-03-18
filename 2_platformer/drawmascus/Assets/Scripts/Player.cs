@@ -10,9 +10,25 @@ public class Player : MonoBehaviour {
 	public float NormalGravity = 12.0f;
 	public float JumpGravity = 4.0f;
 
-	public Color CurrentColor = Color.white;
+	public Color CurrentColor {
+		get {
+			var sr = (SpriteRenderer)renderer;
+			return sr.color;
+		}
+		
+		set {
+			var sr = (SpriteRenderer)renderer;
+			sr.color = value;
+		}
+	}
 	
-	Animator animator;
+	public AudioClip WalkSound;
+	public AudioClip JumpSound;
+	public AudioClip IdleSound;
+	public AudioClip ColorSwitchSound;
+	
+	bool IsJumping;
+	Animator Anim;
 	
 	private void UpdateLocalScale() {
 		Vector3 newLocalScale = transform.localScale;
@@ -46,7 +62,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		animator = GetComponent<Animator>();
+		Anim = GetComponent<Animator>();
 	}
 	
 	void Update() {		
@@ -63,7 +79,14 @@ public class Player : MonoBehaviour {
 		bool grounded = Physics2D.OverlapArea(bottomLeft, underBottomRight, layerMask);
 		Debug.DrawRay(pos, groundPos - pos);
 
-		animator.SetBool("Jumping", !grounded);
+		bool IsJumpingNow = !grounded;
+		Anim.SetBool("Jumping", IsJumpingNow);
+		
+		if (IsJumpingNow && !IsJumping) {
+		
+		}
+		
+		
 		if (grounded) {
 			if (Input.GetAxisRaw("Vertical") > 0)
 				// jump triggered
@@ -82,8 +105,9 @@ public class Player : MonoBehaviour {
 			FacingRight = true;
 		else if (horizontal < 0)
 			FacingRight = false;
-			
-		animator.SetBool("Walking", horizontal != 0);
+		
+		bool walking = horizontal != 0;
+		Anim.SetBool("Walking", walking);
 		
 		velocity.x = horizontal * HorizontalSpeed;
 		rigidbody2D.velocity = velocity;
@@ -93,6 +117,51 @@ public class Player : MonoBehaviour {
 		if(normal.y < 0.9f){
 			normal.y = 0.9f;
 			transform.up = normal;
+		}
+		
+		if (IsJumpingNow) {
+			if (!IsJumping) {
+				audio.Stop();
+				audio.PlayOneShot(JumpSound);
+			}
+		} else if (walking) {
+			if (audio.clip != WalkSound || !audio.isPlaying) {
+				audio.clip = WalkSound;
+				audio.loop = true;
+				audio.Play();
+			}
+		} else {
+			if (audio.clip != IdleSound || !audio.isPlaying) {
+				audio.clip = IdleSound;
+				audio.loop = true;
+				audio.Play();
+			}
+		}
+		
+		IsJumping = IsJumpingNow;
+		
+		if (Input.GetButtonDown("ColorToggle")) {
+			Collider2D[] overlapping = Physics2D.OverlapCircleAll(
+				transform.position,
+				bounds.size.magnitude/2 + 0.2f,
+				LayerMask.GetMask("Real", "Drawing")
+			);
+			
+			foreach (var collider in overlapping) {
+				var colorToggle = collider.GetComponent<ColorToggle>();
+				if (colorToggle == null)
+					continue;
+				
+				if (CurrentColor == Color.white){
+					colorToggle.TakeColor();
+				}
+				//If the wolf is currently colored, then it is trying to give a color.
+				else{
+					colorToggle.GiveColor();
+				}
+				
+				break;
+			}
 		}
 	}
 	

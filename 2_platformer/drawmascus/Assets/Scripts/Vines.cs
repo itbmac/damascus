@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Vines : Colorable {
+public class Vines : ColorToggle {
 
-	protected override void Activate() {
+	protected override void OnTurnReal() {
 	
 	}
 	
-	protected override void Deactivate() {
+	protected override void OnTurnDrawing() {
 	
 	}
 }

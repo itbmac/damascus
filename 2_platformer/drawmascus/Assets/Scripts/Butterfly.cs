@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Butterfly : Colorable {
+public class Butterfly : ColorToggle {
 
 	private float Speed = 5.0f;
 
@@ -52,11 +52,11 @@ public class Butterfly : Colorable {
 		NextChangeTime = Time.time + Random.Range(.25f, 2f);
 	}
 	
-	protected override void Activate() {
+	protected override void OnTurnReal() {
 		
 	}
 	
-	protected override void Deactivate() {
+	protected override void OnTurnDrawing() {
 		
 	}
 	
