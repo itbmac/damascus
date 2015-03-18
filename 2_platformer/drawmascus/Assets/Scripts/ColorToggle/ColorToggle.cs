@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class ColorToggle : MonoBehaviour {
+[RequireComponent(typeof(Collider2D))]
+public class ColorToggle : MonoBehaviour {
 	SpriteRenderer sr;
 
 	//Our wolf.
@@ -13,12 +14,11 @@ public abstract class ColorToggle : MonoBehaviour {
 	//Current color state of the object.
 	bool hasColor = true;
 	
+	public bool StartAsDrawing = true;
+	
 	//Sprites of the object when it's real or a drawing.
 	public Sprite RealSprite;
 	public Sprite DrawingSprite;
-	
-	protected abstract void OnTurnReal();
-	protected abstract void OnTurnDrawing();
 	
 	private void RefreshRigidbodies() {
 		// Hack to cause any rigidbodies intersecting this static object
@@ -30,13 +30,15 @@ public abstract class ColorToggle : MonoBehaviour {
 	private void TurnReal() {
 		gameObject.layer = LayerMask.NameToLayer("Real");
 		RefreshRigidbodies();
-		OnTurnReal();
+		
+		SendMessage("OnTurnReal");
 	}
 	
 	private void TurnDrawing() {
 		gameObject.layer = LayerMask.NameToLayer("Drawing");
-		RefreshRigidbodies();		
-		OnTurnDrawing();
+		RefreshRigidbodies();
+		
+		SendMessage("OnTurnDrawing");
 	}
 	
 	public void GiveColor(){
@@ -95,5 +97,16 @@ public abstract class ColorToggle : MonoBehaviour {
 	void Start () {
 		sr = gameObject.GetComponent<SpriteRenderer>(); 
 		wolf = GameObject.FindWithTag("Wolf").GetComponent<Player>();
+		
+		sr.color = Color.white;
+		if (StartAsDrawing) {
+			sr.sprite = DrawingSprite;
+			hasColor = false;
+			TurnDrawing();
+		} else {
+			sr.sprite = RealSprite;		
+			hasColor = true;
+			TurnReal();
+		}
 	}
 }

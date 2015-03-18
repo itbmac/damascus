@@ -2,7 +2,8 @@
 using System.Collections;
 
 [RequireComponent(typeof(Collider2D))]
-public class Web : ColorToggle {
+[RequireComponent(typeof(ColorToggle))]
+public class Web : MonoBehaviour, Colorable {
 
 	// Use this for initialization
 	void Start () {
@@ -14,11 +15,11 @@ public class Web : ColorToggle {
 	
 	}
 	
-	protected override void OnTurnReal() {
+	public void OnTurnReal() {
 		
 	}
 	
-	protected override void OnTurnDrawing() {
+	public void OnTurnDrawing() {
 		
 	}
 	

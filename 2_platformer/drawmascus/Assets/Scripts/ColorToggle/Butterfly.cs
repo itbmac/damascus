@@ -3,7 +3,8 @@ using System.Collections;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Butterfly : ColorToggle {
+[RequireComponent(typeof(ColorToggle))]
+public class Butterfly : MonoBehaviour, Colorable {
 
 	private float Speed = 5.0f;
 
@@ -52,11 +53,11 @@ public class Butterfly : ColorToggle {
 		NextChangeTime = Time.time + Random.Range(.25f, 2f);
 	}
 	
-	protected override void OnTurnReal() {
+	public void OnTurnReal() {
 		
 	}
 	
-	protected override void OnTurnDrawing() {
+	public void OnTurnDrawing() {
 		
 	}
 	
