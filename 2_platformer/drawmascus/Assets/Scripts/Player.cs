@@ -12,6 +12,8 @@ public class Player : MonoBehaviour {
 
 	public Color CurrentColor = Color.white;
 	
+	Animator animator;
+	
 	private void UpdateLocalScale() {
 		Vector3 newLocalScale = transform.localScale;
 		if (FacingRight)
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		animator = GetComponent<Animator>();
 	}
 	
 	void Update() {		
@@ -61,6 +63,7 @@ public class Player : MonoBehaviour {
 		bool grounded = Physics2D.OverlapArea(bottomLeft, underBottomRight, layerMask);
 		Debug.DrawRay(pos, groundPos - pos);
 
+		animator.SetBool("Jumping", !grounded);
 		if (grounded) {
 			if (Input.GetAxisRaw("Vertical") > 0)
 				// jump triggered
@@ -74,12 +77,15 @@ public class Player : MonoBehaviour {
 
 		// Don't change direction on 0 or avatar will awkwardly face
 		// one way if no key is pressed
-		if (Input.GetAxis("Horizontal") > 0)
+		float horizontal = Input.GetAxis("Horizontal");
+		if (horizontal > 0)
 			FacingRight = true;
-		else if (Input.GetAxis("Horizontal") < 0)
+		else if (horizontal < 0)
 			FacingRight = false;
+			
+		animator.SetBool("Walking", horizontal != 0);
 		
-		velocity.x = Input.GetAxis("Horizontal") * HorizontalSpeed;
+		velocity.x = horizontal * HorizontalSpeed;
 		rigidbody2D.velocity = velocity;
 
 		// Fix orientation so wolf doesn't end up upside down.
