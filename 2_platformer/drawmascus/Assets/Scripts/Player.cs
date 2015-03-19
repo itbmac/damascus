@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 			return sr.color;
 		}
 		
-		set {
+		private set {
 			var sr = (SpriteRenderer)renderer;
 			sr.color = value;
 		}
@@ -30,6 +30,35 @@ public class Player : MonoBehaviour {
 	
 	bool IsJumping;
 	Animator Anim;
+	
+	private IEnumerator currentStepColor;
+	
+	private Vector3 ColorToVector(Color color) {
+		return new Vector3(color.r, color.g, color.b);
+	}
+	
+	bool isTransitioningColor;
+	private IEnumerator StepColorTo(Color color) {	
+		isTransitioningColor = true;
+		while (Vector3.Distance(ColorToVector(color), ColorToVector(CurrentColor)) > 0.01f) {
+			CurrentColor = Color.Lerp(CurrentColor, color, 0.3F);
+			yield return new WaitForSeconds(0.05F);
+		}
+		
+		CurrentColor = color;
+		isTransitioningColor = false;
+	}
+	
+	public void TransitionToColor(Color color) {
+		
+		if (color == CurrentColor)
+			return;
+			
+		if (currentStepColor != null)
+			StopCoroutine(currentStepColor);
+		currentStepColor = StepColorTo(color);
+		StartCoroutine(currentStepColor);		
+	}
 	
 	private void UpdateLocalScale() {
 		Vector3 newLocalScale = transform.localScale;
@@ -152,7 +181,7 @@ public class Player : MonoBehaviour {
 		
 		IsJumping = IsJumpingNow;
 		
-		if (Input.GetButtonDown("ColorToggle")) {
+		if (Input.GetButtonDown("ColorToggle") && !isTransitioningColor) {
 			Collider2D[] overlapping = Physics2D.OverlapCircleAll(
 				transform.position,
 				bounds.size.magnitude/2 + 0.2f,

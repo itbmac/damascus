@@ -62,7 +62,7 @@ public class ColorToggle : MonoBehaviour {
 			}
 
 			hasColor = true;
-			wolf.CurrentColor = Color.white;
+			wolf.TransitionToColor(Color.white);
 		}
 
 		//If the object is currently colored, alert the user.
@@ -80,9 +80,9 @@ public class ColorToggle : MonoBehaviour {
 
 		if(hasColor){
 			if(sr.color == Color.white) 
-				wolf.CurrentColor = RealColor;
+				wolf.TransitionToColor(RealColor);
 			else 
-				wolf.CurrentColor = sr.color;
+				wolf.TransitionToColor(sr.color);
 
 			hasColor = false;
 			sr.color = Color.white;
