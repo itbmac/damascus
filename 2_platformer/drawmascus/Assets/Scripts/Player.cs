@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(BoxCollider2D))]
+[RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour {
 
@@ -77,7 +77,7 @@ public class Player : MonoBehaviour {
 		var bottomLeft = bounds.min;
 		var underBottomRight = new Vector2(bounds.max.x, bounds.min.y - bounds.size.y * 0.1f);
 		bool grounded = Physics2D.OverlapArea(bottomLeft, underBottomRight, layerMask);
-		Debug.DrawRay(pos, groundPos - pos);
+//		Debug.DrawRay(pos, groundPos - pos);
 
 		bool IsJumpingNow = !grounded;
 		Anim.SetBool("Jumping", IsJumpingNow);
@@ -111,13 +111,21 @@ public class Player : MonoBehaviour {
 		
 		velocity.x = horizontal * HorizontalSpeed;
 		rigidbody2D.velocity = velocity;
-
-		// Fix orientation so wolf doesn't end up upside down.
-		Vector3 normal = transform.up;
-		if(normal.y < 0.9f){
-			normal.y = 0.9f;
-			transform.up = normal;
+		
+		Vector2 bottom = new Vector2(bounds.center.x, bounds.min.y - bounds.size.y * 0.5f);
+		var hit = Physics2D.Linecast(bounds.center, bottom, ~LayerMask.GetMask("Player"));
+		Debug.DrawRay(bounds.center, bottom - (Vector2)bounds.center, Color.blue);
+		
+		Vector2 targetUp;
+		if (hit) {
+			targetUp = hit.normal;
+		} else {
+			targetUp = Vector2.up;
 		}
+		// Fix orientation so wolf doesn't end up upside down.
+		targetUp.y = Mathf.Max (targetUp.y, 0.9f);
+		
+		transform.up = Vector2.Lerp(transform.up, targetUp, 0.5f);
 		
 		if (IsJumpingNow) {
 			if (!IsJumping) {
