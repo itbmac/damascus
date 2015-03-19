@@ -41,18 +41,20 @@ public class ColorToggle : MonoBehaviour {
 		SendMessage("OnTurnDrawing");
 	}
 	
-	public void GiveColor(){
+	public bool GiveColor(){
 		Color wolfColor = wolf.CurrentColor;
 
 		//If the wolf does not have a color to give, return.
-		if(wolfColor == Color.white) return;
+		if(wolfColor == Color.white) return false;
 
 		if(!hasColor){
-		//If c wasn't the original color, layer color over the drawing.
+		//If c wasn't the original color, reject
 			if(wolfColor != RealColor){
-				sr.color = wolfColor;
-				sr.sprite = DrawingSprite;
-				TurnDrawing();
+				return false;
+				
+//				sr.color = wolfColor;
+//				sr.sprite = DrawingSprite;
+//				TurnDrawing();
 			}
 			//If c was the original color, set the sprite to the real object.
 			else{ 
@@ -63,20 +65,22 @@ public class ColorToggle : MonoBehaviour {
 
 			hasColor = true;
 			wolf.TransitionToColor(Color.white);
+			return true;
 		}
 
 		//If the object is currently colored, alert the user.
 		else{
 			//Play a sound? Animation?
 			print("ERROR: Object currently colored.");
+			return false;
 		}
 	}
 	
-	public void TakeColor(){
+	public bool TakeColor(){
 		Color wolfColor = wolf.CurrentColor;
 
 		//If the wolf already has a color, return.
-		if(wolfColor != Color.white) return;
+		if(wolfColor != Color.white) return false;
 
 		if(hasColor){
 			if(sr.color == Color.white) 
@@ -88,9 +92,12 @@ public class ColorToggle : MonoBehaviour {
 			sr.color = Color.white;
 			sr.sprite = DrawingSprite;
 			TurnDrawing();
+			
+			return true;
 		}
 
 		//If the object is an empty drawing currently, do nothing.
+		return false;
 	}
 
 	// Use this for initialization

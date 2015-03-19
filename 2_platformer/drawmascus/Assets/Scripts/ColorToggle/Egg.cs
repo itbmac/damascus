@@ -10,11 +10,12 @@ public class Egg : MonoBehaviour, Colorable {
 	
 	public void OnTurnReal() {
 		isReal = true;
-		
+		rigidbody2D.isKinematic = false;
 	}
 	
 	public void OnTurnDrawing() {
 		isReal = false;
+		rigidbody2D.isKinematic = true;
 		
 	}
 	

@@ -160,7 +160,7 @@ public class Player : MonoBehaviour {
 		if (IsJumpingNow) {
 			if (!IsJumping) {
 				audio.Stop();
-				audio.PlayOneShot(JumpSound);
+				audio.PlayOneShot(JumpSound, .5f);
 			}
 		} else if (!IsJumpingNow && IsJumping) {
 			audio.Stop();
@@ -196,11 +196,13 @@ public class Player : MonoBehaviour {
 				audio.PlayOneShot(ColorSwitchSound);
 				
 				if (CurrentColor == Color.white){
-					colorToggle.TakeColor();
+					if (!colorToggle.TakeColor())
+						continue;
 				}
 				//If the wolf is currently colored, then it is trying to give a color.
 				else{
-					colorToggle.GiveColor();
+					if (!colorToggle.GiveColor())
+						continue;
 				}
 				
 				break;
