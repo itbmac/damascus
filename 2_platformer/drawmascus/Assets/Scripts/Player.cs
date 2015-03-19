@@ -26,6 +26,7 @@ public class Player : MonoBehaviour {
 	public AudioClip JumpSound;
 	public AudioClip IdleSound;
 	public AudioClip ColorSwitchSound;
+	public AudioClip LandSound;
 	
 	bool IsJumping;
 	Animator Anim;
@@ -74,8 +75,8 @@ public class Player : MonoBehaviour {
 		int layerMask = ~LayerMask.GetMask("Player", "Real");
 		
 		var bounds = collider2D.bounds;
-		var bottomLeft = bounds.min;
-		var underBottomRight = new Vector2(bounds.max.x, bounds.min.y - bounds.size.y * 0.1f);
+		var bottomLeft = new Vector2(bounds.min.x + bounds.size.x * 0.1f, bounds.min.y);
+		var underBottomRight = new Vector2(bounds.max.x - bounds.size.x * 0.1f, bounds.min.y - bounds.size.y * 0.1f);
 		bool grounded = Physics2D.OverlapArea(bottomLeft, underBottomRight, layerMask);
 //		Debug.DrawRay(pos, groundPos - pos);
 
@@ -132,6 +133,9 @@ public class Player : MonoBehaviour {
 				audio.Stop();
 				audio.PlayOneShot(JumpSound);
 			}
+		} else if (!IsJumpingNow && IsJumping) {
+			audio.Stop();
+			audio.PlayOneShot(LandSound);
 		} else if (walking) {
 			if (audio.clip != WalkSound || !audio.isPlaying) {
 				audio.clip = WalkSound;
@@ -159,6 +163,8 @@ public class Player : MonoBehaviour {
 				var colorToggle = collider.GetComponent<ColorToggle>();
 				if (colorToggle == null)
 					continue;
+					
+				audio.PlayOneShot(ColorSwitchSound);
 				
 				if (CurrentColor == Color.white){
 					colorToggle.TakeColor();

@@ -55,7 +55,7 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194298}
   m_Enabled: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 01441f6857a7a432ebdcd496622da62b, type: 2}
   m_IsTrigger: 0
   m_Size: {x: 20.4799995, y: 15}
   m_Center: {x: 0, y: 0}
@@ -147,10 +147,11 @@ MonoBehaviour:
   JumpSpeed: 24
   NormalGravity: 12
   JumpGravity: 4
-  WalkSound: {fileID: 0}
-  JumpSound: {fileID: 0}
-  IdleSound: {fileID: 0}
-  ColorSwitchSound: {fileID: 0}
+  WalkSound: {fileID: 8300000, guid: e625077346490444e8a1d80c5901af44, type: 3}
+  JumpSound: {fileID: 8300000, guid: 8a00b9ada051449119d2aa132f3aba31, type: 3}
+  IdleSound: {fileID: 8300000, guid: 7e64f033c703a4d21b3510910c88a698, type: 3}
+  ColorSwitchSound: {fileID: 8300000, guid: f1bbc4495ebe24b11965e48f304ebb0f, type: 3}
+  LandSound: {fileID: 8300000, guid: 36502197bb25c4444905d0062fdd9656, type: 3}
 --- !u!212 &21294298
 SpriteRenderer:
   m_ObjectHideFlags: 1
