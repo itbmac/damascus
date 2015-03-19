@@ -289,7 +289,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11421518, guid: 9ff0d604abef442df8f29a3357836d93, type: 2}
       propertyPath: TargetLevelName
-      value: Level1
+      value: Tutorial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ff0d604abef442df8f29a3357836d93, type: 2}
@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0608306b486024ba5adbb0ed6ef5b067, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TargetLevelName: Level1
+  TargetLevelName: Tutorial
 --- !u!61 &1245823280
 BoxCollider2D:
   m_ObjectHideFlags: 0
