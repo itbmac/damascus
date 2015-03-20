@@ -34,10 +34,14 @@ public class Snake : MonoBehaviour, Colorable {
 	}
 	
 	void Update() {
-		if (isReal && Target != null) {
-			Vector2 velocity = rigidbody2D.velocity;
-			velocity.x = Mathf.Sign(Target.transform.position.x - transform.position.x) * Speed;
-			rigidbody2D.velocity = velocity;			
+		if (isReal) {
+			if (Target == null) {
+				Destroy(gameObject);
+			} else {
+				Vector2 velocity = rigidbody2D.velocity;
+				velocity.x = Mathf.Sign(Target.transform.position.x - transform.position.x) * Speed;
+				rigidbody2D.velocity = velocity;			
+			}
 		}		
 	}
 }

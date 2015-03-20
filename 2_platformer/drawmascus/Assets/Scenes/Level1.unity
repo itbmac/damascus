@@ -846,7 +846,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36429c5f154b1490d87e460d4faf1172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Yolk: {fileID: 178934, guid: 09f47b136734b46038788788d592bbb8, type: 2}
 --- !u!114 &542789337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,6 +999,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &572345053
 Prefab:
   m_ObjectHideFlags: 0
@@ -1825,6 +1825,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1361692337
 GameObject:
   m_ObjectHideFlags: 0
@@ -14907,6 +14908,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!82 &1972158166
 AudioSource:
   m_ObjectHideFlags: 0

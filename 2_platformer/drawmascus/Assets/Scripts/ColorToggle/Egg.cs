@@ -3,8 +3,6 @@ using System.Collections;
 
 [RequireComponent(typeof(ColorToggle))]
 public class Egg : MonoBehaviour, Colorable {
-
-	public GameObject Yolk;
 	
 	bool isReal;
 	bool splat;
@@ -12,19 +10,22 @@ public class Egg : MonoBehaviour, Colorable {
 	
 	void Start() {
 		anim = GetComponent<Animator>();
-		anim.SetTrigger ("Drawing Idle");
 	}
 	
 	public void OnTurnReal() {
+		print ("Turn real");
 		isReal = true;
-		anim.SetTrigger ("Idle");
+		anim.SetTrigger ("Real Idle");
 		rigidbody2D.isKinematic = false || splat;
 	}
 	
 	public void OnTurnDrawing() {
+		print ("Turn drawing");
 		isReal = false;
-		anim.SetTrigger ("Yolk Idle");
 		rigidbody2D.isKinematic = true;		
+		
+		if (splat)
+			Destroy(gameObject);
 	}
 	
 	void OnCollisionEnter2D(Collision2D coll) {
