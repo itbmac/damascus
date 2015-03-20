@@ -73,6 +73,7 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
+    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1001 &115264134
 Prefab:
@@ -223,6 +224,56 @@ Prefab:
   m_RootGameObject: {fileID: 2071328225}
   m_IsPrefabParent: 0
   m_IsExploded: 1
+--- !u!1 &245383176
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 245383178}
+  - 212: {fileID: 245383177}
+  m_Layer: 0
+  m_Name: NestReal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &245383177
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245383176}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 300
+  m_Sprite: {fileID: 21300000, guid: caa45be209cca41fbbece789b20087b0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!4 &245383178
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245383176}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.5600004, y: -7.36000013, z: 0}
+  m_LocalScale: {x: .699999988, y: .699999988, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
 --- !u!1001 &528101588
 Prefab:
   m_ObjectHideFlags: 0
@@ -285,7 +336,7 @@ Prefab:
     - target: {fileID: 21288218, guid: 486687504c1454bf182ce97732520d40, type: 2}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 40f7a68ba6918bc49a48f6d0823b79ca,
+      objectReference: {fileID: 21300000, guid: 9690c60f27cf54d529960594d29974f0,
         type: 3}
     - target: {fileID: 11488218, guid: 486687504c1454bf182ce97732520d40, type: 2}
       propertyPath: DrawingSprite
@@ -782,11 +833,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 455610, guid: 93011f0df0191465f9ba87010e1e6048, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 30.8994198
+      value: 30.2000008
       objectReference: {fileID: 0}
     - target: {fileID: 455610, guid: 93011f0df0191465f9ba87010e1e6048, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 15.9692373
+      value: 15.5
       objectReference: {fileID: 0}
     - target: {fileID: 455610, guid: 93011f0df0191465f9ba87010e1e6048, type: 2}
       propertyPath: m_LocalPosition.z
@@ -975,7 +1026,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 40f7a68ba6918bc49a48f6d0823b79ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9690c60f27cf54d529960594d29974f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &542789341
 Transform:
@@ -1043,6 +1094,10 @@ Prefab:
     - target: {fileID: 470828, guid: 818b0c5f23ad54c198b922efc9596405, type: 2}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070828, guid: 818b0c5f23ad54c198b922efc9596405, type: 2}
+      propertyPath: orthographic size
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 818b0c5f23ad54c198b922efc9596405, type: 2}
@@ -1461,7 +1516,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c7dfa12adbe767249b915305f5aabc81, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c32bd5cf50f3642c8b1c2868706c1111, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &904790507
 Transform:
@@ -1639,7 +1694,7 @@ Transform:
   m_PrefabInternal: {fileID: 531254193}
   m_GameObject: {fileID: 909202414}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30.8994198, y: 15.9692373, z: 0}
+  m_LocalPosition: {x: 30.2000008, y: 15.5, z: 0}
   m_LocalScale: {x: 5.57992554, y: 5.57992363, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4294,7 +4349,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.09052086
+  orthographic size: 7
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
