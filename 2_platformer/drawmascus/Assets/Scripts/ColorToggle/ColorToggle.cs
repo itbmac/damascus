@@ -20,13 +20,15 @@ public class ColorToggle : MonoBehaviour {
 	public Sprite RealSprite;
 	public Sprite DrawingSprite;
 	
-	private void RefreshRigidbodies() {
+	public bool RegeneratePolygonCollider = true;
+	
+	private void RefreshPhysics() {
 		// Hack to cause any rigidbodies intersecting this static object
 		// to wake up (i.e. see they are/are not colliding with me)
 		collider2D.enabled = false;
 		collider2D.enabled = true;
 		var polygonCollider = GetComponent<PolygonCollider2D>() ;
-		if (polygonCollider) {
+		if (polygonCollider && RegeneratePolygonCollider) {
 			Destroy(polygonCollider);
 			gameObject.AddComponent<PolygonCollider2D>();
 		}
@@ -34,14 +36,14 @@ public class ColorToggle : MonoBehaviour {
 	
 	private void TurnReal() {
 		gameObject.layer = LayerMask.NameToLayer("Real");
-		RefreshRigidbodies();
+		RefreshPhysics();
 		
 		SendMessage("OnTurnReal");
 	}
 	
 	private void TurnDrawing() {
 		gameObject.layer = LayerMask.NameToLayer("Drawing");
-		RefreshRigidbodies();
+		RefreshPhysics();
 		
 		SendMessage("OnTurnDrawing");
 	}
