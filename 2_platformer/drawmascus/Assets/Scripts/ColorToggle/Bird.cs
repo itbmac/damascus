@@ -13,11 +13,13 @@ public class Bird : MonoBehaviour, Colorable {
 	
 	private bool scared;
 	private Vector2 startPos;
+	private Animator anim;
 
 	// Use this for initialization
 	void Start () {
 		snake = FindObjectOfType<Snake>().gameObject;
 		startPos = transform.position;
+		anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -25,6 +27,7 @@ public class Bird : MonoBehaviour, Colorable {
 		if (!scared) {
 			if (Vector2.Distance(snake.transform.position, transform.position) < SnakeRadius) {
 				scared = true;
+				anim.SetBool("Flying", true);
 				Instantiate(Feather, transform.position, Quaternion.identity);
 			}
 		} else {

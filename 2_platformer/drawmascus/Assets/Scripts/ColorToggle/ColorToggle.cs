@@ -25,6 +25,11 @@ public class ColorToggle : MonoBehaviour {
 		// to wake up (i.e. see they are/are not colliding with me)
 		collider2D.enabled = false;
 		collider2D.enabled = true;
+		var polygonCollider = GetComponent<PolygonCollider2D>() ;
+		if (polygonCollider) {
+			Destroy(polygonCollider);
+			gameObject.AddComponent<PolygonCollider2D>();
+		}
 	}
 	
 	private void TurnReal() {
