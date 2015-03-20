@@ -21,6 +21,9 @@ public class ColorToggle : MonoBehaviour {
 	public Sprite DrawingSprite;
 	
 	public bool RegeneratePolygonCollider = true;
+	public bool LockAfterChange = false;
+	
+	private bool locked = false;
 	
 	private void RefreshPhysics() {
 		// Hack to cause any rigidbodies intersecting this static object
@@ -49,6 +52,9 @@ public class ColorToggle : MonoBehaviour {
 	}
 	
 	public bool GiveColor(){
+		if (locked)
+			return false;
+	
 		Color wolfColor = wolf.CurrentColor;
 
 		//If the wolf does not have a color to give, return.
@@ -72,6 +78,7 @@ public class ColorToggle : MonoBehaviour {
 				sr.color = Color.white;
 				sr.sprite = RealSprite;
 				TurnReal();
+				locked = LockAfterChange;
 			}
 
 			hasColor = true;
@@ -88,6 +95,9 @@ public class ColorToggle : MonoBehaviour {
 	}
 	
 	public bool TakeColor(){
+		if (locked)
+			return false;
+			
 		Color wolfColor = wolf.CurrentColor;
 
 		//If the wolf already has a color, return.
@@ -106,6 +116,7 @@ public class ColorToggle : MonoBehaviour {
 			sr.color = Color.white;
 			sr.sprite = DrawingSprite;
 			TurnDrawing();
+			locked = LockAfterChange;
 			
 			return true;
 		}

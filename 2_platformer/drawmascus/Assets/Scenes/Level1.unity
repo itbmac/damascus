@@ -117,6 +117,10 @@ Prefab:
       propertyPath: Target
       value: 
       objectReference: {fileID: 1204635730}
+    - target: {fileID: 11430584, guid: 9ad883f76b1454c8f9dc9bbe595a30bb, type: 2}
+      propertyPath: LockAfterChange
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ad883f76b1454c8f9dc9bbe595a30bb, type: 2}
   m_RootGameObject: {fileID: 1665884558}
@@ -863,6 +867,7 @@ MonoBehaviour:
   RealSprite: {fileID: 21300000, guid: c38787a613fbc4278be238548eab3a47, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 40f7a68ba6918bc49a48f6d0823b79ca, type: 3}
   RegeneratePolygonCollider: 0
+  LockAfterChange: 0
 --- !u!60 &542789338
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1181,7 +1186,8 @@ MonoBehaviour:
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 5d417287f3d406746ad939a254e1682c, type: 3}
   DrawingSprite: {fileID: 21300000, guid: f080fa53f8a66467fb2df7232c25e887, type: 3}
-  RegeneratePolygonCollider: 1
+  RegeneratePolygonCollider: 0
+  LockAfterChange: 0
 --- !u!212 &686190205
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1874,6 +1880,7 @@ MonoBehaviour:
   RealSprite: {fileID: 21300000, guid: b0c358c7617d82244b86ca8dfbb0620a, type: 3}
   DrawingSprite: {fileID: 21300000, guid: e1f317a990d7e4201b0682fd61f4ef68, type: 3}
   RegeneratePolygonCollider: 1
+  LockAfterChange: 0
 --- !u!61 &1361692340
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1972,6 +1979,7 @@ MonoBehaviour:
   RealSprite: {fileID: 21300000, guid: a5bc6581b30f049528b73927de33e0de, type: 3}
   DrawingSprite: {fileID: 21300000, guid: b09cec572ec7a401fbd2cde6d1174797, type: 3}
   RegeneratePolygonCollider: 1
+  LockAfterChange: 1
 --- !u!212 &1665884561
 SpriteRenderer:
   m_ObjectHideFlags: 0
