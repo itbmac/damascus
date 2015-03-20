@@ -110,13 +110,14 @@ public class Player : MonoBehaviour {
 		bool IsJumpingNow = !grounded;
 		Anim.SetBool("Jumping", IsJumpingNow);		
 		
+		float vertical = Input.GetAxisRaw("Vertical");
 		if (grounded) {
-			if (Input.GetAxisRaw("Vertical") > 0)
+			if (vertical > 0)
 				// jump triggered
 				velocity.y = JumpSpeed;
 			rigidbody2D.gravityScale = JumpGravity;
 		} else {
-			if (Input.GetAxisRaw("Vertical") == 0) {
+			if (vertical == 0) {
 				rigidbody2D.gravityScale = NormalGravity;
 			}
 		}
@@ -128,6 +129,13 @@ public class Player : MonoBehaviour {
 			FacingRight = true;
 		else if (horizontal < 0)
 			FacingRight = false;
+			
+		float friction;
+		if (vertical != 0 && horizontal != 0)
+			friction = 0f;
+		else
+			friction = 0.4f;
+		collider2D.sharedMaterial.friction = friction;
 		
 		bool walking = horizontal != 0;
 		Anim.SetBool("Walking", walking);

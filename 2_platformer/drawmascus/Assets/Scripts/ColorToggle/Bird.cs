@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(ColorToggle))]
-public class Bird : MonoBehaviour, Colorable {
+public class Bird : MonoBehaviour {
 
 	public GameObject Feather;
 	public float SnakeRadius = 2.0f;
@@ -37,13 +36,5 @@ public class Bird : MonoBehaviour, Colorable {
 				transform.position += new Vector3(1, 1, 0) * EscapeVelocity * Time.deltaTime;
 			}
 		}
-	}
-	
-	public void OnTurnReal() {
-	
-	}
-	
-	public void OnTurnDrawing() {
-	
 	}
 }
