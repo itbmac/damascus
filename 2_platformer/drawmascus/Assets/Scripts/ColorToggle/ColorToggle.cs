@@ -50,11 +50,15 @@ public class ColorToggle : MonoBehaviour {
 		Color wolfColor = wolf.CurrentColor;
 
 		//If the wolf does not have a color to give, return.
-		if(wolfColor == Color.white) return false;
+		if(wolfColor == Color.white) {
+			print ("Wolf does not have a color to give");
+			return false;
+		}
 
 		if(!hasColor){
 		//If c wasn't the original color, reject
 			if(wolfColor != RealColor){
+				print("Wolf cannot give color to " + name + "; incompatible"); 
 				return false;
 				
 //				sr.color = wolfColor;
@@ -85,7 +89,10 @@ public class ColorToggle : MonoBehaviour {
 		Color wolfColor = wolf.CurrentColor;
 
 		//If the wolf already has a color, return.
-		if(wolfColor != Color.white) return false;
+		if(wolfColor != Color.white) {
+			print ("Wolf already has color");
+			return false;
+		}
 
 		if(hasColor){
 			if(sr.color == Color.white) 
@@ -101,6 +108,7 @@ public class ColorToggle : MonoBehaviour {
 			return true;
 		}
 
+		print ("Wolf cannot take color from object without color - " + name);
 		//If the object is an empty drawing currently, do nothing.
 		return false;
 	}

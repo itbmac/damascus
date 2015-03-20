@@ -95,9 +95,7 @@ public class Player : MonoBehaviour {
 		Anim = GetComponent<Animator>();
 	}
 	
-	void Update() {		
-		Vector2 pos = transform.position;
-		Vector2 groundPos = pos - new Vector2(0, collider2D.bounds.extents.y + .1f);
+	void Update() {
 		Vector2 velocity = rigidbody2D.velocity;
 		
 		// check every layer except player and real
@@ -110,12 +108,7 @@ public class Player : MonoBehaviour {
 //		Debug.DrawRay(pos, groundPos - pos);
 
 		bool IsJumpingNow = !grounded;
-		Anim.SetBool("Jumping", IsJumpingNow);
-		
-		if (IsJumpingNow && !IsJumping) {
-		
-		}
-		
+		Anim.SetBool("Jumping", IsJumpingNow);		
 		
 		if (grounded) {
 			if (Input.GetAxisRaw("Vertical") > 0)
@@ -184,7 +177,7 @@ public class Player : MonoBehaviour {
 		if (Input.GetButtonDown("ColorToggle") && !isTransitioningColor) {
 			Collider2D[] overlapping = Physics2D.OverlapCircleAll(
 				transform.position,
-				bounds.size.magnitude/2 + 0.2f,
+				bounds.size.magnitude * .75f,
 				LayerMask.GetMask("Real", "Drawing")
 			);
 			
@@ -192,8 +185,6 @@ public class Player : MonoBehaviour {
 				var colorToggle = collider.GetComponent<ColorToggle>();
 				if (colorToggle == null)
 					continue;
-					
-				audio.PlayOneShot(ColorSwitchSound);
 				
 				if (CurrentColor == Color.white){
 					if (!colorToggle.TakeColor())
@@ -204,6 +195,8 @@ public class Player : MonoBehaviour {
 					if (!colorToggle.GiveColor())
 						continue;
 				}
+				
+				audio.PlayOneShot(ColorSwitchSound);
 				
 				break;
 			}
