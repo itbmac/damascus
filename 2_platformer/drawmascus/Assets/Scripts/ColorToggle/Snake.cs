@@ -11,11 +11,18 @@ public class Snake : MonoBehaviour, Colorable {
 	
 	private bool isReal;
 	
+	Animator anim;
+	
+	void Start() {
+		anim = GetComponent<Animator>();
+	}
+	
 	public void OnTurnReal() {
 		// Chase the bird
 		
 		isReal = true;
 		rigidbody2D.isKinematic = false;
+		anim.SetBool("Slither", true);
 	}
 	
 	public void OnTurnDrawing() {
@@ -23,6 +30,7 @@ public class Snake : MonoBehaviour, Colorable {
 		
 		isReal = false;
 		rigidbody2D.isKinematic = true;
+		anim.SetBool("Slither", false);
 	}
 	
 	void Update() {
