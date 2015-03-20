@@ -67,7 +67,8 @@ MonoBehaviour:
   RealColor: {r: 1, g: 1, b: 0, a: 1}
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 3f630fac8975b7c4989c6e1302976e4e, type: 3}
-  DrawingSprite: {fileID: 21300000, guid: a5e7b284e5a2b43c8b0dea1a99ed230d, type: 3}
+  DrawingSprite: {fileID: 21300000, guid: 6cae16ca52db686468c09fae4e6d30f7, type: 3}
+  RegeneratePolygonCollider: 1
 --- !u!212 &21278934
 SpriteRenderer:
   m_ObjectHideFlags: 1

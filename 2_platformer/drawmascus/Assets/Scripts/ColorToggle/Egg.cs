@@ -12,15 +12,18 @@ public class Egg : MonoBehaviour, Colorable {
 	
 	void Start() {
 		anim = GetComponent<Animator>();
+		anim.SetTrigger ("Drawing Idle");
 	}
 	
 	public void OnTurnReal() {
 		isReal = true;
+		anim.SetTrigger ("Idle");
 		rigidbody2D.isKinematic = false || splat;
 	}
 	
 	public void OnTurnDrawing() {
 		isReal = false;
+		anim.SetTrigger ("Yolk Idle");
 		rigidbody2D.isKinematic = true;		
 	}
 	
