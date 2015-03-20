@@ -93,6 +93,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Anim = GetComponent<Animator>();
+		FacingRight = true;
 	}
 	
 	void Update() {
