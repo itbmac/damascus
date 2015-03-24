@@ -22,19 +22,23 @@ public class ColorToggle : MonoBehaviour {
 	
 	public bool RegeneratePolygonCollider = true;
 	public bool LockAfterChange = false;
+	public bool UseCollider = true;
 	
 	private bool locked = false;
 	
 	private void RefreshPhysics() {
-		// Hack to cause any rigidbodies intersecting this static object
-		// to wake up (i.e. see they are/are not colliding with me)
-		collider2D.enabled = false;
-		collider2D.enabled = true;
 		var polygonCollider = GetComponent<PolygonCollider2D>() ;
 		if (polygonCollider && RegeneratePolygonCollider) {
 			Destroy(polygonCollider);
-			gameObject.AddComponent<PolygonCollider2D>();
-		}
+			var col = gameObject.AddComponent<PolygonCollider2D>();
+			
+			col.enabled = UseCollider || hasColor;
+		} else {
+			// Hack to cause any rigidbodies intersecting this static object
+			// to wake up (i.e. see they are/are not colliding with me)
+			collider2D.enabled = false;
+			collider2D.enabled = UseCollider || hasColor;
+		}		
 	}
 	
 	private void TurnReal() {
@@ -141,5 +145,8 @@ public class ColorToggle : MonoBehaviour {
 			hasColor = true;
 			TurnReal();
 		}
+	}
+	
+	void Update() {
 	}
 }

@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1001 &115264134
 Prefab:
@@ -919,6 +918,7 @@ MonoBehaviour:
   DrawingSprite: {fileID: 21300000, guid: 40f7a68ba6918bc49a48f6d0823b79ca, type: 3}
   RegeneratePolygonCollider: 0
   LockAfterChange: 0
+  UseCollider: 1
 --- !u!60 &542789338
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1243,6 +1243,7 @@ MonoBehaviour:
   DrawingSprite: {fileID: 21300000, guid: f080fa53f8a66467fb2df7232c25e887, type: 3}
   RegeneratePolygonCollider: 0
   LockAfterChange: 0
+  UseCollider: 1
 --- !u!212 &686190205
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1936,6 +1937,7 @@ MonoBehaviour:
   DrawingSprite: {fileID: 21300000, guid: e1f317a990d7e4201b0682fd61f4ef68, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
+  UseCollider: 1
 --- !u!61 &1361692340
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2035,6 +2037,7 @@ MonoBehaviour:
   DrawingSprite: {fileID: 21300000, guid: b09cec572ec7a401fbd2cde6d1174797, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 1
+  UseCollider: 1
 --- !u!212 &1665884561
 SpriteRenderer:
   m_ObjectHideFlags: 0

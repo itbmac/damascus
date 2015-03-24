@@ -90,6 +90,7 @@ public class Player : MonoBehaviour {
 		FacingRight = true;
 	}
 	
+	bool playerJumped;
 	void Update() {
 		Vector2 velocity = rigidbody2D.velocity;
 		
@@ -154,13 +155,15 @@ public class Player : MonoBehaviour {
 		transform.up = Vector2.Lerp(transform.up, targetUp, 0.5f);
 		
 		if (IsJumpingNow) {
-			if (!IsJumping) {
+			if (!IsJumping && vertical > 0) {
 				audio.Stop();
 				audio.PlayOneShot(JumpSound, .5f);
+				playerJumped = true;
 			}
-		} else if (!IsJumpingNow && IsJumping) {
+		} else if (!IsJumpingNow && IsJumping && playerJumped) {
 			audio.Stop();
 			audio.PlayOneShot(LandSound);
+			playerJumped = false;
 		} else if (walking) {
 			if (audio.clip != WalkSound || !audio.isPlaying) {
 				audio.clip = WalkSound;
