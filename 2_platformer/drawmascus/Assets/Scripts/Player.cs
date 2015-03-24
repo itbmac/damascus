@@ -31,16 +31,11 @@ public class Player : MonoBehaviour {
 	bool IsJumping;
 	Animator Anim;
 	
-	private IEnumerator currentStepColor;
-	
-	private Vector3 ColorToVector(Color color) {
-		return new Vector3(color.r, color.g, color.b);
-	}
-	
+	IEnumerator currentStepColor;
 	bool isTransitioningColor;
-	private IEnumerator StepColorTo(Color color) {	
+	private IEnumerator StepColorTo(Color color) {
 		isTransitioningColor = true;
-		while (Vector3.Distance(ColorToVector(color), ColorToVector(CurrentColor)) > 0.01f) {
+		while (Vector3.Distance(color.ToVector(), color.ToVector()) > 0.01f) {
 			CurrentColor = Color.Lerp(CurrentColor, color, 0.3F);
 			yield return new WaitForSeconds(0.05F);
 		}
@@ -49,8 +44,7 @@ public class Player : MonoBehaviour {
 		isTransitioningColor = false;
 	}
 	
-	public void TransitionToColor(Color color) {
-		
+	public void TransitionToColor(Color color) {		
 		if (color == CurrentColor)
 			return;
 			
