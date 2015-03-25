@@ -149,4 +149,9 @@ public class ColorToggle : MonoBehaviour {
 	
 	void Update() {
 	}
+	
+	[Signal]
+	void Delete() {
+		GameObject.Destroy(gameObject);
+	}
 }
