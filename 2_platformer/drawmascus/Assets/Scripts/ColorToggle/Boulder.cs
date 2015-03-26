@@ -10,6 +10,7 @@ public class Boulder : MonoBehaviour {
 	
 	Transform[] path;
 	int pathIndex;
+	bool activated;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,7 @@ public class Boulder : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (pathIndex > path.Length)
+		if (pathIndex > path.Length || !activated)
 			return;
 	
 		Transform currentTarget = path[pathIndex];
@@ -37,5 +38,10 @@ public class Boulder : MonoBehaviour {
 			pathIndex += 1;
 	
 //		print(currentTarget.name + " " + dist);
+	}
+	
+	[Signal]
+	void Activate() {
+		activated = true;
 	}
 }

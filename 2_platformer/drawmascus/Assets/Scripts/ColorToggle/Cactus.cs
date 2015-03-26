@@ -22,7 +22,6 @@ public class Cactus : MonoBehaviour {
 		if (!flowerSpawned) {
 			flowerSpawned = true;
 			transform.FindChild("Flower").gameObject.SetActive(true);
-			print ("swawning flower!");
 		}
 		
 	}

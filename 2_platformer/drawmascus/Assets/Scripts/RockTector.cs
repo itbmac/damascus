@@ -21,6 +21,11 @@ public class RockTector : MonoBehaviour {
 			activated = true;
 			gameObject.layer = LayerMask.NameToLayer("BoulderGuide");
 			collider2D.isTrigger = false;
+			
+			foreach (var g in Rocks) {
+				g.rigidbody2D.isKinematic = true;
+				g.collider2D.enabled = false;
+			}
 		}
 	}
 	

@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(ColorToggle))]
 public class Fire : MonoBehaviour {
 
-	public Signal Real;
+	public Signal[] Real;
 
 	// Use this for initialization
 	void Start () {
@@ -17,7 +17,8 @@ public class Fire : MonoBehaviour {
 	}
 	
 	public void OnTurnReal() {
-		Real.Invoke();
+		foreach (var s in Real)
+			s.Invoke();
 	}
 	
 	public void OnTurnDrawing() {
