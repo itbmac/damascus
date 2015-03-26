@@ -16,6 +16,7 @@ public class Boulder : MonoBehaviour {
 	void Start () {
 		path = PathContainer.transform.Cast<Transform>().ToArray();
 		pathIndex = 0;
+		activated = true;
 	}
 	
 	// Update is called once per frame
