@@ -90,6 +90,33 @@ public class Player : MonoBehaviour {
 		FacingRight = true;
 	}
 	
+	ColorToggle ChooseSelectedColorToggle() {
+		Collider2D[] overlapping = Physics2D.OverlapCircleAll(
+			transform.position,
+			collider2D.bounds.size.magnitude * .75f,
+			LayerMask.GetMask("Real", "Drawing")
+		);
+		
+		foreach (var collider in overlapping) {
+			var colorToggle = collider.GetComponent<ColorToggle>();
+			if (colorToggle == null)
+				continue;
+			
+			if (CurrentColor == Color.white) {
+				if (colorToggle.CanTakeColor())
+					return colorToggle;
+			} else {
+				// If the wolf is currently colored, then it is trying to give a color.
+				if (colorToggle.CanGiveColor())
+					return colorToggle;
+			}
+		}
+		
+		return null;
+	}
+	
+	ColorToggle SelectedColorToggle;	
+	
 	bool playerJumped;
 	void Update() {
 		Vector2 velocity = rigidbody2D.velocity;
@@ -180,32 +207,25 @@ public class Player : MonoBehaviour {
 		
 		IsJumping = IsJumpingNow;
 		
-		if (Input.GetButtonDown("ColorToggle") && !isTransitioningColor) {
-			Collider2D[] overlapping = Physics2D.OverlapCircleAll(
-				transform.position,
-				bounds.size.magnitude * .75f,
-				LayerMask.GetMask("Real", "Drawing")
-			);
-			
-			foreach (var collider in overlapping) {
-				var colorToggle = collider.GetComponent<ColorToggle>();
-				if (colorToggle == null)
-					continue;
+		ColorToggle newSelectedColorToggle = ChooseSelectedColorToggle();
+		if (newSelectedColorToggle != SelectedColorToggle) {
+			if (SelectedColorToggle)
+				SelectedColorToggle.Deselect();
 				
-				if (CurrentColor == Color.white){
-					if (!colorToggle.TakeColor())
-						continue;
-				}
+			if (newSelectedColorToggle)
+				newSelectedColorToggle.Select();
+			SelectedColorToggle = newSelectedColorToggle;			
+		}
+		
+		if (Input.GetButtonDown("ColorToggle") && !isTransitioningColor && newSelectedColorToggle) {		
+			if (CurrentColor == Color.white) {
+				newSelectedColorToggle.TakeColor();
+			} else {
 				//If the wolf is currently colored, then it is trying to give a color.
-				else{
-					if (!colorToggle.GiveColor())
-						continue;
-				}
-				
-				audio.PlayOneShot(ColorSwitchSound);
-				
-				break;
+				newSelectedColorToggle.GiveColor();
 			}
+			
+			audio.PlayOneShot(ColorSwitchSound);
 		}
 	}
 	
