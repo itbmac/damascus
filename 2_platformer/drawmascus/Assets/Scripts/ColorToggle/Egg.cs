@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(ColorToggle))]
-public class Egg : MonoBehaviour, Colorable {
+public class Egg : Colorable {
 	
 	bool isReal;
 	bool splat;
@@ -12,14 +12,14 @@ public class Egg : MonoBehaviour, Colorable {
 		anim = GetComponent<Animator>();
 	}
 	
-	public void OnTurnReal() {
+	public override void OnTurnReal() {
 		print ("Turn real");
 		isReal = true;
 		anim.SetTrigger ("Real Idle");
 		rigidbody2D.isKinematic = false || splat;
 	}
 	
-	public void OnTurnDrawing() {
+	public override void OnTurnDrawing() {
 		print ("Turn drawing");
 		isReal = false;
 		rigidbody2D.isKinematic = true;		

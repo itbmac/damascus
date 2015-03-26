@@ -3,7 +3,7 @@ using System.Collections;
 
 [RequireComponent(typeof(ColorToggle))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Snake : MonoBehaviour, Colorable {
+public class Snake : Colorable {
 
 	public GameObject Target;
 	
@@ -17,7 +17,7 @@ public class Snake : MonoBehaviour, Colorable {
 		anim = GetComponent<Animator>();
 	}
 	
-	public void OnTurnReal() {
+	public override void OnTurnReal() {
 		// Chase the bird
 		
 		isReal = true;
@@ -25,7 +25,7 @@ public class Snake : MonoBehaviour, Colorable {
 		anim.SetBool("Slither", true);
 	}
 	
-	public void OnTurnDrawing() {
+	public override void OnTurnDrawing() {
 		// Stop chasing the bird
 		
 		isReal = false;

@@ -1,10 +1,11 @@
 using System;
+using UnityEngine;
 
-public interface Colorable
+[RequireComponent(typeof(ColorToggle))]
+public abstract class Colorable : MonoBehaviour
 {
-	void OnTurnReal();	
-	void OnTurnDrawing();
-
+	public abstract void OnTurnReal();	
+	public abstract void OnTurnDrawing();
 }
 
 

@@ -47,7 +47,7 @@ public class ColorToggle : MonoBehaviour {
 		gameObject.layer = LayerMask.NameToLayer("Real");
 		RefreshPhysics();
 		
-		SendMessage("OnTurnReal");
+		SendMessage("OnTurnReal", SendMessageOptions.DontRequireReceiver);
 	}
 	
 	private void TurnDrawing() {
@@ -56,7 +56,7 @@ public class ColorToggle : MonoBehaviour {
 		gameObject.layer = LayerMask.NameToLayer("Drawing");
 		RefreshPhysics();
 		
-		SendMessage("OnTurnDrawing");
+		SendMessage("OnTurnDrawing", SendMessageOptions.DontRequireReceiver);
 	}
 	
 	public bool CanGiveColor(bool printReason = false) {
