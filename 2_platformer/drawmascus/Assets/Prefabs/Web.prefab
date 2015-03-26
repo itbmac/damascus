@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21232246}
   - 114: {fileID: 11432246}
   - 61: {fileID: 6132246}
+  - 114: {fileID: 11486958}
   m_Layer: 0
   m_Name: Web
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.6199999, y: .319999993, z: 0}
+  m_LocalPosition: {x: 16.0499992, y: -9.94999981, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,6 +53,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02fd63f14c614188a4bca7454d663d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11486958
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RealColor: {r: .501960814, g: .501960814, b: .501960814, a: 1}
+  StartAsDrawing: 1
+  RealSprite: {fileID: 21300000, guid: e3a567a89b34845119f31bc8be827375, type: 3}
+  DrawingSprite: {fileID: 21300000, guid: 68e8f015f8fdc4773b53e90d61534ddd, type: 3}
+  RegeneratePolygonCollider: 1
+  LockAfterChange: 0
+  UseCollider: 1
 --- !u!212 &21232246
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -72,7 +91,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e3a567a89b34845119f31bc8be827375, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68e8f015f8fdc4773b53e90d61534ddd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:

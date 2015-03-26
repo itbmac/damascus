@@ -213,7 +213,7 @@ public class Player : MonoBehaviour {
 				SelectedColorToggle.Deselect();
 				
 			if (newSelectedColorToggle)
-				newSelectedColorToggle.Select();
+				newSelectedColorToggle.Select(CurrentColor);
 			SelectedColorToggle = newSelectedColorToggle;			
 		}
 		

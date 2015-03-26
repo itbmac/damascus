@@ -137,8 +137,8 @@ public class ColorToggle : MonoBehaviour {
 		return true;		
 	}
 	
-	public void Select() {
-		sr.color = Color.gray;
+	public void Select(Color selectColor) {
+		sr.color = selectColor;
 	}
 	
 	public void Deselect() {

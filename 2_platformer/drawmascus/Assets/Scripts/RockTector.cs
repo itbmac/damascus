@@ -15,17 +15,23 @@ public class RockTector : MonoBehaviour {
 	
 	}
 	
+	IEnumerator DisableRocks() {
+		yield return new WaitForSeconds(2);
+	
+		foreach (var g in Rocks) {
+			g.rigidbody2D.isKinematic = true;
+			g.collider2D.enabled = false;
+		}
+	}
+	
 	// Update is called once per frame
 	void Update () {
-		if (!activated && Rocks.Count >= RockContainer.transform.childCount - 1) {
+		if (!activated && Rocks.Count >= RockContainer.transform.childCount) {
 			activated = true;
 			gameObject.layer = LayerMask.NameToLayer("BoulderGuide");
 			collider2D.isTrigger = false;
 			
-			foreach (var g in Rocks) {
-				g.rigidbody2D.isKinematic = true;
-				g.collider2D.enabled = false;
-			}
+			StartCoroutine(DisableRocks());
 		}
 	}
 	
