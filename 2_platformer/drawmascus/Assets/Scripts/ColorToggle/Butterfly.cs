@@ -21,6 +21,12 @@ public class Butterfly : Colorable {
 	private GameObject PlayerObject;
 	private bool Ensnared;
 	private float EnsnareMultiplier = 1.0f;
+	
+	Animator anim;
+	
+	void Awake() {
+		anim = GetComponent<Animator>();
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -141,11 +147,11 @@ public class Butterfly : Colorable {
 	}
 	
 	public override void OnTurnReal() {
-		
+		anim.SetBool("IsDrawing", false);
 	}
 	
 	public override void OnTurnDrawing() {
-		
+		anim.SetBool("IsDrawing", true);		
 	}
 	
 	void OnCollisionEnter2D(Collision2D coll) {
