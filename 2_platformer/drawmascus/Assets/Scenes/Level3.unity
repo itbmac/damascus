@@ -608,6 +608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36429c5f154b1490d87e460d4faf1172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Drop: {fileID: 113314, guid: b3c40047d09074df28adf350569aed8e, type: 2}
 --- !u!114 &131581394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1487,6 +1488,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11488220, guid: 486687504c1454bf182ce97732520d40, type: 2}
+      propertyPath: Drop
+      value: 
+      objectReference: {fileID: 113314, guid: b3c40047d09074df28adf350569aed8e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 486687504c1454bf182ce97732520d40, type: 2}
   m_RootGameObject: {fileID: 131581391}

@@ -7,6 +7,7 @@ public class Egg : Colorable {
 	bool isReal;
 	bool splat;
 	Animator anim;
+	public GameObject Drop;
 	
 	void Start() {
 		anim = GetComponent<Animator>();
@@ -24,8 +25,10 @@ public class Egg : Colorable {
 		isReal = false;
 		rigidbody2D.isKinematic = true;		
 		
-//		if (splat)
-//			Destroy(gameObject);
+		if (splat && Drop != null) {
+			Instantiate(Drop, transform.position, Quaternion.identity);		
+			Destroy(gameObject);
+		}
 	}
 	
 	void OnCollisionEnter2D(Collision2D coll) {
