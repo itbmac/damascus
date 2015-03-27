@@ -42,6 +42,7 @@ public class ColorToggle : MonoBehaviour {
 	}
 	
 	private void TurnReal() {
+		Deselect();
 		sr.sprite = RealSprite;		
 		hasColor = true;
 		gameObject.layer = LayerMask.NameToLayer("Real");
@@ -51,6 +52,8 @@ public class ColorToggle : MonoBehaviour {
 	}
 	
 	private void TurnDrawing() {
+		Deselect();
+		
 		sr.sprite = DrawingSprite;
 		hasColor = false;
 		gameObject.layer = LayerMask.NameToLayer("Drawing");

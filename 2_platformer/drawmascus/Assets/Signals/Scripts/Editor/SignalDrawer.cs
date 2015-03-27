@@ -38,6 +38,9 @@ public class SignalDrawer : PropertyDrawer
 			var components = obj.GetComponents<MonoBehaviour>();
 			foreach (var component in components)
 			{
+				if (component == null)
+					continue;
+								
 				var type = component.GetType();
 				var methods = type.GetMethods(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
 				foreach (var method in methods)
