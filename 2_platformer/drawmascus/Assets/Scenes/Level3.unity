@@ -2756,18 +2756,18 @@ AudioSource:
   m_GameObject: {fileID: 758138352}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: e9353ec6da03e4228b321b397314f4eb, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 61151631239dcb347a0da84af41c24f2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2775,7 +2775,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2790,7 +2790,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -5102,7 +5102,47 @@ Prefab:
     - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: e9353ec6da03e4228b321b397314f4eb, type: 3}
+      objectReference: {fileID: 8300000, guid: 61151631239dcb347a0da84af41c24f2, type: 3}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: BypassListenerEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: BypassEffects
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: BypassReverbZones
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 409894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 409894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: rolloffMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
   m_RootGameObject: {fileID: 758138352}

@@ -453,6 +453,26 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1.11598504
       objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: rolloffMode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d881f36736789da4cbd7075947dd7b7f, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
   m_RootGameObject: {fileID: 1259785534}
@@ -1084,7 +1104,7 @@ AudioSource:
   m_GameObject: {fileID: 1259785534}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 450e96523e4d048958b4c1aa99987cbf, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d881f36736789da4cbd7075947dd7b7f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1095,7 +1115,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 2
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -1103,7 +1123,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1118,7 +1138,7 @@ AudioSource:
     serializedVersion: 2
     m_Curve:
     - time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
