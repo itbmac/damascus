@@ -460,6 +460,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!58 &158894531
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -485,6 +486,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!82 &158894533
 AudioSource:
   m_ObjectHideFlags: 0
@@ -703,6 +705,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!60 &260977553
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1520,7 +1523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ffb300b7c364dfba9d20b4593431b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Persist: 1
+  Persist: 0
 --- !u!1 &788317768
 GameObject:
   m_ObjectHideFlags: 0
@@ -1571,6 +1574,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!60 &788317772
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3017,6 +3021,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!60 &1660295700
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3326,6 +3331,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!60 &1713071135
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -4286,6 +4292,10 @@ Prefab:
       propertyPath: rolloffCustomCurve.m_Curve.Array.data[0].value
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11410292, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: Persist
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
   m_RootGameObject: {fileID: 758138352}
@@ -4674,6 +4684,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!82 &1972158166
 AudioSource:
   m_ObjectHideFlags: 0

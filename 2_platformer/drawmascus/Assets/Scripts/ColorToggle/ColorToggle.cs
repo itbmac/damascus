@@ -24,6 +24,7 @@ public class ColorToggle : MonoBehaviour {
 	public bool LockAfterChange = false;
 	public bool UseCollider = true;
 	public int Priority = 0;
+	public bool KeepLayer = false;
 	
 	private bool locked = false;
 	
@@ -46,7 +47,8 @@ public class ColorToggle : MonoBehaviour {
 		Deselect();
 		sr.sprite = RealSprite;		
 		hasColor = true;
-		gameObject.layer = LayerMask.NameToLayer("Real");
+		if (!KeepLayer)
+			gameObject.layer = LayerMask.NameToLayer("Real");
 		RefreshPhysics();
 		
 		SendMessage("OnTurnReal", SendMessageOptions.DontRequireReceiver);
@@ -57,7 +59,8 @@ public class ColorToggle : MonoBehaviour {
 		
 		sr.sprite = DrawingSprite;
 		hasColor = false;
-		gameObject.layer = LayerMask.NameToLayer("Drawing");
+		if (!KeepLayer)
+			gameObject.layer = LayerMask.NameToLayer("Drawing");
 		RefreshPhysics();
 		
 		SendMessage("OnTurnDrawing", SendMessageOptions.DontRequireReceiver);

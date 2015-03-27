@@ -133,6 +133,15 @@ Prefab:
       propertyPath: Sound
       value: 
       objectReference: {fileID: 8300000, guid: 19c13b0de4e21cc4295b278958e4f313, type: 3}
+    - target: {fileID: 11430584, guid: 9ad883f76b1454c8f9dc9bbe595a30bb, type: 2}
+      propertyPath: RegeneratePolygonCollider
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11430584, guid: 9ad883f76b1454c8f9dc9bbe595a30bb, type: 2}
+      propertyPath: RealSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a78572f02dba6473197ce15dd8081122,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ad883f76b1454c8f9dc9bbe595a30bb, type: 2}
   m_RootGameObject: {fileID: 1665884558}
@@ -386,6 +395,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!60 &542789338
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -522,6 +532,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &572345053
 Prefab:
   m_ObjectHideFlags: 0
@@ -730,7 +741,6 @@ GameObject:
   - 4: {fileID: 686190206}
   - 212: {fileID: 686190205}
   - 114: {fileID: 686190203}
-  - 114: {fileID: 686190202}
   - 61: {fileID: 686190207}
   m_Layer: 0
   m_Name: Vine
@@ -739,18 +749,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &686190202
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11433128, guid: efa36fc2c0e8242568d9fe9cf8bc01fd,
-    type: 2}
-  m_PrefabInternal: {fileID: 1775702238}
-  m_GameObject: {fileID: 686190201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e426d4e961344c9a8049e460236bc01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &686190203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -772,6 +770,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!212 &686190205
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -918,7 +917,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ffb300b7c364dfba9d20b4593431b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Persist: 1
+  Persist: 0
 --- !u!1001 &818688489
 Prefab:
   m_ObjectHideFlags: 0
@@ -1006,6 +1005,10 @@ Prefab:
       propertyPath: Sound
       value: 
       objectReference: {fileID: 8300000, guid: 2451a62e33cbb714fa97a8f5d56b6acc, type: 3}
+    - target: {fileID: 11496098, guid: 18315570132d84d6dacfd64a865f7b47, type: 2}
+      propertyPath: SnakeRadius
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11496100, guid: 18315570132d84d6dacfd64a865f7b47, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 18315570132d84d6dacfd64a865f7b47, type: 2}
@@ -1324,7 +1327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Feather: {fileID: 120440, guid: e2e045087c6c744c2b8da62dd9291daa, type: 2}
-  SnakeRadius: 4
+  SnakeRadius: 5
   EscapeDistance: 20
   EscapeVelocity: 10
   Sound: {fileID: 8300000, guid: 2451a62e33cbb714fa97a8f5d56b6acc, type: 3}
@@ -1479,6 +1482,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1224631174
 Prefab:
   m_ObjectHideFlags: 0
@@ -1575,6 +1579,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!61 &1361692340
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1673,12 +1678,13 @@ MonoBehaviour:
   RealColor: {r: .720588207, g: 1, b: .720588207, a: 1}
   hasColor: 1
   StartAsDrawing: 1
-  RealSprite: {fileID: 21300000, guid: a5bc6581b30f049528b73927de33e0de, type: 3}
+  RealSprite: {fileID: 21300000, guid: a78572f02dba6473197ce15dd8081122, type: 3}
   DrawingSprite: {fileID: 21300000, guid: b09cec572ec7a401fbd2cde6d1174797, type: 3}
-  RegeneratePolygonCollider: 1
+  RegeneratePolygonCollider: 0
   LockAfterChange: 1
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!212 &1665884561
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2055,6 +2061,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!82 &1665884566
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3932,6 +3939,7 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6033128, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
+    - {fileID: 11433128, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
   m_RootGameObject: {fileID: 686190201}
   m_IsPrefabParent: 0
@@ -4126,6 +4134,10 @@ Prefab:
     - target: {fileID: 8209894, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
       propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].time
       value: .0457317084
+      objectReference: {fileID: 0}
+    - target: {fileID: 11410292, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: Persist
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
@@ -14844,6 +14856,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!82 &1972158166
 AudioSource:
   m_ObjectHideFlags: 0

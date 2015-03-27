@@ -95,7 +95,7 @@ public class Player : MonoBehaviour {
 		Collider2D[] overlapping = Physics2D.OverlapCircleAll(
 			transform.position,
 			collider2D.bounds.size.magnitude * .75f,
-			LayerMask.GetMask("Real", "Drawing")
+			LayerMask.GetMask("Real", "Drawing", "Gem")
 		);
 		
 		var potentials = new List<ColorToggle>();

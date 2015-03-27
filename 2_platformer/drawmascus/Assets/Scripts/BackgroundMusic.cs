@@ -15,6 +15,7 @@ public class BackgroundMusic : MonoBehaviour {
 		{
 			//If I am the first instance, make me the Singleton
 			_instance = this;
+			
 			DontDestroyOnLoad(this);
 		}
 		else

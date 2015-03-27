@@ -135,6 +135,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!212 &38419079
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -164,7 +165,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 38419075}
   m_LocalRotation: {x: 0, y: 0, z: .025052784, w: .999686122}
-  m_LocalPosition: {x: 6.15547752, y: -13.101449, z: 0}
+  m_LocalPosition: {x: 6.17000008, y: -13.3199997, z: 0}
   m_LocalScale: {x: .358989507, y: .40386343, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -263,6 +264,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!61 &135339819
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -360,6 +362,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!61 &354952172
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -473,6 +476,10 @@ Prefab:
       propertyPath: m_audioClip
       value: 
       objectReference: {fileID: 8300000, guid: d881f36736789da4cbd7075947dd7b7f, type: 3}
+    - target: {fileID: 11410292, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
+      propertyPath: Persist
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f79770efaf9b34215a1fc19c4682dab1, type: 2}
   m_RootGameObject: {fileID: 1259785534}
@@ -891,6 +898,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &1215295883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1094,7 +1102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ffb300b7c364dfba9d20b4593431b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Persist: 1
+  Persist: 0
 --- !u!82 &1259785536
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1282,6 +1290,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!212 &1345389122
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1793,6 +1802,7 @@ MonoBehaviour:
   LockAfterChange: 0
   UseCollider: 1
   Priority: 0
+  KeepLayer: 0
 --- !u!212 &1864706767
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1822,7 +1832,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1864706763}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.9564686, y: -12.9783468, z: 0}
+  m_LocalPosition: {x: 10.96, y: -13.0900002, z: 0}
   m_LocalScale: {x: .358989507, y: .40386343, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
