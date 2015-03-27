@@ -9,7 +9,7 @@ public class LoadLevelButton : MonoBehaviour {
 	void OnMouseDown() {
 		if (TargetLevelName == "Quit")
 			Application.Quit();
-		Application.LoadLevel(TargetLevelName);
+		else Application.LoadLevel(TargetLevelName);
 	}
 
 	void OnMouseEnter() {
