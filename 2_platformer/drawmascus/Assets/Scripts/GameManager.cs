@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour {
 		else if (Input.GetKeyDown(KeyCode.R))
 			Application.LoadLevel(Application.loadedLevel);
 			
+		if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.L) && Input.anyKeyDown)
+			Application.LoadLevel(Application.loadedLevel + 1);
+			
 #if UNITY_EDITOR
 		// for cheats that only work in the editor
 		

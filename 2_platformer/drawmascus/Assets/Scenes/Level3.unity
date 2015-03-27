@@ -609,6 +609,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Drop: {fileID: 113314, guid: b3c40047d09074df28adf350569aed8e, type: 2}
+  DieAfterPickup: 0
 --- !u!114 &131581394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2029,7 +2030,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5b30e2af1e863b045836740010f5627b, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5b30e2af1e863b045836740010f5627b, type: 2}
@@ -4848,8 +4849,9 @@ Transform:
 --- !u!114 &2130649433
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_PrefabParentObject: {fileID: 11434436, guid: 5b30e2af1e863b045836740010f5627b,
+    type: 2}
+  m_PrefabInternal: {fileID: 818688489}
   m_GameObject: {fileID: 2130649430}
   m_Enabled: 1
   m_EditorHideFlags: 0
