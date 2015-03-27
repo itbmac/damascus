@@ -23,6 +23,10 @@ public class Butterfly : Colorable {
 	private float EnsnareMultiplier = 1.0f;
 	
 	Animator anim;
+
+	private bool isActing = false;
+	
+	public AudioClip Sound;
 	
 	void Awake() {
 		anim = GetComponent<Animator>();

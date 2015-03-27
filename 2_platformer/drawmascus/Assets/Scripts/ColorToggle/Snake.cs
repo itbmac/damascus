@@ -12,6 +12,10 @@ public class Snake : Colorable {
 	private bool isReal;
 	
 	Animator anim;
+
+	private bool isActing = false;
+	
+	public AudioClip Sound;
 	
 	void Start() {
 		anim = GetComponent<Animator>();
@@ -38,6 +42,10 @@ public class Snake : Colorable {
 			if (Target == null) {
 				Destroy(gameObject);
 			} else {
+				if (!isActing){
+					audio.PlayOneShot(Sound);
+					isActing = true;
+				}
 				Vector2 velocity = rigidbody2D.velocity;
 				velocity.x = Mathf.Sign(Target.transform.position.x - transform.position.x) * Speed;
 				rigidbody2D.velocity = velocity;			

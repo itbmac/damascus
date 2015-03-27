@@ -13,6 +13,9 @@ public class Bird : MonoBehaviour {
 	private bool scared;
 	private Vector2 startPos;
 	private Animator anim;
+	private bool isActing = false;
+
+	public AudioClip Sound;
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +36,10 @@ public class Bird : MonoBehaviour {
 			if (Vector2.Distance(startPos, transform.position) > EscapeDistance) {
 				Destroy(gameObject);
 			} else {
+				if (!isActing){
+					audio.PlayOneShot(Sound);
+					isActing = true;
+				}
 				transform.position += new Vector3(1, 1, 0) * EscapeVelocity * Time.deltaTime;
 			}
 		}

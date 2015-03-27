@@ -8,6 +8,10 @@ public class Fire : MonoBehaviour {
 	
 	private Animator anim;
 
+	private bool isActing = false;
+	
+	public AudioClip Sound;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();	
@@ -22,9 +26,14 @@ public class Fire : MonoBehaviour {
 			s.Invoke();		
 
 		anim.SetBool("IsDrawing", false);
+		if (!isActing){
+			audio.PlayOneShot(Sound);
+			isActing = true;
+		}
 	}
 	
 	public void OnTurnDrawing() {
 		anim.SetBool("IsDrawing", true);
+		audio.Stop ();
 	}
 }
