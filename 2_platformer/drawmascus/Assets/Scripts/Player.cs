@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -97,6 +98,8 @@ public class Player : MonoBehaviour {
 			LayerMask.GetMask("Real", "Drawing")
 		);
 		
+		var potentials = new List<ColorToggle>();
+		
 		foreach (var collider in overlapping) {
 			var colorToggle = collider.GetComponent<ColorToggle>();
 			if (colorToggle == null)
@@ -104,19 +107,23 @@ public class Player : MonoBehaviour {
 			
 			if (CurrentColor == Color.white) {
 				if (colorToggle.CanTakeColor())
-					return colorToggle;
+					potentials.Add(colorToggle);
 			} else {
 				// If the wolf is currently colored, then it is trying to give a color.
 				if (colorToggle.CanGiveColor())
-					return colorToggle;
+					potentials.Add(colorToggle);
 			}
 		}
+		
+		if (potentials.Count > 0)
+			return potentials.MaxBy(x => x.Priority);
 		
 		return null;
 	}
 	
 	ColorToggle SelectedColorToggle;	
 	
+	bool lastJumpControl;
 	bool playerJumped;
 	void Update() {
 		Vector2 velocity = rigidbody2D.velocity;
@@ -135,7 +142,7 @@ public class Player : MonoBehaviour {
 		
 		float vertical = Input.GetAxisRaw("Vertical");
 		if (grounded) {
-			if (vertical > 0)
+			if (vertical > 0 && !lastJumpControl)
 				// jump triggered
 				velocity.y = JumpSpeed;
 			rigidbody2D.gravityScale = JumpGravity;
@@ -144,6 +151,8 @@ public class Player : MonoBehaviour {
 				rigidbody2D.gravityScale = NormalGravity;
 			}
 		}
+		
+		lastJumpControl = vertical != 0;
 
 		// Don't change direction on 0 or avatar will awkwardly face
 		// one way if no key is pressed

@@ -12,7 +12,7 @@ public class ColorToggle : MonoBehaviour {
 	public Color RealColor = Color.red;
 
 	//Current color state of the object.
-	bool hasColor = true;
+	public bool hasColor = true;
 	
 	public bool StartAsDrawing = true;
 	
@@ -23,6 +23,7 @@ public class ColorToggle : MonoBehaviour {
 	public bool RegeneratePolygonCollider = true;
 	public bool LockAfterChange = false;
 	public bool UseCollider = true;
+	public int Priority = 0;
 	
 	private bool locked = false;
 	
@@ -63,6 +64,11 @@ public class ColorToggle : MonoBehaviour {
 	}
 	
 	public bool CanGiveColor(bool printReason = false) {
+#if UNITY_EDITOR
+		if (Input.GetKey(KeyCode.LeftShift))
+			return true;
+#endif
+	
 		if (locked)
 			return false;
 		
@@ -108,6 +114,11 @@ public class ColorToggle : MonoBehaviour {
 	}
 	
 	public bool CanTakeColor(bool printReason = false) {
+		#if UNITY_EDITOR
+		if (Input.GetKey(KeyCode.LeftShift))
+			return true;
+		#endif
+		
 		if (locked)
 			return false;
 		

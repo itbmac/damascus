@@ -11,7 +11,6 @@ GameObject:
   - 212: {fileID: 21220440}
   - 60: {fileID: 6020440}
   - 114: {fileID: 11420438}
-  - 114: {fileID: 11420440}
   m_Layer: 0
   m_Name: Feather
   m_TagString: Untagged
@@ -26,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.31035328, y: -9.13900757, z: 0}
+  m_LocalPosition: {x: -2.74436378, y: -12.0063982, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -120,17 +119,7 @@ MonoBehaviour:
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 0
---- !u!114 &11420440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 120440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e426d4e961344c9a8049e460236bc01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  Priority: 0
 --- !u!212 &21220440
 SpriteRenderer:
   m_ObjectHideFlags: 1

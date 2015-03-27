@@ -137,6 +137,10 @@ Prefab:
       propertyPath: Speed
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 11492050, guid: f5afb43e164c347fab0c5c54a0f059c9, type: 2}
+      propertyPath: Priority
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6010104, guid: f5afb43e164c347fab0c5c54a0f059c9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: f5afb43e164c347fab0c5c54a0f059c9, type: 2}
@@ -177,12 +181,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 0, b: 1, a: 1}
+  hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: e09bfe8db5a264570898dd86da496e1e, type: 3}
   DrawingSprite: {fileID: 21300000, guid: acf30bcf2fe72414da2829556c033d2f, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 1
 --- !u!114 &107359167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,12 +310,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: a3e02c20047c24e2faf3f3dfb5d1d55a, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 4f93d9054e56c45049adcb195d8a4203, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!60 &128695735
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -613,12 +621,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 0, b: 1, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: c38787a613fbc4278be238548eab3a47, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 40f7a68ba6918bc49a48f6d0823b79ca, type: 3}
   RegeneratePolygonCollider: 0
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!60 &131581395
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -900,12 +910,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 0d0371d83edb246e680d8f4cfe4bb29a, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 4d64c82cdb104432ca9ed893f7cb0b90, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!60 &260977553
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1348,6 +1360,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 306889124}
   - 212: {fileID: 306889123}
+  - 114: {fileID: 306889125}
   m_Layer: 0
   m_Name: Diety
   m_TagString: Untagged
@@ -1397,6 +1410,17 @@ Transform:
   - {fileID: 1360103599}
   m_Father: {fileID: 0}
   m_RootOrder: 13
+--- !u!114 &306889125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 306889122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8196610c00d47483396d1078626516d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &365954763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1648,12 +1672,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 0, b: 1, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
-  RealSprite: {fileID: 21300000, guid: 30540eb40d28249d98d518ec09bc1a7c, type: 3}
+  RealSprite: {fileID: 21300000, guid: 3c4c41ed99ae44eb8a86e66700e1dd94, type: 3}
   DrawingSprite: {fileID: 21300000, guid: d16bf3430be354b99bb855d5ae9216b9, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!58 &660243479
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -2184,12 +2210,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: 30540eb40d28249d98d518ec09bc1a7c, type: 3}
   DrawingSprite: {fileID: 21300000, guid: d16bf3430be354b99bb855d5ae9216b9, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!1 &904790505
 GameObject:
   m_ObjectHideFlags: 0
@@ -3770,12 +3798,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 1, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
-  RealSprite: {fileID: 21300000, guid: 30540eb40d28249d98d518ec09bc1a7c, type: 3}
+  RealSprite: {fileID: 21300000, guid: 2f75f0ded86874a2688e7a0be826fb92, type: 3}
   DrawingSprite: {fileID: 21300000, guid: d16bf3430be354b99bb855d5ae9216b9, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!58 &1360103597
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -4289,12 +4319,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: 5d417287f3d406746ad939a254e1682c, type: 3}
   DrawingSprite: {fileID: 21300000, guid: f080fa53f8a66467fb2df7232c25e887, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!61 &1886658170
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4372,12 +4404,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: .501960814, g: .501960814, b: .501960814, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: e3a567a89b34845119f31bc8be827375, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 68e8f015f8fdc4773b53e90d61534ddd, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!61 &1965008130
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4658,12 +4692,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 1, g: 0, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 0
-  RealSprite: {fileID: 21300000, guid: 30540eb40d28249d98d518ec09bc1a7c, type: 3}
+  RealSprite: {fileID: 21300000, guid: 42147b965417b4d50860789c1275935a, type: 3}
   DrawingSprite: {fileID: 21300000, guid: d16bf3430be354b99bb855d5ae9216b9, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!58 &1992716703
 CircleCollider2D:
   m_ObjectHideFlags: 0

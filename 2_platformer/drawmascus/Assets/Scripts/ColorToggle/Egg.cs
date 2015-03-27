@@ -24,8 +24,8 @@ public class Egg : Colorable {
 		isReal = false;
 		rigidbody2D.isKinematic = true;		
 		
-		if (splat)
-			Destroy(gameObject);
+//		if (splat)
+//			Destroy(gameObject);
 	}
 	
 	void OnCollisionEnter2D(Collision2D coll) {

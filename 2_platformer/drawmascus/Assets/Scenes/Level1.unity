@@ -370,6 +370,7 @@ MonoBehaviour:
   RegeneratePolygonCollider: 0
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!60 &542789338
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -739,6 +740,7 @@ MonoBehaviour:
   RegeneratePolygonCollider: 0
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!212 &686190205
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1477,6 +1479,7 @@ MonoBehaviour:
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!61 &1361692340
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1577,6 +1580,7 @@ MonoBehaviour:
   RegeneratePolygonCollider: 1
   LockAfterChange: 1
   UseCollider: 1
+  Priority: 0
 --- !u!212 &1665884561
 SpriteRenderer:
   m_ObjectHideFlags: 0
