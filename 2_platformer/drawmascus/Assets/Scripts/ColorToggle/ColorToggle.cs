@@ -67,10 +67,10 @@ public class ColorToggle : MonoBehaviour {
 	}
 	
 	public bool CanGiveColor(bool printReason = false) {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
 		if (Input.GetKey(KeyCode.LeftShift))
 			return true;
-#endif
+//#endif
 	
 		if (locked)
 			return false;
@@ -117,10 +117,10 @@ public class ColorToggle : MonoBehaviour {
 	}
 	
 	public bool CanTakeColor(bool printReason = false) {
-		#if UNITY_EDITOR
+//		#if UNITY_EDITOR
 		if (Input.GetKey(KeyCode.LeftShift))
 			return true;
-		#endif
+//		#endif
 		
 		if (locked)
 			return false;
