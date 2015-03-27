@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RealColor: {r: 0, g: 1, b: 0, a: 1}
+  RealColor: {r: .720588207, g: 1, b: .720588207, a: 1}
   hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 0d4b4fcc4d9ac3e45a86a9e9d57116da, type: 3}
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RealColor: {r: 0, g: 1, b: 0, a: 1}
+  RealColor: {r: .720588207, g: 1, b: .720588207, a: 1}
   hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: 0d4b4fcc4d9ac3e45a86a9e9d57116da, type: 3}
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RealColor: {r: 0, g: 1, b: 0, a: 1}
+  RealColor: {r: .720588207, g: 1, b: .720588207, a: 1}
   hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 5d417287f3d406746ad939a254e1682c, type: 3}
@@ -649,6 +649,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11433126, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
+      propertyPath: RealColor.r
+      value: .720588207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433126, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
+      propertyPath: RealColor.b
+      value: .720588207
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6033128, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
@@ -753,6 +761,14 @@ Prefab:
     - target: {fileID: 11433126, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
       propertyPath: StartAsDrawing
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433126, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
+      propertyPath: RealColor.r
+      value: .720588207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433126, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
+      propertyPath: RealColor.b
+      value: .720588207
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6033128, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
@@ -1237,7 +1253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RealColor: {r: 0, g: 1, b: 0, a: 1}
+  RealColor: {r: .720588207, g: 1, b: .720588207, a: 1}
   hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: 5d417287f3d406746ad939a254e1682c, type: 3}
@@ -1748,7 +1764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RealColor: {r: 0, g: 1, b: 0, a: 1}
+  RealColor: {r: .720588207, g: 1, b: .720588207, a: 1}
   hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 0d4b4fcc4d9ac3e45a86a9e9d57116da, type: 3}

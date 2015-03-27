@@ -121,6 +121,14 @@ Prefab:
       propertyPath: LockAfterChange
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11430584, guid: 9ad883f76b1454c8f9dc9bbe595a30bb, type: 2}
+      propertyPath: RealColor.r
+      value: .720588207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11430584, guid: 9ad883f76b1454c8f9dc9bbe595a30bb, type: 2}
+      propertyPath: RealColor.b
+      value: .720588207
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9ad883f76b1454c8f9dc9bbe595a30bb, type: 2}
   m_RootGameObject: {fileID: 1665884558}
@@ -365,7 +373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RealColor: {r: 0, g: 0, b: 1, a: 1}
+  RealColor: {r: .551470578, g: .737068832, b: 1, a: 1}
   hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: c38787a613fbc4278be238548eab3a47, type: 3}
@@ -510,7 +518,6 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &572345053
 Prefab:
   m_ObjectHideFlags: 0
@@ -692,6 +699,18 @@ Prefab:
       propertyPath: DieAfterPickup
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11488218, guid: 486687504c1454bf182ce97732520d40, type: 2}
+      propertyPath: RealColor.r
+      value: .551470578
+      objectReference: {fileID: 0}
+    - target: {fileID: 11488218, guid: 486687504c1454bf182ce97732520d40, type: 2}
+      propertyPath: RealColor.g
+      value: .737068832
+      objectReference: {fileID: 0}
+    - target: {fileID: 11488218, guid: 486687504c1454bf182ce97732520d40, type: 2}
+      propertyPath: RealColor.b
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 486687504c1454bf182ce97732520d40, type: 2}
   m_RootGameObject: {fileID: 542789335}
@@ -740,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RealColor: {r: 0, g: 1, b: 0, a: 1}
+  RealColor: {r: .720588207, g: 1, b: .720588207, a: 1}
   hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 5d417287f3d406746ad939a254e1682c, type: 3}
@@ -1392,7 +1411,6 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1224631174
 Prefab:
   m_ObjectHideFlags: 0
@@ -1582,7 +1600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RealColor: {r: 0, g: 1, b: 0, a: 1}
+  RealColor: {r: .720588207, g: 1, b: .720588207, a: 1}
   hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: a5bc6581b30f049528b73927de33e0de, type: 3}
@@ -1967,7 +1985,6 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1775702238
 Prefab:
   m_ObjectHideFlags: 0
@@ -3777,6 +3794,14 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: 5d417287f3d406746ad939a254e1682c,
         type: 3}
+    - target: {fileID: 11433126, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
+      propertyPath: RealColor.r
+      value: .720588207
+      objectReference: {fileID: 0}
+    - target: {fileID: 11433126, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
+      propertyPath: RealColor.b
+      value: .720588207
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6033128, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: efa36fc2c0e8242568d9fe9cf8bc01fd, type: 2}
@@ -14402,6 +14427,18 @@ Prefab:
       propertyPath: m_Poly.m_Paths.Array.data[70].Array.data[7].y
       value: 4.64999962
       objectReference: {fileID: 0}
+    - target: {fileID: 11419968, guid: 807f1cbf58cfc4c9080f7638cd757512, type: 2}
+      propertyPath: RealColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419968, guid: 807f1cbf58cfc4c9080f7638cd757512, type: 2}
+      propertyPath: RealColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11419968, guid: 807f1cbf58cfc4c9080f7638cd757512, type: 2}
+      propertyPath: RealColor.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6019966, guid: 807f1cbf58cfc4c9080f7638cd757512, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 807f1cbf58cfc4c9080f7638cd757512, type: 2}
@@ -14527,7 +14564,6 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!82 &1972158166
 AudioSource:
   m_ObjectHideFlags: 0

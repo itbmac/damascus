@@ -131,7 +131,6 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11488218
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,13 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2251eb7a2fa91c4e97f1944cbd6c6d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RealColor: {r: 0, g: 0, b: 1, a: 1}
+  RealColor: {r: .551470578, g: .737068832, b: 1, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: c38787a613fbc4278be238548eab3a47, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 40f7a68ba6918bc49a48f6d0823b79ca, type: 3}
   RegeneratePolygonCollider: 0
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!114 &11488220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -161,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36429c5f154b1490d87e460d4faf1172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Drop: {fileID: 0}
+  DieAfterPickup: 0
 --- !u!212 &21288218
 SpriteRenderer:
   m_ObjectHideFlags: 1
