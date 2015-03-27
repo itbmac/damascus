@@ -9,6 +9,8 @@ public class Egg : Colorable {
 	Animator anim;
 	public GameObject Drop;
 	
+	public bool DieAfterPickup;
+	
 	void Start() {
 		anim = GetComponent<Animator>();
 	}
@@ -24,6 +26,11 @@ public class Egg : Colorable {
 		print ("Turn drawing");
 		isReal = false;
 		rigidbody2D.isKinematic = true;		
+		
+		if (DieAfterPickup && splat) {
+			Destroy(gameObject);
+			return;
+		}
 		
 		if (splat && Drop != null) {
 			Instantiate(Drop, transform.position, Quaternion.identity);		

@@ -351,6 +351,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36429c5f154b1490d87e460d4faf1172, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Drop: {fileID: 0}
+  DieAfterPickup: 1
 --- !u!114 &542789337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 0, b: 1, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: c38787a613fbc4278be238548eab3a47, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 40f7a68ba6918bc49a48f6d0823b79ca, type: 3}
@@ -685,6 +688,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 11488220, guid: 486687504c1454bf182ce97732520d40, type: 2}
+      propertyPath: DieAfterPickup
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 486687504c1454bf182ce97732520d40, type: 2}
   m_RootGameObject: {fileID: 542789335}
@@ -734,6 +741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 5d417287f3d406746ad939a254e1682c, type: 3}
   DrawingSprite: {fileID: 21300000, guid: f080fa53f8a66467fb2df7232c25e887, type: 3}
@@ -1473,6 +1481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 1, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: b0c358c7617d82244b86ca8dfbb0620a, type: 3}
   DrawingSprite: {fileID: 21300000, guid: e1f317a990d7e4201b0682fd61f4ef68, type: 3}
@@ -1574,6 +1583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: a5bc6581b30f049528b73927de33e0de, type: 3}
   DrawingSprite: {fileID: 21300000, guid: b09cec572ec7a401fbd2cde6d1174797, type: 3}

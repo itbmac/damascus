@@ -83,9 +83,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 77015831}
   - 212: {fileID: 77015830}
-  - 61: {fileID: 77015829}
   - 50: {fileID: 77015828}
   - 114: {fileID: 77015827}
+  - 60: {fileID: 77015829}
   m_Layer: 17
   m_Name: EndRock
   m_TagString: Untagged
@@ -119,8 +119,8 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!61 &77015829
-BoxCollider2D:
+--- !u!60 &77015829
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -128,8 +128,95 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 1.91999996, y: 2.55999994}
-  m_Center: {x: 0, y: 0}
+  m_Poly:
+    m_Paths:
+    - - {x: 2.04250479, y: -5.6588378}
+      - {x: 2.18137193, y: -5.57783175}
+      - {x: 2.18137193, y: 5.53154278}
+      - {x: 1.9962157, y: 5.54311514}
+      - {x: 1.52175283, y: 5.54311514}
+      - {x: 1.51018059, y: 5.5546875}
+      - {x: 1.34816885, y: 5.62412071}
+      - {x: 1.22087395, y: 5.60097647}
+      - {x: 1.11672354, y: 5.56625938}
+      - {x: .746411085, y: 5.60097647}
+      - {x: .561254859, y: 5.6588378}
+      - {x: .387670875, y: 5.6588378}
+      - {x: -.0173583981, y: 5.57783175}
+      - {x: -.295092762, y: 5.57783175}
+      - {x: -.561254859, y: 5.46210909}
+      - {x: -.665405273, y: 5.40424776}
+      - {x: -1.02414548, y: 5.26538086}
+      - {x: -1.11672354, y: 5.17280245}
+      - {x: -1.23244619, y: 5.09179688}
+      - {x: -1.33659661, y: 5.06865215}
+      - {x: -1.55646968, y: 4.99921846}
+      - {x: -1.77634275, y: 4.86035156}
+      - {x: -1.91520989, y: 4.72148418}
+      - {x: -1.96149898, y: 4.62890625}
+      - {x: -1.96149898, y: 4.21230459}
+      - {x: -1.93835437, y: 4.13129854}
+      - {x: -1.90363765, y: 4.02714825}
+      - {x: -1.8689208, y: 3.94614244}
+      - {x: -1.76477039, y: 3.77255845}
+      - {x: -1.71848142, y: 3.66840816}
+      - {x: -1.62590325, y: 3.52954078}
+      - {x: -1.45231926, y: 3.29809546}
+      - {x: -1.40603018, y: 3.18237281}
+      - {x: -1.33659661, y: 3.04350567}
+      - {x: -1.22087395, y: 2.92778301}
+      - {x: -1.05886221, y: 2.65004873}
+      - {x: -1.01257324, y: 2.53432608}
+      - {x: -1.02414548, y: 2.48803711}
+      - {x: -.977856398, y: 2.2565918}
+      - {x: -1.00100088, y: 2.18715811}
+      - {x: -.943139613, y: 2.09457994}
+      - {x: -.885278285, y: 1.9788574}
+      - {x: -.815844715, y: 1.701123}
+      - {x: -.769555628, y: 1.56225574}
+      - {x: -.723266602, y: 1.26137686}
+      - {x: -.665405273, y: .937353492}
+      - {x: -.64226073, y: .717480421}
+      - {x: -.630688429, y: .543896437}
+      - {x: -.619116187, y: .451318353}
+      - {x: -.595971644, y: .324023426}
+      - {x: -.561254859, y: .266162097}
+      - {x: -.526538074, y: .115722649}
+      - {x: -.480249017, y: -.0694335923}
+      - {x: -.410815418, y: -.324023426}
+      - {x: -.35295409, y: -.555468738}
+      - {x: -.202514634, y: -.937353492}
+      - {x: -.156225577, y: -1.00678706}
+      - {x: -.14465332, y: -1.18037105}
+      - {x: -.0752197206, y: -1.41181636}
+      - {x: .0867919922, y: -1.6779784}
+      - {x: .167797849, y: -1.8284179}
+      - {x: .306665033, y: -2.16401362}
+      - {x: .329809546, y: -2.30288076}
+      - {x: .503393531, y: -3.20551753}
+      - {x: .514965773, y: -3.36752915}
+      - {x: .526538074, y: -3.64526343}
+      - {x: .514965773, y: -3.65683579}
+      - {x: .503393531, y: -3.76098609}
+      - {x: .480249017, y: -4.15444326}
+      - {x: .445532203, y: -4.1428709}
+      - {x: .410815418, y: -4.20073223}
+      - {x: .364526361, y: -4.4437499}
+      - {x: .364526361, y: -4.51318359}
+      - {x: .28352049, y: -5.03393555}
+      - {x: .248803705, y: -5.19594717}
+      - {x: .202514634, y: -5.32324219}
+      - {x: .260375977, y: -5.43896484}
+      - {x: .35295409, y: -5.47368145}
+      - {x: .468676746, y: -5.50839806}
+      - {x: .561254859, y: -5.51997042}
+      - {x: 1.01257324, y: -5.61254883}
+      - {x: 1.22087395, y: -5.61254883}
+      - {x: 1.33659661, y: -5.67041016}
+      - {x: 1.39445794, y: -5.6588378}
+      - {x: 1.53332508, y: -5.60097647}
+      - {x: 1.74162591, y: -5.63569307}
+      - {x: 1.90363765, y: -5.67041016}
 --- !u!212 &77015830
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -150,7 +237,7 @@ SpriteRenderer:
   m_ScaleInLightmap: 1
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a013d7aedcc174cee83fb1431c60fd72, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3cc67d41c6d504018b46715a4d3469ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &77015831
 Transform:
@@ -158,9 +245,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 77015826}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24, y: -10.6999998, z: 0}
-  m_LocalScale: {x: 2.3625052, y: 10.5986843, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -.0284432415, w: .999595404}
+  m_LocalPosition: {x: 22.2999992, y: -9.80000019, z: 0}
+  m_LocalScale: {x: 2.60114288, y: 2.60114288, z: 2.60114288}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 19
@@ -363,12 +450,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 1, g: 0, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: cfa232b6834064ba7920c28635b78922, type: 3}
   DrawingSprite: {fileID: 21300000, guid: c79e29307d716411e8b0a09a512ff85f, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!58 &158894531
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -478,7 +567,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 406754, guid: 1c37ebc24045d46a9b901d12de73ef43, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 28.2999992
+      value: 28.3799992
       objectReference: {fileID: 0}
     - target: {fileID: 406754, guid: 1c37ebc24045d46a9b901d12de73ef43, type: 2}
       propertyPath: m_LocalPosition.y
@@ -547,12 +636,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 0d0371d83edb246e680d8f4cfe4bb29a, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 4d64c82cdb104432ca9ed893f7cb0b90, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!60 &260977553
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1644,7 +1735,6 @@ GameObject:
   - 212: {fileID: 788317773}
   - 60: {fileID: 788317772}
   - 114: {fileID: 788317771}
-  - 114: {fileID: 788317770}
   m_Layer: 0
   m_Name: Flower
   m_TagString: Untagged
@@ -1664,17 +1754,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1713071132}
   m_RootOrder: 0
---- !u!114 &788317770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 788317768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e426d4e961344c9a8049e460236bc01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &788317771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1687,12 +1766,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 1, g: 0, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 12b54e5f2aa7f432ea06f7c3d6b2c73f, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 24af85a1901294683b552a3929b5a31a, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!60 &788317772
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3321,7 +3402,6 @@ GameObject:
   - 212: {fileID: 1660295701}
   - 60: {fileID: 1660295700}
   - 114: {fileID: 1660295699}
-  - 114: {fileID: 1660295698}
   m_Layer: 0
   m_Name: vine1
   m_TagString: Untagged
@@ -3329,17 +3409,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1660295698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1660295697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e426d4e961344c9a8049e460236bc01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1660295699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3352,12 +3421,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 0
   RealSprite: {fileID: 21300000, guid: 0d0371d83edb246e680d8f4cfe4bb29a, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 4d64c82cdb104432ca9ed893f7cb0b90, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!60 &1660295700
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -3868,12 +3939,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RealColor: {r: 0, g: 1, b: 0, a: 1}
+  hasColor: 1
   StartAsDrawing: 1
   RealSprite: {fileID: 21300000, guid: db27e50f54b50433aa04d455ff97fa13, type: 3}
   DrawingSprite: {fileID: 21300000, guid: 040f209dc028943f0b181f5b6113883a, type: 3}
   RegeneratePolygonCollider: 1
   LockAfterChange: 0
   UseCollider: 1
+  Priority: 0
 --- !u!60 &1713071135
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -5555,7 +5628,7 @@ Transform:
   m_PrefabInternal: {fileID: 165561093}
   m_GameObject: {fileID: 2071328225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.2999992, y: -9.19999981, z: 0}
+  m_LocalPosition: {x: 28.3799992, y: -9.19999981, z: 0}
   m_LocalScale: {x: 8, y: 33.2036819, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
