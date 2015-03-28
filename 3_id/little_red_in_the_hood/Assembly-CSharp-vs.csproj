@@ -94,8 +94,10 @@
      <Compile Include="Assets\Scripts\ArrowDirection.cs" />
      <Compile Include="Assets\Scripts\CamFollow.cs" />
      <Compile Include="Assets\Scripts\CityControls.cs" />
+     <Compile Include="Assets\Scripts\ClickToNextScene.cs" />
      <Compile Include="Assets\Scripts\IndyControls.cs" />
      <Compile Include="Assets\Scripts\LapTracker.cs" />
+     <Compile Include="Assets\Scripts\MoviePlayer.cs" />
      <Compile Include="Assets\Scripts\SmoothFollow.cs" />
      <Compile Include="Assets\Scripts\TargetScript.cs" />
      <Compile Include="Assets\Scripts\TargetSystem.cs" />
