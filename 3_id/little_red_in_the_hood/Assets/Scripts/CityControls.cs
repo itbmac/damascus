@@ -6,9 +6,6 @@ public class CityControls : MonoBehaviour {
 	public float accelRate = 0.25f;
 	public float speedRatio = 5f;
 	public float spriteRotateOffset = 180f;
-	public float rotationAmount = 11.25f;
-	int rotationFrame = 0;
-	public int rotationPeriod = 3;
 	public float TrafficLightSpeedChangeGreen = 7.0f;
 	public float TrafficLightSpeedChangeYellow = 0.0f;
 	public float TrafficLightSpeedChangeRed = 8.0f;
@@ -26,74 +23,24 @@ public class CityControls : MonoBehaviour {
 	//update is called every frame at fixed intervals
 	void FixedUpdate()
 	{
-		
-		if (rotationFrame > 0)
-			rotationFrame--;
-		
-		if (rotationFrame == 0) {
-			if(Input.GetKey(KeyCode.RightArrow)) {
-				GetComponent<Rigidbody2D>().rotation -= rotationAmount;
-				rotationFrame = rotationPeriod;
-			}
-			
-			if(Input.GetKey(KeyCode.LeftArrow)) {
-				GetComponent<Rigidbody2D>().rotation += rotationAmount;
-				rotationFrame = rotationPeriod;
-			}
+		Vector2 newVel = GetComponent<Rigidbody2D>().velocity;
+
+		if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
+			newVel += new Vector2(0.0f, Mathf.Min(speed, speedRatio * accelRate));
 		}
 
-		if (!TrafficLightSpeedChangeApplied) {
-
-			if (currentLightPassed == Traffic_Light.lightColor.RED) {
-				TrafficLightSpeedChange = TrafficLightSpeedChangeRed;
-
-				float angle = Mathf.Deg2Rad * (GetComponent<Rigidbody2D>().rotation + spriteRotateOffset);
-				Vector2 newVel = GetComponent<Rigidbody2D>().velocity - new Vector2(Mathf.Cos(angle) * TrafficLightSpeedChange, Mathf.Sin(angle) * TrafficLightSpeedChange);
-
-				if (newVel.magnitude < TrafficLightMinSpeed) {
-					GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(angle) * TrafficLightMinSpeed, Mathf.Sin(angle) * TrafficLightMinSpeed);
-				}
-				else {
-					GetComponent<Rigidbody2D>().velocity = newVel;
-				}
-			}
-			else if (currentLightPassed == Traffic_Light.lightColor.YELLOW) {
-				TrafficLightSpeedChange = TrafficLightSpeedChangeYellow;
-			}
-			else if (currentLightPassed == Traffic_Light.lightColor.GREEN) {
-				TrafficLightSpeedChange = TrafficLightSpeedChangeGreen;
-
-				float angle = Mathf.Deg2Rad * (GetComponent<Rigidbody2D>().rotation + spriteRotateOffset);
-				GetComponent<Rigidbody2D>().velocity += new Vector2(Mathf.Cos(angle) * TrafficLightSpeedChange, Mathf.Sin(angle) * TrafficLightSpeedChange);
-			}
-			else {
-				TrafficLightSpeedChange = 0.0f;
-			}
-
-			TrafficLightSpeedChangeApplied = true;
+		if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
+			newVel += new Vector2(Mathf.Max(-1 * speed, -1 * speedRatio * accelRate), 0.0f);
 		}
 
-		if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.UpArrow)) {
-			float angle = Mathf.Deg2Rad * (GetComponent<Rigidbody2D>().rotation + spriteRotateOffset);
-			Vector2 newVel = GetComponent<Rigidbody2D>().velocity + new Vector2(Mathf.Cos(angle) * speedRatio * accelRate, Mathf.Sin(angle) * speedRatio * accelRate);
+		if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
+			newVel += new Vector2(0.0f, Mathf.Max(-1 * speed, -1 * speedRatio * accelRate));
+		}
 
-			if (newVel.magnitude > speed) {
-				GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed);
-			}
-			else {
-				GetComponent<Rigidbody2D>().velocity = newVel;
-			}
+		if(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
+			newVel += new Vector2(Mathf.Min(speed, speedRatio * accelRate), 0.0f);
 		}
-		else if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
-			float angle = Mathf.Deg2Rad * (GetComponent<Rigidbody2D>().rotation + spriteRotateOffset);
-			Vector2 newVel = GetComponent<Rigidbody2D>().velocity - new Vector2(Mathf.Cos(angle) * speedRatio * accelRate, Mathf.Sin(angle) * speedRatio * accelRate);
-			
-			if (newVel.magnitude > speed) {
-				GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Cos(angle) * speed, Mathf.Sin(angle) * speed);
-			}
-			else {
-				GetComponent<Rigidbody2D>().velocity = newVel;
-			}
-		}
+
+		GetComponent<Rigidbody2D>().velocity = newVel;
 	}
 }
