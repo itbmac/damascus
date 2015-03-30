@@ -1,6 +1,6 @@
 Damascus
 ———————————————
-Alicia Lott
+Alicia Iott
 Anton Pleshakov
 MacKenzie Bates
 Daniel Kim
