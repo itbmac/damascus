@@ -22,6 +22,9 @@ public class VisionCone : MonoBehaviour {
 	
 	bool playerDetectTriggered;
 	void OnTriggerEnter2D(Collider2D c) {
+		if (c.name == "GlowStick")
+			SendMessageUpwards("OnDetectPlayer");
+	
 		if (c.name == "Player") {
 			if (c.GetComponent<Player>().IsHidden)
 				return; // TODO: what if player becomes unhidden while in cone
