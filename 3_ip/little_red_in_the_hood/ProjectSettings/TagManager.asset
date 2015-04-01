@@ -21,8 +21,8 @@ TagManager:
   - 
   - 
   - locked
-  - 
-  - 
+  - Player
+  - Obstacle
   - 
   - 
   - 
@@ -47,6 +47,9 @@ TagManager:
   m_SortingLayers:
   - name: background
     uniqueID: 3412765787
+    locked: 0
+  - name: VisionCone
+    uniqueID: 1805990687
     locked: 0
   - name: lights
     uniqueID: 3773152081

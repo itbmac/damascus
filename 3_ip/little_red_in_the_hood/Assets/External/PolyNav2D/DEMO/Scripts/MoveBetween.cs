@@ -42,6 +42,6 @@ public class MoveBetween : MonoBehaviour{
 
 	void OnDrawGizmosSelected(){
 		for ( int i = 0; i < WPoints.Count; i++)
-			Gizmos.DrawSphere(WPoints[i], 0.05f);			
+			Gizmos.DrawSphere(WPoints[i], 0.15f);			
 	}
 }
