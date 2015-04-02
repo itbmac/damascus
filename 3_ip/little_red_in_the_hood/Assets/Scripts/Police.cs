@@ -36,5 +36,6 @@ public class Police : MonoBehaviour {
 	
 	void OnDetectPlayer() {
 		GetComponent<AudioSource>().PlayOneShot(GotPlayer);
+		TheGameManager.Instance.Detected();
 	}
 }
