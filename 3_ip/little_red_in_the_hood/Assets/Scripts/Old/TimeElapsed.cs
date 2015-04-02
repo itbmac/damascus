@@ -1,18 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
+using UnityEngine.UI;
 
 public class TimeElapsed : MonoBehaviour {
 
-	public int precision = 10;
-
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		GetComponent<GUIText>().text = NumberToWords(Mathf.RoundToInt(Time.time));//.ToString();
+		GetComponent<Text>().text = NumberToWords(Mathf.RoundToInt(Time.time));
 	}
 
 	string NumberToWords(int number)
