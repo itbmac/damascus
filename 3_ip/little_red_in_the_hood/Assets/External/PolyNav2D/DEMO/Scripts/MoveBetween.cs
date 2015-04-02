@@ -18,6 +18,8 @@ public class MoveBetween : MonoBehaviour{
 			return _agent;			
 		}
 	}
+	
+	public bool ViceCopMode = false;
 
 	void OnEnable(){
 		agent.OnDestinationReached += MoveRandom;
@@ -28,7 +30,14 @@ public class MoveBetween : MonoBehaviour{
 		agent.OnDestinationReached -= MoveRandom;
 		agent.OnDestinationInvalid -= MoveRandom;
 	}
-
+	
+	float nextChange;
+	void Update() {
+		if (!ViceCopMode) return;
+		
+		if (Time.time > nextChange)
+			MoveRandom();	
+	}
 
 	IEnumerator Start(){
 		yield return new WaitForSeconds(1);
@@ -37,6 +46,7 @@ public class MoveBetween : MonoBehaviour{
 	}
 
 	void MoveRandom(){
+		nextChange = Time.time + Random.Range(2.0F, 10.0F);	
 		agent.SetDestination(WPoints[Random.Range(0, WPoints.Count)]);		
 	}
 
