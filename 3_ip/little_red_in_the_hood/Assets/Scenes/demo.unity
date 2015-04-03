@@ -7049,6 +7049,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraSize: 12
+  cameraSizeTarget: 12
+  cameraSizeStart: 13
+  cameraSizeZoomed: 8
+  cameraSizeTransitionTimeStandard: 1.29999995
+  cameraSizeTransitionTimeFactorCurrent: 1
+  shake_decay: .00200000009
+  shake_intensity: 0
+  SHAKE_INTENSITY_1: .0250000004
   target: {fileID: 2103963597}
   pixelToUnits: 100
 --- !u!114 &935199628
@@ -8855,7 +8863,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1805990687
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b32e6c60747684ed9b6684f99e2187ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7a79d367182b343c1b59388d6a995f3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1098342680
 Transform:
@@ -10961,7 +10969,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1805990687
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b32e6c60747684ed9b6684f99e2187ca, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7a79d367182b343c1b59388d6a995f3a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1364029827
 GameObject:
@@ -13785,52 +13793,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generateOnUpdate: 1
   navObstacles:
-  - {fileID: 849495761}
-  - {fileID: 416746446}
-  - {fileID: 1452653253}
-  - {fileID: 464689222}
-  - {fileID: 1545357645}
-  - {fileID: 2071377496}
-  - {fileID: 1308859221}
-  - {fileID: 1216847255}
-  - {fileID: 1199317734}
-  - {fileID: 1806627903}
-  - {fileID: 1635083535}
-  - {fileID: 1838519724}
-  - {fileID: 266729820}
-  - {fileID: 1512179498}
-  - {fileID: 1908020351}
-  - {fileID: 1036390214}
-  - {fileID: 1656319586}
-  - {fileID: 4580962}
-  - {fileID: 1364029830}
-  - {fileID: 2066294488}
-  - {fileID: 364135039}
-  - {fileID: 435447230}
-  - {fileID: 1103703206}
-  - {fileID: 1969345066}
-  - {fileID: 1531060168}
   - {fileID: 1766215333}
-  - {fileID: 1259881570}
-  - {fileID: 2023372329}
-  - {fileID: 1583553905}
-  - {fileID: 1208499665}
   - {fileID: 751390588}
-  - {fileID: 1173906455}
-  - {fileID: 264495708}
+  - {fileID: 1308859221}
+  - {fileID: 213135311}
+  - {fileID: 561564046}
+  - {fileID: 1452653253}
+  - {fileID: 1216847255}
   - {fileID: 716365831}
+  - {fileID: 1208499665}
+  - {fileID: 817989928}
+  - {fileID: 1817475841}
+  - {fileID: 1199317734}
+  - {fileID: 849495761}
+  - {fileID: 1656319586}
+  - {fileID: 1259881570}
+  - {fileID: 1794894454}
+  - {fileID: 1635083535}
+  - {fileID: 1103703206}
+  - {fileID: 266729820}
+  - {fileID: 1806627903}
+  - {fileID: 1173906455}
+  - {fileID: 1545357645}
+  - {fileID: 416746446}
+  - {fileID: 1583553905}
+  - {fileID: 2066294488}
+  - {fileID: 1838519724}
+  - {fileID: 264495708}
+  - {fileID: 2071377496}
+  - {fileID: 1364029830}
+  - {fileID: 1908020351}
+  - {fileID: 1531060168}
+  - {fileID: 1969345066}
   - {fileID: 1248408570}
+  - {fileID: 2023372329}
+  - {fileID: 409624103}
+  - {fileID: 1512179498}
+  - {fileID: 1036390214}
+  - {fileID: 1856144397}
+  - {fileID: 364135039}
+  - {fileID: 4580962}
+  - {fileID: 464689222}
+  - {fileID: 435447230}
+  - {fileID: 1992960869}
+  - {fileID: 1797913023}
   - {fileID: 2137873535}
   - {fileID: 1277643568}
-  - {fileID: 1817475841}
-  - {fileID: 1794894454}
-  - {fileID: 1856144397}
-  - {fileID: 213135311}
-  - {fileID: 817989928}
-  - {fileID: 409624103}
-  - {fileID: 1797913023}
-  - {fileID: 561564046}
-  - {fileID: 1992960869}
   inflateRadius: .100000001
   regenerateFlag: 1
 --- !u!1001 &1765165610
@@ -14926,7 +14934,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f28d770adefc04aecbb6ebaf60f82d30, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4b7f0a247d9174ef6912f69713ff1a91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1854447524
 Transform:
@@ -15830,7 +15838,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f28d770adefc04aecbb6ebaf60f82d30, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4b7f0a247d9174ef6912f69713ff1a91, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1969345063
 GameObject:
