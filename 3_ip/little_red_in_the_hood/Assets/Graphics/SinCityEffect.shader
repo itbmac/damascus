@@ -23,8 +23,17 @@ fixed4 frag (v2f_img i) : SV_Target
 	fixed grayscale = Luminance(original.rgb);
 	half2 remap = half2 (grayscale + _RampOffset, .5);
 	fixed4 output = tex2D(_RampTex, remap);
-	if (original.r > 0.5)
+	
+//	if (original.r > 0.5) {
+//		fixed rate = 2*(original.r - 0.5);
+//	
+//		output.g *= rate;
+//		output.b *= rate;
+//	}
+	if (original.r > 0.8 && original.r > original.b + original.g) {
+		
 		output.r = original.r;
+	}
 	output.a = original.a;
 	return output;
 }
