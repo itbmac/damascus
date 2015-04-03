@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class TimeElapsed : MonoBehaviour {
 
+	public GameObject TargetSystemTracker;
+
 	// Use this for initialization
 	void Start () {
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		GetComponent<Text>().text = NumberToWords(Mathf.RoundToInt(Time.time));
+		int numRemainingDrops = TargetSystemTracker.GetComponent<TargetSystem>().numTargets - TargetSystemTracker.GetComponent<TargetSystem>().currentTarget;
+		GetComponent<Text>().text = NumberToWords(numRemainingDrops) + "  Drops  Left"; //NumberToWords(Mathf.RoundToInt(Time.time));
 	}
 
 	string NumberToWords(int number)

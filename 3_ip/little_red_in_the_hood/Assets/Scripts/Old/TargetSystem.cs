@@ -18,7 +18,8 @@ public class TargetSystem : MonoBehaviour {
 	TargetScript[] TList;
 	ArrowDirection arrowDir;
 
-	int currentTarget;
+	public int currentTarget;
+	public int numTargets = 8;
 
 	// Use this for initialization
 	void Start () {
@@ -45,14 +46,19 @@ public class TargetSystem : MonoBehaviour {
 
 		arrowDir = arrow.GetComponent<ArrowDirection>();
 
-		currentTarget = 7;
+		currentTarget = numTargets-1;
 		TList[currentTarget].hasBeenPassed = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (TList[currentTarget].hasBeenPassed) {
-			currentTarget = (currentTarget+1)%8;
+			if (currentTarget+1 == numTargets) {
+				GameObject[] playerz = GameObject.FindGameObjectsWithTag("Player");
+				playerz[0].GetComponent<Player>().ResetPosToStart();
+			}
+
+			currentTarget = (currentTarget+1)%numTargets;
 			SetCurrentTarget();
 		}
 	}

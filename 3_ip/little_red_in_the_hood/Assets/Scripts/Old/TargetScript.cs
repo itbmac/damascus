@@ -30,7 +30,7 @@ public class TargetScript : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other) {
-		if ((other.tag == "Car") && isCurrentTarget) {
+		if ((other.tag == "Player") && isCurrentTarget) {
 			SetAsCurrentTarget(false);
 		}
 	}

@@ -4,6 +4,8 @@ using System.Collections;
 public class VisionCone : MonoBehaviour {
 
 	public float AngleOffset = 0;
+	public float AngleTurnLengthForRepeat = 360;
+	public float AngleTurnSpeed = .5f;
 	public bool ViceCopMode = false;
 
 	// Use this for initialization
@@ -41,11 +43,11 @@ public class VisionCone : MonoBehaviour {
 		}
 	
 		
-		float angle = Mathf.Repeat (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + AngleOffset + ViceOffset, 360);
+		float angle = Mathf.Repeat (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + AngleOffset + ViceOffset, AngleTurnLengthForRepeat);
 		
 		Vector3 euler = transform.eulerAngles;
 		euler.z = angle;
-		transform.eulerAngles = euler;
+		transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, euler, AngleTurnSpeed);
 	}
 	
 	bool playerDetectTriggered;

@@ -4,10 +4,11 @@ using System.Collections;
 public class Player : MonoBehaviour {
 	public float Speed = 1.25f;
 	public GameObject PaintSplat;
+	public Vector3 startLoc;
 
 	// Use this for initialization
 	void Start () {
-
+		startLoc = transform.position;
 	}
 	
 	void Update() {
@@ -36,5 +37,9 @@ public class Player : MonoBehaviour {
 	
 	void RemoveHidden() {
 		hiddenCount -= 1;
+	}
+
+	public void ResetPosToStart() {
+		transform.position = startLoc;
 	}
 }

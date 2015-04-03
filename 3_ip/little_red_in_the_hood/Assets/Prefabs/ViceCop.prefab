@@ -210,6 +210,7 @@ MonoBehaviour:
   - {x: -20, y: 6.5}
   - {x: 26, y: -15.5}
   - {x: -19, y: -5.5}
+  ViceCopMode: 0
 --- !u!114 &11444486
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -234,6 +235,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AngleOffset: -90
+  AngleTurnLengthForRepeat: 360
+  AngleTurnSpeed: .075000003
+  ViceCopMode: 1
+  ViceMaxOffset: 45
+  ViceChange: 1
+  ViceMinTime: 1
+  ViceMaxTime: 3
 --- !u!114 &11453978
 MonoBehaviour:
   m_ObjectHideFlags: 1

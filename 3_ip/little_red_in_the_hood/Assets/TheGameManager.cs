@@ -9,8 +9,8 @@ public class TheGameManager : MonoBehaviour {
 		}
 	}
 	
-	public float DetectionTime = 10.0f;	
-	private float DetectedStartTime = -11f;
+	public float DetectionTime = 2.0f;	
+	private float DetectedStartTime = -3f;
 	
 	public static TheGameManager Instance { get; private set; }
 	
