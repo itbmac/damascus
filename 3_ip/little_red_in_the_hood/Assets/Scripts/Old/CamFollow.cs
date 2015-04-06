@@ -21,7 +21,6 @@ public class CamFollow : MonoBehaviour {
 	public float SHAKE_INTENSITY_4 = 0.075f;
 	private Camera cam;
 
-	private Vector3 velocity = Vector3.zero;
 	public Transform target;
 
 	void Start() {

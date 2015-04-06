@@ -3,12 +3,11 @@ using System.Collections;
 
 public class Police : MonoBehaviour {
 
-	public AudioClip GotPlayer	;
-	private GameObject player;
+	public AudioClip GotPlayer;
 
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Find("Player");
+
 	}
 	
 //	bool isPlayerVisible() {

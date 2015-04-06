@@ -11,7 +11,7 @@ public class MoveBetween : MonoBehaviour{
 
 	private PolyNavAgent _agent;
 	public PolyNavAgent agent{
-		get
+		get 
 		{
 			if (!_agent)
 				_agent = GetComponent<PolyNavAgent>();
