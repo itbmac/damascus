@@ -15,6 +15,14 @@ public class Player : MonoBehaviour {
 	
 	public int NumPaint = 5;
 	public int NumGlowsticks = 5;
+	
+	public static Player Instance {
+		get; private set;
+	}
+	
+	void Awake() {
+		Instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {
