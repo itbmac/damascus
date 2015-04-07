@@ -20,6 +20,8 @@ public class MoveBetween : MonoBehaviour{
 	}
 	
 	public bool ViceCopMode = false;
+	
+	int WPointsIndex = 0;
 
 	void OnEnable(){
 		agent.OnDestinationReached += MoveRandom;
@@ -45,9 +47,15 @@ public class MoveBetween : MonoBehaviour{
 			MoveRandom();
 	}
 
-	void MoveRandom(){
-		nextChange = Time.time + Random.Range(2.0F, 10.0F);	
-		agent.SetDestination(WPoints[Random.Range(0, WPoints.Count)]);		
+	void MoveRandom() {		
+		if (ViceCopMode) {
+			WPointsIndex = Random.Range(0, WPoints.Count);
+		} else {		
+			WPointsIndex = (WPointsIndex + 1) % WPoints.Count;
+			nextChange = Time.time + Random.Range(2.0F, 10.0F);
+		}
+		
+		agent.SetDestination(WPoints[WPointsIndex]);		
 	}
 
 	void OnDrawGizmosSelected(){
