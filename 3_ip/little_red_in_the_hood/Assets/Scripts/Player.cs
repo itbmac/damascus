@@ -12,6 +12,9 @@ public class Player : MonoBehaviour {
 	public float AngleOffset = 90f;
 	public float AngleTurnSpeed = .5f;
 	public float IsMovingThreshold = 0.1f;
+	
+	public int NumPaint = 5;
+	public int NumGlowsticks = 5;
 
 	// Use this for initialization
 	void Start () {
@@ -19,8 +22,10 @@ public class Player : MonoBehaviour {
 	}
 	
 	void Update() {
-		if (Input.GetKeyDown(KeyCode.P))
+		if (Input.GetKeyDown(KeyCode.P) && NumPaint > 0) {
+			NumPaint -= 1;
 			Instantiate(PaintSplat, transform.position, Quaternion.identity);
+		}
 	}
 	
 	//update is called every frame at fixed intervals

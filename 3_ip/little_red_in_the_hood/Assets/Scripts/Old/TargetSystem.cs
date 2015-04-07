@@ -11,15 +11,26 @@ public class TargetSystem : MonoBehaviour {
 	public GameObject target5;
 	public GameObject target6;
 	public GameObject target7;
-
-	public GameObject arrow;
+	
+	public GameObject CurrentTarget {
+		get {
+			return TOList[currentTarget];
+		}
+	}
 
 	GameObject[] TOList;
 	TargetScript[] TList;
-	ArrowDirection arrowDir;
 
 	public int currentTarget;
 	public int numTargets = 8;
+	
+	public static TargetSystem Instance {
+		get; private set;
+	}
+	
+	void Awake() {
+		Instance = this;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -43,9 +54,6 @@ public class TargetSystem : MonoBehaviour {
 		TOList[6] = target6;
 		TOList[7] = target7;
 
-
-		arrowDir = arrow.GetComponent<ArrowDirection>();
-
 		currentTarget = numTargets-1;
 		TList[currentTarget].hasBeenPassed = true;
 	}
@@ -65,6 +73,5 @@ public class TargetSystem : MonoBehaviour {
 
 	void SetCurrentTarget() {
 		TList[currentTarget].SetAsCurrentTarget(true);
-		arrowDir.target = TOList[currentTarget];
 	}
 }
