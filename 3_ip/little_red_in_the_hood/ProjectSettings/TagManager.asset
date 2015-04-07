@@ -23,7 +23,7 @@ TagManager:
   - locked
   - Player
   - Obstacle
-  - 
+  - NoCollide
   - 
   - 
   - 
@@ -48,6 +48,9 @@ TagManager:
   - name: background
     uniqueID: 3412765787
     locked: 0
+  - name: Glowstick
+    uniqueID: 591570197
+    locked: 0
   - name: VisionCone
     uniqueID: 1805990687
     locked: 0
@@ -57,11 +60,11 @@ TagManager:
   - name: buildings
     uniqueID: 3006545015
     locked: 0
-  - name: Arrow
-    uniqueID: 1305125239
-    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Arrow
+    uniqueID: 1305125239
     locked: 0
   - name: Player
     uniqueID: 3727669075

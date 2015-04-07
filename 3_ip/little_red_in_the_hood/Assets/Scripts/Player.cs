@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 	public float RunSpeed = 18f;
 	
 	public GameObject PaintSplat;
+	public GameObject Glowstick;
 	public Vector3 startLoc;
 	
 	public float AngleOffset = 90f;
@@ -33,6 +34,11 @@ public class Player : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.P) && NumPaint > 0) {
 			NumPaint -= 1;
 			Instantiate(PaintSplat, transform.position, Quaternion.identity);
+		}
+		
+		if (Input.GetKeyDown(KeyCode.G) && NumGlowsticks > 0) {
+			NumGlowsticks -= 1;
+			Instantiate(Glowstick, transform.position, Quaternion.identity);
 		}
 	}
 	
