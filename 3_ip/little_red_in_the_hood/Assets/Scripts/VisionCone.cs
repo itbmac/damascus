@@ -4,7 +4,7 @@ using System.Collections;
 public class VisionCone : MonoBehaviour {
 
 	public float AngleOffset = 0;
-	public float AngleTurnLengthForRepeat = 360;
+	const float AngleTurnLengthForRepeat = 360;
 	public float AngleTurnSpeed = .5f;
 	public bool ViceCopMode = false;
 

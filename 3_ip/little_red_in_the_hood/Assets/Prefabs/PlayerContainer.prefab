@@ -82,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 173110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.63022089, y: -4.12058401, z: 0}
+  m_LocalPosition: {x: 53.0400009, y: -21.6900005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 414088}
@@ -169,9 +169,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83df1a34045a249499a01db6316babf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1.25
-  PaintSplat: {fileID: 0}
+  WalkSpeed: 12
+  SlowSpeed: 6
+  RunSpeed: 18
+  PaintSplat: {fileID: 145210, guid: 0afa568470e43486bbbd5bd71e4465a5, type: 2}
   startLoc: {x: 0, y: 0, z: 0}
+  AngleOffset: 90
+  AngleTurnSpeed: .5
+  IsMovingThreshold: .100000001
 --- !u!212 &21243722
 SpriteRenderer:
   m_ObjectHideFlags: 1

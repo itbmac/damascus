@@ -904,16 +904,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475914, guid: b2bc37fe4c84f4c1e835d16465802cee, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11427360, guid: b2bc37fe4c84f4c1e835d16465802cee, type: 2}
       propertyPath: target
       value: 
       objectReference: {fileID: 1428812751}
-    - target: {fileID: 11478048, guid: b2bc37fe4c84f4c1e835d16465802cee, type: 2}
-      propertyPath: PaintSplat
-      value: 
-      objectReference: {fileID: 145210, guid: 0afa568470e43486bbbd5bd71e4465a5, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b2bc37fe4c84f4c1e835d16465802cee, type: 2}
   m_IsPrefabParent: 0
@@ -4895,7 +4891,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AngleOffset: -90
-  AngleTurnLengthForRepeat: 360
   AngleTurnSpeed: .0500000007
   ViceCopMode: 1
   ViceMaxOffset: 90
@@ -6366,7 +6361,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AngleOffset: -90
-  AngleTurnLengthForRepeat: 360
   AngleTurnSpeed: .0500000007
   ViceCopMode: 1
   ViceMaxOffset: 90
