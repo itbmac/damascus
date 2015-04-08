@@ -42,9 +42,9 @@ public class Player : MonoBehaviour {
 			Instantiate(PaintSplat, transform.position, Quaternion.identity);
 		}
 		
-		if (Input.GetKeyDown(KeyCode.G) && NumGlowsticks > 0) {
+		if (Input.GetButtonDown("Fire1") && NumGlowsticks > 0) {		
 			NumGlowsticks -= 1;
-			Instantiate(Glowstick, transform.position, Quaternion.identity);
+			Instantiate(Glowstick, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
 		}
 	}
 	

@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 449236}
   - 212: {fileID: 21258186}
   - 60: {fileID: 6078532}
+  - 114: {fileID: 11426754}
   m_Layer: 11
   m_Name: GlowStick
   m_TagString: Untagged
@@ -24,7 +25,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193520}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 74.0299988, y: -9.32999992, z: 0}
+  m_LocalPosition: {x: 60.2360497, y: -15.0961399, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -109,6 +110,17 @@ PolygonCollider2D:
       - {x: -1.91999996, y: 1.21000004}
       - {x: -2.00999999, y: 1.12}
       - {x: -2.04999995, y: .99000001}
+--- !u!114 &11426754
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c92930fd095534a299e49000d6f9ecd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21258186
 SpriteRenderer:
   m_ObjectHideFlags: 1

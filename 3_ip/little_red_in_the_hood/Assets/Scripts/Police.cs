@@ -29,13 +29,13 @@ public class Police : MonoBehaviour {
 			if (value == State.Normal) {
 				agent.maxSpeed = maxSpeed;
 				MoveRandom();
-			} else {
-				TheGameManager.Instance.Detected();
-				
+			} else {			
 				agent.maxSpeed = maxSpeed * InvestigativeSpeedMultiplier;
 				
-				if (_currentState == State.Normal)
+				if (_currentState == State.Normal && value == State.PlayerVisible) {
 					GetComponent<AudioSource>().PlayOneShot(GotPlayer);
+					TheGameManager.Instance.Detected();
+				}
 			}
 		
 			_currentState = value;
