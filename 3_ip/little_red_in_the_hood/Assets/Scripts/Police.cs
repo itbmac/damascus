@@ -153,6 +153,9 @@ public class Police : MonoBehaviour {
 	}
 	
 	bool isPlayerVisible() {
+		if (Player.Instance.IsOnSprayPaint)
+			return false;
+	
 		int layerMask = LayerMask.GetMask("Obstacle");		
 		if (Physics2D.Linecast(transform.position, player.transform.position, layerMask))
 			return false;

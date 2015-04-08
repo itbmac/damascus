@@ -25,6 +25,10 @@ public class Player : MonoBehaviour {
 		get; private set;
 	}
 	
+	public bool IsOnSprayPaint {
+		get; private set;
+	}
+	
 	void Awake() {
 		Instance = this;
 	}
@@ -36,6 +40,7 @@ public class Player : MonoBehaviour {
 	
 	void Update() {
 		IsUnderStreetlight = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("Streetlight"));	
+		IsOnSprayPaint = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("SprayPaint"));	
 	
 		if (Input.GetKeyDown(KeyCode.P) && NumPaint > 0) {
 			NumPaint -= 1;
@@ -71,21 +76,6 @@ public class Player : MonoBehaviour {
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(euler), AngleTurnSpeed);
 //			transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, euler, AngleTurnSpeed);
 		}
-	}
-	
-	public bool IsHidden {
-		get {
-			return hiddenCount > 0;
-		}
-	}
-	
-	int hiddenCount;	
-	void AddHidden() {
-		hiddenCount += 1;
-	}
-	
-	void RemoveHidden() {
-		hiddenCount -= 1;
 	}
 
 	public void ResetPosToStart() {
