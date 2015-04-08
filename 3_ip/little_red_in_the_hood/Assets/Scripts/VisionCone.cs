@@ -6,11 +6,24 @@ public class VisionCone : MonoBehaviour {
 	public float AngleOffset = 0;
 	const float AngleTurnLengthForRepeat = 360;
 	public float AngleTurnSpeed = .5f;
-	public bool ViceCopMode = false;
+	
+	bool ViceCopMode {
+		get {
+			return police.ViceCopMode || police.CurrentState != Police.State.Normal;
+		}
+	}
+	
+	bool InvestigativeMode {
+		get {
+			return police.CurrentState != Police.State.Normal;
+		}
+	}
+	
+	Police police;
 
 	// Use this for initialization
 	void Start () {
-	
+		police = GetComponentInParent<Police>();
 	}
 	
 	float ViceOffset;
@@ -24,6 +37,15 @@ public class VisionCone : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		SpriteRenderer sr = GetComponent<SpriteRenderer>();
+		
+		if (InvestigativeMode) {
+			sr.color = Color.red;
+		} else {
+			sr.color = Color.white;
+		}
+			
+	
 		Vector2 dir = transform.parent.GetComponent<PolyNavAgent>().movingDirection;
 	
 		if (ViceCopMode) {
@@ -36,8 +58,11 @@ public class VisionCone : MonoBehaviour {
 			
 			ViceOffset = Mathf.Clamp(ViceOffset + ViceOffsetChange, -ViceMaxOffset, ViceMaxOffset);
 			
-			if (Time.time > nextChange || ViceOffset == Mathf.Abs(ViceMaxOffset)) {
+			if (Time.time > nextChange || ViceOffset >= Mathf.Abs(ViceMaxOffset)) {
 				ViceOffsetChange = Random.Range(-ViceChange, ViceChange);
+				if (InvestigativeMode)
+					ViceOffsetChange *= 3;
+				
 				nextChange = Random.Range(ViceMinTime, ViceMaxTime) + Time.time;
 			}
 		}
