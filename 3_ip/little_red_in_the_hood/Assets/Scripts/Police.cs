@@ -204,9 +204,13 @@ public class Police : MonoBehaviour {
 	}
 	
 	public void NotifyPlayerPos(Vector2 pos) {
-		if (CurrentState != State.PlayerVisible) {
+		NotifyPlayerPos(pos, Time.time);
+	}
+	
+	public void NotifyPlayerPos(Vector2 pos, float lastSeenTime) {
+		if (CurrentState != State.PlayerVisible && lastSeenTime > playerLastSeenTime) {
 			playerLastSeenPos = pos;
-			playerLastSeenTime = Time.time;
+			playerLastSeenTime = lastSeenTime;
 			CurrentState = State.PlayerDetected;
 		}
 	}

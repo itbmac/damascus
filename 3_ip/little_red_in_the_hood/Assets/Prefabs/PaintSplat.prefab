@@ -9,7 +9,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 483100}
   - 212: {fileID: 21297430}
-  - 114: {fileID: 11439924}
   - 60: {fileID: 6066304}
   m_Layer: 13
   m_Name: PaintSplat
@@ -81,17 +80,6 @@ PolygonCollider2D:
       - {x: .730000019, y: -1.05999994}
       - {x: .850000024, y: -1.00999999}
       - {x: .970000029, y: -.879999995}
---- !u!114 &11439924
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 145210}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60ee4aae0e17349c999dbfc9f2e91489, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &21297430
 SpriteRenderer:
   m_ObjectHideFlags: 1
