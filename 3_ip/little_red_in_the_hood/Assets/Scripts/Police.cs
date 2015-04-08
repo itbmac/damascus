@@ -131,7 +131,7 @@ public class Police : MonoBehaviour {
 			int maxIterations = 5;
 			Vector2 potentialPos;
 			do {
-				potentialPos = Random.insideUnitCircle * DetectedInvestigativeRadius;
+				potentialPos = playerLastSeenPos + Random.insideUnitCircle * DetectedInvestigativeRadius;
 			} while (--maxIterations > 0 && Physics2D.OverlapPoint(potentialPos, LayerMask.GetMask("Obstacle")));
 		
 			agent.SetDestination(potentialPos);		
@@ -193,7 +193,7 @@ public class Police : MonoBehaviour {
 			var go = got.gameObject;
 			float dist = Vector2.Distance(transform.position, go.transform.position);			
 			if (go != gameObject && dist < CommunicationRange) {
-				print(name + " to " + go.name + " (" + dist + ")");
+				Debug.DrawLine(transform.position, go.transform.position, Color.green, 0.5f);
 				var police = go.GetComponent<Police>();
 				police.NotifyPlayerPos(player.transform.position);
 			}
