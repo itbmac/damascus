@@ -12,6 +12,7 @@ public class Police : MonoBehaviour {
 	public float InvestigativeSpeedMultiplier = 2.0f;
 	const float CommunicationRange = 35.0f;
 	public bool DebugMode;
+	public bool DogMode;
 	
 	public enum State {Normal, PlayerDetected, PlayerVisible}
 	
@@ -106,7 +107,9 @@ public class Police : MonoBehaviour {
 	float maxSpeed;
 	IEnumerator Start(){
 		player = FindObjectOfType<Player>().gameObject;
-		visionCone = transform.Find("VisionCone").GetComponent<Collider2D>();
+		var visionConeGO = transform.Find("VisionCone");
+		if (visionConeGO)
+			visionCone = visionConeGO.GetComponent<Collider2D>();
 		maxSpeed = agent.maxSpeed;
 		
 		yield return new WaitForSeconds(1);
@@ -150,7 +153,7 @@ public class Police : MonoBehaviour {
 	}
 	
 	bool isPlayerVisible() {
-		if (Player.Instance.IsUnderStreetlight) {
+		if (DogMode || Player.Instance.IsUnderStreetlight) {
 			int layerMask = LayerMask.GetMask("Obstacle");
 			
 			var r = Physics2D.Linecast(transform.position, player.transform.position, layerMask);
