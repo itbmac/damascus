@@ -153,14 +153,12 @@ public class Police : MonoBehaviour {
 	}
 	
 	bool isPlayerVisible() {
+		int layerMask = LayerMask.GetMask("Obstacle");		
+		if (Physics2D.Linecast(transform.position, player.transform.position, layerMask))
+			return false;
+	
 		if (DogMode || Player.Instance.IsUnderStreetlight) {
-			int layerMask = LayerMask.GetMask("Obstacle");
-			
-			var r = Physics2D.Linecast(transform.position, player.transform.position, layerMask);
-			if (DebugMode)
-				print (r);
-		
-			return !r;
+			return true;
 		} else {
 			return visionCone.IsTouching(player.GetComponent<Collider2D>());
 		}
@@ -195,7 +193,7 @@ public class Police : MonoBehaviour {
 			var go = got.gameObject;
 			float dist = Vector2.Distance(transform.position, go.transform.position);			
 			if (go != gameObject && dist < CommunicationRange) {
-				print ("Notifying to " + go.name);
+				print(name + " to " + go.name + " (" + dist + ")");
 				var police = go.GetComponent<Police>();
 				police.NotifyPlayerPos(player.transform.position);
 			}

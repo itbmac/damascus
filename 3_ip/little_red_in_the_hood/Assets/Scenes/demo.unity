@@ -4369,7 +4369,7 @@ RectTransform:
   - {fileID: 1582683286}
   - {fileID: 953791952}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -7825,7 +7825,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 408060, guid: edc20f9168343436e8c5a69077155040, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: edc20f9168343436e8c5a69077155040, type: 2}
@@ -10217,34 +10217,6 @@ PolygonCollider2D:
       - {x: 1.67474747, y: -10.0245619}
       - {x: -3.32881927, y: -4.9678278}
       - {x: -3.21949577, y: 5.1767149}
---- !u!1 &2005635170
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 173110, guid: b2bc37fe4c84f4c1e835d16465802cee, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 2005635171}
-  m_Layer: 0
-  m_Name: PlayerContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2005635171
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 475914, guid: b2bc37fe4c84f4c1e835d16465802cee, type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2005635170}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 53.0400009, y: -21.6900005, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2103963597}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
 --- !u!1 &2023372326
 GameObject:
   m_ObjectHideFlags: 0
@@ -10862,11 +10834,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 747523947}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.63022089, y: -2.03491926, z: 0}
+  m_LocalPosition: {x: 54.6702232, y: -23.7249203, z: 0}
   m_LocalScale: {x: 1.10000002, y: 1.10000002, z: 1}
   m_Children: []
-  m_Father: {fileID: 2005635171}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
 --- !u!1 &2137873533
 GameObject:
   m_ObjectHideFlags: 0
