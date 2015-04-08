@@ -75,32 +75,32 @@ public class VisionCone : MonoBehaviour {
 		transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, euler, AngleTurnSpeed);
 	}
 	
-	bool playerDetectTriggered;
-	void OnTriggerEnter2D(Collider2D c) {
-		if (c.name == "GlowStick")
-			SendMessageUpwards("OnDetectPlayer");
+//	bool playerDetectTriggered;
+//	void OnTriggerEnter2D(Collider2D c) {
+//		if (c.name == "GlowStick")
+//			SendMessageUpwards("OnDetectPlayer");
+//	
+//		if (c.name == "Player") {
+//			if (c.GetComponent<Player>().IsHidden)
+//				return; // TODO: what if player becomes unhidden while in cone
+//		
+//			SendMessageUpwards("OnDetectPlayer");
+//			playerDetectTriggered = true;
+//		}
+//	}
 	
-		if (c.name == "Player") {
-			if (c.GetComponent<Player>().IsHidden)
-				return; // TODO: what if player becomes unhidden while in cone
-		
-			SendMessageUpwards("OnDetectPlayer");
-			playerDetectTriggered = true;
-		}
-	}
-	
-	void OnTriggerStay2D(Collider2D c) {
-		if (c.name == "Player" && !playerDetectTriggered) {
-			if (c.GetComponent<Player>().IsHidden)
-				return; // TODO: what if player becomes unhidden while in cone
-				
-			SendMessageUpwards("OnDetectPlayer");
-			playerDetectTriggered = true;
-		}
-	}
-	
-	void OnTriggerExit2D(Collider2D c) {
-		if (c.name == "Player")
-			playerDetectTriggered = false;
-	}
+//	void OnTriggerStay2D(Collider2D c) {
+//		if (c.name == "Player" && !playerDetectTriggered) {
+//			if (c.GetComponent<Player>().IsHidden)
+//				return; // TODO: what if player becomes unhidden while in cone
+//				
+//			SendMessageUpwards("OnDetectPlayer");
+//			playerDetectTriggered = true;
+//		}
+//	}
+//	
+//	void OnTriggerExit2D(Collider2D c) {
+//		if (c.name == "Player")
+//			playerDetectTriggered = false;
+//	}
 }

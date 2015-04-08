@@ -11,6 +11,7 @@ public class Police : MonoBehaviour {
 	public AudioClip GotPlayer;
 	public float InvestigativeSpeedMultiplier = 2.0f;
 	const float CommunicationRange = 35.0f;
+	public bool DebugMode;
 	
 	public enum State {Normal, PlayerDetected, PlayerVisible}
 	
@@ -78,11 +79,14 @@ public class Police : MonoBehaviour {
 	
 	float nextChange;
 	void Update() {	
+		bool playerVisible = isPlayerVisible();
+		
 		if (CurrentState == State.Normal) {
-			if (ViceCopMode && Time.time > nextChange)
+			if (playerVisible) {
+				CurrentState = State.PlayerVisible;
+			} else if (ViceCopMode && Time.time > nextChange)
 				MoveRandom();	
-		} else {
-			bool playerVisible = visionCone.IsTouching(player.GetComponent<Collider2D>());
+		} else {			
 			if (CurrentState == State.PlayerVisible) {
 				playerLastSeenTime = Time.time;
 				playerLastSeenPos = player.transform.position;
@@ -145,25 +149,37 @@ public class Police : MonoBehaviour {
 			Gizmos.DrawSphere(WPoints[i], 0.15f);			
 	}
 	
-//	bool isPlayerVisible() {
-////		Vector2 dir = GetComponent<PolyNavAgent>().movingDirection;
-////		
-////		Vector2 playerPos = player.transform.position;
-//////		Vector2 toPlayer = playerPos - transform.position;
-//////		
-//////		float playerAngle = Vector3.Angle(toPlayer, -Vector2.right);
-//////		if (Mathf.Abs(playerAngle) > 45f) {
-//////			return false;
-//////		}
-//////		
-//////		if (toPlayer.magnitude > )
-////		
-////		int layerMask = LayerMask.GetMask("Player", "Default");
-////		print (layerMask);
-////		
-////		bool playerVisible = Physics2D.Linecast(transform.position, player.transform.position, layerMask);
+	bool isPlayerVisible() {
+		if (Player.Instance.IsUnderStreetlight) {
+			int layerMask = LayerMask.GetMask("Obstacle");
+			
+			var r = Physics2D.Linecast(transform.position, player.transform.position, layerMask);
+			if (DebugMode)
+				print (r);
+		
+			return !r;
+		} else {
+			return visionCone.IsTouching(player.GetComponent<Collider2D>());
+		}
+	
+//		Vector2 dir = GetComponent<PolyNavAgent>().movingDirection;
 //		
-//	}
+//		Vector2 playerPos = player.transform.position;
+////		Vector2 toPlayer = playerPos - transform.position;
+////		
+////		float playerAngle = Vector3.Angle(toPlayer, -Vector2.right);
+////		if (Mathf.Abs(playerAngle) > 45f) {
+////			return false;
+////		}
+////		
+////		if (toPlayer.magnitude > )
+//		
+//		int layerMask = LayerMask.GetMask("Player", "Default");
+//		print (layerMask);
+//		
+//		bool playerVisible = Physics2D.Linecast(transform.position, player.transform.position, layerMask);
+		
+	}
 	
 	float nextCommunicate;
 	void CommunicatePlayerPos() {	
@@ -192,10 +208,6 @@ public class Police : MonoBehaviour {
 	}
 	
 	void OnDetectPlayer() {
-		if (CurrentState != State.Normal)
-			return;
-	
-		CurrentState = State.PlayerVisible;
 	}
 	
 	void OnCollisionEnter2D(Collision2D coll) {

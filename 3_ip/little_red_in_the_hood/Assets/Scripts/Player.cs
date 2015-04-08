@@ -21,8 +21,15 @@ public class Player : MonoBehaviour {
 		get; private set;
 	}
 	
+	Collider2D collider2D;
+	
+	public bool IsUnderStreetlight {
+		get; private set;
+	}
+	
 	void Awake() {
 		Instance = this;
+		collider2D = GetComponent<Collider2D>();
 	}
 
 	// Use this for initialization
@@ -31,6 +38,8 @@ public class Player : MonoBehaviour {
 	}
 	
 	void Update() {
+		IsUnderStreetlight = collider2D.IsTouchingLayers(LayerMask.GetMask("Streetlight"));	
+	
 		if (Input.GetKeyDown(KeyCode.P) && NumPaint > 0) {
 			NumPaint -= 1;
 			Instantiate(PaintSplat, transform.position, Quaternion.identity);
