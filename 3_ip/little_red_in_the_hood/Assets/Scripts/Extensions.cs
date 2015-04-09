@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public static class Extensions {
 
@@ -27,5 +28,29 @@ public static class Extensions {
 			            pointOnRayLocal.y * edgeToRayRatios.x + boxCenter.y) :
 				new Vector2(pointOnRayLocal.x * edgeToRayRatios.y + boxCenter.x, 
 				            pointOnRayLocal.y > 0 ? boxMax.y : boxMin.y);
+	}
+	
+	public static float Angle(this Vector2 v) {
+		return Mathf.Atan2(v.y, v.x);	
+	}
+	
+//	public static float Angle(this Vector3 v) {
+//		return Mathf.Atan2 (v.y, v.x);	
+//	}
+	
+	public static Vector2 Rotated(this Vector2 v, float addAngle) {
+		var angle = v.Angle() + addAngle;
+		return v.magnitude * UnitVectorForAngle(angle);
+	}
+	
+	public static Vector2 UnitVectorForAngle(float angle) {
+		return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+	}
+	
+	public static IEnumerable<T> Prepend<T>(this IEnumerable<T> seq, T val) {
+		yield return val;
+		foreach (T t in seq) {
+			yield return t;
+		}
 	}
 }
