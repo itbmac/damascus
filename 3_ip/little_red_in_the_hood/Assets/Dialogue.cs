@@ -17,7 +17,7 @@ public class Dialogue : MonoBehaviour {
 	//Current line index being read.
 	int index = 0;
 	//The last line index that was visually rendered.
-	int lastRendered = -1;
+	int lastRendered = 0;
 
 	//I'll make this a list later....
 	dialogueLine[] dialogueLines;
@@ -69,7 +69,10 @@ public class Dialogue : MonoBehaviour {
 		{
 			inp_ln = inp_stm.ReadLine( );
 			// Do Something with the input. 
+
+			//This is for testing do not remove yet 8^)
 			print (inp_ln);
+
 			words = inp_ln.Split(delimiter);
 			dialogueLines[i] = new dialogueLine(words[0], words[1]);
 			print (dialogueLines[i].character + ": " + dialogueLines[i].dialogue);
@@ -80,6 +83,9 @@ public class Dialogue : MonoBehaviour {
 		//Load speaking characters.
 
 		//Load speech bubbles.
+
+		//Load the first line of text.
+		text2.text = dialogueLines[0].dialogue;
 
 	}
 	
@@ -108,19 +114,23 @@ public class Dialogue : MonoBehaviour {
 			//Move up the bottom onscreen dialogue to the top onscreen dialogue slot.
 			text3.text = text2.text;
 			sprite1.sprite = sprite2.sprite;
-			Vector3 temp = top_speech_bubble.transform.position;
-			temp.y = bottom_speech_bubble.transform.position.y;
-			top_speech_bubble.transform.position = temp;
+			Vector3 temp = top_speech_bubble.transform.eulerAngles;
+			temp.y = bottom_speech_bubble.transform.eulerAngles.y;
+			top_speech_bubble.transform.eulerAngles = temp;
 
 			//Move up the newly rendered dialogue to the bottom onscreen dialogue slot.
 			text2.text = text1.text;
 			//sprite2.sprite;
-			temp = bottom_speech_bubble.transform.position;
+			temp = bottom_speech_bubble.transform.eulerAngles;
 
 			//This needs to be worked out better but whatever
-			if(dialogueLines[index].dialogue != "Red"){
-				temp.y = -180;
-				bottom_speech_bubble.transform.position = temp;
+			if(dialogueLines[index].character != "Red"){
+				temp.y = 180;
+				bottom_speech_bubble.transform.eulerAngles = temp;
+			}
+			else{
+				temp.y = 0;
+				bottom_speech_bubble.transform.eulerAngles = temp;
 			}
 
 			lastRendered++;
