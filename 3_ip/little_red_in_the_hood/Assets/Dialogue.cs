@@ -30,11 +30,17 @@ public class Dialogue : MonoBehaviour {
 	public GameObject dialogue_bottom;
 	public GameObject dialogue_bottom_off;
 	public GameObject dialogue_top_off;
+	public GameObject top_speech_bubble;
+	public GameObject bottom_speech_bubble;
 
 	Text text1, text2, text3, text4;
+	SpriteRenderer sprite1, sprite2;
 
 	//The path of the file containing the dialogue.
 	public string file_path;
+
+	//The next scene after this dialogue.
+	public string nextScene;
 
 	// Use this for initialization
 	void Start () {
@@ -43,6 +49,8 @@ public class Dialogue : MonoBehaviour {
 		text2 = dialogue_bottom.GetComponent<Text>();
 		text3 = dialogue_top.GetComponent<Text>();
 		text4 = dialogue_top_off.GetComponent<Text>();
+		sprite1 = top_speech_bubble.GetComponent<SpriteRenderer>();
+		sprite2 = bottom_speech_bubble.GetComponent<SpriteRenderer>();
 
 		//Set background.
 
@@ -85,6 +93,9 @@ public class Dialogue : MonoBehaviour {
 		//for now, this doesn't do anything.
 		if(index == dialogueLines.Length){
 			//advance to next scene
+			if(nextScene != ""){
+				Application.LoadLevel(nextScene);
+			}
 		}
 		//Check if the user has advanced the dialogue.
 		else if(lastRendered != index){
@@ -96,9 +107,22 @@ public class Dialogue : MonoBehaviour {
 
 			//Move up the bottom onscreen dialogue to the top onscreen dialogue slot.
 			text3.text = text2.text;
+			sprite1.sprite = sprite2.sprite;
+			Vector3 temp = top_speech_bubble.transform.position;
+			temp.y = bottom_speech_bubble.transform.position.y;
+			top_speech_bubble.transform.position = temp;
 
 			//Move up the newly rendered dialogue to the bottom onscreen dialogue slot.
 			text2.text = text1.text;
+			//sprite2.sprite;
+			temp = bottom_speech_bubble.transform.position;
+
+			//This needs to be worked out better but whatever
+			if(dialogueLines[index].dialogue != "Red"){
+				temp.y = -180;
+				bottom_speech_bubble.transform.position = temp;
+			}
+
 			lastRendered++;
 		}
 	}
