@@ -53,4 +53,13 @@ public static class Extensions {
 			yield return t;
 		}
 	}
+	
+	public static Vector2 RayLineIntersection(Vector2 r_p, Vector2 r_d, Vector2 s_p, Vector2 s_d) {		
+		float T2 = (r_d.x*(s_p.y-r_p.y) + r_d.y*(r_p.x-s_p.x))/(s_d.x*r_d.y - s_d.y*r_d.x);
+		float T1 = (s_p.x+s_d.x*T2-r_p.x)/r_d.x;
+		if (T1 < 0)
+			Debug.LogError("Ray doesn't intersect line");
+		
+		return r_p + r_d * T1;		
+	}
 }
