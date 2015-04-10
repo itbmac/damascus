@@ -151,7 +151,7 @@ Prefab:
     - target: {fileID: 11426776, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
       propertyPath: MyText
       value: 
-      objectReference: {fileID: 4900000, guid: 532997055a14cb04683f514f63260896, type: 3}
+      objectReference: {fileID: 4900000, guid: 3a5db6b7d919a4eefb93d90c30f75667, type: 3}
     - target: {fileID: 21206066, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
       propertyPath: m_Sprite
       value: 
@@ -205,25 +205,41 @@ Prefab:
     - target: {fileID: 11426776, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
       propertyPath: Sprite1
       value: 
-      objectReference: {fileID: 21300000, guid: 8d9249dc11ce139469f9f10cb8b18b05,
+      objectReference: {fileID: 21300000, guid: 171db673c30b23b49b96391a6191499a,
         type: 3}
     - target: {fileID: 11426776, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
       propertyPath: Sprite2
       value: 
-      objectReference: {fileID: 21300000, guid: d005ad32ca2ba224fa987c1349722cf1,
+      objectReference: {fileID: 21300000, guid: 8d9249dc11ce139469f9f10cb8b18b05,
         type: 3}
     - target: {fileID: 11426776, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
       propertyPath: NextScene
       value: demo
       objectReference: {fileID: 0}
+    - target: {fileID: 22423130, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 22460488, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 22449222, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 280
+      objectReference: {fileID: 0}
+    - target: {fileID: 22481416, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 280
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &564517250 stripped
+--- !u!1 &564517250
 GameObject:
   m_PrefabParentObject: {fileID: 194258, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
   m_PrefabInternal: {fileID: 520177778}
---- !u!1 &1165775225 stripped
+--- !u!1 &1165775225
 GameObject:
   m_PrefabParentObject: {fileID: 138196, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
   m_PrefabInternal: {fileID: 520177778}

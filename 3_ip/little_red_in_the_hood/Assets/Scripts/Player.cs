@@ -22,7 +22,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	public bool IsUnderStreetlight {
-		get; private set;
+		get; set;
 	}
 	
 	public bool IsOnSprayPaint {

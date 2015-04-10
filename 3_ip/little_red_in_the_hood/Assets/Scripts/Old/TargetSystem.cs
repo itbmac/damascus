@@ -54,7 +54,7 @@ public class TargetSystem : MonoBehaviour {
 //		TOList[6] = target6;
 //		TOList[7] = target7;
 
-		currentTarget = numTargets-1;
+		currentTarget = 0;
 		TList[currentTarget].hasBeenPassed = true;
 	}
 	
@@ -62,8 +62,9 @@ public class TargetSystem : MonoBehaviour {
 	void Update () {
 		if (TList[currentTarget].hasBeenPassed) {
 			if (currentTarget+1 == numTargets) {
-				GameObject[] playerz = GameObject.FindGameObjectsWithTag("Player");
-				playerz[0].GetComponent<Player>().ResetPosToStart();
+				//GameObject[] playerz = GameObject.FindGameObjectsWithTag("Player");
+				//playerz[0].GetComponent<Player>().ResetPosToStart();
+				Application.LoadLevel(Application.loadedLevel + 1);
 			}
 
 			currentTarget = (currentTarget+1)%numTargets;
