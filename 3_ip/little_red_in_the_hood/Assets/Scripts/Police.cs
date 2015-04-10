@@ -10,7 +10,7 @@ public class Police : MonoBehaviour {
 
 	public AudioClip GotPlayer;
 	public float InvestigativeSpeedMultiplier = 2.0f;
-	const float CommunicationRange = 35.0f;
+	const float CommunicationRange = 0.0f;
 	public bool DebugMode;
 	public bool DogMode;
 	
@@ -113,14 +113,22 @@ public class Police : MonoBehaviour {
 		maxSpeed = agent.maxSpeed;
 		
 		yield return new WaitForSeconds(1);
-		if (WPoints.Length > 0)
+		if (WPoints.Length > 0) {
+			Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+
+			for (int i = 0; i < WPoints.Length; i++) {
+				WPoints[i] += pos;
+			}
+
 			MoveRandom();
+		}
 	}
 	
 	void MoveRandom() {
 		if (CurrentState == State.Normal) {	
 			if (ViceCopMode) {
-				WPointsIndex = Random.Range(0, WPoints.Length);
+				//WPointsIndex = Random.Range(0, WPoints.Length);
+				WPointsIndex = (WPointsIndex + 1) % WPoints.Length;	
 				nextChange = Time.time + Random.Range(2.0F, 10.0F);
 			} else {		
 				WPointsIndex = (WPointsIndex + 1) % WPoints.Length;	
@@ -148,8 +156,10 @@ public class Police : MonoBehaviour {
 	}
 	
 	void OnDrawGizmosSelected(){
+		Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+
 		for ( int i = 0; i < WPoints.Length; i++)
-			Gizmos.DrawSphere(WPoints[i], 0.15f);			
+			Gizmos.DrawSphere(WPoints[i] + pos, 0.15f);			
 	}
 	
 	bool isPlayerVisible() {
