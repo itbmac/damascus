@@ -1057,11 +1057,12 @@ PolygonCollider2D:
       - {x: 3.95470047, y: 14.2923555}
       - {x: 4.28251839, y: 13.3509064}
       - {x: 3.11203575, y: 11.9242687}
-      - {x: 3.93460655, y: 5.77836752}
+      - {x: 2.76342964, y: 5.77836752}
       - {x: 3.01858711, y: 3.01592517}
       - {x: 3.29294968, y: -2.7072432}
-      - {x: 3.76554108, y: -3.59792948}
-      - {x: 3.6974926, y: -10.3339911}
+      - {x: 2.86771011, y: -7.57404709}
+      - {x: 2.88516808, y: -11.4455948}
+      - {x: 2.87232971, y: -20.8092613}
       - {x: -1.6264019, y: -21.1368408}
       - {x: 1.39642525, y: -27.0821762}
       - {x: 23.456007, y: -22.975769}
@@ -3558,7 +3559,7 @@ MonoBehaviour:
   cameraSize: 5
   cameraSizeTarget: 5
   cameraSizeStart: 5
-  cameraSizeZoomed: 2
+  cameraSizeZoomed: 4.75
   cameraSizeTransitionTimeStandard: 1.29999995
   cameraSizeTransitionTimeFactorCurrent: 1
   shake_decay: .00200000009
@@ -8042,26 +8043,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generateOnUpdate: 1
   navObstacles:
-  - {fileID: 821619675}
-  - {fileID: 973640899}
   - {fileID: 1772600973}
-  - {fileID: 76486226}
   - {fileID: 1381615039}
-  - {fileID: 1432238447}
-  - {fileID: 538668961}
-  - {fileID: 453846838}
   - {fileID: 870263268}
-  - {fileID: 1055705303}
-  - {fileID: 1906391555}
-  - {fileID: 1170359267}
-  - {fileID: 1365206999}
-  - {fileID: 445393009}
-  - {fileID: 1952716420}
   - {fileID: 150609009}
-  - {fileID: 201768221}
-  - {fileID: 136709915}
-  - {fileID: 600194813}
   - {fileID: 1716352905}
+  - {fileID: 1055705303}
+  - {fileID: 821619675}
+  - {fileID: 76486226}
+  - {fileID: 538668961}
+  - {fileID: 1432238447}
+  - {fileID: 1952716420}
+  - {fileID: 201768221}
+  - {fileID: 1906391555}
+  - {fileID: 136709915}
+  - {fileID: 973640899}
+  - {fileID: 1365206999}
+  - {fileID: 600194813}
+  - {fileID: 453846838}
+  - {fileID: 1170359267}
+  - {fileID: 445393009}
   inflateRadius: 0
   regenerateFlag: 1
 --- !u!1 &1772600971

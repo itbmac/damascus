@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,8 +31,10 @@ public class Police : MonoBehaviour {
 				MoveRandom();
 			} else {			
 				agent.maxSpeed = maxSpeed * InvestigativeSpeedMultiplier;
+
+				float dist = Vector2.Distance(transform.position, player.transform.position); 
 				
-				if (_currentState == State.Normal && value == State.PlayerVisible) {
+				if ((dist < DetectionRange) && _currentState == State.Normal && value == State.PlayerVisible) {
 					GetComponent<AudioSource>().PlayOneShot(GotPlayer);
 					TheGameManager.Instance.Detected();
 				}
@@ -64,9 +66,12 @@ public class Police : MonoBehaviour {
 	
 	Vector2 playerLastSeenPos;
 	float playerLastSeenTime;
-	
-	const float PlayerDetectedTime = 10.0f;
+	float playerFirstSeenTime;
+
+	const float PlayerSeenTimeBeforeArrest = 1.5f;
+	const float PlayerDetectedTime = 5.0f;
 	const float DetectedInvestigativeRadius = 1.5f;
+	const float DetectionRange = 7.0f;
 	
 	void OnEnable(){
 		agent.OnDestinationReached += MoveRandom;
@@ -90,6 +95,7 @@ public class Police : MonoBehaviour {
 		} else {			
 			if (CurrentState == State.PlayerVisible) {
 				playerLastSeenTime = Time.time;
+				playerFirstSeenTime = Time.time;
 				playerLastSeenPos = player.transform.position;
 				agent.SetDestination(playerLastSeenPos);
 			
@@ -100,6 +106,17 @@ public class Police : MonoBehaviour {
 			} else if (CurrentState == State.PlayerDetected) {
 				if (Time.time - playerLastSeenTime > PlayerDetectedTime)
 					CurrentState = State.Normal;
+				else if (playerVisible) {
+					playerLastSeenTime = Time.time;
+					TheGameManager.Instance.Detected();
+
+					if (playerLastSeenTime - playerFirstSeenTime > PlayerSeenTimeBeforeArrest) {
+						Application.LoadLevel(Application.loadedLevel);
+					}
+				}
+				else {
+					//playerFirstSeenTime = Time.time;
+				}
 			}
 		}
 	}
@@ -163,6 +180,12 @@ public class Police : MonoBehaviour {
 	}
 	
 	bool isPlayerVisible() {
+
+		float dist = Vector2.Distance(transform.position, player.transform.position); 
+
+		if (dist > DetectionRange)
+			return false;
+
 		if (Player.Instance.IsOnSprayPaint)
 			return false;
 	
