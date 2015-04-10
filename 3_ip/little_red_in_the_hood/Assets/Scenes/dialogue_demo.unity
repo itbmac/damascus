@@ -148,6 +148,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21300000, guid: baa7f0efc05c2f442b4f57d760969f0a,
         type: 3}
+    - target: {fileID: 11426776, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
+      propertyPath: MyText
+      value: 
+      objectReference: {fileID: 4900000, guid: 532997055a14cb04683f514f63260896, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
   m_IsPrefabParent: 0

@@ -40,6 +40,7 @@ public class Dialogue : MonoBehaviour {
 	public GameObject dialogue_top_off;
 	public GameObject top_speech_bubble;
 	public GameObject bottom_speech_bubble;
+	public TextAsset MyText;
 
 	//Sprites
 	//sprite1 corresponds with speaker1, sprite2 corresponds with speaker2.
@@ -65,6 +66,8 @@ public class Dialogue : MonoBehaviour {
 		text4 = dialogue_top_off.GetComponent<Text>();
 		bubble1 = top_speech_bubble.GetComponent<SpriteRenderer>();
 		bubble2 = bottom_speech_bubble.GetComponent<SpriteRenderer>();
+		
+		Debug.Log (MyText.text);
 
 		//Set background.
 
