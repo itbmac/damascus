@@ -41,6 +41,8 @@ public class Dialogue : MonoBehaviour {
 	public GameObject dialogue_top_off;
 	public GameObject top_speech_bubble;
 	public GameObject bottom_speech_bubble;
+	public GameObject left_sprite;
+	public GameObject right_sprite;
 	public TextAsset MyText;
 
 	//Sprites
@@ -66,6 +68,8 @@ public class Dialogue : MonoBehaviour {
 		text4 = dialogue_top_off.GetComponent<Text>();
 		bubble1 = top_speech_bubble.GetComponent<SpriteRenderer>();
 		bubble2 = bottom_speech_bubble.GetComponent<SpriteRenderer>();
+		left_sprite.GetComponent<SpriteRenderer> ().sprite = sprite1;
+		right_sprite.GetComponent<SpriteRenderer> ().sprite = sprite2;
 
 		//Set background.
 
@@ -75,11 +79,12 @@ public class Dialogue : MonoBehaviour {
 		//Read the first line, parse, and use this information.
 		string inp_ln_first = Lines[0];
 
-		// The first line indicates the two speakers.
+		// The first line indicates the two speakers, and how many lines of dialogue.
 		char[] delin = {' '};
 		string[] temp = inp_ln_first.Split(delin);
 		speaker1 = temp[0];
 		speaker2 = temp[1];
+		numLines = int.Parse(temp[2]);
 
 		string[] words;
 		char[] delimiter = {':'};
