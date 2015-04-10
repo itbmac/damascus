@@ -1,4 +1,12 @@
-﻿using UnityEngine;
+﻿/*
+ * DIALOGUE SYSTEM
+ * 
+ * Notes:
+ * 	-currently only supports 2 speakers
+ * 
+ */
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Collections;
@@ -33,8 +41,14 @@ public class Dialogue : MonoBehaviour {
 	public GameObject top_speech_bubble;
 	public GameObject bottom_speech_bubble;
 
+	//Sprites
+	//sprite1 corresponds with speaker1, sprite2 corresponds with speaker2.
+	//speaker1 on the left, speaker2 on the right.
+	public Sprite sprite1, sprite2;
+	string speaker1, speaker2;
+
 	Text text1, text2, text3, text4;
-	SpriteRenderer sprite1, sprite2;
+	SpriteRenderer bubble1, bubble2;
 
 	//The path of the file containing the dialogue.
 	public string file_path;
@@ -49,8 +63,8 @@ public class Dialogue : MonoBehaviour {
 		text2 = dialogue_bottom.GetComponent<Text>();
 		text3 = dialogue_top.GetComponent<Text>();
 		text4 = dialogue_top_off.GetComponent<Text>();
-		sprite1 = top_speech_bubble.GetComponent<SpriteRenderer>();
-		sprite2 = bottom_speech_bubble.GetComponent<SpriteRenderer>();
+		bubble1 = top_speech_bubble.GetComponent<SpriteRenderer>();
+		bubble2 = bottom_speech_bubble.GetComponent<SpriteRenderer>();
 
 		//Set background.
 
@@ -59,6 +73,13 @@ public class Dialogue : MonoBehaviour {
 
 		//Read the first line, parse, and use this information.
 		string inp_ln = inp_stm.ReadLine( );
+
+		// The first line indicates the two speakers.
+		char[] delin = {' '};
+		string[] temp = inp_ln.Split(delin);
+		speaker1 = temp[0];
+		speaker2 = temp[1];
+
 		string[] words;
 		char[] delimiter = {':'};
 
@@ -68,7 +89,6 @@ public class Dialogue : MonoBehaviour {
 		while(!inp_stm.EndOfStream)
 		{
 			inp_ln = inp_stm.ReadLine( );
-			// Do Something with the input. 
 
 			//This is for testing do not remove yet 8^)
 			print (inp_ln);
@@ -86,6 +106,10 @@ public class Dialogue : MonoBehaviour {
 
 		//Load the first line of text.
 		text2.text = dialogueLines[0].dialogue;
+		print (dialogueLines[0].character + ", " + speaker2);
+		if(dialogueLines[0].character == speaker2){
+			bottom_speech_bubble.transform.eulerAngles = new Vector3(0, 180, 0);
+		}
 
 	}
 	
@@ -113,7 +137,7 @@ public class Dialogue : MonoBehaviour {
 
 			//Move up the bottom onscreen dialogue to the top onscreen dialogue slot.
 			text3.text = text2.text;
-			sprite1.sprite = sprite2.sprite;
+			bubble1.sprite = bubble2.sprite;
 			Vector3 temp = top_speech_bubble.transform.eulerAngles;
 			temp.y = bottom_speech_bubble.transform.eulerAngles.y;
 			top_speech_bubble.transform.eulerAngles = temp;
