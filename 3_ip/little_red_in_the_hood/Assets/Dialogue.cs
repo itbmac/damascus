@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Collections;
+using System.Linq;
 
 struct dialogueLine {
 	public string character;
@@ -51,11 +52,10 @@ public class Dialogue : MonoBehaviour {
 	Text text1, text2, text3, text4;
 	SpriteRenderer bubble1, bubble2;
 
-	//The path of the file containing the dialogue.
-	public string file_path;
-
 	//The next scene after this dialogue.
 	public string nextScene;
+	
+	string[] Lines;
 
 	// Use this for initialization
 	void Start () {
@@ -66,20 +66,18 @@ public class Dialogue : MonoBehaviour {
 		text4 = dialogue_top_off.GetComponent<Text>();
 		bubble1 = top_speech_bubble.GetComponent<SpriteRenderer>();
 		bubble2 = bottom_speech_bubble.GetComponent<SpriteRenderer>();
-		
-		Debug.Log (MyText.text);
 
 		//Set background.
 
 		//Read in dialogue file.
-		StreamReader inp_stm = new StreamReader(file_path);
+		Lines = MyText.text.Split (new char[] {'\r', '\n'}, System.StringSplitOptions.RemoveEmptyEntries);
 
 		//Read the first line, parse, and use this information.
-		string inp_ln = inp_stm.ReadLine( );
+		string inp_ln_first = Lines[0];
 
 		// The first line indicates the two speakers.
 		char[] delin = {' '};
-		string[] temp = inp_ln.Split(delin);
+		string[] temp = inp_ln_first.Split(delin);
 		speaker1 = temp[0];
 		speaker2 = temp[1];
 
@@ -89,10 +87,8 @@ public class Dialogue : MonoBehaviour {
 		dialogueLines = new dialogueLine[numLines];
 
 		int i = 0;
-		while(!inp_stm.EndOfStream)
+		foreach (var inp_ln in Lines.Skip(1))
 		{
-			inp_ln = inp_stm.ReadLine( );
-
 			//This is for testing do not remove yet 8^)
 			print (inp_ln);
 
@@ -101,7 +97,6 @@ public class Dialogue : MonoBehaviour {
 			print (dialogueLines[i].character + ": " + dialogueLines[i].dialogue);
 			i++;
 		}
-		inp_stm.Close( ); 
 
 		//Load speaking characters.
 
