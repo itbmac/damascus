@@ -63,6 +63,14 @@ public class Dialogue : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//Initialize variables.
+		dialogue_top = transform.FindChild("dialogue_top").gameObject;
+		dialogue_bottom = transform.FindChild("dialogue_bottom").gameObject;
+		dialogue_bottom_off = transform.FindChild("dialogue_bottom_off").gameObject;
+		dialogue_top_off = transform.FindChild("dialogue_top_off").gameObject;
+		top_speech_bubble = dialogue_top.transform.FindChild("top_speech_bubble").gameObject;
+		bottom_speech_bubble = dialogue_bottom.transform.FindChild("bottom_speech_bubble").gameObject;
+		left_sprite = transform.FindChild("left_sprite").gameObject;
+		right_sprite = transform.FindChild("right_sprite").gameObject;
 
 		text1 = dialogue_bottom_off.GetComponent<Text>();
 		text2 = dialogue_bottom.GetComponent<Text>();
