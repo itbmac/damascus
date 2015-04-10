@@ -34,42 +34,44 @@ public class Dialogue : MonoBehaviour {
 	//This will be reinitialized in Start() once I start reading in files.
 	int numLines = 9;
 
-	//Will initialize these privately later
-	public GameObject dialogue_top;
-	public GameObject dialogue_bottom;
-	public GameObject dialogue_bottom_off;
-	public GameObject dialogue_top_off;
-	public GameObject top_speech_bubble;
-	public GameObject bottom_speech_bubble;
-	public GameObject left_sprite;
-	public GameObject right_sprite;
+	GameObject dialogue_top;
+	GameObject dialogue_bottom;
+	GameObject dialogue_bottom_off;
+	GameObject dialogue_top_off;
+	GameObject top_speech_bubble;
+	GameObject bottom_speech_bubble;
+	GameObject left_sprite;
+	GameObject right_sprite;
+
+	//The text file we read from.
 	public TextAsset MyText;
 
 	//Sprites
 	//sprite1 corresponds with speaker1, sprite2 corresponds with speaker2.
 	//speaker1 on the left, speaker2 on the right.
-	public Sprite sprite1, sprite2;
+	public Sprite Sprite1, Sprite2;
 	string speaker1, speaker2;
 
 	Text text1, text2, text3, text4;
 	SpriteRenderer bubble1, bubble2;
 
 	//The next scene after this dialogue.
-	public string nextScene;
+	public string NextScene;
 	
 	string[] Lines;
 
 	// Use this for initialization
 	void Start () {
 		//Initialize variables.
+
 		text1 = dialogue_bottom_off.GetComponent<Text>();
 		text2 = dialogue_bottom.GetComponent<Text>();
 		text3 = dialogue_top.GetComponent<Text>();
 		text4 = dialogue_top_off.GetComponent<Text>();
 		bubble1 = top_speech_bubble.GetComponent<SpriteRenderer>();
 		bubble2 = bottom_speech_bubble.GetComponent<SpriteRenderer>();
-		left_sprite.GetComponent<SpriteRenderer> ().sprite = sprite1;
-		right_sprite.GetComponent<SpriteRenderer> ().sprite = sprite2;
+		left_sprite.GetComponent<SpriteRenderer> ().sprite = Sprite1;
+		right_sprite.GetComponent<SpriteRenderer> ().sprite = Sprite2;
 
 		//Set background.
 
@@ -126,8 +128,8 @@ public class Dialogue : MonoBehaviour {
 		//for now, this doesn't do anything.
 		if(index == dialogueLines.Length){
 			//advance to next scene
-			if(nextScene != ""){
-				Application.LoadLevel(nextScene);
+			if(NextScene != ""){
+				Application.LoadLevel(NextScene);
 			}
 		}
 		//Check if the user has advanced the dialogue.

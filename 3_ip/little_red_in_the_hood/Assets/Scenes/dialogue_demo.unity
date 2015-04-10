@@ -202,6 +202,20 @@ Prefab:
       propertyPath: right_sprite
       value: 
       objectReference: {fileID: 564517250}
+    - target: {fileID: 11426776, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
+      propertyPath: Sprite1
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d9249dc11ce139469f9f10cb8b18b05,
+        type: 3}
+    - target: {fileID: 11426776, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
+      propertyPath: Sprite2
+      value: 
+      objectReference: {fileID: 21300000, guid: d005ad32ca2ba224fa987c1349722cf1,
+        type: 3}
+    - target: {fileID: 11426776, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
+      propertyPath: NextScene
+      value: demo
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 237d08e2cf1365e438e582c7849fe9f3, type: 2}
   m_IsPrefabParent: 0
