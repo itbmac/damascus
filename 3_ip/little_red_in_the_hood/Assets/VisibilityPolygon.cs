@@ -6,17 +6,23 @@ using System.Linq;
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(PolygonCollider2D))]
-public class ShadowTest : MonoBehaviour {
+[RequireComponent(typeof(VisionCone))]
+public class VisibilityPolygon : MonoBehaviour {
 
-	public float UpdateTime = 0.01f;	
-	public float MaxDistance = 5.0f;
-	public float DirectionAngle;
+	public float UpdateTime = 0.05f;
+	public float MaxDistance = 7.5f;
 	public float AngleSize = Mathf.PI/2;	
 	public float CastDistanceMultiplier = 3;
 	
 	Mesh mesh;
 	float nextUpdate;
 	int layerMask;
+	float currentAngle {
+		get {
+			return visionCone.CurrentAngle * Mathf.Deg2Rad;
+		}
+	}
+	VisionCone visionCone;
 	
 	// Use this for initialization
 	void Start () {		
@@ -25,6 +31,7 @@ public class ShadowTest : MonoBehaviour {
 		GetComponent<MeshFilter>().mesh = mesh;	
 		
 		layerMask = LayerMask.GetMask("Obstacle");
+		visionCone = GetComponent<VisionCone>();
 	}	
 	
 	Vector2 Raycast(Vector2 dir) {
@@ -100,7 +107,7 @@ public class ShadowTest : MonoBehaviour {
 ////			print ( (x - (Vector2)transform.position).Angle());
 //		}
 
-		var dir = Extensions.UnitVectorForAngle(DirectionAngle);
+		var dir = Extensions.UnitVectorForAngle(currentAngle);
 		
 		var lower = dir.Rotated(AngleSize/2) * MaxDistance;
 		var upper = dir.Rotated(-AngleSize/2) * MaxDistance;		
@@ -111,7 +118,7 @@ public class ShadowTest : MonoBehaviour {
 			.Where(v => (Vector2.Angle(dir, v.normalized) * Mathf.Deg2Rad) <= AngleSize/2)
 			.SelectMany(v => new Vector2[] {v.Rotated(-0.1f), v, v.Rotated(0.1f)})
 			.Concat(new Vector2[] {lower, upper})
-			.OrderBy(v => AngleDiff(v.Angle(), DirectionAngle) )
+			.OrderBy(v => AngleDiff(v.Angle(), currentAngle) )
 			.Select(x => Raycast(x))	
 //			.Select(x => ConstrainPointToLine(Vector2.zero, lower, upper, x))		
 			.Select(x => (Vector3)x)

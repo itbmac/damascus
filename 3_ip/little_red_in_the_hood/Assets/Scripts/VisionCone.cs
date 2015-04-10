@@ -35,15 +35,18 @@ public class VisionCone : MonoBehaviour {
 	public float ViceMaxTime = 3;
 	Vector2 lastDir;
 	
+	public float CurrentAngle;
+	
 	// Update is called once per frame
 	void Update () {
-		SpriteRenderer sr = GetComponent<SpriteRenderer>();
-		
-		if (InvestigativeMode) {
-			sr.color = Color.red;
-		} else {
-			sr.color = Color.white;
-		}
+		// TODO: fix
+//		SpriteRenderer sr = GetComponent<SpriteRenderer>();
+//		
+//		if (InvestigativeMode) {
+//			sr.color = Color.red;
+//		} else {
+//			sr.color = Color.white;
+//		}
 			
 	
 		Vector2 dir = transform.parent.GetComponent<PolyNavAgent>().movingDirection;
@@ -70,9 +73,11 @@ public class VisionCone : MonoBehaviour {
 		
 		float angle = Mathf.Repeat (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + AngleOffset + ViceOffset, AngleTurnLengthForRepeat);
 		
-		Vector3 euler = transform.eulerAngles;
-		euler.z = angle;
-		transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, euler, AngleTurnSpeed);
+		CurrentAngle = Mathf.LerpAngle(CurrentAngle, angle, AngleTurnSpeed);
+		
+//		Vector3 euler = transform.eulerAngles;
+//		euler.z = angle;
+//		transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, euler, AngleTurnSpeed);
 	}
 	
 //	bool playerDetectTriggered;
