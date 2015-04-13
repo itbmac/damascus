@@ -18,4 +18,10 @@ public class MyMonoBehaviour : MonoBehaviour {
 			spriteRenderer.color = value;
 		}
 	}
+	
+	protected Animator anim {
+		get {
+			return GetComponent<Animator>();
+		}
+	}
 }

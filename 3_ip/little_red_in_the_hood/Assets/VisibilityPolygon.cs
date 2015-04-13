@@ -79,12 +79,20 @@ public class VisibilityPolygon : MonoBehaviour {
 		}
 	}
 	
+	void FixedUpdate() {
+		UpdatePolygon();
+	}
+	
+	void Update() {
+		UpdatePolygon();
+	}
+	
 	// Update is called once per frame
-	void Update () {
-		if (Time.time < nextUpdate)
-			return;
-		else
-			nextUpdate = Time.time + UpdateTime;
+	void UpdatePolygon() {
+//		if (Time.time < nextUpdate)
+//			return;
+//		else
+//			nextUpdate = Time.time + UpdateTime;
 			
 		var l = new List<Vector2>();
 		
@@ -128,16 +136,16 @@ public class VisibilityPolygon : MonoBehaviour {
 //		foreach (var x in mesh.vertices) {
 //			Debug.DrawLine(transform.position, transform.position + x, Color.red, UpdateTime);
 //		}
-				
+//				
 //		for (int i = 1; i < mesh.vertices.Length; i++) {
-//			if (i == 0)
-//				Debug.DrawLine(
-//					transform.position + mesh.vertices.First(),
-//					transform.position + mesh.vertices.Last(),
-//					Color.blue,
-//					UpdateTime
-//				);
-//			else
+////			if (i == 0)
+////				Debug.DrawLine(
+////					transform.position + mesh.vertices.First(),
+////					transform.position + mesh.vertices.Last(),
+////					Color.blue,
+////					UpdateTime
+////				);
+////			else
 //				Debug.DrawLine(
 //					transform.position + mesh.vertices[i - 1],
 //					transform.position + mesh.vertices[i],

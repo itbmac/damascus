@@ -119,6 +119,10 @@ public class Police : MonoBehaviour {
 				}
 			}
 		}
+		
+		var euler = transform.eulerAngles;
+		euler.z = Mathf.LerpAngle(euler.z, GetComponent<PolyNavAgent>().movingDirection.Angle() * Mathf.Rad2Deg + 90f, 0.2f);
+		transform.eulerAngles = euler;
 	}
 	
 	float maxSpeed;

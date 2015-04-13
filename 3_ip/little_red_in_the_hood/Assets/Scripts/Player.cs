@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour {
+public class Player : MyMonoBehaviour {
 	public float WalkSpeed = 12f;
 	public float SlowSpeed = 6f;
 	public float RunSpeed = 18f;
@@ -27,6 +27,14 @@ public class Player : MonoBehaviour {
 	
 	public bool IsOnSprayPaint {
 		get; private set;
+	}
+	
+	const string MovementMode = "MovementMode";
+	enum AnimState {
+		Idle = 0,
+		Sneak = 1,
+		Walk = 2,
+		Run = 3		
 	}
 	
 	void Awake() {
@@ -57,12 +65,19 @@ public class Player : MonoBehaviour {
 	void FixedUpdate()
 	{
 		float speed;
-		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
 			speed = RunSpeed;
-		else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+			anim.SetInteger(MovementMode, (int)AnimState.Run);
+		} else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) {
 			speed = SlowSpeed;
-		else
+			anim.SetInteger(MovementMode, (int)AnimState.Sneak);
+		} else if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0){
 			speed = WalkSpeed;			
+			anim.SetInteger(MovementMode, (int)AnimState.Walk);
+		} else {
+			anim.SetInteger(MovementMode, (int)AnimState.Idle);
+			speed = WalkSpeed; // TODO: what should this be
+		}
 	
 		Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
 		velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed;
