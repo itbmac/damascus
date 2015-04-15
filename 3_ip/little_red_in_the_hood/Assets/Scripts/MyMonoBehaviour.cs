@@ -9,6 +9,12 @@ public class MyMonoBehaviour : MonoBehaviour {
 		}
 	}
 	
+	protected Renderer renderer {
+		get {
+			return GetComponent<Renderer>();
+		}
+	}
+	
 	protected Color color {
 		get {
 			return spriteRenderer.color;

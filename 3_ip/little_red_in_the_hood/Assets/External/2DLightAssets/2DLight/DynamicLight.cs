@@ -22,7 +22,7 @@ public class verts
 
 [Serializable]
 
-public class DynamicLight : MonoBehaviour {
+public class DynamicLight : MyMonoBehaviour {
 
 	public delegate void OnReachedDelegate(GameObject[] go);
 	public event OnReachedDelegate OnReachedGameObjects;
@@ -125,7 +125,10 @@ public class DynamicLight : MonoBehaviour {
 	}
 
 	void Update(){
-
+		if (Application.isPlaying) {
+			if (!renderer.isVisible && !(transform.childCount > 0 && transform.GetChild(0).GetComponent<Renderer>().isVisible))
+				return;
+		}
 
 		fixedLimitations();
 
@@ -135,9 +138,6 @@ public class DynamicLight : MonoBehaviour {
 			renderLightMesh ();
 			resetBounds ();
 		}
-
-
-
 	}
 
 

@@ -85,6 +85,7 @@ public class Police : MyMonoBehaviour {
 	
 	float nextChange;
 	void Update() {	
+	
 		bool playerVisible = isPlayerVisible();
 		
 		if (CurrentState == State.Normal) {
