@@ -18,6 +18,8 @@ public class Player : MyMonoBehaviour {
 	public int NumPaint = 5;
 	public int NumGlowsticks = 5;
 	
+	public float Health = 1.0f;
+	
 	public static Player Instance {
 		get; private set;
 	}
@@ -47,6 +49,13 @@ public class Player : MyMonoBehaviour {
 		startLoc = transform.position;
 	}
 	
+	public float HealthRegenRate = 0.1f;
+	
+	private bool GodMode;
+	public bool StealthMode {
+		get; private set;
+	}
+	
 	void Update() {
 		IsUnderStreetlight = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("Streetlight"));	
 		IsOnSprayPaint = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("SprayPaint"));	
@@ -58,6 +67,29 @@ public class Player : MyMonoBehaviour {
 		} else {
 			color = Color.white;
 		}
+		
+		if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.M) && Input.anyKeyDown) {
+			GodMode = !GodMode;
+			if (GodMode)
+				print("God mode on");
+			else
+				print("God mode off");
+		}
+		
+		if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.T) && Input.anyKeyDown) {
+			StealthMode = !StealthMode;
+			if (StealthMode)
+				print("Stealth mode on");
+			else
+				print("Stealth mode off");
+		}
+		
+		if (Health < 0.0f && !GodMode) {
+			Application.LoadLevel(Application.loadedLevel);
+			return;
+		}
+		Health += HealthRegenRate * Time.deltaTime;
+		Health = Mathf.Min(1, Health);
 
 //		if (Input.GetKeyDown(KeyCode.P) && NumPaint > 0) {
 //			NumPaint -= 1;

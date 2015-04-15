@@ -83,10 +83,16 @@ public class Police : MyMonoBehaviour {
 		agent.OnDestinationInvalid -= OnDestinationInvalid;
 	}
 	
+	const float HealthToDrain = 1.0f;
+	
 	float nextChange;
 	void Update() {	
 	
 		bool playerVisible = isPlayerVisible();
+		
+		if (playerVisible) {
+			player.GetComponent<Player>().Health -= HealthToDrain * Time.deltaTime;
+		}
 		
 		if (CurrentState == State.Normal) {
 			if (playerVisible) {
@@ -111,9 +117,9 @@ public class Police : MyMonoBehaviour {
 					playerLastSeenTime = Time.time;
 					TheGameManager.Instance.Detected();
 
-					if (playerLastSeenTime - playerFirstSeenTime > PlayerSeenTimeBeforeArrest) {
-						Application.LoadLevel(Application.loadedLevel);
-					}
+//					if (playerLastSeenTime - playerFirstSeenTime > PlayerSeenTimeBeforeArrest) {
+//						Application.LoadLevel(Application.loadedLevel);
+//					}
 				}
 				else {
 					//playerFirstSeenTime = Time.time;
@@ -178,6 +184,8 @@ public class Police : MyMonoBehaviour {
 	}
 	
 	bool isPlayerVisible() {
+		if (Player.Instance.StealthMode)
+			return false;
 
 		float dist = Vector2.Distance(transform.position, player.transform.position); 
 
