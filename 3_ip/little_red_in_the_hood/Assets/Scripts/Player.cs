@@ -50,6 +50,14 @@ public class Player : MyMonoBehaviour {
 	void Update() {
 		IsUnderStreetlight = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("Streetlight"));	
 		IsOnSprayPaint = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("SprayPaint"));	
+		
+		if (IsOnSprayPaint) {
+			color = Color.red;
+		} else if (IsUnderStreetlight) {
+			color = Color.yellow;
+		} else {
+			color = Color.white;
+		}
 
 //		if (Input.GetKeyDown(KeyCode.P) && NumPaint > 0) {
 //			NumPaint -= 1;

@@ -32,8 +32,8 @@ GameObject:
   - 60: {fileID: 6049498}
   - 114: {fileID: 11486276}
   - 82: {fileID: 8277694}
-  - 114: {fileID: 11429654}
   - 114: {fileID: 11442256}
+  - 95: {fileID: 9517588}
   m_Layer: 0
   m_Name: Patrol
   m_TagString: New Tag
@@ -60,8 +60,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.9799995, y: 29.7099991, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -13.2299995, y: 23.8500004, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
   - {fileID: 425434}
   m_Father: {fileID: 0}
@@ -155,11 +155,16 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Points:
     m_Paths:
-    - - {x: 0, y: 1.50552464}
-      - {x: 1.43183911, y: .46523267}
-      - {x: .884925067, y: -1.21799517}
-      - {x: -.884925365, y: -1.21799493}
-      - {x: -1.43183899, y: .465232879}
+    - - {x: 0, y: 0}
+      - {x: -4.94974756, y: 4.94974661}
+      - {x: -3.91435051, y: 5.80326223}
+      - {x: -2.73511863, y: 6.4435339}
+      - {x: -1.33566344, y: 6.87138987}
+      - {x: -5.80133474e-07, y: 7}
+      - {x: 1.33566225, y: 6.87138891}
+      - {x: 2.7351172, y: 6.4435339}
+      - {x: 3.9143486, y: 5.80326319}
+      - {x: 4.94974661, y: 4.94974756}
 --- !u!82 &8277694
 AudioSource:
   m_ObjectHideFlags: 1
@@ -229,29 +234,23 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
---- !u!114 &11429654
-MonoBehaviour:
+--- !u!95 &9517588
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105750}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d332b8b46e72d45ab938440d3cd7712c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frames:
-  - {fileID: 2800000, guid: c420bcf93166c487ca985428764256e0, type: 3}
-  - {fileID: 2800000, guid: a014afad782194cd4be9d7fe123aa47d, type: 3}
-  - {fileID: 2800000, guid: 2cce164d937f84ec988fa1931cdf10a7, type: 3}
-  - {fileID: 2800000, guid: 25d2e1b8ca01f4d2aab31fd624858b0c, type: 3}
-  - {fileID: 2800000, guid: 058b3a918f95647b99b4c273879d0c5d, type: 3}
-  - {fileID: 2800000, guid: e1bf6285871e844ffa4597fec2063b2a, type: 3}
-  - {fileID: 2800000, guid: edb2590b7943140749605889976cb8ca, type: 3}
-  - {fileID: 2800000, guid: 96af631702b9b4ef39535dcf4fbe749c, type: 3}
-  framesPerSecond: 10
-  spriteWidth: 160
-  spriteHeight: 160
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 622d032b4f51842d58b80f136f78337e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11431170
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -309,7 +308,36 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 6099390}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -328,34 +356,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6099390}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -365,11 +366,11 @@ MonoBehaviour:
   lightSegments: 8
   Layer:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 1024
   notifyGameObjectsReached: 0
   intelliderConvex: 0
   recalculateNormals: 1
-  vertexWorking: 16
+  vertexWorking: 27
   RangeAngle: 90
 --- !u!114 &11486276
 MonoBehaviour:
@@ -384,17 +385,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GotPlayer: {fileID: 8300000, guid: bf30723460ca342fc9fa92ae3a3d6fbf, type: 3}
   InvestigativeSpeedMultiplier: 1.10000002
-  DebugMode: 0
+  DebugMode: 1
   DogMode: 0
   WPoints:
-  - {x: 0, y: 2}
-  - {x: 1, y: 1}
-  - {x: 2, y: 0}
-  - {x: 1, y: -1}
-  - {x: 0, y: -2}
-  - {x: -1, y: -1}
-  - {x: -2, y: 0}
-  - {x: -1, y: 1}
+  - {x: -2.5, y: 0}
+  - {x: 2, y: -1}
+  - {x: 3, y: -4}
+  - {x: -1, y: -2}
   ViceCopMode: 0
 --- !u!212 &21275238
 SpriteRenderer:

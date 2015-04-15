@@ -6,7 +6,7 @@ using System.Linq;
 
 //example. moving between some points at random
 [RequireComponent(typeof(PolyNavAgent))]
-public class Police : MonoBehaviour {
+public class Police : MyMonoBehaviour {
 
 	public AudioClip GotPlayer;
 	public float InvestigativeSpeedMultiplier = 2.0f;
