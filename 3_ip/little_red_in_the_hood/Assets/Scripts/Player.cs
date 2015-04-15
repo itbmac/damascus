@@ -5,7 +5,8 @@ public class Player : MyMonoBehaviour {
 	public float WalkSpeed = 12f;
 	public float SlowSpeed = 6f;
 	public float RunSpeed = 18f;
-	
+	public float IdleSpeed = 1f;
+
 	public GameObject PaintSplat;
 	public GameObject Glowstick;
 	public Vector3 startLoc;
@@ -49,16 +50,16 @@ public class Player : MyMonoBehaviour {
 	void Update() {
 		IsUnderStreetlight = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("Streetlight"));	
 		IsOnSprayPaint = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("SprayPaint"));	
-	
-		if (Input.GetKeyDown(KeyCode.P) && NumPaint > 0) {
-			NumPaint -= 1;
-			Instantiate(PaintSplat, transform.position, Quaternion.identity);
-		}
-		
-		if (Input.GetButtonDown("Fire1") && NumGlowsticks > 0) {		
-			NumGlowsticks -= 1;
-			Instantiate(Glowstick, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-		}
+
+//		if (Input.GetKeyDown(KeyCode.P) && NumPaint > 0) {
+//			NumPaint -= 1;
+//			Instantiate(PaintSplat, transform.position, Quaternion.identity);
+//		}
+//		
+//		if (Input.GetButtonDown("Fire1") && NumGlowsticks > 0) {		
+//			NumGlowsticks -= 1;
+//			Instantiate(Glowstick, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
+//		}
 	}
 	
 	//update is called every frame at fixed intervals
@@ -67,19 +68,27 @@ public class Player : MyMonoBehaviour {
 		float speed;
 		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
 			speed = RunSpeed;
-			anim.SetInteger(MovementMode, (int)AnimState.Run);
 		} else if (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl)) {
 			speed = SlowSpeed;
-			anim.SetInteger(MovementMode, (int)AnimState.Sneak);
 		} else if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0){
 			speed = WalkSpeed;			
+		} else {
+			speed = IdleSpeed; // TODO: what should this be
+		}
+
+		Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
+		float velSpeed = velocity.magnitude;
+
+		if (velSpeed > WalkSpeed) {
+			anim.SetInteger(MovementMode, (int)AnimState.Run);
+		} else if (velSpeed > SlowSpeed) {
 			anim.SetInteger(MovementMode, (int)AnimState.Walk);
+		} else if (velSpeed > 0){
+			anim.SetInteger(MovementMode, (int)AnimState.Sneak);
 		} else {
 			anim.SetInteger(MovementMode, (int)AnimState.Idle);
-			speed = WalkSpeed; // TODO: what should this be
 		}
 	
-		Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
 		velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed;
 		GetComponent<Rigidbody2D>().velocity = velocity;
 		
