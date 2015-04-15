@@ -158,7 +158,7 @@ public class DynamicLight : MonoBehaviour {
 
 	void getAllMeshes(){
 
-		allMeshes = FindObjectsOfType(typeof(PolygonCollider2D)) as PolygonCollider2D[];
+		allMeshes = FindObjectsOfType<PolygonCollider2D>();
 	}
 
 	void resetBounds(){
@@ -215,15 +215,16 @@ public class DynamicLight : MonoBehaviour {
 
 			bool mfInWorks = false;
 
-			for (int i = 0; i < mf.GetTotalPointCount(); i++) {
-				Vector3 worldPoint = mf.transform.TransformPoint(mf.points[i]);
+			var points = Enumerable.Range(0, mf.pathCount).SelectMany(x => mf.GetPath(x));
+			foreach (var point in points) {
+				Vector3 worldPoint = mf.transform.TransformPoint(point);
 				if((worldPoint - gameObject.transform.position).sqrMagnitude <= lightRadius* lightRadius){
 
 					//float angleWorldPoint = getVectorAngle(true, worldPoint.x,worldPoint.y);
 					//if((angleWorldPoint*Mathf.Rad2Deg > startAngle) && (angleWorldPoint * Mathf.Rad2Deg < endAngle)){
 						//Debug.Log(angleWorldPoint*Mathf.Rad2Deg + "   " + startAngle + "  " + endAngle);
 						mfInWorks = true;
-						i = mf.GetTotalPointCount();
+						break;
 					//}
 
 				}

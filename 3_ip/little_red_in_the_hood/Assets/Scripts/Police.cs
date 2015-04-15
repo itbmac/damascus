@@ -124,7 +124,7 @@ public class Police : MonoBehaviour {
 	float maxSpeed;
 	void Start(){
 		player = FindObjectOfType<Player>().gameObject;		
-		visionCone = GetComponentInChildren<Collider2D>();
+		visionCone = transform.GetChild(0).GetComponent<Collider2D>();
 		maxSpeed = agent.maxSpeed;
 		
 		if (WPoints.Length > 0) {
@@ -187,8 +187,9 @@ public class Police : MonoBehaviour {
 			return false;
 	
 		int layerMask = LayerMask.GetMask("Obstacle");		
-		if (Physics2D.Linecast(transform.position, player.transform.position, layerMask))
+		if (Physics2D.Linecast(transform.position, player.transform.position, layerMask)) {
 			return false;
+		}
 			
 		if (DogMode)
 			return true;
