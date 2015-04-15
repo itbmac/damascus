@@ -105,8 +105,8 @@ public class VisibilityPolygon : MonoBehaviour {
 			
 			var opc = (PolygonCollider2D)col;
 			for (int i = 0; i < opc.pathCount; i++) {
-				l.AddRange(opc.GetPath(i).Select(x => x + (Vector2)col.transform.position).
-				           Where(x => Vector2.Distance(transform.position, x) < MaxDistance*CastDistanceMultiplier));
+				l.AddRange(opc.GetPath(i).Select(x => x + (Vector2)col.transform.position));
+//				.Where(x => Vector2.Distance(transform.position, x) < MaxDistance*CastDistanceMultiplier));
 			}
 		}
 //		Debug.Log (l.Count);

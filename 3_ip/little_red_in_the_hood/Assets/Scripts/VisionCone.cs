@@ -3,9 +3,18 @@ using System.Collections;
 
 public class VisionCone : MonoBehaviour {
 
-	public float AngleOffset = 0;
+	const float AngleOffset = -90;
 	const float AngleTurnLengthForRepeat = 360;
-	public float AngleTurnSpeed = .5f;
+	const float AngleTurnSpeed = 5f;
+	const float ViceMaxOffset = 45f;
+	const float ViceChange = 1;
+	const float ViceMinTime = 1;
+	const float ViceMaxTime = 3;
+	float ViceOffset;
+	float ViceOffsetChange;
+	float nextChange;	
+	Vector2 lastDir;	
+	public float CurrentAngle;
 	
 	bool ViceCopMode {
 		get {
@@ -26,29 +35,10 @@ public class VisionCone : MonoBehaviour {
 		police = GetComponentInParent<Police>();
 	}
 	
-	float ViceOffset;
-	float ViceOffsetChange;
-	float nextChange;
-	public float ViceMaxOffset = 45f;
-	public float ViceChange = 1;
-	public float ViceMinTime = 1;
-	public float ViceMaxTime = 3;
-	Vector2 lastDir;
 	
-	public float CurrentAngle;
 	
 	// Update is called once per frame
-	void Update () {
-		// TODO: fix
-//		SpriteRenderer sr = GetComponent<SpriteRenderer>();
-//		
-//		if (InvestigativeMode) {
-//			sr.color = Color.red;
-//		} else {
-//			sr.color = Color.white;
-//		}
-			
-	
+	void Update () {		
 		Vector2 dir = transform.parent.GetComponent<PolyNavAgent>().movingDirection;
 	
 		if (ViceCopMode) {
@@ -79,33 +69,4 @@ public class VisionCone : MonoBehaviour {
 //		euler.z = angle;
 //		transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, euler, AngleTurnSpeed);
 	}
-	
-//	bool playerDetectTriggered;
-//	void OnTriggerEnter2D(Collider2D c) {
-//		if (c.name == "GlowStick")
-//			SendMessageUpwards("OnDetectPlayer");
-//	
-//		if (c.name == "Player") {
-//			if (c.GetComponent<Player>().IsHidden)
-//				return; // TODO: what if player becomes unhidden while in cone
-//		
-//			SendMessageUpwards("OnDetectPlayer");
-//			playerDetectTriggered = true;
-//		}
-//	}
-	
-//	void OnTriggerStay2D(Collider2D c) {
-//		if (c.name == "Player" && !playerDetectTriggered) {
-//			if (c.GetComponent<Player>().IsHidden)
-//				return; // TODO: what if player becomes unhidden while in cone
-//				
-//			SendMessageUpwards("OnDetectPlayer");
-//			playerDetectTriggered = true;
-//		}
-//	}
-//	
-//	void OnTriggerExit2D(Collider2D c) {
-//		if (c.name == "Player")
-//			playerDetectTriggered = false;
-//	}
 }

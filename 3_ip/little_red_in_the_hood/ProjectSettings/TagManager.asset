@@ -12,6 +12,7 @@ TagManager:
   - Car
   - Target
   - Police
+  - ShadowLayer
   - New Tag
   layers:
   - Default
@@ -22,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - locked
+  - ShadowLayer
   - Player
   - Obstacle
   - NoCollide
@@ -74,3 +75,6 @@ TagManager:
   - name: Dialogue
     uniqueID: 3036135057
     locked: 0
+  - name: Top
+    uniqueID: 1719212563
+    locked: 1

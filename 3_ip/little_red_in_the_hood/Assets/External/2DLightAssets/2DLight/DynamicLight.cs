@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;		// This allows for the use of lists, like <GameObject>
 using pseudoSinCos;
-
+using System.Linq;
 
 
 public class verts
@@ -264,7 +264,7 @@ public class DynamicLight : MonoBehaviour {
 							v.endpoint = true;
 						}
 						
-						Debug.DrawLine(transform.position, v.pos, Color.white);	
+//						Debug.DrawLine(transform.position, v.pos, Color.white);	
 						
 						//--Convert To local space for build mesh (mesh craft only in local vertex)
 						v.pos = transform.InverseTransformPoint(v.pos); 
@@ -289,13 +289,13 @@ public class DynamicLight : MonoBehaviour {
 							if (Vector3.Angle(v.pos, Vector3.up) < RangeAngle*.5f) {	// Light angle restriction
 								if((v.pos).sqrMagnitude <= lightRadius*lightRadius){
 									tempVerts.Add(v);
-									Debug.DrawLine(transform.position, transform.TransformPoint(v.pos), Color.white);
+//									Debug.DrawLine(transform.position, transform.TransformPoint(v.pos), Color.white);
 								}
 							}
 						}else{
 							if((v.pos).sqrMagnitude <= lightRadius*lightRadius){
 								tempVerts.Add(v);
-								Debug.DrawLine(transform.position, transform.TransformPoint(v.pos), Color.white);
+//								Debug.DrawLine(transform.position, transform.TransformPoint(v.pos), Color.white);
 							}
 						}
 
@@ -437,13 +437,13 @@ public class DynamicLight : MonoBehaviour {
 									}		
 								}
 								
-								Debug.DrawLine(fromCast, hitp, Color.green);
+//								Debug.DrawLine(fromCast, hitp, Color.green);
 							}else{
 								//-- FIX ERROR WEIRD MESH WHEN ENDPOINT COLLIDE OUTSIDE RADIUS VERSION 1.1.2 --//
 								//-- NEW INSTANCE OF DIR VECTOR3 ADDED --//
 								Vector3 newDir = transform.InverseTransformDirection(dir);	//local p
 								hitp = transform.TransformPoint( newDir.normalized * mag); //world p
-								Debug.DrawLine(fromCast, hitp, Color.blue);
+//								Debug.DrawLine(fromCast, hitp, Color.blue);
 							}
 
 							// --- VER 1.0.6 -- //
@@ -455,7 +455,7 @@ public class DynamicLight : MonoBehaviour {
 								hitp = transform.TransformPoint( dir.normalized * mag);
 							}
 
-							Debug.DrawLine(fromCast, hitp, Color.green);	
+//							Debug.DrawLine(fromCast, hitp, Color.green);	
 							
 							verts vL = new verts();
 							vL.pos = transform.InverseTransformPoint(hitp);
@@ -681,6 +681,9 @@ public class DynamicLight : MonoBehaviour {
 
 		if(recalculateNormals == true)
 			lightMesh.RecalculateNormals();
+			
+		var pc = GetComponent<PolygonCollider2D>();
+		pc.SetPath(0, lightMesh.vertices.Select(x => (Vector2)x).ToArray());
 
 		GetComponent<Renderer>().sharedMaterial = lightMaterial;
 	}

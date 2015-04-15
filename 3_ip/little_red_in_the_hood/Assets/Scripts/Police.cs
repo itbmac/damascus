@@ -119,21 +119,14 @@ public class Police : MonoBehaviour {
 				}
 			}
 		}
-		
-		var euler = transform.eulerAngles;
-		euler.z = Mathf.LerpAngle(euler.z, GetComponent<PolyNavAgent>().movingDirection.Angle() * Mathf.Rad2Deg + 90f, 0.2f);
-		transform.eulerAngles = euler;
 	}
 	
 	float maxSpeed;
-	IEnumerator Start(){
-		player = FindObjectOfType<Player>().gameObject;
-		var visionConeGO = transform.Find("VisionCone");
-		if (visionConeGO)
-			visionCone = visionConeGO.GetComponent<Collider2D>();
+	void Start(){
+		player = FindObjectOfType<Player>().gameObject;		
+		visionCone = GetComponentInChildren<Collider2D>();
 		maxSpeed = agent.maxSpeed;
 		
-		yield return new WaitForSeconds(1);
 		if (WPoints.Length > 0) {
 			Vector2 pos = new Vector2(transform.position.x, transform.position.y);
 
@@ -196,30 +189,15 @@ public class Police : MonoBehaviour {
 		int layerMask = LayerMask.GetMask("Obstacle");		
 		if (Physics2D.Linecast(transform.position, player.transform.position, layerMask))
 			return false;
-	
-		if (DogMode || Player.Instance.IsUnderStreetlight) {
+			
+		if (DogMode)
 			return true;
-		} else {
-			return visionCone.IsTouching(player.GetComponent<Collider2D>());
-		}
-	
-//		Vector2 dir = GetComponent<PolyNavAgent>().movingDirection;
-//		
-//		Vector2 playerPos = player.transform.position;
-////		Vector2 toPlayer = playerPos - transform.position;
-////		
-////		float playerAngle = Vector3.Angle(toPlayer, -Vector2.right);
-////		if (Mathf.Abs(playerAngle) > 45f) {
-////			return false;
-////		}
-////		
-////		if (toPlayer.magnitude > )
-//		
-//		int layerMask = LayerMask.GetMask("Player", "Default");
-//		print (layerMask);
-//		
-//		bool playerVisible = Physics2D.Linecast(transform.position, player.transform.position, layerMask);
 		
+		if (Player.Instance.IsUnderStreetlight && Vector2.Angle(-transform.up, player.transform.position - transform.position) < 45f) {
+			return true;
+		}
+		
+		return visionCone.IsTouching(player.GetComponent<Collider2D>());
 	}
 	
 	float nextCommunicate;
@@ -250,14 +228,5 @@ public class Police : MonoBehaviour {
 			playerLastSeenTime = lastSeenTime;
 			CurrentState = State.PlayerDetected;
 		}
-	}
-	
-	void OnDetectPlayer() {
-	}
-	
-	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Player") {
-		
-		}		
 	}
 }
