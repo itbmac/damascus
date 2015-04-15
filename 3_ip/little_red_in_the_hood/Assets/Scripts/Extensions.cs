@@ -62,4 +62,8 @@ public static class Extensions {
 		
 		return r_p + r_d * T1;		
 	}
+	
+	public static float Distance(this Transform t, Transform other) {
+		return Vector2.Distance(t.position, other.position);
+	}
 }
