@@ -12,6 +12,7 @@ GameObject:
   - 23: {fileID: 2345874}
   - 114: {fileID: 11455786}
   - 60: {fileID: 6099390}
+  - 114: {fileID: 11462236}
   m_Layer: 0
   m_Name: VisionCone
   m_TagString: Untagged
@@ -263,13 +264,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 2
+  maxSpeed: 1
   mass: 20
   stoppingDistance: .100000001
   slowingDistance: 1
   decelerationRate: 2
-  rotateTransform: 0
-  rotateSpeed: 5
+  rotateTransform: 1
+  rotateSpeed: 2
   avoidRadius: 1
   lookAheadDistance: 1
   repath: 0
@@ -371,6 +372,18 @@ MonoBehaviour:
   recalculateNormals: 1
   vertexWorking: 16
   RangeAngle: 90
+--- !u!114 &11462236
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66438a0a92fb247d8bfb5a1ce2996a7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentAngle: 0
 --- !u!114 &11486276
 MonoBehaviour:
   m_ObjectHideFlags: 1

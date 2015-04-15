@@ -50,15 +50,17 @@ public class Player : MyMonoBehaviour {
 		IsUnderStreetlight = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("Streetlight"));	
 		IsOnSprayPaint = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("SprayPaint"));	
 	
+	/*
 		if (Input.GetKeyDown(KeyCode.P) && NumPaint > 0) {
 			NumPaint -= 1;
 			Instantiate(PaintSplat, transform.position, Quaternion.identity);
 		}
-		
-		if (Input.GetButtonDown("Fire1") && NumGlowsticks > 0) {		
+
+		 if (Input.GetButtonDown("Fire1") && NumGlowsticks > 0) {		
 			NumGlowsticks -= 1;
 			Instantiate(Glowstick, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
 		}
+		*/
 	}
 	
 	//update is called every frame at fixed intervals

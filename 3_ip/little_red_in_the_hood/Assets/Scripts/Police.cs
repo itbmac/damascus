@@ -172,8 +172,12 @@ public class Police : MonoBehaviour {
 	void OnDrawGizmosSelected(){
 		Vector2 pos = new Vector2(transform.position.x, transform.position.y);
 
+		Gizmos.color = new Color(255, 0, 0, .1f);
+		Gizmos.DrawSphere(pos, DetectionRange);		
+		Gizmos.color = new Color(255, 255, 255, 1f);;
+
 		for ( int i = 0; i < WPoints.Length; i++)
-			Gizmos.DrawSphere(WPoints[i] + pos, 0.15f);			
+			Gizmos.DrawSphere(WPoints[i] + pos, 0.25f);			
 	}
 	
 	bool isPlayerVisible() {
@@ -196,8 +200,9 @@ public class Police : MonoBehaviour {
 		if (Player.Instance.IsUnderStreetlight && Vector2.Angle(-transform.up, player.transform.position - transform.position) < 45f) {
 			return true;
 		}
-		
-		return visionCone.IsTouching(player.GetComponent<Collider2D>());
+
+		bool visionConeTouching = visionCone.IsTouching(player.GetComponent<Collider2D>());
+		return visionConeTouching;
 	}
 	
 	float nextCommunicate;

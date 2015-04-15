@@ -12,6 +12,7 @@ GameObject:
   - 23: {fileID: 2375458}
   - 114: {fileID: 11416246}
   - 60: {fileID: 6063114}
+  - 114: {fileID: 11498786}
   m_Layer: 0
   m_Name: VisionCone
   m_TagString: Untagged
@@ -396,6 +397,18 @@ MonoBehaviour:
   framesPerSecond: 10
   spriteWidth: 160
   spriteHeight: 160
+--- !u!114 &11498786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 120794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66438a0a92fb247d8bfb5a1ce2996a7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentAngle: 0
 --- !u!212 &21268506
 SpriteRenderer:
   m_ObjectHideFlags: 1

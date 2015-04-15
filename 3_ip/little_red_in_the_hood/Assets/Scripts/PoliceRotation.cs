@@ -5,7 +5,7 @@ public class PoliceRotation : MonoBehaviour {
 
 	const float AngleOffset = 90;
 	const float AngleTurnLengthForRepeat = 360;
-	const float AngleTurnSpeed = .2f;
+	const float AngleTurnSpeed = 0.05f;
 	const float ViceMaxOffset = 45f;
 	const float ViceChange = 1;
 	const float ViceMinTime = 1;
