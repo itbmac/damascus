@@ -9,7 +9,7 @@ public class MyMonoBehaviour : MonoBehaviour {
 		}
 	}
 	
-	protected Renderer renderer {
+	new protected Renderer renderer {
 		get {
 			return GetComponent<Renderer>();
 		}

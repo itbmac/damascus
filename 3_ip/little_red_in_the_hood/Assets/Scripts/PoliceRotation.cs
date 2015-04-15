@@ -15,6 +15,7 @@ public class PoliceRotation : MonoBehaviour {
 	float nextChange;	
 	Vector2 lastDir;
 	Police police;
+	GameObject VisionCone;
 	
 	bool ViceCopMode {
 		get {
@@ -31,33 +32,47 @@ public class PoliceRotation : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		police = GetComponent<Police>();
-	}	
+		VisionCone = transform.GetChild(0).gameObject;
+	}
+	
+	const float VisionConeOffset = 180;
+	
+	void UpdateVisionCone(Vector2 dir) {
+		if (!ViceCopMode) 
+			return;
+		
+		if (Vector2.Angle(dir, lastDir) > 20f) {
+			ViceOffset = 0;
+			nextChange = Time.time - 1;
+		}
+		
+		lastDir = dir;
+		
+		ViceOffset = Mathf.Clamp(ViceOffset + ViceOffsetChange, -ViceMaxOffset, ViceMaxOffset);
+		
+		if (Time.time > nextChange || ViceOffset >= Mathf.Abs(ViceMaxOffset)) {
+			ViceOffsetChange = Random.Range(-ViceChange, ViceChange);
+			if (InvestigativeMode)
+				ViceOffsetChange *= 3;
+			
+			nextChange = Random.Range(ViceMinTime, ViceMaxTime) + Time.time;
+		}
+		
+		var newAngle = Mathf.Repeat(VisionConeOffset + ViceOffset + AngleTurnLengthForRepeat, AngleTurnLengthForRepeat);
+		var localRotation = VisionCone.transform.localRotation;
+		var localEuler = localRotation.eulerAngles;
+		localEuler.z = Mathf.LerpAngle(localEuler.z, newAngle, AngleTurnSpeed);
+		localRotation.eulerAngles = localEuler;		
+		VisionCone.transform.localRotation = localRotation;
+	}
 	
 	// Update is called once per frame
 	void Update () {		
 		Vector2 dir = GetComponent<PolyNavAgent>().movingDirection;
 		
-		if (ViceCopMode) {
-			if (Vector2.Distance(dir, lastDir) > 0.2f) {
-				ViceOffset = 0;
-				nextChange = Time.time - 1;
-			}
-			
-			lastDir = dir;
-			
-			ViceOffset = Mathf.Clamp(ViceOffset + ViceOffsetChange, -ViceMaxOffset, ViceMaxOffset);
-			
-			if (Time.time > nextChange || ViceOffset >= Mathf.Abs(ViceMaxOffset)) {
-				ViceOffsetChange = Random.Range(-ViceChange, ViceChange);
-				if (InvestigativeMode)
-					ViceOffsetChange *= 3;
-				
-				nextChange = Random.Range(ViceMinTime, ViceMaxTime) + Time.time;
-			}
-		}
+		UpdateVisionCone(dir);		
 		
-		
-		float angle = Mathf.Repeat (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + AngleOffset + ViceOffset, AngleTurnLengthForRepeat);
+		float angle = Mathf.Repeat (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg + AngleOffset + AngleTurnLengthForRepeat, AngleTurnLengthForRepeat);
 		
 		Vector3 euler = transform.eulerAngles;
 		euler.z = Mathf.LerpAngle(euler.z, angle, AngleTurnSpeed);

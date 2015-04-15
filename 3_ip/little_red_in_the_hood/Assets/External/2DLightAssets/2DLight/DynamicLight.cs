@@ -127,9 +127,9 @@ public class DynamicLight : MyMonoBehaviour {
 	int frame = 0;
 	void Update(){
 		if (Application.isPlaying) {
-//			if (!renderer.isVisible && !(transform.childCount > 0 && transform.GetChild(0).GetComponent<Renderer>().isVisible))
-//				return;
-			if (Camera.main.transform.Distance(transform) > 30.0f) {
+			if (!GetComponent<Renderer>().isVisible 
+			&& !(transform.childCount > 0 && transform.GetChild(0).GetComponent<Renderer>().isVisible) 
+			&& Camera.main.transform.Distance(transform) > 30.0f) {
 				return;
 			}
 		}

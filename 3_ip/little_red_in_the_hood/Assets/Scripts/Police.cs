@@ -66,7 +66,6 @@ public class Police : MyMonoBehaviour {
 	
 	Vector2 playerLastSeenPos;
 	float playerLastSeenTime;
-	float playerFirstSeenTime;
 
 	const float PlayerSeenTimeBeforeArrest = 1.5f;
 	const float PlayerDetectedTime = 5.0f;
@@ -102,7 +101,6 @@ public class Police : MyMonoBehaviour {
 		} else {			
 			if (CurrentState == State.PlayerVisible) {
 				playerLastSeenTime = Time.time;
-				playerFirstSeenTime = Time.time;
 				playerLastSeenPos = player.transform.position;
 				agent.SetDestination(playerLastSeenPos);
 			
@@ -116,13 +114,6 @@ public class Police : MyMonoBehaviour {
 				else if (playerVisible) {
 					playerLastSeenTime = Time.time;
 					TheGameManager.Instance.Detected();
-
-//					if (playerLastSeenTime - playerFirstSeenTime > PlayerSeenTimeBeforeArrest) {
-//						Application.LoadLevel(Application.loadedLevel);
-//					}
-				}
-				else {
-					//playerFirstSeenTime = Time.time;
 				}
 			}
 		}
