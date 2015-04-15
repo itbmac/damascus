@@ -32,8 +32,8 @@ GameObject:
   - 60: {fileID: 6081688}
   - 114: {fileID: 11441442}
   - 82: {fileID: 8294796}
-  - 114: {fileID: 11483652}
   - 114: {fileID: 11401328}
+  - 95: {fileID: 9513594}
   m_Layer: 0
   m_Name: Vice
   m_TagString: New Tag
@@ -242,6 +242,23 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!95 &9513594
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139378}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc3596488cc8c4e38bf43035c97a0fca, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11401328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -267,7 +284,13 @@ MonoBehaviour:
   version: 1.1.2 (Unity 5)
   lightMaterial: {fileID: 2100000, guid: 6f6367702c0bf47569b1a990751060ba, type: 2}
   allMeshes:
-  - {fileID: 6081688}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 6063114}
   - {fileID: 0}
   - {fileID: 0}
@@ -313,11 +336,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 6081688}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -386,29 +405,6 @@ MonoBehaviour:
   - {x: -6, y: 0}
   - {x: -3, y: .5}
   ViceCopMode: 1
---- !u!114 &11483652
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 139378}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d332b8b46e72d45ab938440d3cd7712c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frames:
-  - {fileID: 2800000, guid: c420bcf93166c487ca985428764256e0, type: 3}
-  - {fileID: 2800000, guid: a014afad782194cd4be9d7fe123aa47d, type: 3}
-  - {fileID: 2800000, guid: 2cce164d937f84ec988fa1931cdf10a7, type: 3}
-  - {fileID: 2800000, guid: 25d2e1b8ca01f4d2aab31fd624858b0c, type: 3}
-  - {fileID: 2800000, guid: 058b3a918f95647b99b4c273879d0c5d, type: 3}
-  - {fileID: 2800000, guid: e1bf6285871e844ffa4597fec2063b2a, type: 3}
-  - {fileID: 2800000, guid: edb2590b7943140749605889976cb8ca, type: 3}
-  - {fileID: 2800000, guid: 96af631702b9b4ef39535dcf4fbe749c, type: 3}
-  framesPerSecond: 10
-  spriteWidth: 160
-  spriteHeight: 160
 --- !u!212 &21268506
 SpriteRenderer:
   m_ObjectHideFlags: 1
