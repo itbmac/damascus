@@ -38,13 +38,13 @@ public static class Extensions {
 //		return Mathf.Atan2 (v.y, v.x);	
 //	}
 	
-	public static Vector2 Rotated(this Vector2 v, float addAngle) {
-		var angle = v.Angle() + addAngle;
+	public static Vector2 Rotated(this Vector2 v, float radians) {
+		var angle = v.Angle() + radians;
 		return v.magnitude * UnitVectorForAngle(angle);
 	}
 	
-	public static Vector2 UnitVectorForAngle(float angle) {
-		return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+	public static Vector2 UnitVectorForAngle(float radians) {
+		return new Vector2(Mathf.Cos(radians), Mathf.Sin(radians));
 	}
 	
 	public static IEnumerable<T> Prepend<T>(this IEnumerable<T> seq, T val) {

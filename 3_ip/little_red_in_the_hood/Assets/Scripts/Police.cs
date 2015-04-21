@@ -8,6 +8,8 @@ using System.Linq;
 [RequireComponent(typeof(PolyNavAgent))]
 public class Police : MyMonoBehaviour {
 
+	const float PingPongRate = 180.0f;
+
 	public AudioClip GotPlayer;
 	public float InvestigativeSpeedMultiplier = 2.0f;
 	const float CommunicationRange = 0.0f;
@@ -28,8 +30,9 @@ public class Police : MyMonoBehaviour {
 		
 			if (value == State.Normal) {
 				agent.maxSpeed = maxSpeed;
-				MoveRandom();
-			} else {			
+				SetNewDestination();
+			} else {
+				pingPongMode = false;
 				agent.maxSpeed = maxSpeed * InvestigativeSpeedMultiplier;
 
 				float dist = Vector2.Distance(transform.position, player.transform.position); 
@@ -62,7 +65,7 @@ public class Police : MyMonoBehaviour {
 		}
 	}
 	
-	int WPointsIndex = 0;
+	public int WPointsIndex = 0;
 	
 	Vector2 playerLastSeenPos;
 	float playerLastSeenTime;
@@ -73,21 +76,43 @@ public class Police : MyMonoBehaviour {
 	const float DetectionRange = 7.0f;
 	
 	void OnEnable(){
-		agent.OnDestinationReached += MoveRandom;
+		agent.OnDestinationReached += SetNewDestination;
 		agent.OnDestinationInvalid += OnDestinationInvalid;
 	}
 	
 	void OnDisable(){
-		agent.OnDestinationReached -= MoveRandom;
+		agent.OnDestinationReached -= SetNewDestination;
 		agent.OnDestinationInvalid -= OnDestinationInvalid;
 	}
 	
 	const float HealthToDrain = 1.0f;
 	
+	public Vector2 Direction {
+		get; private set;
+	}
+	Vector2 pingPongBaseDirection;
+	float pingPongStartTime;
+	float pingPongEndTime;
+	bool pingPongMode;
+	
 	float nextChange;
 	void Update() {	
-	
-		bool playerVisible = isPlayerVisible();
+		if (pingPongMode && CurrentState == State.Normal) {
+			if (Time.time > pingPongEndTime) {
+				pingPongMode = false; 
+				Direction = pingPongBaseDirection; // This might be jittery?
+				SetNewDestination();
+			} else {
+				float dAngle = Mathf.PingPong(PingPongRate*(Time.time - pingPongStartTime) + 90, 180) - 90; // ping pong from -90 to 90, starting at 0
+				Direction = pingPongBaseDirection.Rotated(dAngle * Mathf.Deg2Rad);
+			}				
+			
+		} else {
+			if (GetComponent<PolyNavAgent>().movingDirection != Vector2.zero)
+				Direction = GetComponent<PolyNavAgent>().movingDirection;
+		}
+		
+		bool playerVisible = IsPlayerVisible();
 		
 		if (playerVisible) {
 			player.GetComponent<Player>().Health -= HealthToDrain * Time.deltaTime;
@@ -97,7 +122,7 @@ public class Police : MyMonoBehaviour {
 			if (playerVisible) {
 				CurrentState = State.PlayerVisible;
 			} else if (ViceCopMode && Time.time > nextChange)
-				MoveRandom();	
+				SetNewDestination();	
 		} else {			
 			if (CurrentState == State.PlayerVisible) {
 				playerLastSeenTime = Time.time;
@@ -120,33 +145,36 @@ public class Police : MyMonoBehaviour {
 	}
 	
 	float maxSpeed;
+	Vector2 startPos;
 	void Start(){
 		player = FindObjectOfType<Player>().gameObject;		
 		visionCone = transform.GetChild(0).GetComponent<Collider2D>();
 		maxSpeed = agent.maxSpeed;
+		startPos = transform.position;
 		
 		if (WPoints.Length > 0) {
-			Vector2 pos = new Vector2(transform.position.x, transform.position.y);
-
-			for (int i = 0; i < WPoints.Length; i++) {
-				WPoints[i] += pos;
-			}
-
-			MoveRandom();
+			SetNewDestination();
 		}
 	}
 	
-	void MoveRandom() {
+	void SetNewDestination() {
 		if (CurrentState == State.Normal) {	
 			if (ViceCopMode) {
-				//WPointsIndex = Random.Range(0, WPoints.Length);
+				//WPointsIndex = Random.Range(0, WPoints.Length); // disabled for being too complicated
 				WPointsIndex = (WPointsIndex + 1) % WPoints.Length;	
 				nextChange = Time.time + Random.Range(2.0F, 10.0F);
 			} else {		
 				WPointsIndex = (WPointsIndex + 1) % WPoints.Length;	
 			}
+			Vector2 dest = WPoints[WPointsIndex];
 			
-			agent.SetDestination(WPoints[WPointsIndex]);
+			if (Mathf.Approximately(dest.x, 1337)) {
+				pingPongMode = true;
+				pingPongBaseDirection = Direction;
+				pingPongStartTime = Time.time;
+				pingPongEndTime = Time.time + 360/PingPongRate;
+			} else 				
+				agent.SetDestination(startPos + dest);
 		} else if (CurrentState == State.PlayerDetected) {			
 			int maxIterations = 5;
 			Vector2 potentialPos;
@@ -160,7 +188,7 @@ public class Police : MyMonoBehaviour {
 	
 	IEnumerator MoveRandomSoon() {
 		yield return new WaitForSeconds(1);
-		MoveRandom();
+		SetNewDestination();
 	}
 	
 	void OnDestinationInvalid() {
@@ -168,13 +196,13 @@ public class Police : MyMonoBehaviour {
 	}
 	
 	void OnDrawGizmosSelected(){
-		Vector2 pos = new Vector2(transform.position.x, transform.position.y);
+		Vector2 pos = transform.position;
 
 		for ( int i = 0; i < WPoints.Length; i++)
 			Gizmos.DrawSphere(WPoints[i] + pos, 0.15f);			
 	}
 	
-	bool isPlayerVisible() {
+	bool IsPlayerVisible() {
 		if (Player.Instance.StealthMode)
 			return false;
 

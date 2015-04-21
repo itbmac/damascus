@@ -50,6 +50,7 @@ public class Dialogue : MonoBehaviour {
 	//sprite1 corresponds with speaker1, sprite2 corresponds with speaker2.
 	//speaker1 on the left, speaker2 on the right.
 	public Sprite Sprite1, Sprite2;
+	
 	string speaker1, speaker2;
 
 	Text text1, text2, text3, text4;
@@ -94,6 +95,7 @@ public class Dialogue : MonoBehaviour {
 		string[] temp = inp_ln_first.Split(delin);
 		speaker1 = temp[0];
 		speaker2 = temp[1];
+		print ("Speakers: " + speaker1 + " and " + speaker2);
 		numLines = int.Parse(temp[2]);
 
 		string[] words;

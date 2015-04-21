@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Police))]
 public class PoliceRotation : MonoBehaviour {
 
 	const float AngleOffset = 90;
@@ -68,7 +69,7 @@ public class PoliceRotation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {		
-		Vector2 dir = GetComponent<PolyNavAgent>().movingDirection;
+		Vector2 dir = GetComponent<Police>().Direction;
 		
 		UpdateVisionCone(dir);		
 		
