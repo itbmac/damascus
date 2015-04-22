@@ -39,7 +39,9 @@ public class Dialogue : MonoBehaviour {
 	GameObject dialogue_bottom_off;
 	GameObject dialogue_top_off;
 	GameObject top_speech_bubble;
+	GameObject top_off_speech_bubble;
 	GameObject bottom_speech_bubble;
+	GameObject bottom_off_speech_bubble;
 	GameObject left_sprite;
 	GameObject right_sprite;
 
@@ -53,13 +55,63 @@ public class Dialogue : MonoBehaviour {
 	
 	string speaker1, speaker2;
 
-	Text text1, text2, text3, text4;
-	SpriteRenderer bubble1, bubble2;
+	Text text1, text2, text3;
+	SpriteRenderer bubble1, bubble2, bubble3;
 
 	//The next scene after this dialogue.
 	public string NextScene;
 	
 	string[] Lines;
+
+	//Basically a mutex so the player can't skip through text.
+	bool transitioning = false;
+
+	//Transitioning speech bubbles.
+	IEnumerator MoveSpeechBubbles() {
+		transitioning = true;
+		float distance1, distance2, distance3;
+		distance1 = Vector3.Distance(top_off_speech_bubble.transform.position, top_speech_bubble.transform.position);
+		distance2 = Vector3.Distance(top_speech_bubble.transform.position, bottom_speech_bubble.transform.position);
+		distance3 = Vector3.Distance(bottom_speech_bubble.transform.position, bottom_off_speech_bubble.transform.position);
+
+		Vector3 temp;
+
+		for (float f = 1f; f >= 0; f -= 0.05f) {
+			//top to top-off
+			temp = top_speech_bubble.transform.position;
+			temp.y += distance1 * 0.1f;
+			top_speech_bubble.transform.position = temp;
+
+			//bottom to top
+			temp = bottom_speech_bubble.transform.position;
+			temp.y += distance2 * 0.1f;
+			bottom_speech_bubble.transform.position = temp;
+
+			//bottom-off to bottom
+			temp = bottom_off_speech_bubble.transform.position;
+			temp.y += distance3 * 0.1f;
+			bottom_off_speech_bubble.transform.position = temp;
+
+			//print(temp);
+			yield return null;
+		}
+
+		//Swap out speech bubbles
+		//Swap out top
+		top_speech_bubble.transform.position = dialogue_top.transform.position;
+		bubble1.sprite = bubble2.sprite;
+		text1.text = text2.text;
+
+		//Swap out bottom
+		bottom_speech_bubble.transform.position = dialogue_bottom.transform.position;
+		bubble2.sprite = bubble3.sprite;
+		text2.text = text3.text;
+
+		//Render next bubble off screen
+		bottom_off_speech_bubble.transform.position = dialogue_bottom_off.transform.position;
+
+		transitioning = false;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -69,16 +121,18 @@ public class Dialogue : MonoBehaviour {
 		dialogue_bottom_off = transform.FindChild("dialogue_bottom_off").gameObject;
 		dialogue_top_off = transform.FindChild("dialogue_top_off").gameObject;
 		top_speech_bubble = dialogue_top.transform.FindChild("top_speech_bubble").gameObject;
+		top_off_speech_bubble = dialogue_top_off.transform.FindChild("top_off_speech_bubble").gameObject;
 		bottom_speech_bubble = dialogue_bottom.transform.FindChild("bottom_speech_bubble").gameObject;
+		bottom_off_speech_bubble = dialogue_bottom_off.transform.FindChild("bottom_off_speech_bubble").gameObject;
 		left_sprite = transform.FindChild("left_sprite").gameObject;
 		right_sprite = transform.FindChild("right_sprite").gameObject;
 
-		text1 = dialogue_bottom_off.GetComponent<Text>();
-		text2 = dialogue_bottom.GetComponent<Text>();
-		text3 = dialogue_top.GetComponent<Text>();
-		text4 = dialogue_top_off.GetComponent<Text>();
+		text1 = top_speech_bubble.GetComponent<Text>();
+		text2 = bottom_speech_bubble.GetComponent<Text>();
+		text3 = bottom_off_speech_bubble.GetComponent<Text>();
 		bubble1 = top_speech_bubble.GetComponent<SpriteRenderer>();
 		bubble2 = bottom_speech_bubble.GetComponent<SpriteRenderer>();
+		bubble3 = bottom_off_speech_bubble.GetComponent<SpriteRenderer>();
 		left_sprite.GetComponent<SpriteRenderer> ().sprite = Sprite1;
 		right_sprite.GetComponent<SpriteRenderer> ().sprite = Sprite2;
 
@@ -106,9 +160,6 @@ public class Dialogue : MonoBehaviour {
 		int i = 0;
 		foreach (var inp_ln in Lines.Skip(1))
 		{
-			//This is for testing do not remove yet 8^)
-			print (inp_ln);
-
 			words = inp_ln.Split(delimiter);
 			dialogueLines[i] = new dialogueLine(words[0], words[1]);
 			print (dialogueLines[i].character + ": " + dialogueLines[i].dialogue);
@@ -123,7 +174,7 @@ public class Dialogue : MonoBehaviour {
 		text2.text = dialogueLines[0].dialogue;
 		print (dialogueLines[0].character + ", " + speaker2);
 		if(dialogueLines[0].character == speaker2){
-			bottom_speech_bubble.transform.eulerAngles = new Vector3(0, 180, 0);
+			//bottom_speech_bubble.transform.eulerAngles = new Vector3(0, 180, 0);
 		}
 
 	}
@@ -143,10 +194,14 @@ public class Dialogue : MonoBehaviour {
 			}
 		}
 		//Check if the user has advanced the dialogue.
-		else if(lastRendered != index){
-			//Render the next line of dialogue offscreen.
-			text1.text = dialogueLines[index].dialogue;
+		else if((lastRendered != index) && !transitioning){
+			StartCoroutine(MoveSpeechBubbles());
 
+			//Render the next line of dialogue offscreen.
+			text3.text = dialogueLines[index].dialogue;
+			bubble3.sprite = bubble1.sprite;
+
+			/*
 			//Move up the top onscreen dialogue off the screen.
 			text4.text = text3.text;
 
@@ -165,12 +220,13 @@ public class Dialogue : MonoBehaviour {
 			//This needs to be worked out better but whatever
 			if(dialogueLines[index].character != "Red"){
 				temp.y = 180;
-				bottom_speech_bubble.transform.eulerAngles = temp;
+				//bottom_speech_bubble.transform.eulerAngles = temp;
 			}
 			else{
 				temp.y = 0;
-				bottom_speech_bubble.transform.eulerAngles = temp;
+				//bottom_speech_bubble.transform.eulerAngles = temp;
 			}
+			*/
 
 			lastRendered++;
 		}
