@@ -9,6 +9,16 @@ public class MyMonoBehaviour : MonoBehaviour {
 		}
 	}
 	
+	protected Sprite sprite {
+		get {
+			return spriteRenderer.sprite;
+		}
+		
+		set {
+			spriteRenderer.sprite = value;
+		}
+	}
+	
 	new protected Renderer renderer {
 		get {
 			return GetComponent<Renderer>();

@@ -137,6 +137,7 @@ public class Police : MyMonoBehaviour {
 					CurrentState = State.Normal;
 				else if (playerVisible) {
 					playerLastSeenTime = Time.time;
+					CurrentState = State.PlayerVisible;
 					TheGameManager.Instance.Detected();
 				}
 			}
