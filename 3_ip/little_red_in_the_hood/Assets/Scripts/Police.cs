@@ -239,16 +239,6 @@ public class Police : MyMonoBehaviour {
 			
 		var circleNotifier = (GameObject)Instantiate(CircleNotifierPrefab, transform.position, Quaternion.identity);
 		circleNotifier.GetComponent<CircleNotifier>().LastSeenPosition = player.transform.position;
-			
-//		foreach (Transform got in transform.parent) {
-//			var go = got.gameObject;
-//			float dist = Vector2.Distance(transform.position, go.transform.position);			
-//			if (go != gameObject && dist < CommunicationRange) {
-//				Debug.DrawLine(transform.position, go.transform.position, Color.green, 0.5f);
-//				var police = go.GetComponent<Police>();
-//				police.NotifyPlayerPos(player.transform.position);
-//			}
-//		}
 	}
 	
 	public void NotifyPlayerPos(Vector2 pos) {
@@ -261,5 +251,12 @@ public class Police : MyMonoBehaviour {
 			playerLastSeenTime = lastSeenTime;
 			CurrentState = State.PlayerDetected;
 		}
+	}
+	
+	void OnCollisionEnter2D(Collision2D coll) {
+		if (coll.gameObject.tag == "Player") {
+			CurrentState = State.PlayerVisible;
+		}
+		
 	}
 }

@@ -34,6 +34,7 @@ GameObject:
   - 82: {fileID: 8277694}
   - 114: {fileID: 11442256}
   - 95: {fileID: 9517588}
+  - 50: {fileID: 5064714}
   m_Layer: 0
   m_Name: Patrol
   m_TagString: New Tag
@@ -97,6 +98,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105178}
   m_Mesh: {fileID: 0}
+--- !u!50 &5064714
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 105750}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!60 &6049498
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -387,12 +403,14 @@ MonoBehaviour:
   InvestigativeSpeedMultiplier: 1.10000002
   DebugMode: 1
   DogMode: 0
+  CircleNotifierPrefab: {fileID: 152274, guid: 1a980afc9092c4b91bc9900d02528549, type: 2}
   WPoints:
   - {x: -2.5, y: 0}
   - {x: 2, y: -1}
   - {x: 3, y: -4}
   - {x: -1, y: -2}
   ViceCopMode: 0
+  WPointsIndex: 0
 --- !u!212 &21275238
 SpriteRenderer:
   m_ObjectHideFlags: 1

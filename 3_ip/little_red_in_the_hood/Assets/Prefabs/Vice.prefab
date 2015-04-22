@@ -34,6 +34,7 @@ GameObject:
   - 82: {fileID: 8294796}
   - 114: {fileID: 11401328}
   - 95: {fileID: 9513594}
+  - 50: {fileID: 5026210}
   m_Layer: 0
   m_Name: Vice
   m_TagString: New Tag
@@ -97,6 +98,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 120794}
   m_Mesh: {fileID: 0}
+--- !u!50 &5026210
+Rigidbody2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139378}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_FixedAngle: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
 --- !u!60 &6063114
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -395,6 +411,7 @@ MonoBehaviour:
   InvestigativeSpeedMultiplier: 1.10000002
   DebugMode: 0
   DogMode: 0
+  CircleNotifierPrefab: {fileID: 152274, guid: 1a980afc9092c4b91bc9900d02528549, type: 2}
   WPoints:
   - {x: 0, y: 1}
   - {x: 3, y: .5}
@@ -405,6 +422,7 @@ MonoBehaviour:
   - {x: -6, y: 0}
   - {x: -3, y: .5}
   ViceCopMode: 1
+  WPointsIndex: 0
 --- !u!212 &21268506
 SpriteRenderer:
   m_ObjectHideFlags: 1
