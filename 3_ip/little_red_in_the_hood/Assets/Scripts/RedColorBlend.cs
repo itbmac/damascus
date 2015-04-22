@@ -33,8 +33,9 @@ public class RedColorBlend : MyMonoBehaviour
 	{
 		GameObject nearestGlowstick = GameObject.FindGameObjectWithTag("Glowstick");
 
-		if (nearestGlowstick != null && 
-			Vector3.Distance(nearestGlowstick.transform.position, transform.position) <= glowstickRange)
+		if (Player.Instance.IsOnSprayPaint ||
+		(nearestGlowstick != null && 
+			Vector3.Distance(nearestGlowstick.transform.position, transform.position) <= glowstickRange))
 		{
 			//float distToGlowstick = Vector2.Distance(transform.position, nearestGlowstick.transform.position);
 			//speed = (glowstickRange - distToGlowstick) / glowstickRange;
