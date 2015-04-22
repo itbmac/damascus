@@ -254,7 +254,8 @@ public class Police : MyMonoBehaviour {
 	
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (coll.gameObject.tag == "Player") {
-			CurrentState = State.PlayerVisible;
+			if (!Player.Instance.StealthMode)
+				CurrentState = State.PlayerVisible;
 		}
 		
 	}

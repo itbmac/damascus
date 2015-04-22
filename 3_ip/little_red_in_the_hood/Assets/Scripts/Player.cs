@@ -76,7 +76,7 @@ public class Player : MyMonoBehaviour {
 				print("God mode off");
 		}
 		
-		if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.T) && Input.anyKeyDown) {
+		if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.M) && Input.anyKeyDown) {
 			StealthMode = !StealthMode;
 			if (StealthMode)
 				print("Stealth mode on");
