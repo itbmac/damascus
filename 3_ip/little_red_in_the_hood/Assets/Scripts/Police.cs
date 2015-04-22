@@ -15,6 +15,7 @@ public class Police : MyMonoBehaviour {
 	const float CommunicationRange = 0.0f;
 	public bool DebugMode;
 	public bool DogMode;
+	public GameObject CircleNotifierPrefab;
 	
 	public enum State {Normal, PlayerDetected, PlayerVisible}
 	
@@ -236,15 +237,18 @@ public class Police : MyMonoBehaviour {
 		else
 			return;
 			
-		foreach (Transform got in transform.parent) {
-			var go = got.gameObject;
-			float dist = Vector2.Distance(transform.position, go.transform.position);			
-			if (go != gameObject && dist < CommunicationRange) {
-				Debug.DrawLine(transform.position, go.transform.position, Color.green, 0.5f);
-				var police = go.GetComponent<Police>();
-				police.NotifyPlayerPos(player.transform.position);
-			}
-		}
+		var circleNotifier = (GameObject)Instantiate(CircleNotifierPrefab, transform.position, Quaternion.identity);
+		circleNotifier.GetComponent<CircleNotifier>().LastSeenPosition = player.transform.position;
+			
+//		foreach (Transform got in transform.parent) {
+//			var go = got.gameObject;
+//			float dist = Vector2.Distance(transform.position, go.transform.position);			
+//			if (go != gameObject && dist < CommunicationRange) {
+//				Debug.DrawLine(transform.position, go.transform.position, Color.green, 0.5f);
+//				var police = go.GetComponent<Police>();
+//				police.NotifyPlayerPos(player.transform.position);
+//			}
+//		}
 	}
 	
 	public void NotifyPlayerPos(Vector2 pos) {
