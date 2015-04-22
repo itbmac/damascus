@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ThrowGlowstick : MonoBehaviour 
@@ -7,10 +8,13 @@ public class ThrowGlowstick : MonoBehaviour
 	States state;
 	Vector2 source;
 	Vector2 target;
+	GameObject playerObject;
+	Player playerScript;
 	Object glowstickPrefab;
 	public float glowstickScale;
 	public float moveSpeed;
 	public int rotationSpeed;
+	Text text;
 	
 	// Use this for initialization
 	void Start () 
@@ -25,8 +29,13 @@ public class ThrowGlowstick : MonoBehaviour
 			glowstickScale = 0.5f;
 		}
 		
+		playerObject = GameObject.FindGameObjectWithTag("Player");
+		playerScript = playerObject.GetComponent<Player>();
 		state = States.stowed;
+		text = GameObject.Find("Text").GetComponent<Text>();
 		glowstickPrefab = Resources.Load("GlowStick");
+		
+		text.text = playerScript.NumGlowsticks.ToString();
 	}
 	
 	public void ToggleHoldGlowstick () 
@@ -43,8 +52,9 @@ public class ThrowGlowstick : MonoBehaviour
 	
 	IEnumerator ThrowGlowstickCoroutine ()
 	{
-		//Next 3 lines allow throwing multiple sticks before the first one lands
-		Vector2 source = GameObject.FindGameObjectWithTag("Player").transform.position;
+		playerScript.NumGlowsticks -= 1;
+
+		Vector2 source = playerObject.transform.position;
 		Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		state = States.stowed;
 		
@@ -63,7 +73,7 @@ public class ThrowGlowstick : MonoBehaviour
 			//Movement
 			glowstick.transform.position = Vector2.MoveTowards(glowstick.transform.position, target, step);
 			glowstick.transform.Rotate(Vector3.forward * (rotationSpeed * (1 - percentDone)));
-			Debug.Log((rotationSpeed * (1 - percentDone)));
+			
 			yield return null;
 		}
 		
@@ -73,10 +83,16 @@ public class ThrowGlowstick : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-		if (state == States.holding && Input.GetMouseButtonDown(0))
+		if (playerScript.NumGlowsticks <= 0)
+		{
+			state = States.stowed;
+		}
+		else if (state == States.holding && Input.GetMouseButtonDown(0))
 		{
 			state = States.throwing;
 			StartCoroutine(ThrowGlowstickCoroutine());
 		}
+		
+		text.text = playerScript.NumGlowsticks.ToString();
 	}
 }

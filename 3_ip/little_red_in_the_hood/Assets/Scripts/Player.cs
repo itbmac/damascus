@@ -29,7 +29,7 @@ public class Player : MyMonoBehaviour {
 	}
 	
 	public bool IsOnSprayPaint {
-		get; private set;
+		get; set;
 	}
 	
 	const string MovementMode = "MovementMode";
