@@ -9,6 +9,11 @@ using System.Linq;
 public class Police : MyMonoBehaviour {
 
 	const float PingPongRate = 180.0f;
+	const float PlayerSeenTimeBeforeArrest = 1.5f;
+	const float PlayerDetectedTime = 5.0f;
+	const float DetectedInvestigativeRadius = 1.5f;
+	const float DetectionRange = 7.0f;
+	const float HealthToDrain = 1.0f; // per second
 
 	public AudioClip GotPlayer;
 	public float InvestigativeSpeedMultiplier = 2.0f;
@@ -70,11 +75,6 @@ public class Police : MyMonoBehaviour {
 	
 	Vector2 playerLastSeenPos;
 	float playerLastSeenTime;
-
-	const float PlayerSeenTimeBeforeArrest = 1.5f;
-	const float PlayerDetectedTime = 5.0f;
-	const float DetectedInvestigativeRadius = 1.5f;
-	const float DetectionRange = 7.0f;
 	
 	void OnEnable(){
 		agent.OnDestinationReached += SetNewDestination;
@@ -85,8 +85,6 @@ public class Police : MyMonoBehaviour {
 		agent.OnDestinationReached -= SetNewDestination;
 		agent.OnDestinationInvalid -= OnDestinationInvalid;
 	}
-	
-	const float HealthToDrain = 1.0f;
 	
 	public Vector2 Direction {
 		get; private set;
