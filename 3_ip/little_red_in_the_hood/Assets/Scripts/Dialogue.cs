@@ -70,26 +70,28 @@ public class Dialogue : MonoBehaviour {
 	IEnumerator MoveSpeechBubbles() {
 		transitioning = true;
 		float distance1, distance2, distance3;
+		float speed = 0.05f;
+
 		distance1 = Vector3.Distance(top_off_speech_bubble.transform.position, top_speech_bubble.transform.position);
 		distance2 = Vector3.Distance(top_speech_bubble.transform.position, bottom_speech_bubble.transform.position);
 		distance3 = Vector3.Distance(bottom_speech_bubble.transform.position, bottom_off_speech_bubble.transform.position);
 
 		Vector3 temp;
 
-		for (float f = 1f; f >= 0; f -= 0.05f) {
+		for (float f = 1f; f >= 0; f -= speed) {
 			//top to top-off
 			temp = top_speech_bubble.transform.position;
-			temp.y += distance1 * 0.1f;
+			temp.y += distance1 * speed;
 			top_speech_bubble.transform.position = temp;
 
 			//bottom to top
 			temp = bottom_speech_bubble.transform.position;
-			temp.y += distance2 * 0.1f;
+			temp.y += distance2 * speed;
 			bottom_speech_bubble.transform.position = temp;
 
 			//bottom-off to bottom
 			temp = bottom_off_speech_bubble.transform.position;
-			temp.y += distance3 * 0.1f;
+			temp.y += distance3 * speed;
 			bottom_off_speech_bubble.transform.position = temp;
 
 			//print(temp);
