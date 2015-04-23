@@ -2,10 +2,12 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ArrowDirection : MonoBehaviour {
+[RequireComponent(typeof(Collider2D))]
+public class ArrowDirection : MyMonoBehaviour {
 
-	public float graphicAngleOffset = 90;
+	public float graphicAngleOffset = 0;
 	public float graphicPositionOffset = 2.5f;
+	public float clipDistance = .25f;
 
 	// Use this for initialization
 	void Start () {
@@ -15,6 +17,13 @@ public class ArrowDirection : MonoBehaviour {
 	void Update () {
 		var target = TargetSystem.Instance.CurrentTarget;
 		Vector2 tPos = target.transform.position;
+		
+		if (Vector2.Distance(Camera.main.WorldToViewportPoint(tPos), new Vector2(.5f, .5f)) < clipDistance) {
+			spriteRenderer.enabled = false;
+			return;
+		} else {
+			spriteRenderer.enabled = true;
+		}
 		
 		var bounds = GetComponent<Collider2D>().bounds;
 		Vector2 buffer = bounds.size * .75f;
