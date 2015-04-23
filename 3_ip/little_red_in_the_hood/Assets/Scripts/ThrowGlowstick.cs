@@ -4,49 +4,40 @@ using System.Collections;
 
 public class ThrowGlowstick : MonoBehaviour 
 {
-	enum States {throwing, holding, stowed};
-	States state;
+	public float GlowstickScale = 0.5f;
+	public float MoveSpeed = 20f;
+	public int RotationSpeed;
+
+	enum States {Throwing, Holding, Stowed}
+	
+	States state = States.Stowed;
 	Vector2 source;
 	Vector2 target;
 	GameObject playerObject;
 	Player playerScript;
-	Object glowstickPrefab;
-	public float glowstickScale;
-	public float moveSpeed;
-	public int rotationSpeed;
+	GameObject glowstickPrefab;
 	Text text;
 	
 	// Use this for initialization
 	void Start () 
-	{
-		if (moveSpeed == 0)
-		{
-			moveSpeed = 20.0f;
-		}
-		
-		if (glowstickScale == 0)
-		{
-			glowstickScale = 0.5f;
-		}
-		
-		playerObject = GameObject.FindGameObjectWithTag("Player");
-		playerScript = playerObject.GetComponent<Player>();
-		state = States.stowed;
-		text = GameObject.Find("Text").GetComponent<Text>();
-		glowstickPrefab = Resources.Load("GlowStick");
+	{		
+		playerScript = Player.Instance;
+		playerObject = playerScript.gameObject;
+		text = GetComponentInChildren<Text>();
+		glowstickPrefab = (GameObject)Resources.Load("GlowStick");
 		
 		text.text = playerScript.NumGlowsticks.ToString();
 	}
 	
 	public void ToggleHoldGlowstick () 
 	{
-		if (state == States.holding)
+		if (state == States.Holding)
 		{
-			state = States.stowed;
+			state = States.Stowed;
 		}
-		else if (state == States.stowed)
+		else if (state == States.Stowed)
 		{
-			state = States.holding;
+			state = States.Holding;
 		}
 	}
 	
@@ -56,9 +47,9 @@ public class ThrowGlowstick : MonoBehaviour
 
 		Vector2 source = playerObject.transform.position;
 		Vector2 target = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		state = States.stowed;
+		state = States.Stowed;
 		
-		Quaternion rotation = Quaternion.AngleAxis(rotationSpeed, Vector3.forward * Random.Range(0.0f, 1.0f));
+		Quaternion rotation = Quaternion.AngleAxis(RotationSpeed, Vector3.forward * Random.Range(0.0f, 1.0f));
 		GameObject glowstick = (GameObject)GameObject.Instantiate(glowstickPrefab, source, rotation);
 		glowstick.transform.localScale *= 0.5f;
 		
@@ -68,13 +59,13 @@ public class ThrowGlowstick : MonoBehaviour
 			float distTraveled = Vector2.Distance(glowstick.transform.position, source);
 			float dist = Vector2.Distance(source, target);
 			float percentDone = distTraveled / dist;
-			float step = moveSpeed * Time.deltaTime * (1 - percentDone);
+			float step = MoveSpeed * Time.deltaTime * (1 - percentDone);
 			
 			//Movement
 			glowstick.transform.position = Vector2.MoveTowards(glowstick.transform.position, target, step);
-			glowstick.transform.Rotate(Vector3.forward * (rotationSpeed * (1 - percentDone)));
+			glowstick.transform.Rotate(Vector3.forward * (RotationSpeed * (1 - percentDone)));
 			
-			yield return null;
+			yield return new WaitForSeconds(0.01f);
 		}
 		
 		yield break;
@@ -85,11 +76,11 @@ public class ThrowGlowstick : MonoBehaviour
 	{
 		if (playerScript.NumGlowsticks <= 0)
 		{
-			state = States.stowed;
+			state = States.Stowed;
 		}
-		else if (state == States.holding && Input.GetMouseButtonDown(0))
+		else if (state == States.Holding && Input.GetMouseButtonDown(0))
 		{
-			state = States.throwing;
+			state = States.Throwing;
 			StartCoroutine(ThrowGlowstickCoroutine());
 		}
 		
