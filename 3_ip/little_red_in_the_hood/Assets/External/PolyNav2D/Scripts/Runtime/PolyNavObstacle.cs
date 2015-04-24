@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 
 [ExecuteInEditMode]
@@ -53,6 +55,32 @@ public class PolyNavObstacle : MonoBehaviour {
 				return tempPoints;			
 			}
 
+			return null;
+		}
+	}
+	
+	public Vector2[][] Paths {
+		get {
+			if (collider is BoxCollider2D) {
+				return new Vector2[][] {points};
+			}
+			
+			if (collider is PolygonCollider2D){
+				var list = new List<Vector2[]>();
+				
+				var polyCol = (PolygonCollider2D)collider;
+				
+				for (int i = 0; i < polyCol.pathCount; i++) {
+					Vector2[] tempPoints = polyCol.GetPath(i);
+					if (invertPolygon)
+						System.Array.Reverse(tempPoints);
+						
+					list.Add(tempPoints);
+				}					
+					
+				return list.ToArray();			
+			}
+			
 			return null;
 		}
 	}

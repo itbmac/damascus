@@ -188,9 +188,12 @@ public class PolyNav2D : MonoBehaviour {
 		//create a polygon object for each obstacle
 		for (int i = 0; i < navObstacles.Count; i++){
 			var obstacle = navObstacles[i];
-			var transformedPoints = TransformPoints(obstacle.points, obstacle.transform);
-			var inflatedPoints = InflatePolygon(transformedPoints, Mathf.Max(0.01f, inflateRadius + obstacle.extraOffset) );
-			obstaclePolys.Add(new Polygon(inflatedPoints));
+			
+			foreach (var path in obstacle.Paths) {
+				var transformedPoints = TransformPoints(path, obstacle.transform);
+				var inflatedPoints = InflatePolygon(transformedPoints, Mathf.Max(0.01f, inflateRadius + obstacle.extraOffset) );
+				obstaclePolys.Add(new Polygon(inflatedPoints));
+			}
 		}
 
 		if (generateMaster){
