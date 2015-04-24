@@ -7,6 +7,7 @@ public class Player : MyMonoBehaviour {
 	public float RunSpeed = 18f;
 	public float IdleSpeed = 1f;
 
+	public GameObject RedDiscovered;
 	public GameObject PaintSplat;
 	public GameObject Glowstick;
 	public Vector3 startLoc;
@@ -23,6 +24,7 @@ public class Player : MyMonoBehaviour {
 	public AudioClip WalkSound;
 	public AudioClip RunSound;
 	public AudioClip StealthSound;
+	public bool lockedMovement = false;
 
 	AudioSource audio;
 	
@@ -52,6 +54,7 @@ public class Player : MyMonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		StartCoroutine(RedDiscoveredCoroutine());
 		startLoc = transform.position;
 		audio = GetComponent<AudioSource>();
 	}
@@ -61,6 +64,38 @@ public class Player : MyMonoBehaviour {
 	private bool GodMode;
 	public bool StealthMode {
 		get; private set;
+	}
+	
+	IEnumerator RedDiscoveredCoroutine()
+	{
+		SpriteRenderer renderer = RedDiscovered.GetComponent<SpriteRenderer>();
+		
+		while (true)
+		{
+			Color newColor = renderer.color;
+			newColor.a = 1.0f - Health;
+			renderer.color = newColor;
+			
+			yield return null;
+		}
+	}
+	
+	IEnumerator GameOverCoroutine()
+	{
+		lockedMovement = true;
+		float timeToSpin = 1.5f;
+		float timeSpinning = 0.0f;
+		
+		while (timeSpinning <= timeToSpin)
+		{
+			timeSpinning += Time.deltaTime;
+			
+			Camera.main.transform.Rotate(new Vector3(0.0f, 0.0f, 0.25f));
+			
+			yield return null;
+		}
+		
+		Application.LoadLevel(Application.loadedLevel);
 	}
 	
 	void Update() {
@@ -92,7 +127,7 @@ public class Player : MyMonoBehaviour {
 		}
 		
 		if (Health < 0.0f && !GodMode) {
-			Application.LoadLevel(Application.loadedLevel);
+			StartCoroutine(GameOverCoroutine());
 			return;
 		}
 		Health += HealthRegenRate * Time.deltaTime;
