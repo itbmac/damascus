@@ -186,13 +186,11 @@ public class Dialogue : MonoBehaviour {
 
 		//Load speaking characters.
 
-		//Load speech bubbles.
-
 		//Load the first line of text.
 		text2.text = dialogueLines[0].dialogue;
 		print (dialogueLines[0].character + ", " + speaker2);
 		if(dialogueLines[0].character == speaker2){
-			//bottom_speech_bubble.transform.eulerAngles = new Vector3(0, 180, 0);
+			bubble2.sprite = assets["normal_right"];
 		}
 
 	}
