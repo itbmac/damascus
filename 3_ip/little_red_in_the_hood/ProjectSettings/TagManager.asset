@@ -15,6 +15,7 @@ TagManager:
   - ShadowLayer
   - Glowstick
   - Obstacle
+  - New Tag
   layers:
   - Default
   - TransparentFX
@@ -61,20 +62,20 @@ TagManager:
   - name: lights
     uniqueID: 3773152081
     locked: 0
-  - name: buildings
-    uniqueID: 3006545015
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: WorldOverlay
-    uniqueID: 1314971429
+  - name: Player
+    uniqueID: 3727669075
+    locked: 0
+  - name: buildings
+    uniqueID: 3006545015
     locked: 0
   - name: Arrow
     uniqueID: 1305125239
     locked: 0
-  - name: Player
-    uniqueID: 3727669075
+  - name: WorldOverlay
+    uniqueID: 1314971429
     locked: 0
   - name: Dialogue
     uniqueID: 3036135057
