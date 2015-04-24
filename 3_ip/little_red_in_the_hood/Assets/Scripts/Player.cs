@@ -19,6 +19,12 @@ public class Player : MyMonoBehaviour {
 	public int NumGlowsticks = 5;
 	
 	public float Health = 1.0f;
+
+	public AudioClip WalkSound;
+	public AudioClip RunSound;
+	public AudioClip StealthSound;
+
+	AudioSource audio;
 	
 	public static Player Instance {
 		get; private set;
@@ -47,6 +53,7 @@ public class Player : MyMonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		startLoc = transform.position;
+		audio = GetComponent<AudioSource>();
 	}
 	
 	public float HealthRegenRate = 0.1f;
@@ -121,14 +128,21 @@ public class Player : MyMonoBehaviour {
 
 		if (velSpeed > WalkSpeed) {
 			anim.SetInteger(MovementMode, (int)AnimState.Run);
+			audio.clip = RunSound;
 		} else if (velSpeed > SlowSpeed) {
 			anim.SetInteger(MovementMode, (int)AnimState.Walk);
+			audio.clip = WalkSound; 
 		} else if (velSpeed > 0){
 			anim.SetInteger(MovementMode, (int)AnimState.Sneak);
+			audio.clip = StealthSound;
 		} else {
 			anim.SetInteger(MovementMode, (int)AnimState.Idle);
+			audio.Stop();
 		}
 	
+		if (!audio.isPlaying)
+			audio.Play ();
+
 		velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed;
 		GetComponent<Rigidbody2D>().velocity = velocity;
 		

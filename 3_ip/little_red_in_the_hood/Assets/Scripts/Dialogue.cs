@@ -16,10 +16,15 @@ using System.Linq;
 struct dialogueLine {
 	public string character;
 	public string dialogue;
+	public string mood;
 
-	public dialogueLine(string c, string d){
-		character = c;
-		dialogue = d;
+	public dialogueLine(string[] s){
+		character = s[0];
+		dialogue = s[1];
+		if (s.Length <= 2)
+			mood = "normal";
+		else
+			mood = s[2];
 	}
 }
 
@@ -179,8 +184,7 @@ public class Dialogue : MonoBehaviour {
 		foreach (var inp_ln in Lines.Skip(1))
 		{
 			words = inp_ln.Split(delimiter);
-			dialogueLines[i] = new dialogueLine(words[0], words[1]);
-			print (dialogueLines[i].character + ": " + dialogueLines[i].dialogue);
+			dialogueLines[i] = new dialogueLine(words);
 			i++;
 		}
 
@@ -188,7 +192,6 @@ public class Dialogue : MonoBehaviour {
 
 		//Load the first line of text.
 		text2.text = dialogueLines[0].dialogue;
-		print (dialogueLines[0].character + ", " + speaker2);
 		if(dialogueLines[0].character == speaker2){
 			bubble2.sprite = assets["normal_right"];
 		}
@@ -211,6 +214,11 @@ public class Dialogue : MonoBehaviour {
 		}
 		//Check if the user has advanced the dialogue.
 		else if((lastRendered != index) && !transitioning){
+			//Adjust the next speaker's mood.
+			string speakerMood = "";
+			//uhhh will update later when im more conscious and have different moods for the sprites
+
+			//Move speech bubbles.
 			StartCoroutine(MoveSpeechBubbles());
 
 			//Render the next line of dialogue offscreen.
