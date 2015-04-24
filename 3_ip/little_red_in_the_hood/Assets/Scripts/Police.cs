@@ -146,6 +146,7 @@ public class Police : MyMonoBehaviour {
 	
 	float maxSpeed;
 	Vector2 startPos;
+	Collider2D hearingRadius;
 	void Start(){
 		player = FindObjectOfType<Player>().gameObject;		
 		visionCone = transform.GetChild(0).GetComponent<Collider2D>();
@@ -155,6 +156,10 @@ public class Police : MyMonoBehaviour {
 		if (WPoints.Length > 0) {
 			SetNewDestination();
 		}
+		
+		var hearingRadiusGameObject = transform.Find("HearingRadius");
+		if (hearingRadiusGameObject)
+			hearingRadius = hearingRadiusGameObject.GetComponent<Collider2D>();
 	}
 	
 	void SetNewDestination() {
@@ -226,7 +231,12 @@ public class Police : MyMonoBehaviour {
 			return true;
 		}
 		
-		return visionCone.IsTouching(player.GetComponent<Collider2D>());
+		var playerCollider = player.GetComponent<Collider2D>();
+		if (hearingRadius && hearingRadius.IsTouching(playerCollider))
+			return true;
+			
+		
+		return visionCone.IsTouching(playerCollider);
 	}
 	
 	float nextCommunicate;
