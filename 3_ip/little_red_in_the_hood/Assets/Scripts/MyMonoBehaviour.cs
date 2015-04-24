@@ -3,6 +3,8 @@ using System.Collections;
 
 public class MyMonoBehaviour : MonoBehaviour {
 
+	// TODO; save these all to private variables lazily
+
 	protected SpriteRenderer spriteRenderer {
 		get {
 			return GetComponent<SpriteRenderer>();
@@ -38,6 +40,12 @@ public class MyMonoBehaviour : MonoBehaviour {
 	protected Animator anim {
 		get {
 			return GetComponent<Animator>();
+		}
+	}
+	
+	new protected AudioSource audio {
+		get {
+			return GetComponent<AudioSource>();
 		}
 	}
 }

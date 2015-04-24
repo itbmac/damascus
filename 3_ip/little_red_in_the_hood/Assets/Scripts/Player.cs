@@ -25,8 +25,6 @@ public class Player : MyMonoBehaviour {
 	public AudioClip RunSound;
 	public AudioClip StealthSound;
 	public bool lockedMovement = false;
-
-	AudioSource audio;
 	
 	public static Player Instance {
 		get; private set;
@@ -56,7 +54,6 @@ public class Player : MyMonoBehaviour {
 	void Start () {
 		StartCoroutine(RedDiscoveredCoroutine());
 		startLoc = transform.position;
-		audio = GetComponent<AudioSource>();
 	}
 	
 	public float HealthRegenRate = 0.1f;
@@ -173,9 +170,10 @@ public class Player : MyMonoBehaviour {
 		} else {
 			anim.SetInteger(MovementMode, (int)AnimState.Idle);
 			audio.Stop();
+			audio.clip = null;
 		}
 	
-		if (!audio.isPlaying)
+		if (!audio.isPlaying && audio.clip != null)
 			audio.Play ();
 
 		velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed;
