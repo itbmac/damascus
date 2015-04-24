@@ -7,6 +7,7 @@ public class ThrowGlowstick : MonoBehaviour
 	public float GlowstickScale = 0.5f;
 	public float MoveSpeed = 20f;
 	public int RotationSpeed;
+	public Texture2D cursorTexture;
 
 	enum States {Throwing, Holding, Stowed}
 	
@@ -33,16 +34,19 @@ public class ThrowGlowstick : MonoBehaviour
 	{
 		if (state == States.Holding)
 		{
+			Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 			state = States.Stowed;
 		}
 		else if (state == States.Stowed)
 		{
+			Cursor.SetCursor(cursorTexture, Vector2.zero, CursorMode.Auto);
 			state = States.Holding;
 		}
 	}
 	
 	IEnumerator ThrowGlowstickCoroutine ()
 	{
+		Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 		playerScript.NumGlowsticks -= 1;
 
 		Vector2 source = playerObject.transform.position;
@@ -67,8 +71,6 @@ public class ThrowGlowstick : MonoBehaviour
 			
 			yield return new WaitForSeconds(0.01f);
 		}
-		
-		yield break;
 	}
 	
 	// Update is called once per frame
