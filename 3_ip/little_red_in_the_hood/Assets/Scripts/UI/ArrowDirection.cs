@@ -15,6 +15,7 @@ public class ArrowDirection : MyMonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		updateTimeLast = -1 * updateFrequency;
+		collider2D.isTrigger = true; // HACK to fix arrow without changing the scene
 	}
 	
 	// Update is called once per frame

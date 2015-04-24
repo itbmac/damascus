@@ -48,4 +48,10 @@ public class MyMonoBehaviour : MonoBehaviour {
 			return GetComponent<AudioSource>();
 		}
 	}
+	
+	new protected Collider2D collider2D {
+		get {
+			return GetComponent<Collider2D>();
+		}
+	}
 }
