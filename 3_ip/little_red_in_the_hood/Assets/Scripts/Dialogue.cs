@@ -51,8 +51,8 @@ public class Dialogue : MonoBehaviour {
 	GameObject top_off_speech_bubble;
 	GameObject bottom_speech_bubble;
 	GameObject bottom_off_speech_bubble;
-	GameObject left_sprite;
-	GameObject right_sprite;
+	SpriteRenderer left_sprite;
+	SpriteRenderer right_sprite;
 
 	//The text file we read from.
 	public TextAsset MyText;
@@ -144,8 +144,8 @@ public class Dialogue : MonoBehaviour {
 		top_off_speech_bubble = dialogue_top_off.transform.FindChild("top_off_speech_bubble").gameObject;
 		bottom_speech_bubble = dialogue_bottom.transform.FindChild("bottom_speech_bubble").gameObject;
 		bottom_off_speech_bubble = dialogue_bottom_off.transform.FindChild("bottom_off_speech_bubble").gameObject;
-		left_sprite = transform.FindChild("left_sprite").gameObject;
-		right_sprite = transform.FindChild("right_sprite").gameObject;
+		left_sprite = transform.FindChild("left_sprite").gameObject.GetComponent<SpriteRenderer> ();
+		right_sprite = transform.FindChild("right_sprite").gameObject.GetComponent<SpriteRenderer> ();
 
 		text1 = top_speech_bubble.GetComponent<Text>();
 		text2 = bottom_speech_bubble.GetComponent<Text>();
@@ -153,8 +153,8 @@ public class Dialogue : MonoBehaviour {
 		bubble1 = top_speech_bubble.GetComponent<SpriteRenderer>();
 		bubble2 = bottom_speech_bubble.GetComponent<SpriteRenderer>();
 		bubble3 = bottom_off_speech_bubble.GetComponent<SpriteRenderer>();
-		left_sprite.GetComponent<SpriteRenderer> ().sprite = Sprite1;
-		right_sprite.GetComponent<SpriteRenderer> ().sprite = Sprite2;
+		left_sprite.sprite = Sprite1;
+		right_sprite.sprite = Sprite2;
 
 		//Build asset dictionary.
 		buildAssetDictionary();
@@ -215,9 +215,12 @@ public class Dialogue : MonoBehaviour {
 		//Check if the user has advanced the dialogue.
 		else if((lastRendered != index) && !transitioning){
 			//Adjust the next speaker's mood.
-			string speakerMood = "";
-			//uhhh will update later when im more conscious and have different moods for the sprites
+			string speakerMood = (dialogueLines[index - 1].character + "_" + dialogueLines[index - 1].mood).ToLower();
 
+			if(assets.ContainsKey(speakerMood)){
+				if(dialogueLines[index - 1].character == speaker1) left_sprite.sprite = assets[speakerMood];
+				else right_sprite.sprite = assets[speakerMood];
+			}
 			//Move speech bubbles.
 			StartCoroutine(MoveSpeechBubbles());
 
