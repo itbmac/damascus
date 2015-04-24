@@ -10,6 +10,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 struct dialogueLine {
@@ -23,6 +24,9 @@ struct dialogueLine {
 }
 
 public class Dialogue : MonoBehaviour {
+	//Dictionary of assets.
+	Dictionary<string, Sprite> assets = new Dictionary<string, Sprite> ();
+
 	//Current line index being read.
 	int index = 0;
 	//The last line index that was visually rendered.
@@ -65,6 +69,15 @@ public class Dialogue : MonoBehaviour {
 
 	//Basically a mutex so the player can't skip through text.
 	bool transitioning = false;
+
+	//Compile dictionary.
+	void buildAssetDictionary(){
+		Sprite[] temp = Resources.LoadAll<Sprite>("Dialogue");
+
+		for(int i = 0; i < temp.Length; i++){
+			assets.Add(temp[i].name, temp[i]);
+		}
+	}
 
 	//Transitioning speech bubbles.
 	IEnumerator MoveSpeechBubbles() {
@@ -138,6 +151,9 @@ public class Dialogue : MonoBehaviour {
 		left_sprite.GetComponent<SpriteRenderer> ().sprite = Sprite1;
 		right_sprite.GetComponent<SpriteRenderer> ().sprite = Sprite2;
 
+		//Build asset dictionary.
+		buildAssetDictionary();
+
 		//Set background.
 
 		//Read in dialogue file.
@@ -201,34 +217,8 @@ public class Dialogue : MonoBehaviour {
 
 			//Render the next line of dialogue offscreen.
 			text3.text = dialogueLines[index].dialogue;
-			bubble3.sprite = bubble1.sprite;
-
-			/*
-			//Move up the top onscreen dialogue off the screen.
-			text4.text = text3.text;
-
-			//Move up the bottom onscreen dialogue to the top onscreen dialogue slot.
-			text3.text = text2.text;
-			bubble1.sprite = bubble2.sprite;
-			Vector3 temp = top_speech_bubble.transform.eulerAngles;
-			temp.y = bottom_speech_bubble.transform.eulerAngles.y;
-			top_speech_bubble.transform.eulerAngles = temp;
-
-			//Move up the newly rendered dialogue to the bottom onscreen dialogue slot.
-			text2.text = text1.text;
-			//sprite2.sprite;
-			temp = bottom_speech_bubble.transform.eulerAngles;
-
-			//This needs to be worked out better but whatever
-			if(dialogueLines[index].character != "Red"){
-				temp.y = 180;
-				//bottom_speech_bubble.transform.eulerAngles = temp;
-			}
-			else{
-				temp.y = 0;
-				//bottom_speech_bubble.transform.eulerAngles = temp;
-			}
-			*/
+			if(dialogueLines[index].character == speaker2) bubble3.sprite = assets["normal_right"];
+			else bubble3.sprite = assets["normal_left"];
 
 			lastRendered++;
 		}
