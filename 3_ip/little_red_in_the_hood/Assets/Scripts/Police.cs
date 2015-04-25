@@ -201,10 +201,8 @@ public class Police : MyMonoBehaviour {
 	}
 	
 	void OnDrawGizmosSelected(){
-		Vector2 pos = transform.position;
-
 		for ( int i = 0; i < WPoints.Length; i++)
-			Gizmos.DrawSphere(WPoints[i] + pos, 0.15f);			
+			Gizmos.DrawSphere(WPoints[i] + startPos, 0.15f);			
 	}
 	
 	bool IsPlayerVisible() {

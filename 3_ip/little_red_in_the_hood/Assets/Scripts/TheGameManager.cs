@@ -31,6 +31,16 @@ public class TheGameManager : MonoBehaviour {
 			Camera.main.GetComponent<CamFollow>().ChangeSize(Camera.main.GetComponent<CamFollow>().cameraSizeStart);
 			DetectedCurrently = false;
 		}
+		
+		// NL = next level
+		if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.L) && Input.anyKeyDown) {
+			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
+		}
+		
+		// PL = previous level
+		if (Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.L) && Input.anyKeyDown) {
+			Application.LoadLevel(Application.loadedLevel == 0 ? Application.levelCount - 1 : Application.loadedLevel - 1);
+		}
 	}
 	
 	public void Detected() {
