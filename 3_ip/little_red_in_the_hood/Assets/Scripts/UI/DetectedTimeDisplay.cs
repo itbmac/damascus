@@ -12,7 +12,7 @@ public class DetectedTimeDisplay : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (TheGameManager.Instance.DetectedTimeRemaining > 0) {
-			GetComponent<Text>().text = "DETECTED\n" + TheGameManager.Instance.DetectedTimeRemaining.ToString("0.0");
+			GetComponent<Text>().text = "";// "DETECTED\n" + TheGameManager.Instance.DetectedTimeRemaining.ToString("0.0");
 		} else {
 			GetComponent<Text>().text = "";
 		}

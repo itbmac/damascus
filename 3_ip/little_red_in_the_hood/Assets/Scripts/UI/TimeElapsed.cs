@@ -15,9 +15,9 @@ public class TimeElapsed : MonoBehaviour {
 	void FixedUpdate () {
 		int numRemainingDrops = TargetSystemTracker.GetComponent<TargetSystem>().numTargets - TargetSystemTracker.GetComponent<TargetSystem>().currentTarget;
 		if (numRemainingDrops != 1)
-			GetComponent<Text>().text = NumberToWords(numRemainingDrops) + "  Drops  Left"; //NumberToWords(Mathf.RoundToInt(Time.time));
+			GetComponent<Text>().text = "";// NumberToWords(numRemainingDrops) + "  Drops  Left"; //NumberToWords(Mathf.RoundToInt(Time.time));
 		else
-			GetComponent<Text>().text = NumberToWords(numRemainingDrops) + "  Drop  Left";
+			GetComponent<Text>().text = ""; // NumberToWords(numRemainingDrops) + "  Drop  Left";
 	}
 
 	string NumberToWords(int number)
