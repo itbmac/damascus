@@ -178,22 +178,32 @@ public class PolyNav2D : MonoBehaviour {
 			points[i] = t.TransformPoint(points[i]);
 		return points;
 	}
+	
+	int lastNavObstaclesSize = -1;
 
 	//takes all colliders points and convert them to usable stuff
-	void CreatePolyMap(bool generateMaster){
+	void CreatePolyMap(bool generateMaster, bool skipIfSimilar = false){
+	
+		if (skipIfSimilar) {
+			if (lastNavObstaclesSize == navObstacles.Count)
+				return;
+			lastNavObstaclesSize = navObstacles.Count;
+		}		
 
 		var masterPolys = new List<Polygon>();
 		var obstaclePolys = new List<Polygon>();
 
 		//create a polygon object for each obstacle
-		for (int i = 0; i < navObstacles.Count; i++){
-			var obstacle = navObstacles[i];
-			
-			foreach (var path in obstacle.Paths) {
+		foreach (var obstacle in navObstacles){
+			int numPoints = 0;		
+			var paths = obstacle.Paths;
+			foreach (var path in paths) {
+				numPoints += path.Length;
 				var transformedPoints = TransformPoints(path, obstacle.transform);
 				var inflatedPoints = InflatePolygon(transformedPoints, Mathf.Max(0.01f, inflateRadius + obstacle.extraOffset) );
 				obstaclePolys.Add(new Polygon(inflatedPoints));
 			}
+			print ("Imported " + numPoints + " points from " + paths.Length + " paths on " + obstacle.name);
 		}
 
 		if (generateMaster){
@@ -472,8 +482,12 @@ public class PolyNav2D : MonoBehaviour {
 	
 	void OnDrawGizmos (){
 
-		if (!Application.isPlaying)
-			CreatePolyMap(true);
+		if (!Application.isPlaying) {
+			if (map == null)
+				GenerateMap(true);
+			else		
+				CreatePolyMap(true, true);
+		}
 
 		//the original drawn polygons
 		if (masterCollider is PolygonCollider2D){
