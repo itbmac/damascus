@@ -50,7 +50,7 @@ namespace unitycodercom_spriteTransformReset
 							
 							// set new units
 							// TODO: round to int?
-							importer.spritePixelsToUnits *= xRatio;
+							importer.spritePixelsPerUnit *= xRatio;
 							
 							// reset transform size to 1,1,1
 							go.transform.localScale = Vector3.one;
