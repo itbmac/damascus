@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class Player : MyMonoBehaviour {
 	public float WalkSpeed = 12f;
@@ -49,12 +50,16 @@ public class Player : MyMonoBehaviour {
 	}
 	
 	SpriteRenderer redDiscoveredRenderer;
+	
+	Transform[] AllPolice;
 
 	// Use this for initialization
 	void Start () {
 		startLoc = transform.position;
 		
 		redDiscoveredRenderer = transform.Find("red_discovered").GetComponent<SpriteRenderer>();
+		
+		AllPolice = GameObject.Find("Police_Department").transform.Cast<Transform>().ToArray();
 	}
 	
 	public float HealthRegenRate = 0.1f;
@@ -101,10 +106,12 @@ public class Player : MyMonoBehaviour {
 				print("Stealth mode off");
 		}
 		
-		if (!gameOver && Health < 0.0f && !GodMode) {
-			gameOver = true;
-			FindObjectOfType<FadeToBlack>().Trigger();
-			return;
+		if (!gameOver && !GodMode) {
+			if (collider2D.IsTouchingLayers(LayerMask.GetMask("Police"))) {
+				gameOver = true;
+				FindObjectOfType<FadeToBlack>().Trigger();
+				return;
+			}
 		}
 		Health += HealthRegenRate * Time.deltaTime;
 		Health = Mathf.Min(1, Health);

@@ -35,7 +35,7 @@ GameObject:
   - 114: {fileID: 11442256}
   - 95: {fileID: 9517588}
   - 50: {fileID: 5064714}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Patrol
   m_TagString: New Tag
   m_Icon: {fileID: 0}
@@ -202,15 +202,15 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0, y: 0}
-      - {x: -3.53553462, y: 3.53553319}
-      - {x: -2.79596472, y: 4.14518642}
-      - {x: -1.9536556, y: 4.60252428}
-      - {x: -.954045594, y: 4.90813684}
-      - {x: -2.78141783e-07, y: 5}
-      - {x: .954044044, y: 4.90813589}
-      - {x: 1.95365489, y: 4.60252523}
-      - {x: 2.79596472, y: 4.14518833}
-      - {x: 3.53553319, y: 3.53553462}
+      - {x: -3.5355289, y: 3.5355351}
+      - {x: -2.79596186, y: 4.14518833}
+      - {x: -1.95365369, y: 4.60252428}
+      - {x: -.954042733, y: 4.90813494}
+      - {x: 5.44390423e-06, y: 5}
+      - {x: .954045951, y: 4.90813398}
+      - {x: 1.95365679, y: 4.60252333}
+      - {x: 2.79596472, y: 4.14518642}
+      - {x: 3.5355351, y: 3.53553271}
 --- !u!82 &8277694
 AudioSource:
   m_ObjectHideFlags: 1
@@ -373,53 +373,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 6049498}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 6099390}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   lightRadius: 5
@@ -430,7 +390,7 @@ MonoBehaviour:
   notifyGameObjectsReached: 0
   intelliderConvex: 0
   recalculateNormals: 1
-  vertexWorking: 27
+  vertexWorking: 0
   RangeAngle: 90
 --- !u!114 &11486276
 MonoBehaviour:

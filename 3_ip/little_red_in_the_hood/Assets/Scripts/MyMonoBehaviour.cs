@@ -49,9 +49,11 @@ public class MyMonoBehaviour : MonoBehaviour {
 		}
 	}
 	
+	private Collider2D _collider2D;
 	new protected Collider2D collider2D {
 		get {
-			return GetComponent<Collider2D>();
+			if (_collider2D == null) _collider2D = GetComponent<Collider2D>();
+			return _collider2D;
 		}
 	}
 }
