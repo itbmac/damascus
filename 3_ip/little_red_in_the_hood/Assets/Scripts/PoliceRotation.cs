@@ -34,6 +34,9 @@ public class PoliceRotation : MonoBehaviour {
 	void Start () {
 		police = GetComponent<Police>();
 		VisionCone = transform.GetChild(0).gameObject;
+		
+		// correct for z-flicker
+		VisionCone.transform.localPosition = new Vector3(0, 0, (transform.GetSiblingIndex() + 1) * 0.01f);
 	}
 	
 	const float VisionConeOffset = 180;

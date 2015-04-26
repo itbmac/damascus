@@ -61,7 +61,7 @@ public class DynamicLight : MyMonoBehaviour {
 
 
 	void OnDrawGizmos() {
-		Gizmos.DrawIcon(transform.position, "bright.png", true);
+//		Gizmos.DrawIcon(transform.position, "bright.png", true);
 	}
 
 
@@ -154,7 +154,7 @@ public class DynamicLight : MyMonoBehaviour {
 		//gameObject.transform.localEulerAngles = Vector3.zero;
 
 		Vector3 pos = gameObject.transform.localPosition;
-		pos.z = 0;
+//		pos.z = 0.01f;
 		gameObject.transform.localPosition = pos;
 
 		// Angle

@@ -90,7 +90,7 @@ namespace unitycodercom_spriteTransformReset
 						// register undo, for all?
 						Undo.RecordObject (importer,"Reset transform");
 						// set new units
-						importer.spritePixelsToUnits = pixelsToReset;
+						importer.spritePixelsPerUnit = pixelsToReset;
 						// reimport
 						AssetDatabase.ImportAsset(assetPath);
 
@@ -124,7 +124,7 @@ namespace unitycodercom_spriteTransformReset
 					string assetPath = AssetDatabase.GetAssetPath (Selection.gameObjects[0].GetComponent<SpriteRenderer>().sprite);
 					TextureImporter importer = (TextureImporter)AssetImporter.GetAtPath(assetPath);
 					
-					GUILayout.Label("Selected object: "+importer.spritePixelsToUnits+" (pixels to units)");	
+					GUILayout.Label("Selected object: "+importer.spritePixelsPerUnit+" (pixels per units)");	
 				}
 			}else{
 				GUILayout.Label("");	
