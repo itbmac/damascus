@@ -492,9 +492,8 @@ public class PolyNav2D : MonoBehaviour {
 		//the original drawn polygons
 		if (masterCollider is PolygonCollider2D){
 			var polyCollider = (PolygonCollider2D)masterCollider;
-			for ( int i = 0; i < polyCollider.pathCount; ++i ) {
-	            for ( int p = 0; p < polyCollider.GetPath(i).Length; ++p )
-	                DebugDrawPolygon( TransformPoints( polyCollider.GetPath(i), polyCollider.transform ), Color.green );
+			for (int i = 0; i < polyCollider.pathCount; ++i ) {
+                DebugDrawPolygon( TransformPoints( polyCollider.GetPath(i), polyCollider.transform ), Color.green );
 	        }
         
         } else if (masterCollider is BoxCollider2D){
