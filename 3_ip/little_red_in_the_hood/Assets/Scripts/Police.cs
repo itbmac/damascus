@@ -96,6 +96,13 @@ public class Police : MyMonoBehaviour {
 	
 	float nextChange;
 	void Update() {	
+		if (TheGameManager.Instance.MotionStopped) {
+			agent.Stop();
+			anim.SetBool("Walking", false);
+			
+			return;
+		}
+	
 		if (pingPongMode && CurrentState == State.Normal) {
 			if (Time.time > pingPongEndTime) {
 				pingPongMode = false; 

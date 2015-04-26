@@ -13,6 +13,8 @@ public class TheGameManager : MonoBehaviour {
 	private float DetectedStartTime = -3f;
 	public bool DetectedCurrently = false;
 	
+	public bool MotionStopped = false;
+	
 	public static TheGameManager Instance { get; private set; }
 	
 	void Awake() 
@@ -27,7 +29,7 @@ public class TheGameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (DetectedCurrently && (DetectedTimeRemaining <= 0)) {
+		if (DetectedCurrently && (DetectedTimeRemaining <= 0) && !MotionStopped) {
 			Camera.main.GetComponent<CamFollow>().ChangeSize(Camera.main.GetComponent<CamFollow>().cameraSizeStart);
 			DetectedCurrently = false;
 		}

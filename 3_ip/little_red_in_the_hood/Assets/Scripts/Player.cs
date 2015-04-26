@@ -7,7 +7,6 @@ public class Player : MyMonoBehaviour {
 	public float RunSpeed = 18f;
 	public float IdleSpeed = 1f;
 
-	public GameObject RedDiscovered;
 	public GameObject PaintSplat;
 	public GameObject Glowstick;
 	public Vector3 startLoc;
@@ -24,7 +23,6 @@ public class Player : MyMonoBehaviour {
 	public AudioClip WalkSound;
 	public AudioClip RunSound;
 	public AudioClip StealthSound;
-	public bool lockedMovement = false;
 	
 	public static Player Instance {
 		get; private set;
@@ -49,11 +47,14 @@ public class Player : MyMonoBehaviour {
 	void Awake() {
 		Instance = this;
 	}
+	
+	SpriteRenderer redDiscoveredRenderer;
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine(RedDiscoveredCoroutine());
 		startLoc = transform.position;
+		
+		redDiscoveredRenderer = transform.Find("red_discovered").GetComponent<SpriteRenderer>();
 	}
 	
 	public float HealthRegenRate = 0.1f;
@@ -63,39 +64,12 @@ public class Player : MyMonoBehaviour {
 		get; private set;
 	}
 	
-	IEnumerator RedDiscoveredCoroutine()
-	{
-		SpriteRenderer renderer = RedDiscovered.GetComponent<SpriteRenderer>();
-		
-		while (true)
-		{
-			Color newColor = renderer.color;
-			newColor.a = 1.0f - Health;
-			renderer.color = newColor;
-			
-			yield return null;
-		}
-	}
-	
-	IEnumerator GameOverCoroutine()
-	{
-		lockedMovement = true;
-		float timeToSpin = 1.5f;
-		float timeSpinning = 0.0f;
-		
-		while (timeSpinning <= timeToSpin)
-		{
-			timeSpinning += Time.deltaTime;
-			
-			Camera.main.transform.Rotate(new Vector3(0.0f, 0.0f, 0.25f));
-			
-			yield return null;
-		}
-		
-		Application.LoadLevel(Application.loadedLevel);
-	}
+	bool gameOver;
 	
 	void Update() {
+		if (TheGameManager.Instance.MotionStopped)
+			return;
+	
 		IsUnderStreetlight = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("Streetlight"));	
 		IsOnSprayPaint = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("SprayPaint"));	
 		
@@ -106,6 +80,10 @@ public class Player : MyMonoBehaviour {
 		} else {
 			color = Color.white;
 		}
+		
+		Color newColor = redDiscoveredRenderer.color;
+		newColor.a = 1.0f - Health;
+		redDiscoveredRenderer.color = newColor;
 		
 		if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.M) && Input.anyKeyDown) {
 			GodMode = !GodMode;
@@ -123,8 +101,9 @@ public class Player : MyMonoBehaviour {
 				print("Stealth mode off");
 		}
 		
-		if (Health < 0.0f && !GodMode) {
-			StartCoroutine(GameOverCoroutine());
+		if (!gameOver && Health < 0.0f && !GodMode) {
+			gameOver = true;
+			FindObjectOfType<FadeToBlack>().Trigger();
 			return;
 		}
 		Health += HealthRegenRate * Time.deltaTime;
@@ -144,6 +123,12 @@ public class Player : MyMonoBehaviour {
 	//update is called every frame at fixed intervals
 	void FixedUpdate()
 	{
+		if (TheGameManager.Instance.MotionStopped) {
+			GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			anim.SetInteger(MovementMode, (int)AnimState.Idle);
+			return;
+		}
+	
 		float speed;
 		if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
 			speed = RunSpeed;

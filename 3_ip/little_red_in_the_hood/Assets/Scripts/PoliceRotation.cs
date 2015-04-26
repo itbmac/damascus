@@ -69,6 +69,9 @@ public class PoliceRotation : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {		
+		if (TheGameManager.Instance.MotionStopped)
+			return;
+		
 		Vector2 dir = GetComponent<Police>().Direction;
 		
 		UpdateVisionCone(dir);		
