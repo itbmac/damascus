@@ -19,8 +19,9 @@ public class PolyNav2D : MonoBehaviour {
 	///A Flag to tell PolyNav to regenerate the map
 	public bool regenerateFlag;
 
-
+	[SerializeField]
 	private PolyMap map;
+	
 	private List<PathNode> nodes = new List<PathNode>();
 	private PathNode[] tempNodes;
 
@@ -158,18 +159,21 @@ public class PolyNav2D : MonoBehaviour {
 		currentRequest.callback(path, success);
 		TryNextFindPath();
 	}
-
-
-
-
-
-
+	
+	public bool SkipLinkNodes = true;
 
 	///Generate the map
 	public void GenerateMap(bool generateMaster){
+		DateTime startTime = DateTime.Now;
+		
 		CreatePolyMap(generateMaster);
 		CreateNodes();
-		LinkNodes(nodes);
+		if (!SkipLinkNodes)
+			LinkNodes(nodes);
+		
+		DateTime endTime = DateTime.Now;
+		TimeSpan totalTimeTaken = endTime.Subtract(startTime);
+		print ("Finished GenerateMap, took " + totalTimeTaken.Seconds);
 	}
 
 	//helper function
@@ -183,6 +187,7 @@ public class PolyNav2D : MonoBehaviour {
 
 	//takes all colliders points and convert them to usable stuff
 	void CreatePolyMap(bool generateMaster, bool skipIfSimilar = false){
+		DateTime startTime = DateTime.Now;
 	
 		if (skipIfSimilar) {
 			if (lastNavObstaclesSize == navObstacles.Count)
@@ -250,6 +255,10 @@ public class PolyNav2D : MonoBehaviour {
 		//
 		//The colliders are never used again after this point. They are simply a drawing method.
 		//
+		
+		DateTime endTime = DateTime.Now;
+		TimeSpan totalTimeTaken = endTime.Subtract(startTime);
+		print ("Finished CreatePolygonMap, took " + totalTimeTaken.Seconds);
 	}
 
 	//Create Nodes at convex points (since master poly is inverted, it will be concave for it) if they are valid
