@@ -11,6 +11,7 @@ public class FadeToBlack : MonoBehaviour {
 
 	IEnumerator GameOverCoroutine()
 	{
+		image.enabled = true;
 		TheGameManager.Instance.MotionStopped = true;
 		
 		yield return new WaitForSeconds(PauseTime);
@@ -31,6 +32,7 @@ public class FadeToBlack : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		image = GetComponent<Image>();
+		image.enabled = false;
 	}
 	
 	// Update is called once per frame
