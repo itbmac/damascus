@@ -56,4 +56,12 @@ public class MyMonoBehaviour : MonoBehaviour {
 			return _collider2D;
 		}
 	}
+	
+	private Rigidbody2D _rigidBody2D;
+	new protected Rigidbody2D rigidBody2D {
+		get {
+			if (_rigidBody2D == null) _rigidBody2D = GetComponent<Rigidbody2D>();
+			return _rigidBody2D;
+		}
+	}
 }

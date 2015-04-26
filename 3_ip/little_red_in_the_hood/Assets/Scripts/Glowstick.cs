@@ -60,4 +60,12 @@ public class Glowstick : MyMonoBehaviour {
 			Player.Instance.IsOnSprayPaint = true;
 		}
 	}
+	
+	[System.NonSerialized]
+	public bool Collided = false;
+	
+	void OnCollisionEnter2D() {
+		Collided = true;
+		rigidBody2D.isKinematic = true;
+	}
 }

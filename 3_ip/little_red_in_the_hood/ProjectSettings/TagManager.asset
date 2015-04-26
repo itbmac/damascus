@@ -33,7 +33,7 @@ TagManager:
   - SprayPaint
   - TestLights
   - Police
-  - 
+  - GlowStick
   - 
   - 
   - 
@@ -53,9 +53,6 @@ TagManager:
   - name: background
     uniqueID: 3412765787
     locked: 1
-  - name: Glowstick
-    uniqueID: 591570197
-    locked: 0
   - name: VisionCone
     uniqueID: 1805990687
     locked: 0
@@ -70,6 +67,9 @@ TagManager:
     locked: 0
   - name: buildings
     uniqueID: 3006545015
+    locked: 0
+  - name: Glowstick
+    uniqueID: 591570197
     locked: 0
   - name: Arrow
     uniqueID: 1305125239

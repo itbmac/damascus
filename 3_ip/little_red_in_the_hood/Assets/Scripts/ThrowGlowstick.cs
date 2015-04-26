@@ -57,6 +57,9 @@ public class ThrowGlowstick : MonoBehaviour
 		GameObject glowstick = (GameObject)GameObject.Instantiate(glowstickPrefab, source, rotation);
 		glowstick.transform.localScale *= 0.5f;
 		
+		var rb = glowstick.GetComponent<Rigidbody2D>();
+		var script = glowstick.GetComponent<Glowstick>();
+		
 		while (Vector2.Distance(glowstick.transform.position, target) >= 0.5f)
 		{
 			//Slow movement as we near the target
@@ -66,8 +69,11 @@ public class ThrowGlowstick : MonoBehaviour
 			float step = MoveSpeed * Time.deltaTime * (1 - percentDone);
 			
 			//Movement
-			glowstick.transform.position = Vector2.MoveTowards(glowstick.transform.position, target, step);
+			rb.MovePosition(Vector2.MoveTowards(glowstick.transform.position, target, step));
+//			glowstick.transform.position = Vector2.MoveTowards(glowstick.transform.position, target, step);
 			glowstick.transform.Rotate(Vector3.forward * (RotationSpeed * (1 - percentDone)));
+			if (script.Collided)
+				break;
 			
 			yield return new WaitForSeconds(0.01f);
 		}
