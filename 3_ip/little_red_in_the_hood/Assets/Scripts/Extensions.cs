@@ -1,33 +1,79 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+
+public struct Vector2d {
+	public double x, y;
+	
+	public Vector2d(double x, double y) {
+		this.x = x;
+		this.y = y;
+	}
+	
+	public Vector2d Abs() {
+		Vector2d vector = this;
+		vector.x = Math.Abs (vector.x);
+		vector.y = Math.Abs (vector.y);
+		return vector;
+	}
+	
+	public Vector2d DividedBy(Vector2d divisor) {
+		Vector2d vector = this;
+		vector.x /= divisor.x;
+		vector.y /= divisor.y;
+		return vector;
+	}
+	
+	public static implicit operator Vector2d(Vector2 v) {
+		return new Vector2d(v.x, v.y);
+	}
+	
+	public static explicit operator Vector2d(Vector3 v) {
+		return new Vector2d(v.x, v.y);
+	}
+	
+	public static Vector2d operator /(Vector2d a, double b)
+	{
+		return new Vector2d(a.x / b, a.y / b);
+	}
+	
+	public static Vector2d operator +(Vector2d a, Vector2d b)
+	{
+		return new Vector2d(a.x + b.x, a.y + b.y);
+	}
+	
+	public static Vector2d operator -(Vector2d a, Vector2d b)
+	{
+		return new Vector2d(a.x - b.x, a.y - b.y);
+	}
+}
 
 public static class Extensions {
 
 	public static Vector2 Abs(this Vector2 vector) {
 		for (int i = 0; i < 2; ++i) vector[i] = Mathf.Abs(vector[i]);
 		return vector;
-	}   
+	}
 	
 	public static Vector2 DividedBy(this Vector2 vector, Vector2 divisor) {
 		for (int i = 0; i < 2; ++i) vector[i] /= divisor[i];
 		return vector;
 	}
 	
-	public static Vector2 Max(this Rect rect) {
-		return new Vector2(rect.xMax, rect.yMax);
-	}
+	public static Vector2 IntersectionWithRayFromCenter(Vector2d boxMin, Vector2d boxMax, Vector2d pointOnRay) {	
+		var boxCenter = (boxMin + boxMax)/2;
 	
-	public static Vector2 IntersectionWithRayFromCenter(Vector2 boxMin, Vector2 boxMax, Vector2 pointOnRay) {	
-		Vector2 boxCenter = (boxMin + boxMax)/2;
-	
-		Vector2 pointOnRayLocal = pointOnRay - boxCenter;
-		Vector2 edgeToRayRatios = (boxMax - boxCenter).DividedBy(pointOnRayLocal.Abs());
-		return (edgeToRayRatios.x < edgeToRayRatios.y) ?
-			new Vector2(pointOnRayLocal.x > 0 ? boxMax.x : boxMin.x, 
-			            pointOnRayLocal.y * edgeToRayRatios.x + boxCenter.y) :
-				new Vector2(pointOnRayLocal.x * edgeToRayRatios.y + boxCenter.x, 
-				            pointOnRayLocal.y > 0 ? boxMax.y : boxMin.y);
+		var pointOnRayLocal = pointOnRay - boxCenter;
+		var edgeToRayRatios = (boxMax - boxCenter).DividedBy(pointOnRayLocal.Abs());
+		
+		if (edgeToRayRatios.x < edgeToRayRatios.y) {
+			return new Vector2((float)(pointOnRayLocal.x > 0 ? boxMax.x : boxMin.x), 
+			            (float)(pointOnRayLocal.y * edgeToRayRatios.x + boxCenter.y));
+		} else {
+			return new Vector2((float)(pointOnRayLocal.x * edgeToRayRatios.y + boxCenter.x), 
+	            (float)(pointOnRayLocal.y > 0 ? boxMax.y : boxMin.y));
+        }
 	}
 	
 	public static float Angle(this Vector2 v) {

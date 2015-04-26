@@ -10,7 +10,6 @@ public class Player : MyMonoBehaviour {
 
 	public GameObject PaintSplat;
 	public GameObject Glowstick;
-	public Vector3 startLoc;
 	
 	public float AngleOffset = 90f;
 	public float AngleTurnSpeed = .5f;
@@ -45,23 +44,7 @@ public class Player : MyMonoBehaviour {
 		Run = 3		
 	}
 	
-	void Awake() {
-		Instance = this;
-	}
-	
 	SpriteRenderer redDiscoveredRenderer;
-	
-	Transform[] AllPolice;
-
-	// Use this for initialization
-	void Start () {
-		startLoc = transform.position;
-		
-		redDiscoveredRenderer = transform.Find("red_discovered").GetComponent<SpriteRenderer>();
-		
-		AllPolice = GameObject.Find("Police_Department").transform.Cast<Transform>().ToArray();
-	}
-	
 	public float HealthRegenRate = 0.1f;
 	
 	private bool GodMode;
@@ -70,6 +53,15 @@ public class Player : MyMonoBehaviour {
 	}
 	
 	bool gameOver;
+	
+	void Awake() {
+		Instance = this;
+	}
+
+	// Use this for initialization
+	void Start () {
+		redDiscoveredRenderer = transform.Find("red_discovered").GetComponent<SpriteRenderer>();
+	}
 	
 	void Update() {
 		if (TheGameManager.Instance.MotionStopped)
@@ -115,16 +107,6 @@ public class Player : MyMonoBehaviour {
 		}
 		Health += HealthRegenRate * Time.deltaTime;
 		Health = Mathf.Min(1, Health);
-
-//		if (Input.GetKeyDown(KeyCode.P) && NumPaint > 0) {
-//			NumPaint -= 1;
-//			Instantiate(PaintSplat, transform.position, Quaternion.identity);
-//		}
-//		
-//		if (Input.GetButtonDown("Fire1") && NumGlowsticks > 0) {		
-//			NumGlowsticks -= 1;
-//			Instantiate(Glowstick, (Vector2)Camera.main.ScreenToWorldPoint(Input.mousePosition), Quaternion.identity);
-//		}
 	}
 	
 	//update is called every frame at fixed intervals
@@ -144,7 +126,7 @@ public class Player : MyMonoBehaviour {
 		} else if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0){
 			speed = WalkSpeed;			
 		} else {
-			speed = IdleSpeed; // TODO: what should this be
+			speed = IdleSpeed;
 		}
 
 		Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
@@ -177,11 +159,6 @@ public class Player : MyMonoBehaviour {
 			euler.z = angle;
 		
 			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(euler), AngleTurnSpeed);
-//			transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, euler, AngleTurnSpeed);
 		}
-	}
-
-	public void ResetPosToStart() {
-		transform.position = startLoc;
 	}
 }
