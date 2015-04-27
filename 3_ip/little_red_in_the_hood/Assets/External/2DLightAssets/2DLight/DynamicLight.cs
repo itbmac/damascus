@@ -175,6 +175,8 @@ public class DynamicLight : MyMonoBehaviour {
 		lightMesh.bounds = b;
 	}
 	void setLight () {
+	
+		float lightRadiusSquared = lightRadius*lightRadius;
 
 		bool sortAngles = false;
 
@@ -204,7 +206,6 @@ public class DynamicLight : MyMonoBehaviour {
 		vertexWorking = 0;
 
 		for (int m = 0; m < allMeshes.Length; m++) {
-		//for (int m = 0; m < 1; m++) {
 			tempVerts.Clear();
 			PolygonCollider2D mf = allMeshes[m];
 
@@ -213,7 +214,7 @@ public class DynamicLight : MyMonoBehaviour {
 			lows = false; // check si hay menores a -0.5
 			his = false; // check si hay mayores a 2.0
 
-			if(notifyGameObjectsReached == true) // work only in neccesary cases -- optimization ver 1.1.0--
+			if (notifyGameObjectsReached) // work only in neccesary cases -- optimization ver 1.1.0--
 				objReached.Clear();
 
 
@@ -221,284 +222,260 @@ public class DynamicLight : MyMonoBehaviour {
 			// Method for check every point in each collider
 			// if is closer from light, any point, then add collider to work.
 
-			bool mfInWorks = false;
-
 			var points = Enumerable.Range(0, mf.pathCount).SelectMany(x => mf.GetPath(x));
-			foreach (var point in points) {
+			bool mfInWorks = points.Any(delegate(Vector2 point) {
 				Vector3 worldPoint = mf.transform.TransformPoint(point);
-				if((worldPoint - gameObject.transform.position).sqrMagnitude <= lightRadius* lightRadius){
+				return (worldPoint - gameObject.transform.position).sqrMagnitude <= lightRadiusSquared;
+			});
 
-					//float angleWorldPoint = getVectorAngle(true, worldPoint.x,worldPoint.y);
-					//if((angleWorldPoint*Mathf.Rad2Deg > startAngle) && (angleWorldPoint * Mathf.Rad2Deg < endAngle)){
-						//Debug.Log(angleWorldPoint*Mathf.Rad2Deg + "   " + startAngle + "  " + endAngle);
-						mfInWorks = true;
-						break;
-					//}
+
+			if (!mfInWorks)
+				continue;
+		
+			if(((1 << mf.transform.gameObject.layer) & Layer) != 0){
+
+				// Add all vertices that interact
+				vertexWorking += mf.points.Length;
+				
+				// TODO: support for multiple paths
+
+				for (int i = 0; i < mf.points.Length; i++) {								   // ...and for ever vertex we have of each mesh filter...
+
+					verts v = new verts();
+					
+					Vector3 worldPoint = mf.transform.TransformPoint(mf.points[i]);					
+					RaycastHit2D ray = Physics2D.Linecast(transform.position, worldPoint, Layer);					
+					
+					if(ray){
+						v.pos = ray.point;
+													
+						if( worldPoint.sqrMagnitude >= (ray.point.sqrMagnitude - magRange) && worldPoint.sqrMagnitude <= (ray.point.sqrMagnitude + magRange) )
+							v.endpoint = true;
+
+						if(notifyGameObjectsReached) // work only in neccesary cases -- optimization ver 1.1.0--
+							// GO touched -> pass to list //
+							objReached.Add(ray.collider.transform.parent.gameObject);
+
+					}else{
+						v.pos =  worldPoint;
+						v.endpoint = true;
+					}
+					
+					//--Convert To local space for build mesh (mesh craft only in local vertex)
+					v.pos = transform.InverseTransformPoint(v.pos); 
+					//--Calculate angle
+					v.angle = getVectorAngle(true,v.pos.x, v.pos.y);
+					
+					
+					
+					// -- bookmark if an angle is lower than 0 or higher than 2f --//
+					//-- helper method for fix bug on shape located in 2 or more quadrants
+					if(v.angle < 0f )
+						lows = true;
+					
+					if(v.angle > 2f)
+						his = true;
+					
+					
+					//--Add verts to the main array
+					//-- AVOID EXTRA CALCULOUS OF Vector3.angle --//
+
+					if(360 != Mathf.RoundToInt(RangeAngle)){ 
+						if (Vector3.Angle(v.pos, Vector3.up) < RangeAngle*.5f) {	// Light angle restriction
+							if((v.pos).sqrMagnitude <= lightRadiusSquared){
+								tempVerts.Add(v);
+							}
+						}
+					}else{
+						if((v.pos).sqrMagnitude <= lightRadiusSquared){
+							tempVerts.Add(v);
+						}
+					}
+
+
+					
+					
+					
+					sortAngles = true;
+					
 
 				}
 			}
+			
+			
+			
+			
+			
+			// Indentify the endpoints (left and right)
+			if(tempVerts.Count > 0){
+				
+				sortList(tempVerts); // sort first
+				
+				int posLowAngle = 0; // save the indice of left ray
+				int posHighAngle = 0; // same last in right side
+				
+				//Debug.Log(lows + " " + his);
+				
+				if(his == true && lows == true){  //-- FIX BUG OF SORTING CUANDRANT 1-4 --//
 
+					if(tempVerts.Count > 1){
 
-
-			if(mfInWorks == true)
-
-			{
-				if(((1 << mf.transform.gameObject.layer) & Layer) != 0){
-
-					// Add all vertices that interact
-					vertexWorking += mf.points.Length;
-					
-					// TODO: support for multiple paths
-
-					for (int i = 0; i < mf.points.Length; i++) {								   // ...and for ever vertex we have of each mesh filter...
-
-						verts v = new verts();
-						
-						Vector3 worldPoint = mf.transform.TransformPoint(mf.points[i]);
-						
-						// Reforma fecha 24/09/2014 (ultimo argumento lighradius X worldPoint.magnitude (expensivo pero preciso))
-						RaycastHit2D ray = Physics2D.Raycast(transform.position, worldPoint - transform.position, (worldPoint - transform.position).magnitude, Layer);
+						float lowestAngle = -1f;//tempVerts[0].angle; // init with first data
+						float highestAngle = tempVerts[0].angle;
 						
 						
-						if(ray){
-							v.pos = ray.point;
-														
-							if( worldPoint.sqrMagnitude >= (ray.point.sqrMagnitude - magRange) && worldPoint.sqrMagnitude <= (ray.point.sqrMagnitude + magRange) )
-								v.endpoint = true;
-
-							if(notifyGameObjectsReached == true) // work only in neccesary cases -- optimization ver 1.1.0--
-								// GO touched -> pass to list //
-								objReached.Add(ray.collider.gameObject.transform.parent.gameObject);
-
-						}else{
-							v.pos =  worldPoint;
-							v.endpoint = true;
-						}
-						
-//						Debug.DrawLine(transform.position, v.pos, Color.white);	
-						
-						//--Convert To local space for build mesh (mesh craft only in local vertex)
-						v.pos = transform.InverseTransformPoint(v.pos); 
-						//--Calculate angle
-						v.angle = getVectorAngle(true,v.pos.x, v.pos.y);
-						
-						
-						
-						// -- bookmark if an angle is lower than 0 or higher than 2f --//
-						//-- helper method for fix bug on shape located in 2 or more quadrants
-						if(v.angle < 0f )
-							lows = true;
-						
-						if(v.angle > 2f)
-							his = true;
-						
-						
-						//--Add verts to the main array
-						//-- AVOID EXTRA CALCULOUS OF Vector3.angle --//
-
-						if(360 != Mathf.RoundToInt(RangeAngle)){ 
-							if (Vector3.Angle(v.pos, Vector3.up) < RangeAngle*.5f) {	// Light angle restriction
-								if((v.pos).sqrMagnitude <= lightRadius*lightRadius){
-									tempVerts.Add(v);
-//									Debug.DrawLine(transform.position, transform.TransformPoint(v.pos), Color.white);
-								}
+						for(int d=0; d<tempVerts.Count; d++){
+							
+							
+							
+							if(tempVerts[d].angle < 1f && tempVerts[d].angle > lowestAngle){
+								lowestAngle = tempVerts[d].angle;
+								posLowAngle = d;
 							}
-						}else{
-							if((v.pos).sqrMagnitude <= lightRadius*lightRadius){
-								tempVerts.Add(v);
-//								Debug.DrawLine(transform.position, transform.TransformPoint(v.pos), Color.white);
+							
+							if(tempVerts[d].angle > 2f && tempVerts[d].angle < highestAngle){
+								highestAngle = tempVerts[d].angle;
+								posHighAngle = d;
 							}
 						}
-
-
-						
-						
-						
-						if(sortAngles == false)
-							sortAngles = true;
-						
-
 					}
+
+
+					
+					
+				}else{
+					//-- convencional position of ray points
+					// save the indice of left ray
+					posLowAngle = 0; 
+					posHighAngle = tempVerts.Count-1;
+					
 				}
-				
-				
-				
-				
-				
-				// Indentify the endpoints (left and right)
-				if(tempVerts.Count > 0){
-					
-					sortList(tempVerts); // sort first
-					
-					int posLowAngle = 0; // save the indice of left ray
-					int posHighAngle = 0; // same last in right side
-					
-					//Debug.Log(lows + " " + his);
-					
-					if(his == true && lows == true){  //-- FIX BUG OF SORTING CUANDRANT 1-4 --//
 
-						if(tempVerts.Count > 1){
+				//-- fix error when sort vertex with only 1 tempvert AND rangeAngle < 360 --//
+				// --------   ver 1.0.7    ---------//
+				//--------------------------------------------------------------------------//
+				int endPointLimit = 2;
 
-							float lowestAngle = -1f;//tempVerts[0].angle; // init with first data
-							float highestAngle = tempVerts[0].angle;
+				if(tempVerts.Count == 1){ 
+					endPointLimit = 1;
+					tempVerts[0].location = 7; // --lucky se7en
+					// --------------------------------------------------------------------------------------------- //
+					// --------------------------------------------------------------------------------------------- //
+
+				}else{
+					// -- more than one... --//
+					tempVerts[posLowAngle].location = 1; // right
+					tempVerts[posHighAngle].location = -1; // left
+				}
+
+				
+				
+				//--Add vertices to the main meshes vertexes--//
+				if(intelliderConvex == true && endPointLimit > 1){
+					allVertices.Add(tempVerts[posLowAngle]);
+					allVertices.Add(tempVerts[posHighAngle]);
+				}else{
+					allVertices.AddRange(tempVerts);
+				}
+				 
+
+				
+				
+				
+				// -- r ==0 --> right ray
+				// -- r ==1 --> left ray
+
+				 
+				for(int r = 0; r<endPointLimit; r++){
+					
+					//-- Cast a ray in same direction continuos mode, start a last point of last ray --//
+					Vector3 fromCast = new Vector3();
+					bool isEndpoint = false;
+					
+					if(r==0){
+						fromCast = transform.TransformPoint(tempVerts[posLowAngle].pos);
+						isEndpoint = tempVerts[posLowAngle].endpoint;
+						
+					}else if(r==1){
+						fromCast = transform.TransformPoint(tempVerts[posHighAngle].pos);
+						isEndpoint = tempVerts[posHighAngle].endpoint;
+					}
+					
+					
+					
+					
+					
+					if(isEndpoint == true){
+						Vector3 dir = (fromCast - transform.position);
+						fromCast += (dir * .001f);
+						
+						
+						
+						float mag = (lightRadius);// - fromCast.magnitude;
+						//float mag = fromCast.magnitude;
+						RaycastHit2D rayCont = Physics2D.Raycast(fromCast, dir, mag, Layer);
+						//Debug.DrawLine(fromCast, dir.normalized*mag ,Color.green);
+						
+						
+						Vector3 hitp;
+						if(rayCont){
+							//-- IMPROVED REACHED OBJECTS --// VERSION 1.1.2
+							hitp = rayCont.point;   //world p
 							
-							
-							for(int d=0; d<tempVerts.Count; d++){
-								
-								
-								
-								if(tempVerts[d].angle < 1f && tempVerts[d].angle > lowestAngle){
-									lowestAngle = tempVerts[d].angle;
-									posLowAngle = d;
-								}
-								
-								if(tempVerts[d].angle > 2f && tempVerts[d].angle < highestAngle){
-									highestAngle = tempVerts[d].angle;
-									posHighAngle = d;
-								}
+							if(notifyGameObjectsReached == true){ // work only in neccesary cases -- optimization ver 1.1.0--
+								if((hitp - transform.position ).sqrMagnitude < (lightRadius * lightRadius)){
+									//-- GO reached --> adding to mail list --//
+									objReached.Add(rayCont.collider.gameObject.transform.parent.gameObject);
+								}		
 							}
-						}
-
-
-						
-						
-					}else{
-						//-- convencional position of ray points
-						// save the indice of left ray
-						posLowAngle = 0; 
-						posHighAngle = tempVerts.Count-1;
-						
-					}
-
-					//-- fix error when sort vertex with only 1 tempvert AND rangeAngle < 360 --//
-					// --------   ver 1.0.7    ---------//
-					//--------------------------------------------------------------------------//
-					int endPointLimit = 2;
-
-					if(tempVerts.Count == 1){ 
-						endPointLimit = 1;
-						tempVerts[0].location = 7; // --lucky se7en
-						// --------------------------------------------------------------------------------------------- //
-						// --------------------------------------------------------------------------------------------- //
-
-					}else{
-						// -- more than one... --//
-						tempVerts[posLowAngle].location = 1; // right
-						tempVerts[posHighAngle].location = -1; // left
-					}
-
-					
-					
-					//--Add vertices to the main meshes vertexes--//
-					if(intelliderConvex == true && endPointLimit > 1){
-						allVertices.Add(tempVerts[posLowAngle]);
-						allVertices.Add(tempVerts[posHighAngle]);
-					}else{
-						allVertices.AddRange(tempVerts);
-					}
-					 
-
-					
-					
-					
-					// -- r ==0 --> right ray
-					// -- r ==1 --> left ray
-
-					 
-					for(int r = 0; r<endPointLimit; r++){
-						
-						//-- Cast a ray in same direction continuos mode, start a last point of last ray --//
-						Vector3 fromCast = new Vector3();
-						bool isEndpoint = false;
-						
-						if(r==0){
-							fromCast = transform.TransformPoint(tempVerts[posLowAngle].pos);
-							isEndpoint = tempVerts[posLowAngle].endpoint;
 							
-						}else if(r==1){
-							fromCast = transform.TransformPoint(tempVerts[posHighAngle].pos);
-							isEndpoint = tempVerts[posHighAngle].endpoint;
-						}
-						
-						
-						
-						
-						
-						if(isEndpoint == true){
-							Vector3 dir = (fromCast - transform.position);
-							fromCast += (dir * .001f);
-							
-							
-							
-							float mag = (lightRadius);// - fromCast.magnitude;
-							//float mag = fromCast.magnitude;
-							RaycastHit2D rayCont = Physics2D.Raycast(fromCast, dir, mag, Layer);
-							//Debug.DrawLine(fromCast, dir.normalized*mag ,Color.green);
-							
-							
-							Vector3 hitp;
-							if(rayCont){
-								//-- IMPROVED REACHED OBJECTS --// VERSION 1.1.2
-								hitp = rayCont.point;   //world p
-								
-								if(notifyGameObjectsReached == true){ // work only in neccesary cases -- optimization ver 1.1.0--
-									if((hitp - transform.position ).sqrMagnitude < (lightRadius * lightRadius)){
-										//-- GO reached --> adding to mail list --//
-										objReached.Add(rayCont.collider.gameObject.transform.parent.gameObject);
-									}		
-								}
-								
 //								Debug.DrawLine(fromCast, hitp, Color.green);
-							}else{
-								//-- FIX ERROR WEIRD MESH WHEN ENDPOINT COLLIDE OUTSIDE RADIUS VERSION 1.1.2 --//
-								//-- NEW INSTANCE OF DIR VECTOR3 ADDED --//
-								Vector3 newDir = transform.InverseTransformDirection(dir);	//local p
-								hitp = transform.TransformPoint( newDir.normalized * mag); //world p
+						}else{
+							//-- FIX ERROR WEIRD MESH WHEN ENDPOINT COLLIDE OUTSIDE RADIUS VERSION 1.1.2 --//
+							//-- NEW INSTANCE OF DIR VECTOR3 ADDED --//
+							Vector3 newDir = transform.InverseTransformDirection(dir);	//local p
+							hitp = transform.TransformPoint( newDir.normalized * mag); //world p
 //								Debug.DrawLine(fromCast, hitp, Color.blue);
-							}
+						}
 
-							// --- VER 1.0.6 -- //
-							//--- this fix magnitud of end point ray (green) ---//
+						// --- VER 1.0.6 -- //
+						//--- this fix magnitud of end point ray (green) ---//
 
-							if((hitp - transform.position ).sqrMagnitude > (lightRadius * lightRadius)){
-								//-- FIX ERROR WEIRD MESH WHEN ENDPOINT COLLIDE OUTSIDE RADIUS VERSION 1.1.2  --//
-								dir = transform.InverseTransformDirection(dir);	//local p
-								hitp = transform.TransformPoint( dir.normalized * mag);
-							}
+						if((hitp - transform.position ).sqrMagnitude > (lightRadius * lightRadius)){
+							//-- FIX ERROR WEIRD MESH WHEN ENDPOINT COLLIDE OUTSIDE RADIUS VERSION 1.1.2  --//
+							dir = transform.InverseTransformDirection(dir);	//local p
+							hitp = transform.TransformPoint( dir.normalized * mag);
+						}
 
 //							Debug.DrawLine(fromCast, hitp, Color.green);	
-							
-							verts vL = new verts();
-							vL.pos = transform.InverseTransformPoint(hitp);
-							
-							vL.angle = getVectorAngle(true,vL.pos.x, vL.pos.y);
-							allVertices.Add(vL);
-							
-							
-							
-							
-							
-							
-							
-						}
+						
+						verts vL = new verts();
+						vL.pos = transform.InverseTransformPoint(hitp);
+						
+						vL.angle = getVectorAngle(true,vL.pos.x, vL.pos.y);
+						allVertices.Add(vL);
+						
+						
+						
+						
+						
 						
 						
 					}
 					
 					
 				}
+				
+				
+			}
 
-				if(notifyGameObjectsReached == true){
-					//notify if not null
-					if(OnReachedGameObjects != null){
-						OnReachedGameObjects(objReached.ToArray());
-					}
+			if(notifyGameObjectsReached == true){
+				//notify if not null
+				if(OnReachedGameObjects != null){
+					OnReachedGameObjects(objReached.ToArray());
 				}
-
-				
-				
 			}
-			}
+		}
 
 
 		

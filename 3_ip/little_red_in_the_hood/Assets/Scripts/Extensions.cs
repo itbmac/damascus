@@ -76,7 +76,7 @@ public static class Extensions {
         }
 	}
 	
-	public static float Angle(this Vector2 v) {
+	public static float AngleInRadians(this Vector2 v) {
 		return Mathf.Atan2(v.y, v.x);	
 	}
 	
@@ -85,7 +85,7 @@ public static class Extensions {
 //	}
 	
 	public static Vector2 Rotated(this Vector2 v, float radians) {
-		var angle = v.Angle() + radians;
+		var angle = v.AngleInRadians() + radians;
 		return v.magnitude * UnitVectorForAngle(angle);
 	}
 	
