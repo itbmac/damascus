@@ -73,9 +73,9 @@ public class Player : MyMonoBehaviour {
 		if (IsOnSprayPaint) {
 			color = Color.red;
 		} else if (IsUnderStreetlight) {
-			color = Color.yellow;
-		} else {
 			color = Color.white;
+		} else {
+			color = new Color(0.7f,0.7f,0.7f); //Color.gray;
 		}
 		
 		Color newColor = redDiscoveredRenderer.color;

@@ -102,6 +102,14 @@ public class Police : MyMonoBehaviour {
 			
 			return;
 		}
+
+		bool IsUnderStreetlight = GetComponent<Collider2D>().IsTouchingLayers(LayerMask.GetMask("Streetlight"));	
+		
+		if (IsUnderStreetlight) {
+			color = Color.white;
+		} else {
+			color = new Color(0.7f,0.7f,0.7f);
+		}
 	
 		if (pingPongMode && CurrentState == State.Normal) {
 			if (Time.time > pingPongEndTime) {
@@ -121,7 +129,7 @@ public class Police : MyMonoBehaviour {
 		bool playerVisible = IsPlayerVisible();
 		
 		if (playerVisible) {
-			player.GetComponent<Player>().Health -= HealthToDrain * Time.deltaTime;
+			player.GetComponent<Player>().Health = Mathf.Max(0.0f, player.GetComponent<Player>().Health - HealthToDrain * Time.deltaTime);
 		}
 		
 		if (CurrentState == State.Normal) {
