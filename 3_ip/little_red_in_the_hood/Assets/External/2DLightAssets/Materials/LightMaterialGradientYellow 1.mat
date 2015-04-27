@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: fireMaterial
-  m_Shader: {fileID: 4800000, guid: d6921e235d4fe1a4ebafa5cd517fb411, type: 3}
+  m_Name: LightMaterialGradientYellow 1
+  m_Shader: {fileID: 4800000, guid: 0e834bebf3661fe44b788f5af448b9de, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
   m_CustomRenderQueue: -1
@@ -37,20 +37,20 @@ Material:
       data:
         first:
           name: _UVXScale
-        second: -.0399999991
+        second: -.0599999987
       data:
         first:
           name: _UVYScale
-        second: -.0700000003
+        second: -.0399999991
       data:
         first:
           name: _Offset
-        second: 0
+        second: -.100000001
     m_Colors:
       data:
         first:
           name: _Color
-        second: {r: .909803927, g: .835294127, b: .31764707, a: .552941203}
+        second: {r: .801470518, g: .852941155, b: .319852948, a: .368627459}
       data:
         first:
           name: _TintColor
