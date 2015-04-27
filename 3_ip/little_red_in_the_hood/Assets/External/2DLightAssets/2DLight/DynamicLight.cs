@@ -246,9 +246,11 @@ public class DynamicLight : MyMonoBehaviour {
 				if(((1 << mf.transform.gameObject.layer) & Layer) != 0){
 
 					// Add all vertices that interact
-					vertexWorking += mf.GetTotalPointCount();
+					vertexWorking += mf.points.Length;
+					
+					// TODO: support for multiple paths
 
-					for (int i = 0; i < mf.GetTotalPointCount(); i++) {								   // ...and for ever vertex we have of each mesh filter...
+					for (int i = 0; i < mf.points.Length; i++) {								   // ...and for ever vertex we have of each mesh filter...
 
 						verts v = new verts();
 						
@@ -561,7 +563,7 @@ public class DynamicLight : MyMonoBehaviour {
 
 
 
-		//-- Step 4: Sort each vertice by angle (along sweep ray 0 - 2PI)--//
+		//-- Step 4: Sort vertices by angle (along sweep ray 0 - 2PI)--//
 		//---------------------------------------------------------------------//
 		//if (sortAngles == true) {
 			sortList(allVertices);
