@@ -84,6 +84,45 @@ public class Player : MyMonoBehaviour {
 		Regions = GameObject.Find("Regions");
 	}
 	
+	bool SpeedupMode;
+	
+	void UpdateCheats() {
+		if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.M) && Input.anyKeyDown) {
+			GodMode = !GodMode;
+			if (GodMode)
+				print("God mode on");
+			else
+				print("God mode off");
+		}
+		
+		if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.M) && Input.anyKeyDown) {
+			StealthMode = !StealthMode;
+			if (StealthMode)
+				print("Stealth mode on");
+			else
+				print("Stealth mode off");
+		}
+		
+		// NC = noclip, disable collisions on player, walk through anything
+		if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.C) && Input.anyKeyDown) {
+			collider2D.enabled = !collider2D.enabled;
+			
+			if (!collider2D.enabled)
+				print("noclip on");
+			else
+				print ("noclip off");
+		}
+		
+		if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.U) && Input.anyKeyDown) {
+			SpeedupMode = !SpeedupMode;
+			
+			if (SpeedupMode)
+				print("speedup on");
+			else
+				print ("speedup off");
+		}
+	}
+	
 	void Update() {
 		if (TheGameManager.Instance.MotionStopped)
 			return;
@@ -103,21 +142,7 @@ public class Player : MyMonoBehaviour {
 		newColor.a = 1.0f - Health;
 		redDiscoveredRenderer.color = newColor;
 		
-		if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.M) && Input.anyKeyDown) {
-			GodMode = !GodMode;
-			if (GodMode)
-				print("God mode on");
-			else
-				print("God mode off");
-		}
-		
-		if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.M) && Input.anyKeyDown) {
-			StealthMode = !StealthMode;
-			if (StealthMode)
-				print("Stealth mode on");
-			else
-				print("Stealth mode off");
-		}
+		UpdateCheats();
 		
 		if (!gameOver && !GodMode) {
 			if (collider2D.IsTouchingLayers(LayerMask.GetMask("Police"))) {
@@ -149,6 +174,9 @@ public class Player : MyMonoBehaviour {
 		} else {
 			speed = IdleSpeed;
 		}
+		
+		if (SpeedupMode)
+			speed *= 5;
 
 		Vector2 velocity = GetComponent<Rigidbody2D>().velocity;
 		float velSpeed = velocity.magnitude;

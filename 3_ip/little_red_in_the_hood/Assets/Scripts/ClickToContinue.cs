@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PolygonColliderSplitter : MonoBehaviour {
+public class ClickToContinue : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -10,6 +10,7 @@ public class PolygonColliderSplitter : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (Input.GetMouseButtonDown(0))
+			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 	}
 }

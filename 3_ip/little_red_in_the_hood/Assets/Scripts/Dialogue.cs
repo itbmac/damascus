@@ -94,7 +94,11 @@ public class Dialogue : MonoBehaviour {
 
 		float distance1 = Vector3.Distance(offscreen.transform.position, left.transform.position);
 		float distance2 = Vector3.Distance(offscreen.transform.position, right.transform.position);
-		float speed = 0.05f;
+		float speed = 0.03f;
+
+		print (offscreen.transform.position);
+		print (right.transform.position);
+		print (distance2);
 
 		Vector3 temp;
 
@@ -141,8 +145,8 @@ public class Dialogue : MonoBehaviour {
 			yield return null;
 		}
 
-		left_sprite.transform.position = Vector3.zero;
-		right_sprite.transform.position = Vector3.zero;
+		left_sprite.transform.localPosition = Vector3.zero;
+		right_sprite.transform.localPosition = Vector3.zero;
 
 		transitioning = false;
 	}
@@ -211,7 +215,7 @@ public class Dialogue : MonoBehaviour {
 
 		left = transform.FindChild("left_sprite").gameObject;
 		right = transform.FindChild("right_sprite").gameObject;
-		offscreen = right = transform.FindChild("offscreen").gameObject;
+		offscreen = transform.FindChild("offscreen").gameObject;
 		left_sprite = transform.FindChild("left_sprite/sprite").gameObject.GetComponent<SpriteRenderer> ();
 		right_sprite = transform.FindChild("right_sprite/sprite").gameObject.GetComponent<SpriteRenderer> ();
 

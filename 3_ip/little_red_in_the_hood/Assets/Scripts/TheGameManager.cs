@@ -13,7 +13,15 @@ public class TheGameManager : MonoBehaviour {
 	private float DetectedStartTime = -3f;
 	public bool DetectedCurrently = false;
 	
-	public bool MotionStopped = false;
+	
+	public bool GameOver = false;
+	public bool GamePaused = false;
+	
+	public bool MotionStopped {
+		get {
+			return GameOver || GamePaused;
+		}
+	}
 	
 	public static TheGameManager Instance { get; private set; }
 	

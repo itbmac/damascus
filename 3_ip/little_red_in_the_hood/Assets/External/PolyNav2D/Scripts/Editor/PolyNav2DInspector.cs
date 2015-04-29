@@ -42,6 +42,11 @@ public class PolyNav2DInspector : Editor {
 		}
 
 		EditorGUILayout.LabelField("Nodes Count", polyNav.nodesCount.ToString());
+		
+		if (GUILayout.Button("Link nodes")){
+			polyNav.DoLinkNodes = true;
+			polyNav.regenerateFlag = true;
+		}
 
 		if (GUI.changed)
 			EditorUtility.SetDirty(polyNav);
