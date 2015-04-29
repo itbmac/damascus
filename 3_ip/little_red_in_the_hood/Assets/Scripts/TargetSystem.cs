@@ -58,18 +58,34 @@ public class TargetSystem : MonoBehaviour {
 		TList[currentTarget].hasBeenPassed = true;
 	}
 	
+	bool loadingNextLevel = false;
+	
 	// Update is called once per frame
 	void Update () {
+		if (loadingNextLevel)
+			return;
+			
 		if (TList[currentTarget].hasBeenPassed) {
 			if (currentTarget+1 == numTargets) {
 				//GameObject[] playerz = GameObject.FindGameObjectsWithTag("Player");
 				//playerz[0].GetComponent<Player>().ResetPosToStart();
-				Application.LoadLevel(Application.loadedLevel + 1);
+				
+				StartCoroutine(LoadNextLevel());
+				return;
 			}
 
 			currentTarget = (currentTarget+1)%numTargets;
 			SetCurrentTarget();
 		}
+	}
+	
+	IEnumerator LoadNextLevel() {
+		loadingNextLevel = true;
+		TheGameManager.Instance.GameOver = true;
+		
+		yield return new WaitForSeconds(1.0f);
+	
+		Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 	}
 
 	void SetCurrentTarget() {

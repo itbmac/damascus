@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TargetScript : MonoBehaviour {
+public class TargetScript : MyMonoBehaviour {
 
 	public bool isCurrentTarget = false;
 	public bool hasBeenPassed = false;
 
-	SpriteRenderer spriteRenderer;
-
 	// Use this for initialization
 	void Start () {
-		spriteRenderer = this.GetComponent("SpriteRenderer") as SpriteRenderer;
 		spriteRenderer.enabled = false;
 	}
 	
@@ -22,10 +19,7 @@ public class TargetScript : MonoBehaviour {
 	public void SetAsCurrentTarget(bool isCurrent) {
 		isCurrentTarget = isCurrent;
 		hasBeenPassed = !isCurrent;
-
-		if (spriteRenderer == null) {
-			spriteRenderer = this.GetComponent("SpriteRenderer") as SpriteRenderer;
-		}
+		
 		spriteRenderer.enabled = isCurrent;
 	}
 
