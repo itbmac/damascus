@@ -23,10 +23,12 @@ public class Pause : MonoBehaviour
 		if (visible)
 		{
 			pauseImage.enabled = true;
+			Time.timeScale = 0;
 		}
 		else
 		{
 			pauseImage.enabled = false;
+			Time.timeScale = 1;
 		}
 	}
 }
