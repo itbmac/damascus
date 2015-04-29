@@ -178,8 +178,6 @@ public class DynamicLight : MyMonoBehaviour {
 	
 		float lightRadiusSquared = lightRadius*lightRadius;
 
-		bool sortAngles = false;
-
 		//objectsReached.Clear(); // sweep all last objects reached
 
 		allVertices.Clear();// Since these lists are populated every frame, clear them first to prevent overpopulation
@@ -291,12 +289,6 @@ public class DynamicLight : MyMonoBehaviour {
 							tempVerts.Add(v);
 						}
 					}
-
-
-					
-					
-					
-					sortAngles = true;
 					
 
 				}
@@ -314,9 +306,7 @@ public class DynamicLight : MyMonoBehaviour {
 				int posLowAngle = 0; // save the indice of left ray
 				int posHighAngle = 0; // same last in right side
 				
-				//Debug.Log(lows + " " + his);
-				
-				if(his == true && lows == true){  //-- FIX BUG OF SORTING CUANDRANT 1-4 --//
+				if(his && lows){  //-- FIX BUG OF SORTING CUANDRANT 1-4 --//
 
 					if(tempVerts.Count > 1){
 
@@ -371,15 +361,12 @@ public class DynamicLight : MyMonoBehaviour {
 				
 				
 				//--Add vertices to the main meshes vertexes--//
-				if(intelliderConvex == true && endPointLimit > 1){
+				if(intelliderConvex && endPointLimit > 1){
 					allVertices.Add(tempVerts[posLowAngle]);
 					allVertices.Add(tempVerts[posHighAngle]);
 				}else{
 					allVertices.AddRange(tempVerts);
 				}
-				 
-
-				
 				
 				
 				// -- r ==0 --> right ray
@@ -405,7 +392,7 @@ public class DynamicLight : MyMonoBehaviour {
 					
 					
 					
-					if(isEndpoint == true){
+					if(isEndpoint){
 						Vector3 dir = (fromCast - transform.position);
 						fromCast += (dir * .001f);
 						
@@ -422,7 +409,7 @@ public class DynamicLight : MyMonoBehaviour {
 							//-- IMPROVED REACHED OBJECTS --// VERSION 1.1.2
 							hitp = rayCont.point;   //world p
 							
-							if(notifyGameObjectsReached == true){ // work only in neccesary cases -- optimization ver 1.1.0--
+							if(notifyGameObjectsReached){ // work only in neccesary cases -- optimization ver 1.1.0--
 								if((hitp - transform.position ).sqrMagnitude < (lightRadius * lightRadius)){
 									//-- GO reached --> adding to mail list --//
 									objReached.Add(rayCont.collider.gameObject.transform.parent.gameObject);
@@ -446,34 +433,18 @@ public class DynamicLight : MyMonoBehaviour {
 							dir = transform.InverseTransformDirection(dir);	//local p
 							hitp = transform.TransformPoint( dir.normalized * mag);
 						}
-
-//							Debug.DrawLine(fromCast, hitp, Color.green);	
 						
 						verts vL = new verts();
 						vL.pos = transform.InverseTransformPoint(hitp);
 						
 						vL.angle = getVectorAngle(true,vL.pos.x, vL.pos.y);
 						allVertices.Add(vL);
-						
-						
-						
-						
-						
-						
-						
 					}
-					
-					
 				}
-				
-				
 			}
 
-			if(notifyGameObjectsReached == true){
-				//notify if not null
-				if(OnReachedGameObjects != null){
-					OnReachedGameObjects(objReached.ToArray());
-				}
+			if(notifyGameObjectsReached && OnReachedGameObjects != null){
+				OnReachedGameObjects(objReached.ToArray());
 			}
 		}
 
@@ -542,14 +513,12 @@ public class DynamicLight : MyMonoBehaviour {
 
 		//-- Step 4: Sort vertices by angle (along sweep ray 0 - 2PI)--//
 		//---------------------------------------------------------------------//
-		//if (sortAngles == true) {
-			sortList(allVertices);
-		//}
+		sortList(allVertices);
 		//-----------------------------------------------------------------------------
 
 
 		//--auxiliar step (change order vertices close to light first in position when has same direction) --//
-		float rangeAngleComparision = 0.0001f;
+		const float rangeAngleComparision = 0.0001f;
 		for(int i = 0; i< allVertices.Count; i+=1){
 			
 			verts uno = allVertices[i];
@@ -582,34 +551,19 @@ public class DynamicLight : MyMonoBehaviour {
 				//--------------------------------------------------------------------------//
 
 
-				if(dos.location == -1){ // Right Ray
-					
-					if(uno.pos.sqrMagnitude > dos.pos.sqrMagnitude){
-							allVertices[i] = dos;
-							allVertices[(i +1) % allVertices.Count] = uno;
-					}
+				if(dos.location == -1 && uno.pos.sqrMagnitude > dos.pos.sqrMagnitude){ // Right Ray
+					allVertices[i] = dos;
+					allVertices[(i +1) % allVertices.Count] = uno;
 				}
 				
 
 				// ALREADY DONE!!
-				if(uno.location == 1){ // Left Ray
-
-					if(uno.pos.sqrMagnitude < dos.pos.sqrMagnitude){
-						allVertices[i] = dos;
-						allVertices[(i +1) % allVertices.Count] = uno;
-
-					}
+				if(uno.location == 1 && uno.pos.sqrMagnitude < dos.pos.sqrMagnitude){ // Left Ray
+					allVertices[i] = dos;
+					allVertices[(i +1) % allVertices.Count] = uno;
 				}
-				
-				
-				
 			}
-
-
 		}
-
-
-
 	}
 
 	void renderLightMesh(){
@@ -627,7 +581,7 @@ public class DynamicLight : MyMonoBehaviour {
 			//Debug.Log(allVertices[i].angle);
 			initVerticesMeshLight [i+1] = allVertices[i].pos;
 			
-			//if(allVertices[i].endpoint == true)
+			//if(allVertices[i].endpoint)
 			//Debug.Log(allVertices[i].angle);
 			
 		}
@@ -667,7 +621,7 @@ public class DynamicLight : MyMonoBehaviour {
 		
 		lightMesh.triangles = triangles;
 
-		if(recalculateNormals == true)
+		if(recalculateNormals)
 			lightMesh.RecalculateNormals();
 			
 		var pc = GetComponent<PolygonCollider2D>();
@@ -696,7 +650,7 @@ public class DynamicLight : MyMonoBehaviour {
 
 	float getVectorAngle(bool pseudo, float x, float y){
 		float ang = 0;
-		if(pseudo == true){
+		if(pseudo){
 			ang = pseudoAngle(x, y);
 		}else{
 			ang = Mathf.Atan2(y, x);
