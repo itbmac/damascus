@@ -94,10 +94,8 @@ public class PolyNav2D : MonoBehaviour {
 	}
 
 	void LateUpdate(){
-		if (regenerateFlag == true){
-			regenerateFlag = false;
+		if (regenerateFlag)
 			GenerateMap(false);
-		}
 	}
 
 
@@ -160,16 +158,20 @@ public class PolyNav2D : MonoBehaviour {
 		TryNextFindPath();
 	}
 	
-	public bool SkipLinkNodes = true;
+	public bool DoLinkNodes = false;
 
 	///Generate the map
 	public void GenerateMap(bool generateMaster){
+		regenerateFlag = false;
+		print ("Starting GenerateMap");
 		DateTime startTime = DateTime.Now;
 		
 		CreatePolyMap(generateMaster);
 		CreateNodes();
-		if (!SkipLinkNodes)
+		if (DoLinkNodes) {
+			DoLinkNodes = false;
 			LinkNodes(nodes);
+		}
 		
 		DateTime endTime = DateTime.Now;
 		TimeSpan totalTimeTaken = endTime.Subtract(startTime);
@@ -287,6 +289,7 @@ public class PolyNav2D : MonoBehaviour {
 
 	//link the nodes provided
 	void LinkNodes(List<PathNode> nodeList){
+		print ("Linking nodes...");
 
 		for (int a = 0; a < nodeList.Count; a++){
 
@@ -490,13 +493,10 @@ public class PolyNav2D : MonoBehaviour {
 #if UNITY_EDITOR
 	
 	void OnDrawGizmos (){
-
-		if (!Application.isPlaying) {
-			if (map == null)
-				GenerateMap(true);
-			else		
-				CreatePolyMap(true, true);
-		}
+		if (map == null || regenerateFlag)
+			GenerateMap(true);
+		else if (!Application.isPlaying)
+			CreatePolyMap(true, true);
 
 		//the original drawn polygons
 		if (masterCollider is PolygonCollider2D){
