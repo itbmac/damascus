@@ -394,15 +394,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 1
+  maxSpeed: 1.39999998
   mass: 20
   stoppingDistance: .100000001
   slowingDistance: 1
   decelerationRate: 2
   rotateTransform: 0
   rotateSpeed: 5
-  avoidRadius: 1
-  lookAheadDistance: 1
+  avoidRadius: 2
+  lookAheadDistance: 2
   repath: 0
   restrict: 0
   closerPointOnInvalid: 0
@@ -419,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GotPlayer: {fileID: 8300000, guid: bf30723460ca342fc9fa92ae3a3d6fbf, type: 3}
-  InvestigativeSpeedMultiplier: 1.10000002
+  InvestigativeSpeedMultiplier: 2.25
   DebugMode: 0
   DogMode: 0
   CircleNotifierPrefab: {fileID: 152274, guid: 1a980afc9092c4b91bc9900d02528549, type: 2}
