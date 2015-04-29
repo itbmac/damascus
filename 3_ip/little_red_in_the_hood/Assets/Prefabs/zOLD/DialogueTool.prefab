@@ -292,14 +292,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc8689432a81184eaa77cd38fe90ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue_top: {fileID: 119216}
-  dialogue_bottom: {fileID: 111458}
-  dialogue_bottom_off: {fileID: 115688}
-  dialogue_top_off: {fileID: 169320}
-  top_speech_bubble: {fileID: 179434}
-  bottom_speech_bubble: {fileID: 191884}
-  file_path: Assets\Dialogue\test_info.txt
-  nextScene: demo
+  MyText: {fileID: 0}
+  Sprite1: {fileID: 0}
+  Sprite2: {fileID: 0}
+  NextScene: 
 --- !u!114 &11438622
 MonoBehaviour:
   m_ObjectHideFlags: 1
