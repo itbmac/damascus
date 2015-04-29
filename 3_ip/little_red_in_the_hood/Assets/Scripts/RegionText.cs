@@ -8,6 +8,7 @@ public class RegionText : MyMonoBehaviour
 	public enum States {crossedRegion, fading, faded};
 	public States state;
 	public float fadePerFrame;
+	public float timeToFade;
 	Player player;
 	
 	IEnumerator DisplayRegionCoroutine()
@@ -33,7 +34,7 @@ public class RegionText : MyMonoBehaviour
 			}
 			else if (state == States.faded)
 			{
-				if (currentRegion != lastRegion)
+				if (currentRegion != lastRegion && currentRegion.Length >= 1)
 				{
 					lastRegion = currentRegion;
 					text.text = currentRegion;
@@ -43,6 +44,7 @@ public class RegionText : MyMonoBehaviour
 					newColor.a = 1.0f;
 					text.color = newColor;
 					
+					yield return new WaitForSeconds(timeToFade);
 					state = States.fading;
 				}
 			}
@@ -61,6 +63,6 @@ public class RegionText : MyMonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = player.FindCurrentRegion();
+
 	}
 }
