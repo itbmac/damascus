@@ -10,6 +10,7 @@ public class Player : MyMonoBehaviour {
 
 	public GameObject PaintSplat;
 	public GameObject Glowstick;
+	public GameObject Regions;
 	
 	public float AngleOffset = 90f;
 	public float AngleTurnSpeed = .5f;
@@ -57,10 +58,30 @@ public class Player : MyMonoBehaviour {
 	void Awake() {
 		Instance = this;
 	}
-
+	
+	public string FindCurrentRegion()
+	{
+		RaycastHit2D[] hits;
+		hits = Physics2D.RaycastAll(transform.position, Vector3.down);
+		
+		foreach (RaycastHit2D hit in hits)
+		{
+			if (hit.transform.parent != null)
+			{
+				if (hit.transform.parent.name == Regions.name)
+				{
+					return hit.transform.name;
+				}
+			}
+		}
+		
+		return "";
+	}
+	
 	// Use this for initialization
 	void Start () {
 		redDiscoveredRenderer = transform.Find("red_discovered").GetComponent<SpriteRenderer>();
+		Regions = GameObject.Find("Regions");
 	}
 	
 	void Update() {
