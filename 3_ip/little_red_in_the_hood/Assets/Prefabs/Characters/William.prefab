@@ -52,7 +52,7 @@ GameObject:
   - 114: {fileID: 11462990}
   - 95: {fileID: 9572416}
   - 50: {fileID: 5041732}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: William
   m_TagString: Police
   m_Icon: {fileID: 0}
@@ -78,7 +78,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15, y: -1.46000004, z: 0}
+  m_LocalPosition: {x: 6.73999977, y: -9.51000023, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 498506}
@@ -170,15 +170,15 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0, y: 0}
-      - {x: -3.53553367, y: 3.53553367}
+      - {x: -3.53553462, y: 3.53553319}
       - {x: -2.79596472, y: 4.14518738}
-      - {x: -1.95365655, y: 4.6025238}
-      - {x: -.954045594, y: 4.90813589}
-      - {x: -2.78141897e-07, y: 4.99999952}
-      - {x: .954044044, y: 4.90813589}
-      - {x: 1.37071049, y: 3.22919369}
-      - {x: 1.92453575, y: 2.85324311}
-      - {x: 2.70291328, y: 2.70291328}
+      - {x: -1.78560889, y: 4.20663118}
+      - {x: -.821752131, y: 4.22754622}
+      - {x: -4.71922021e-08, y: 4.24537659}
+      - {x: .828712404, y: 4.26335859}
+      - {x: 1.95365489, y: 4.60252523}
+      - {x: 2.79596376, y: 4.14518833}
+      - {x: 3.53553391, y: 3.53553367}
 --- !u!60 &6094588
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -320,8 +320,10 @@ MonoBehaviour:
   version: 1.1.2 (Unity 5)
   lightMaterial: {fileID: 2100000, guid: 6f6367702c0bf47569b1a990751060ba, type: 2}
   allMeshes:
-  - {fileID: 6052402}
   - {fileID: 6094588}
+  - {fileID: 6052402}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
