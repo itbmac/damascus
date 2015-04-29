@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DetectionIconController : MyMonoBehaviour {
+public class DetectionIcon : MyMonoBehaviour {
 
 	public Sprite Normal;
 	public Sprite PlayerVisible;
