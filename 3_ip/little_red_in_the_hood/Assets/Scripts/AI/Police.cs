@@ -96,10 +96,9 @@ public class Police : MyMonoBehaviour {
 	
 	float nextChange;
 	void Update() {	
+		anim.SetBool("Walking", !TheGameManager.Instance.MotionStopped);
+	
 		if (TheGameManager.Instance.MotionStopped) {
-			agent.Stop();
-			anim.SetBool("Walking", false);
-			
 			return;
 		}
 

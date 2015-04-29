@@ -17,6 +17,7 @@ public class Pause : MonoBehaviour
 		if (Input.GetKeyUp(KeyCode.Space))
 		{
 			pauseImage.enabled = !pauseImage.enabled;
+			TheGameManager.Instance.GamePaused = pauseImage.enabled;
 		}
 	}
 }

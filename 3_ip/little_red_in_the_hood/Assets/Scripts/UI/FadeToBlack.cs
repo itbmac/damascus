@@ -12,7 +12,7 @@ public class FadeToBlack : MonoBehaviour {
 	IEnumerator GameOverCoroutine()
 	{
 		image.enabled = true;
-		TheGameManager.Instance.MotionStopped = true;
+		TheGameManager.Instance.GameOver = true;
 		
 		yield return new WaitForSeconds(PauseTime);
 			

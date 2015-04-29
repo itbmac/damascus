@@ -219,6 +219,8 @@ public class PolyNavAgent : MonoBehaviour{
 
 	//main loop
 	void LateUpdate(){
+		if (TheGameManager.Instance.MotionStopped)
+			return;
 
 		if (polyNav == null)
 			return;
