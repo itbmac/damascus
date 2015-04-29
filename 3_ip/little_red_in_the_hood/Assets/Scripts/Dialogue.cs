@@ -103,8 +103,10 @@ public class Dialogue : MonoBehaviour {
 		Vector3 temp;
 
 		//Erase speech bubbles.
-		bubble1.enabled = false;
-		bubble2.enabled = false;
+		bubble1.sprite = null;
+		bubble2.sprite = null;
+		text1.text = "";
+		text2.text = "";
 
 		//Transition out current speakers.
 		for (float f = 1f; f >= 0; f -= speed) {
@@ -285,15 +287,13 @@ public class Dialogue : MonoBehaviour {
 			}
 			i++;
 		}
-
-		//Load speaking characters.
-
+		
 		//Load the first line of text.
 		text2.text = dialogueLines[0].dialogue;
 		if(dialogueLines[0].character == speaker2){
 			bubble2.sprite = assets["normal_right"];
 		}
-
+		else bubble2.sprite = assets["normal_left"];
 	}
 	
 	// Update is called once per frame
@@ -315,6 +315,11 @@ public class Dialogue : MonoBehaviour {
 			if(dialogueLines[index].character == "switch"){
 				//Swap out the set of speakers.
 				StartCoroutine(SwapSpeakers());
+				//Render the next line of dialogue offscreen.
+				index++;
+				//text3.text = dialogueLines[index].dialogue;
+				//if(dialogueLines[index].character.ToLower() == currentSpeaker2) bubble3.sprite = assets["normal_right"];
+				//else bubble3.sprite = assets["normal_left"];
 			}
 
 			else{
