@@ -2,7 +2,7 @@
  * DIALOGUE SYSTEM
  * 
  * Notes:
- * 	-currently only supports 2 speakers
+ * 	-currently only supports 2 speakers at a time. speakers can be swapped out.
  * 
  */
 
@@ -26,6 +26,12 @@ struct dialogueLine {
 		else
 			mood = s[2];
 	}
+
+	public dialogueLine(string command){
+		character = command;
+		dialogue = "";
+		mood = "";
+	}
 }
 
 public class Dialogue : MonoBehaviour {
@@ -43,16 +49,9 @@ public class Dialogue : MonoBehaviour {
 	//This will be reinitialized in Start() once I start reading in files.
 	int numLines = 9;
 
-	GameObject dialogue_top;
-	GameObject dialogue_bottom;
-	GameObject dialogue_bottom_off;
-	GameObject dialogue_top_off;
-	GameObject top_speech_bubble;
-	GameObject top_off_speech_bubble;
-	GameObject bottom_speech_bubble;
-	GameObject bottom_off_speech_bubble;
-	SpriteRenderer left_sprite;
-	SpriteRenderer right_sprite;
+	GameObject dialogue_top, dialogue_bottom, dialogue_bottom_off, dialogue_top_off;
+	GameObject top_speech_bubble, top_off_speech_bubble, bottom_speech_bubble, bottom_off_speech_bubble;
+	SpriteRenderer left_sprite, right_sprite;
 
 	//The text file we read from.
 	public TextAsset MyText;
@@ -60,9 +59,14 @@ public class Dialogue : MonoBehaviour {
 	//Sprites
 	//sprite1 corresponds with speaker1, sprite2 corresponds with speaker2.
 	//speaker1 on the left, speaker2 on the right.
-	public Sprite Sprite1, Sprite2;
-	
-	string speaker1, speaker2;
+	GameObject left, right, offscreen;
+	Sprite sprite1, sprite2, sprite3, sprite4;
+	string speaker1 = "none";
+	string speaker2 = "none";
+	string speaker3 = "none"; 
+	string speaker4 = "none";
+	bool currentlyFirstSpeakers = true;
+	string currentSpeaker1, currentSpeaker2;
 
 	Text text1, text2, text3;
 	SpriteRenderer bubble1, bubble2, bubble3;
@@ -82,6 +86,65 @@ public class Dialogue : MonoBehaviour {
 		for(int i = 0; i < temp.Length; i++){
 			assets.Add(temp[i].name, temp[i]);
 		}
+	}
+
+	//Transitioning speakers.
+	IEnumerator SwapSpeakers() {
+		transitioning = true;
+
+		float distance1 = Vector3.Distance(offscreen.transform.position, left.transform.position);
+		float distance2 = Vector3.Distance(offscreen.transform.position, right.transform.position);
+		float speed = 0.05f;
+
+		Vector3 temp;
+
+		//Erase speech bubbles.
+		bubble1.enabled = false;
+		bubble2.enabled = false;
+
+		//Transition out current speakers.
+		for (float f = 1f; f >= 0; f -= speed) {
+			temp = left_sprite.transform.position;
+			temp.x += distance1 * speed;
+			left_sprite.transform.position = temp;
+
+			temp = right_sprite.transform.position;
+			temp.x += distance2 * speed;
+			right_sprite.transform.position = temp;
+			yield return null;
+		}
+
+		//Swap out speakers.
+		if (currentlyFirstSpeakers) {
+			left_sprite.sprite = sprite3;
+			right_sprite.sprite = sprite4;
+			currentSpeaker1 = speaker3;
+			currentSpeaker2 = speaker4;
+		} 
+		else {
+			left_sprite.sprite = sprite1;
+			right_sprite.sprite = sprite2;
+			currentSpeaker1 = speaker1;
+			currentSpeaker2 = speaker2;
+		}
+		currentlyFirstSpeakers = !currentlyFirstSpeakers;
+
+		//Transition in next speakers.
+		for (float f = 1f; f >= 0; f -= speed) {
+			temp = left_sprite.transform.position;
+			temp.x -= distance1 * speed;
+			left_sprite.transform.position = temp;
+			
+			temp = right_sprite.transform.position;
+			temp.x -= distance2 * speed;
+			right_sprite.transform.position = temp;
+			yield return null;
+		}
+
+		left_sprite.transform.position = Vector3.zero;
+		right_sprite.transform.position = Vector3.zero;
+
+		transitioning = false;
 	}
 
 	//Transitioning speech bubbles.
@@ -140,12 +203,17 @@ public class Dialogue : MonoBehaviour {
 		dialogue_bottom = transform.FindChild("dialogue_bottom").gameObject;
 		dialogue_bottom_off = transform.FindChild("dialogue_bottom_off").gameObject;
 		dialogue_top_off = transform.FindChild("dialogue_top_off").gameObject;
+
 		top_speech_bubble = dialogue_top.transform.FindChild("top_speech_bubble").gameObject;
 		top_off_speech_bubble = dialogue_top_off.transform.FindChild("top_off_speech_bubble").gameObject;
 		bottom_speech_bubble = dialogue_bottom.transform.FindChild("bottom_speech_bubble").gameObject;
 		bottom_off_speech_bubble = dialogue_bottom_off.transform.FindChild("bottom_off_speech_bubble").gameObject;
-		left_sprite = transform.FindChild("left_sprite").gameObject.GetComponent<SpriteRenderer> ();
-		right_sprite = transform.FindChild("right_sprite").gameObject.GetComponent<SpriteRenderer> ();
+
+		left = transform.FindChild("left_sprite").gameObject;
+		right = transform.FindChild("right_sprite").gameObject;
+		offscreen = right = transform.FindChild("offscreen").gameObject;
+		left_sprite = transform.FindChild("left_sprite/sprite").gameObject.GetComponent<SpriteRenderer> ();
+		right_sprite = transform.FindChild("right_sprite/sprite").gameObject.GetComponent<SpriteRenderer> ();
 
 		text1 = top_speech_bubble.GetComponent<Text>();
 		text2 = bottom_speech_bubble.GetComponent<Text>();
@@ -153,8 +221,6 @@ public class Dialogue : MonoBehaviour {
 		bubble1 = top_speech_bubble.GetComponent<SpriteRenderer>();
 		bubble2 = bottom_speech_bubble.GetComponent<SpriteRenderer>();
 		bubble3 = bottom_off_speech_bubble.GetComponent<SpriteRenderer>();
-		left_sprite.sprite = Sprite1;
-		right_sprite.sprite = Sprite2;
 
 		//Build asset dictionary.
 		buildAssetDictionary();
@@ -170,10 +236,33 @@ public class Dialogue : MonoBehaviour {
 		// The first line indicates the two speakers, and how many lines of dialogue.
 		char[] delin = {' '};
 		string[] temp = inp_ln_first.Split(delin);
-		speaker1 = temp[0];
-		speaker2 = temp[1];
+		speaker1 = temp[0].ToLower();
+		if(temp.Length > 1)
+			speaker2 = temp[1].ToLower();
 		print ("Speakers: " + speaker1 + " and " + speaker2);
 		numLines = int.Parse(temp[2]);
+
+		//Read the second line, parse, and use this information.
+		string inp_ln_second = Lines[1];
+		
+		// The second line indicates the next two speakers, if they exist.
+		temp = inp_ln_second.Split(delin);
+		if(temp.Length > 0)
+			speaker3 = temp[0].ToLower();
+		if(temp.Length > 1)
+			speaker4 = temp[1].ToLower();
+
+		currentSpeaker1 = speaker1;
+		currentSpeaker2 = speaker2;
+
+		//Get sprites for all of them.
+		if(speaker1 != "none") sprite1 = assets[speaker1 + "_normal"];
+		if(speaker2 != "none") sprite2 = assets[speaker2 + "_normal"];
+		if(speaker3 != "none") sprite3 = assets[speaker3 + "_normal"];
+		if(speaker4 != "none") sprite4 = assets[speaker4 + "_normal"];
+
+		left_sprite.sprite = sprite1;
+		right_sprite.sprite = sprite2;
 
 		string[] words;
 		char[] delimiter = {':'};
@@ -181,10 +270,15 @@ public class Dialogue : MonoBehaviour {
 		dialogueLines = new dialogueLine[numLines];
 
 		int i = 0;
-		foreach (var inp_ln in Lines.Skip(1))
+		foreach (var inp_ln in Lines.Skip(2))
 		{
-			words = inp_ln.Split(delimiter);
-			dialogueLines[i] = new dialogueLine(words);
+			if(inp_ln == "switch"){
+				dialogueLines[i] = new dialogueLine(inp_ln);
+			}
+			else{
+				words = inp_ln.Split(delimiter);
+				dialogueLines[i] = new dialogueLine(words);
+			}
 			i++;
 		}
 
@@ -214,20 +308,27 @@ public class Dialogue : MonoBehaviour {
 		}
 		//Check if the user has advanced the dialogue.
 		else if((lastRendered != index) && !transitioning){
-			//Adjust the next speaker's mood.
-			string speakerMood = (dialogueLines[index - 1].character + "_" + dialogueLines[index - 1].mood).ToLower();
-
-			if(assets.ContainsKey(speakerMood)){
-				if(dialogueLines[index - 1].character == speaker1) left_sprite.sprite = assets[speakerMood];
-				else right_sprite.sprite = assets[speakerMood];
+			if(dialogueLines[index].character == "switch"){
+				//Swap out the set of speakers.
+				StartCoroutine(SwapSpeakers());
 			}
-			//Move speech bubbles.
-			StartCoroutine(MoveSpeechBubbles());
 
-			//Render the next line of dialogue offscreen.
-			text3.text = dialogueLines[index].dialogue;
-			if(dialogueLines[index].character == speaker2) bubble3.sprite = assets["normal_right"];
-			else bubble3.sprite = assets["normal_left"];
+			else{
+				//Adjust the next speaker's mood.
+				string speakerMood = (dialogueLines[index - 1].character + "_" + dialogueLines[index - 1].mood).ToLower();
+
+				if(assets.ContainsKey(speakerMood)){
+					if(dialogueLines[index - 1].character.ToLower() == currentSpeaker1) left_sprite.sprite = assets[speakerMood];
+					else right_sprite.sprite = assets[speakerMood];
+				}
+				//Move speech bubbles.
+				StartCoroutine(MoveSpeechBubbles());
+
+				//Render the next line of dialogue offscreen.
+				text3.text = dialogueLines[index].dialogue;
+				if(dialogueLines[index].character.ToLower() == currentSpeaker2) bubble3.sprite = assets["normal_right"];
+				else bubble3.sprite = assets["normal_left"];
+			}
 
 			lastRendered++;
 		}
