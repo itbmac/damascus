@@ -303,9 +303,10 @@ public class Dialogue : MonoBehaviour {
 		//for now, this doesn't do anything.
 		if(index == dialogueLines.Count){
 			//advance to next scene
-			if(NextScene != ""){
-				Application.LoadLevel(NextScene);
-			}
+//			if(NextScene != ""){
+//				Application.LoadLevel(NextScene);
+//			}
+			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 		}
 		//Check if the user has advanced the dialogue.
 		else if((lastRendered != index) && !transitioning){
