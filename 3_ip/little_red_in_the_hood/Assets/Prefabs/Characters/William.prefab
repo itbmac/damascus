@@ -78,7 +78,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 163918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.73999977, y: -9.51000023, z: 0}
+  m_LocalPosition: {x: 9.81634712, y: -11.266058, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 498506}
@@ -170,15 +170,15 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0, y: 0}
-      - {x: -3.53553462, y: 3.53553319}
-      - {x: -2.79596472, y: 4.14518738}
-      - {x: -1.78560889, y: 4.20663118}
-      - {x: -.821752131, y: 4.22754622}
-      - {x: -4.71922021e-08, y: 4.24537659}
-      - {x: .828712404, y: 4.26335859}
-      - {x: 1.95365489, y: 4.60252523}
-      - {x: 2.79596376, y: 4.14518833}
-      - {x: 3.53553391, y: 3.53553367}
+      - {x: -1.86148012, y: 1.8614794}
+      - {x: -1.26200044, y: 1.87099302}
+      - {x: -.797318816, y: 1.87836671}
+      - {x: -.410189897, y: 2.11024499}
+      - {x: 7.89372052e-07, y: 2.42256546}
+      - {x: .472893566, y: 2.4328258}
+      - {x: 1.03787696, y: 2.44508624}
+      - {x: 1.65831077, y: 2.45854902}
+      - {x: 2.47629809, y: 2.47629762}
 --- !u!60 &6094588
 PolygonCollider2D:
   m_ObjectHideFlags: 1
@@ -293,15 +293,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93cc6a4987f7c684798156c56d545838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 1
+  maxSpeed: 2.75
   mass: 20
-  stoppingDistance: .100000001
-  slowingDistance: 1
+  stoppingDistance: .200000003
+  slowingDistance: 2
   decelerationRate: 2
   rotateTransform: 0
   rotateSpeed: 5
-  avoidRadius: 1
-  lookAheadDistance: 1
+  avoidRadius: 2
+  lookAheadDistance: 2
   repath: 0
   restrict: 0
   closerPointOnInvalid: 0
@@ -322,6 +322,55 @@ MonoBehaviour:
   allMeshes:
   - {fileID: 6094588}
   - {fileID: 6052402}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -392,15 +441,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GotPlayer: {fileID: 8300000, guid: bf30723460ca342fc9fa92ae3a3d6fbf, type: 3}
-  InvestigativeSpeedMultiplier: 1.10000002
+  InvestigativeSpeedMultiplier: 2.25
   DebugMode: 1
   DogMode: 0
+  WilliamMode: 1
   CircleNotifierPrefab: {fileID: 152274, guid: 1a980afc9092c4b91bc9900d02528549, type: 2}
   WPoints:
-  - {x: -2.5, y: 0}
-  - {x: 2, y: -1}
-  - {x: 3, y: -4}
-  - {x: -1, y: -2}
+  - {x: 0, y: 0}
+  - {x: -20, y: 0}
+  - {x: -20, y: 20}
+  - {x: -24, y: 30}
+  - {x: -45, y: 55}
+  - {x: -38, y: 64}
+  - {x: -10, y: 63}
+  - {x: -11, y: 50}
+  - {x: -23, y: 47}
+  - {x: -22, y: 40}
+  - {x: 0, y: 39}
+  - {x: 1, y: 27}
+  - {x: 23, y: 23}
+  - {x: 21, y: 16}
+  - {x: 6, y: 15}
+  - {x: 4, y: 12.5}
+  - {x: 2, y: 13}
+  - {x: 0, y: 15}
+  - {x: -2, y: 15.6999998}
+  - {x: -4.19999981, y: 15}
   ViceCopMode: 0
   WPointsIndex: 0
 --- !u!212 &21228710
@@ -428,7 +494,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 71514f44bb0984316981c43cf4009b06, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: .576470613}
 --- !u!212 &21233708
 SpriteRenderer:
   m_ObjectHideFlags: 1

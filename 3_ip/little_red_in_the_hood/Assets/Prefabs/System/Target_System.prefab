@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 11425222}
   m_Layer: 0
   m_Name: Target_System
-  m_TagString: Untagged
+  m_TagString: TargetSystem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,6 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target0: {fileID: 134570}
   target1: {fileID: 194008}
+  TList: []
   currentTarget: 0
   numTargets: 2
 --- !u!114 &11462440

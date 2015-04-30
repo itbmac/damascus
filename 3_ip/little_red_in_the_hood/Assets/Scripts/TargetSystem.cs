@@ -19,10 +19,11 @@ public class TargetSystem : MonoBehaviour {
 	}
 
 	GameObject[] TOList;
-	TargetScript[] TList;
+	public TargetScript[] TList;
 
 	public int currentTarget;
 	public int numTargets = 2;
+	public float waitTimeToLaunchNextLevel = 1.0f;
 	
 	public static TargetSystem Instance {
 		get; private set;
@@ -83,7 +84,7 @@ public class TargetSystem : MonoBehaviour {
 		loadingNextLevel = true;
 		TheGameManager.Instance.GameOver = true;
 		
-		yield return new WaitForSeconds(1.0f);
+		yield return new WaitForSeconds(waitTimeToLaunchNextLevel);
 	
 		Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 	}

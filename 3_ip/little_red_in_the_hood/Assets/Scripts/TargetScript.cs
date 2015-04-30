@@ -24,7 +24,7 @@ public class TargetScript : MyMonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other) {
-		if ((other.tag == "Player") && isCurrentTarget) {
+		if ((other.tag == "Player") && isCurrentTarget && (this.name != "William")) {
 			SetAsCurrentTarget(false);
 		}
 	}
