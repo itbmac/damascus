@@ -1036,7 +1036,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DetectionTime: 2
   DetectedCurrently: 0
-  MotionStopped: 0
+  GameOver: 0
+  GamePaused: 0
 --- !u!114 &11483160
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1075,6 +1076,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimeToFade: 1
   PauseTime: .5
+  image: {fileID: 0}
 --- !u!114 &11493592
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1155,7 +1157,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1719212563
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 93afc7211540e4c16bd8c9f7b904b15e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea128842f8bdb4629bafda78621a31bd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!222 &22211904
 CanvasRenderer:
