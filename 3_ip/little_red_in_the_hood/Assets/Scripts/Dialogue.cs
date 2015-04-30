@@ -84,6 +84,25 @@ public class Dialogue : MonoBehaviour {
 		}
 	}
 
+	//End cutscene for Act 5 Scene 2.
+	IEnumerator endCutscene() {
+		transitioning = true;
+
+		yield return new WaitForSeconds(3);
+
+		left_sprite.sprite = assets["red_hood1"];
+
+		yield return new WaitForSeconds(3);
+
+		left_sprite.sprite = assets["red_hood2"];
+
+		yield return new WaitForSeconds(3);
+
+		left_sprite.sprite = assets["red_hood3"];
+
+		transitioning = false;
+	}
+
 	//Transitioning speakers.
 	IEnumerator SwapSpeakers() {
 		transitioning = true;
@@ -306,6 +325,10 @@ public class Dialogue : MonoBehaviour {
 //			if(NextScene != ""){
 //				Application.LoadLevel(NextScene);
 //			}
+			if(Application.loadedLevelName == "act5_scene2"){
+				StartCoroutine(endCutscene());
+			}
+
 			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 		}
 		//Check if the user has advanced the dialogue.
