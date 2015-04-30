@@ -21,7 +21,7 @@ public class MyMonoBehaviour : MonoBehaviour {
 		}
 	}
 	
-	new protected Renderer renderer {
+	protected Renderer renderer {
 		get {
 			return GetComponent<Renderer>();
 		}
@@ -43,14 +43,14 @@ public class MyMonoBehaviour : MonoBehaviour {
 		}
 	}
 	
-	new protected AudioSource audio {
+	protected AudioSource audio {
 		get {
 			return GetComponent<AudioSource>();
 		}
 	}
 	
 	private Collider2D _collider2D;
-	new protected Collider2D collider2D {
+	protected Collider2D collider2D {
 		get {
 			if (_collider2D == null) _collider2D = GetComponent<Collider2D>();
 			return _collider2D;

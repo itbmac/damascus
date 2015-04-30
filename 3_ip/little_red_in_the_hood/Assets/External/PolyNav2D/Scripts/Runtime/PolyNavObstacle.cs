@@ -26,7 +26,7 @@ public class PolyNavObstacle : MonoBehaviour {
 	private Transform _transform;
 	private Collider2D _collider;
 
-	new private Collider2D collider{
+	private Collider2D collider{
 		get
 		{
 			if (_collider == null)
