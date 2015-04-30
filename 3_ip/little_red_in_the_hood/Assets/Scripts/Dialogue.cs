@@ -71,6 +71,7 @@ public class Dialogue : MonoBehaviour {
 	public string NextScene;
 	
 	string[] Lines;
+	bool finale = false;
 
 	//Basically a mutex so the player can't skip through text.
 	bool transitioning = false;
@@ -88,19 +89,15 @@ public class Dialogue : MonoBehaviour {
 	IEnumerator endCutscene() {
 		transitioning = true;
 
+		right_sprite.sprite = assets["red_hood1"];
+		yield return new WaitForSeconds(1);
+		right_sprite.sprite = assets["red_hood2"];
+		yield return new WaitForSeconds(1);
+		right_sprite.sprite = assets["red_hood3"];
 		yield return new WaitForSeconds(3);
-
-		left_sprite.sprite = assets["red_hood1"];
-
-		yield return new WaitForSeconds(3);
-
-		left_sprite.sprite = assets["red_hood2"];
-
-		yield return new WaitForSeconds(3);
-
-		left_sprite.sprite = assets["red_hood3"];
 
 		transitioning = false;
+		finale = true;
 	}
 
 	//Transitioning speakers.
@@ -325,11 +322,11 @@ public class Dialogue : MonoBehaviour {
 //			if(NextScene != ""){
 //				Application.LoadLevel(NextScene);
 //			}
-			if(Application.loadedLevelName == "act5_scene2"){
+			if(Application.loadedLevelName == "act5_scene2" && !transitioning){
 				StartCoroutine(endCutscene());
 			}
 
-			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
+			if(finale) Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 		}
 		//Check if the user has advanced the dialogue.
 		else if((lastRendered != index) && !transitioning){
@@ -346,7 +343,6 @@ public class Dialogue : MonoBehaviour {
 				if(assets.ContainsKey(speakerMood)){
 					if(dialogueLines[index].character.ToLower() == currentSpeaker1) left_sprite.sprite = assets[speakerMood];
 					else right_sprite.sprite = assets[speakerMood];
-					print (speakerMood);
 				}
 				//Move speech bubbles.
 				StartCoroutine(MoveSpeechBubbles());
