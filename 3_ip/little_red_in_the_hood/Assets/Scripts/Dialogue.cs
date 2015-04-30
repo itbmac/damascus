@@ -313,20 +313,17 @@ public class Dialogue : MonoBehaviour {
 			if(dialogueLines[index].character == "switch"){
 				//Swap out the set of speakers.
 				StartCoroutine(SwapSpeakers());
-				//Render the next line of dialogue offscreen.
 				index++;
-				//text3.text = dialogueLines[index].dialogue;
-				//if(dialogueLines[index].character.ToLower() == currentSpeaker2) bubble3.sprite = assets["normal_right"];
-				//else bubble3.sprite = assets["normal_left"];
 			}
 
 			else{
 				//Adjust the next speaker's mood.
-				string speakerMood = (dialogueLines[index - 1].character + "_" + dialogueLines[index - 1].mood).ToLower();
+				string speakerMood = (dialogueLines[index].character + "_" + dialogueLines[index].mood).ToLower();
 
 				if(assets.ContainsKey(speakerMood)){
-					if(dialogueLines[index - 1].character.ToLower() == currentSpeaker1) left_sprite.sprite = assets[speakerMood];
+					if(dialogueLines[index].character.ToLower() == currentSpeaker1) left_sprite.sprite = assets[speakerMood];
 					else right_sprite.sprite = assets[speakerMood];
+					print (speakerMood);
 				}
 				//Move speech bubbles.
 				StartCoroutine(MoveSpeechBubbles());
