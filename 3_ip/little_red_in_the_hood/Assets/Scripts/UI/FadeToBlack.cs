@@ -7,7 +7,7 @@ public class FadeToBlack : MonoBehaviour {
 	public float TimeToFade = 1.0f;
 	public float PauseTime = 0.5f;
 	
-	Image image;
+	public Image image;
 
 	IEnumerator GameOverCoroutine()
 	{
@@ -19,7 +19,7 @@ public class FadeToBlack : MonoBehaviour {
 		float endTime = Time.time + TimeToFade;
 		
 		var color = image.color;	
-		while (Time.time <= endTime) {			
+		while ((Time.time <= endTime) && (color.a < 1)) {			
 			color.a = 1 - ((endTime - Time.time) / TimeToFade);
 			image.color = color;
 			
