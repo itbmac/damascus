@@ -4544,7 +4544,7 @@ PolygonCollider2D:
   m_GameObject: {fileID: 147832}
   m_Enabled: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -7745,7 +7745,7 @@ PolygonCollider2D:
       - {x: 102.864655, y: 78.3039932}
       - {x: 99.5400085, y: 76.2137604}
       - {x: 91.5762329, y: 88.4734802}
-      - {x: 75.9735565, y: 88.1576691}
+      - {x: 77.2488403, y: 91.197731}
       - {x: 69.6154861, y: 92.5568619}
       - {x: 54.1728668, y: 91.7213745}
       - {x: 51.4059982, y: 93.3685684}
@@ -8480,6 +8480,23 @@ MonoBehaviour:
   generateOnUpdate: 1
   navObstacles:
   - {fileID: 11453286}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   inflateRadius: .100000001
