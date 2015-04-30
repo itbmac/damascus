@@ -20,6 +20,7 @@ public class Police : MyMonoBehaviour {
 	const float CommunicationRange = 0.0f;
 	public bool DebugMode;
 	public bool DogMode;
+	public bool WilliamMode;
 	public GameObject CircleNotifierPrefab;
 	
 	public enum State {Normal, PlayerDetected, PlayerVisible}
@@ -177,6 +178,13 @@ public class Police : MyMonoBehaviour {
 	}
 	
 	void SetNewDestination() {
+		if (WilliamMode && (WPointsIndex == WPoints.Length - 1)) {
+			anim.SetBool("Walking", false);
+			GameObject.FindGameObjectWithTag("TargetSystem").GetComponent<TargetSystem>().waitTimeToLaunchNextLevel = 3.0f;
+			GameObject.FindGameObjectWithTag("TargetSystem").GetComponent<TargetSystem>().TList[GameObject.FindGameObjectWithTag("TargetSystem").GetComponent<TargetSystem>().currentTarget].hasBeenPassed = true;
+			return;
+		}
+
 		if (CurrentState == State.Normal) {	
 			if (ViceCopMode) {
 				//WPointsIndex = Random.Range(0, WPoints.Length); // disabled for being too complicated
@@ -260,6 +268,9 @@ public class Police : MyMonoBehaviour {
 	
 	float nextCommunicate;
 	void CommunicatePlayerPos() {	
+		if (WilliamMode)
+			return;
+
 		if (Time.time > nextCommunicate)
 			nextCommunicate = Time.time + 2.0f;
 		else
@@ -274,6 +285,9 @@ public class Police : MyMonoBehaviour {
 	}
 	
 	public void NotifyPlayerPos(Vector2 pos, float lastSeenTime) {
+		if (WilliamMode)
+			return;
+
 		if (CurrentState != State.PlayerVisible && lastSeenTime > playerLastSeenTime) {
 			playerLastSeenPos = pos;
 			playerLastSeenTime = lastSeenTime;
