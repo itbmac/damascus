@@ -43,11 +43,7 @@ public class Dialogue : MonoBehaviour {
 	//The last line index that was visually rendered.
 	int lastRendered = 0;
 
-	//I'll make this a list later....
-	dialogueLine[] dialogueLines;
-
-	//This will be reinitialized in Start() once I start reading in files.
-	int numLines = 9;
+	List<dialogueLine> dialogueLines;
 
 	GameObject dialogue_top, dialogue_bottom, dialogue_bottom_off, dialogue_top_off;
 	GameObject top_speech_bubble, top_off_speech_bubble, bottom_speech_bubble, bottom_off_speech_bubble;
@@ -95,10 +91,6 @@ public class Dialogue : MonoBehaviour {
 		float distance1 = Vector3.Distance(offscreen.transform.position, left.transform.position);
 		float distance2 = Vector3.Distance(offscreen.transform.position, right.transform.position);
 		float speed = 0.03f;
-
-		print (offscreen.transform.position);
-		print (right.transform.position);
-		print (distance2);
 
 		Vector3 temp;
 
@@ -181,7 +173,6 @@ public class Dialogue : MonoBehaviour {
 			temp.y += distance3 * speed;
 			bottom_off_speech_bubble.transform.position = temp;
 
-			//print(temp);
 			yield return null;
 		}
 
@@ -239,14 +230,12 @@ public class Dialogue : MonoBehaviour {
 		//Read the first line, parse, and use this information.
 		string inp_ln_first = Lines[0];
 
-		// The first line indicates the two speakers, and how many lines of dialogue.
+		// The first line indicates the two speakers.
 		char[] delin = {' '};
 		string[] temp = inp_ln_first.Split(delin);
 		speaker1 = temp[0].ToLower();
 		if(temp.Length > 1)
 			speaker2 = temp[1].ToLower();
-		print ("Speakers: " + speaker1 + " and " + speaker2);
-		numLines = int.Parse(temp[2]);
 
 		//Read the second line, parse, and use this information.
 		string inp_ln_second = Lines[1];
@@ -273,27 +262,35 @@ public class Dialogue : MonoBehaviour {
 		string[] words;
 		char[] delimiter = {':'};
 
-		dialogueLines = new dialogueLine[numLines];
+		dialogueLines = new List<dialogueLine>();
 
 		int i = 0;
 		foreach (var inp_ln in Lines.Skip(2))
 		{
 			if(inp_ln == "switch"){
-				dialogueLines[i] = new dialogueLine(inp_ln);
+				dialogueLines.Add(new dialogueLine(inp_ln));
 			}
 			else{
 				words = inp_ln.Split(delimiter);
-				dialogueLines[i] = new dialogueLine(words);
+				dialogueLines.Add (new dialogueLine(words));
 			}
 			i++;
 		}
 		
 		//Load the first line of text.
 		text2.text = dialogueLines[0].dialogue;
-		if(dialogueLines[0].character == speaker2){
-			bubble2.sprite = assets["normal_right"];
+		string speakerMood = (dialogueLines[0].character + "_" + dialogueLines[0].mood).ToLower();
+		if (dialogueLines [0].character == speaker2) {
+			bubble2.sprite = assets ["normal_right"];
+			if (assets.ContainsKey (speakerMood)) {
+				right_sprite.sprite = assets [speakerMood];
+			}
+		} else {
+			bubble2.sprite = assets ["normal_left"];
+			if (assets.ContainsKey (speakerMood)) {
+				left_sprite.sprite = assets [speakerMood];
+			}
 		}
-		else bubble2.sprite = assets["normal_left"];
 	}
 	
 	// Update is called once per frame
@@ -304,7 +301,7 @@ public class Dialogue : MonoBehaviour {
 		
 		//If the user advances the dialogue but there's none left, go to the next act.
 		//for now, this doesn't do anything.
-		if(index == dialogueLines.Length){
+		if(index == dialogueLines.Count){
 			//advance to next scene
 			if(NextScene != ""){
 				Application.LoadLevel(NextScene);
