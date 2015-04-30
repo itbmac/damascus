@@ -4,4 +4,40 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Damascus_Intro.unity
+  - enabled: 1
+    path: Assets/Scenes/StartScreen.unity
+  - enabled: 1
+    path: Assets/Scenes/act1_scene1.unity
+  - enabled: 1
+    path: Assets/Scenes/L_1.unity
+  - enabled: 1
+    path: Assets/Scenes/act1_scene2.unity
+  - enabled: 1
+    path: Assets/Scenes/act2_scene1.unity
+  - enabled: 1
+    path: Assets/Scenes/L_2.unity
+  - enabled: 1
+    path: Assets/Scenes/act2_scene2.unity
+  - enabled: 1
+    path: Assets/Scenes/act3_scene1.unity
+  - enabled: 1
+    path: Assets/Scenes/L_3.unity
+  - enabled: 1
+    path: Assets/Scenes/act3_scene2.unity
+  - enabled: 1
+    path: Assets/Scenes/act4_scene1.unity
+  - enabled: 1
+    path: Assets/Scenes/L_4.unity
+  - enabled: 1
+    path: Assets/Scenes/act4_scene2.unity
+  - enabled: 1
+    path: Assets/Scenes/act5_scene1.unity
+  - enabled: 1
+    path: Assets/Scenes/L_5.unity
+  - enabled: 1
+    path: Assets/Scenes/act5_scene2.unity
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
