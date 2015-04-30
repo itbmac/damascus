@@ -31,7 +31,6 @@ public class PolyNav2D : MonoBehaviour {
 	private PathNode startNode;
 	private PathNode endNode;
 
-
 	private Collider2D _masterCollider;
 	private Collider2D masterCollider{
 		get
@@ -69,7 +68,8 @@ public class PolyNav2D : MonoBehaviour {
 	//some initializing
 	void Reset(){
 		gameObject.name = "@PolyNav2D";
-		gameObject.AddComponent<PolygonCollider2D>();
+		if (GetComponent<PolygonCollider2D>() == null)
+			gameObject.AddComponent<PolygonCollider2D>();
 	}
 
 	//some initializing
@@ -163,8 +163,8 @@ public class PolyNav2D : MonoBehaviour {
 	///Generate the map
 	public void GenerateMap(bool generateMaster){
 		regenerateFlag = false;
-		print ("Starting GenerateMap");
-		DateTime startTime = DateTime.Now;
+//		print ("Starting GenerateMap");
+//		DateTime startTime = DateTime.Now;
 		
 		CreatePolyMap(generateMaster);
 		CreateNodes();
@@ -173,9 +173,9 @@ public class PolyNav2D : MonoBehaviour {
 			LinkNodes(nodes);
 		}
 		
-		DateTime endTime = DateTime.Now;
-		TimeSpan totalTimeTaken = endTime.Subtract(startTime);
-		print ("Finished GenerateMap, took " + totalTimeTaken.Seconds);
+//		DateTime endTime = DateTime.Now;
+//		TimeSpan totalTimeTaken = endTime.Subtract(startTime);
+//		print ("Finished GenerateMap, took " + totalTimeTaken.Seconds);
 	}
 
 	//helper function
@@ -189,7 +189,7 @@ public class PolyNav2D : MonoBehaviour {
 
 	//takes all colliders points and convert them to usable stuff
 	void CreatePolyMap(bool generateMaster, bool skipIfSimilar = false){
-		DateTime startTime = DateTime.Now;
+//		DateTime startTime = DateTime.Now;
 	
 		if (skipIfSimilar) {
 			if (lastNavObstaclesSize == navObstacles.Count)
@@ -202,6 +202,11 @@ public class PolyNav2D : MonoBehaviour {
 
 		//create a polygon object for each obstacle
 		foreach (var obstacle in navObstacles){
+			
+			if (obstacle == null) {
+				continue;
+			}
+		
 			int numPoints = 0;		
 			var paths = obstacle.Paths;
 			foreach (var path in paths) {
@@ -210,7 +215,7 @@ public class PolyNav2D : MonoBehaviour {
 				var inflatedPoints = InflatePolygon(transformedPoints, Mathf.Max(0.01f, inflateRadius + obstacle.extraOffset) );
 				obstaclePolys.Add(new Polygon(inflatedPoints));
 			}
-			print ("Imported " + numPoints + " points from " + paths.Length + " paths on " + obstacle.name);
+//			print ("Imported " + numPoints + " points from " + paths.Length + " paths on " + obstacle.name);
 		}
 
 		if (generateMaster){
@@ -258,9 +263,9 @@ public class PolyNav2D : MonoBehaviour {
 		//The colliders are never used again after this point. They are simply a drawing method.
 		//
 		
-		DateTime endTime = DateTime.Now;
-		TimeSpan totalTimeTaken = endTime.Subtract(startTime);
-		print ("Finished CreatePolygonMap, took " + totalTimeTaken.Seconds);
+//		DateTime endTime = DateTime.Now;
+//		TimeSpan totalTimeTaken = endTime.Subtract(startTime);
+//		print ("Finished CreatePolygonMap, took " + totalTimeTaken.Seconds);
 	}
 
 	//Create Nodes at convex points (since master poly is inverted, it will be concave for it) if they are valid
@@ -493,6 +498,11 @@ public class PolyNav2D : MonoBehaviour {
 #if UNITY_EDITOR
 	
 	void OnDrawGizmos (){
+		if (navObstacles.Any(x => x == null)){
+			Debug.Log ("Null obstacles detected, fixing...");
+			navObstacles = navObstacles.Where(x => x != null).ToList();
+		}		
+	
 		if (map == null || regenerateFlag)
 			GenerateMap(true);
 		else if (!Application.isPlaying)
@@ -513,11 +523,11 @@ public class PolyNav2D : MonoBehaviour {
 			var bl = box.offset + new Vector2(-box.size.x, -box.size.y)/2;
         	DebugDrawPolygon(TransformPoints(new Vector2[]{tl, tr, br, bl}, masterCollider.transform), Color.green);
         }
+        
 
-		foreach(PolyNavObstacle o in navObstacles)
+		foreach(PolyNavObstacle o in navObstacles) {
 			DebugDrawPolygon(TransformPoints(o.points, o.transform), new Color(1, 0.7f, 0.7f));
-        //
-
+		}
 
 		//the inflated actualy used polygons
         foreach (Polygon pathPoly in map.masterPolygons)
