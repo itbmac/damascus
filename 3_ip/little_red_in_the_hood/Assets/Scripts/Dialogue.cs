@@ -325,6 +325,8 @@ public class Dialogue : MonoBehaviour {
 			if(Application.loadedLevelName == "act5_scene2" && !transitioning){
 				StartCoroutine(endCutscene());
 			}
+			else
+				Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 
 			if(finale) Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 		}
