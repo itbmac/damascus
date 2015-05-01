@@ -70,14 +70,12 @@ public class Glowstick : MyMonoBehaviour {
 	{
 		int start = 0;
 		int end = script.WPointsIndex;
-		Debug.Log(end);
 		Vector2[] newWpoints = new Vector2[script.WPoints.Length+1];
 		
 		//get to right before the current index
 		for (; start < end; start++)
 		{
 			newWpoints[start] = script.WPoints[start];
-			Debug.Log(script.WPoints[start]);
 		}
 		
 		//insert glowstick location
