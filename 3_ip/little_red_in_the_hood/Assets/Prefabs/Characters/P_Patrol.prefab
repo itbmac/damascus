@@ -329,7 +329,7 @@ MonoBehaviour:
   decelerationRate: 2
   rotateTransform: 0
   rotateSpeed: 5
-  avoidRadius: 1
+  avoidRadius: .699999988
   lookAheadDistance: 1
   repath: 0
   restrict: 0
@@ -407,6 +407,7 @@ MonoBehaviour:
   InvestigativeSpeedMultiplier: 2.25
   DebugMode: 1
   DogMode: 0
+  WilliamMode: 0
   CircleNotifierPrefab: {fileID: 152274, guid: 1a980afc9092c4b91bc9900d02528549, type: 2}
   WPoints:
   - {x: -2.5, y: 0}

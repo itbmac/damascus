@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(CircleCollider2D))]
 public class CircleNotifier : MonoBehaviour {
 
-	public float MaxScale = 10.0f;
+	public float MaxScale = 5.0f;
 	public float ScaleSpeed = 0.1f;
 
 	private float scale;

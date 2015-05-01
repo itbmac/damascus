@@ -166,11 +166,11 @@ MonoBehaviour:
   decelerationRate: 2
   rotateTransform: 0
   rotateSpeed: 350
-  avoidRadius: 0
-  lookAheadDistance: 1
-  repath: 0
+  avoidRadius: 1
+  lookAheadDistance: 2
+  repath: 1
   restrict: 0
-  closerPointOnInvalid: 0
+  closerPointOnInvalid: 1
   debugPath: 1
 --- !u!114 &11431654
 MonoBehaviour:
