@@ -77,6 +77,8 @@ public class ThrowGlowstick : MonoBehaviour
 			
 			yield return new WaitForSeconds(0.01f);
 		}
+		
+		script.AttractPolice();
 	}
 	
 	// Update is called once per frame
