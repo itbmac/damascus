@@ -165,6 +165,12 @@ public class Police : MyMonoBehaviour {
 	void Start(){
 		if (PlayerSeen == null)
 			PlayerSeen = (AudioClip)Resources.Load ("police-player-seen-edit");
+			
+		var policeLayer = LayerMask.NameToLayer("Police");
+		if (gameObject.layer != policeLayer) {
+			gameObject.layer = policeLayer;
+			Debug.LogWarning("Fixing layer on " + name);
+		}		
 	
 		player = FindObjectOfType<Player>().gameObject;		
 		visionCone = transform.GetChild(0).GetComponent<Collider2D>();
