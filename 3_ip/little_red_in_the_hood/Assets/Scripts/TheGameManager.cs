@@ -53,7 +53,7 @@ public class TheGameManager : MonoBehaviour {
 		}
 		
 		if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.F) && Input.anyKeyDown) {
-			if (Mathf.Approximately(Time.timeScale, 2)) {
+			if (!Mathf.Approximately(Time.timeScale, 1)) {
 				Time.timeScale = 1;
 			} else {
 				Time.timeScale = 4;

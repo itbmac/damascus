@@ -19,7 +19,6 @@ public class PolyNav2D : MonoBehaviour {
 	///A Flag to tell PolyNav to regenerate the map
 	public bool regenerateFlag;
 
-	[SerializeField]
 	private PolyMap map;
 	
 	private List<PathNode> nodes = new List<PathNode>();
@@ -294,8 +293,6 @@ public class PolyNav2D : MonoBehaviour {
 
 	//link the nodes provided
 	void LinkNodes(List<PathNode> nodeList){
-		print ("Linking nodes...");
-
 		for (int a = 0; a < nodeList.Count; a++){
 
 			nodeList[a].links.Clear();
