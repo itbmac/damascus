@@ -49,8 +49,22 @@ public class Player : MyMonoBehaviour {
 		}
 	}
 	
+	bool _isOnSprayPaint;
 	public bool IsOnSprayPaint {
-		get; set;
+		get {
+			return _isOnSprayPaint;
+		}
+		
+		set {
+			if (value == _isOnSprayPaint)
+				return;
+			_isOnSprayPaint = value;
+			
+			if (value)
+				redLightPlayer.Play();
+			else
+				redLightPlayer.Stop();
+		}
 	}
 	
 	const string MovementMode = "MovementMode";
@@ -95,12 +109,14 @@ public class Player : MyMonoBehaviour {
 	}
 	
 	AudioSource streetLampFlicker;
+	AudioSource redLightPlayer;
 	
 	// Use this for initialization
 	void Start () {
 		redDiscoveredRenderer = transform.Find("red_discovered").GetComponent<SpriteRenderer>();
 		Regions = GameObject.Find("Regions");
 		streetLampFlicker = transform.Find("StreetLampFlicker").GetComponent<AudioSource>();
+		redLightPlayer = transform.Find("RedLightPlayer").GetComponent<AudioSource>();
 	}
 	
 	bool SpeedupMode;
