@@ -52,6 +52,48 @@ public class Glowstick : MyMonoBehaviour {
 		Destroy(gameObject);
 	}
 	
+	public void AttractPolice()
+	{
+		//Since mac said not to touch scene guess we cant use colliders
+		GameObject policeDept = GameObject.Find("Police_Department");
+		int children = policeDept.transform.childCount;
+		
+		for(int i = 0; i < children; i++)
+		{
+			Transform transform = policeDept.transform.GetChild(i);
+			Police policeScript = transform.gameObject.GetComponent<Police>();
+			insertWaypoint(policeScript);
+		}
+	}
+	
+	void insertWaypoint(Police script)
+	{
+		int start = 0;
+		int end = script.WPointsIndex;
+		Debug.Log(end);
+		Vector2[] newWpoints = new Vector2[script.WPoints.Length+1];
+		
+		//get to right before the current index
+		for (; start < end; start++)
+		{
+			newWpoints[start] = script.WPoints[start];
+			Debug.Log(script.WPoints[start]);
+		}
+		
+		//insert glowstick location
+		newWpoints[start] = transform.position;
+		start++;
+		end = newWpoints.Length;
+		
+		//copy over rest
+		for (; start < end; start++)
+		{
+			newWpoints[start] = script.WPoints[start-1];
+		}
+		
+		script.WPoints = newWpoints;
+	}
+
 	// Update is called once per frame
 	void Update () 
 	{
