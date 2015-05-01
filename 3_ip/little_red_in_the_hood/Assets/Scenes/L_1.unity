@@ -1028,7 +1028,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 7, y: 15.6700001}
+  m_Size: {x: 7, y: 2}
 --- !u!60 &747523948 stripped
 PolygonCollider2D:
   m_PrefabParentObject: {fileID: 6089488, guid: 33f712ec992bf4f3aa1f845a48198a2e,
@@ -1638,11 +1638,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 437922, guid: 184772f19159745b081f4c64c108846d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .419999987
+      value: -3.28999996
       objectReference: {fileID: 0}
     - target: {fileID: 437922, guid: 184772f19159745b081f4c64c108846d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 91.5100021
+      value: 94.0400009
       objectReference: {fileID: 0}
     - target: {fileID: 437922, guid: 184772f19159745b081f4c64c108846d, type: 2}
       propertyPath: m_LocalRotation.z
