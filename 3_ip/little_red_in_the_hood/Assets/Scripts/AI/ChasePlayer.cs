@@ -40,26 +40,28 @@ public class ChasePlayer : MyMonoBehaviour {
 	}
 
 	void OnDestinationInvalid() {
+		Debug.Log ("OnDestinationInvalid");
 		if (LastUpdateTime + updateRate <= Time.time) {	
-			Vector3 searchRadius = Random.insideUnitSphere * 12f;
+
+			var searchRadius = Random.insideUnitCircle * 12f;
 			searchRadius.z = 0;
-			agent.SetDestination(Player.Instance.transform.position + searchRadius);
+			agent.SetDestination((Vector2)Player.Instance.transform.position + searchRadius);
 			
 			LastUpdateTime = Time.time;
 		}
 	}
 	
-//	void OnEnable(){
-//		agent.OnDestinationReached += SetNewDestination;
-//		agent.OnDestinationInvalid += OnDestinationInvalid;
-//	}
-//	
-//	void OnDisable(){
-//		agent.OnDestinationReached -= SetNewDestination;
-//		agent.OnDestinationInvalid -= OnDestinationInvalid;
-//	}
-//	
-//	void SetNewDestination() {
-//		
-//	}
+	void OnEnable(){
+		agent.OnDestinationReached += OnDestinationReached;
+		agent.OnDestinationInvalid += OnDestinationInvalid;
+	}
+	
+	void OnDisable(){
+		agent.OnDestinationReached -= OnDestinationReached;
+		agent.OnDestinationInvalid -= OnDestinationInvalid;
+	}
+	
+	void OnDestinationReached() {
+		print ("Reached");
+	}
 }

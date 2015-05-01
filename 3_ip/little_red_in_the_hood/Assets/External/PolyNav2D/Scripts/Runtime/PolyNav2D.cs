@@ -18,8 +18,7 @@ public class PolyNav2D : MonoBehaviour {
 
 	///A Flag to tell PolyNav to regenerate the map
 	public bool regenerateFlag;
-
-	[SerializeField]
+	
 	private PolyMap map;
 	
 	private List<PathNode> nodes = new List<PathNode>();
