@@ -44,7 +44,6 @@ public class ChasePlayer : MyMonoBehaviour {
 		if (LastUpdateTime + updateRate <= Time.time) {	
 
 			var searchRadius = Random.insideUnitCircle * 12f;
-			searchRadius.z = 0;
 			agent.SetDestination((Vector2)Player.Instance.transform.position + searchRadius);
 			
 			LastUpdateTime = Time.time;

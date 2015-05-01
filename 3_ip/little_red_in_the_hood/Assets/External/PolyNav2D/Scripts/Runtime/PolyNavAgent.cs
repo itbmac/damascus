@@ -442,7 +442,7 @@ public class PolyNavAgent : MonoBehaviour{
     }
 
 	void OnDrawGizmosSelected() {
-		if (!hasPath)
+		if (!hasPath || activePath.Count == 0)
 			return;
 
 		Gizmos.color = new Color(1f, 0f, 0f, 1f);
