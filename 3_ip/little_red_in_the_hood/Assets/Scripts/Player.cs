@@ -25,6 +25,7 @@ public class Player : MyMonoBehaviour {
 	public AudioClip RunSound;
 	public AudioClip StealthSound;
 	public AudioClip ArrestedSound;
+	public AudioClip ArrestedWilliamSound;
 	
 	public static Player Instance {
 		get; private set;
@@ -166,7 +167,13 @@ public class Player : MyMonoBehaviour {
 			if (collider2D.IsTouchingLayers(LayerMask.GetMask("Police"))) {
 				gameOver = true;
 				FindObjectOfType<FadeToBlack>().Trigger();
-				audio.clip = ArrestedSound;
+				
+				if (collider2D.IsTouching(GameObject.Find("William").GetComponent<Collider2D>()))
+					audio.clip = ArrestedWilliamSound;
+				else
+					audio.clip = ArrestedSound;
+					
+				audio.loop = false;
 				audio.Play();
 				return;
 			}
@@ -216,8 +223,10 @@ public class Player : MyMonoBehaviour {
 			audio.clip = null;
 		}
 	
-		if (!audio.isPlaying && audio.clip != null)
+		if (!audio.isPlaying && audio.clip != null) {
+			audio.loop = true;
 			audio.Play ();
+		}
 
 		velocity = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * speed;
 		GetComponent<Rigidbody2D>().velocity = velocity;
