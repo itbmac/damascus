@@ -9,10 +9,12 @@ public class TargetScript : MyMonoBehaviour {
 	public float targetMustRemainOnScreenTimeBuffer = 4f;
 	public float clipDistance = .75f;
 	public float timeLastOnScreen;
+	public bool renderSprite = true;
 
 	// Use this for initialization
 	void Start () {
 		spriteRenderer.enabled = false;
+		collider2D.isTrigger = true;
 	}
 
 	bool gameOver;
@@ -45,7 +47,7 @@ public class TargetScript : MyMonoBehaviour {
 		isCurrentTarget = isCurrent;
 		hasBeenPassed = !isCurrent;
 		
-		spriteRenderer.enabled = isCurrent;
+		spriteRenderer.enabled = renderSprite && isCurrent;
 	}
 
 	void OnTriggerStay2D(Collider2D other) {
