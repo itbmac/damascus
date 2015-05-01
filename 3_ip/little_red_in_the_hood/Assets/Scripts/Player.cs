@@ -30,8 +30,22 @@ public class Player : MyMonoBehaviour {
 		get; private set;
 	}
 	
+	bool _isUnderStreetLight;
 	public bool IsUnderStreetlight {
-		get; set;
+		get {
+			return _isUnderStreetLight;
+		}
+		
+		set {
+			if (value == _isUnderStreetLight)
+				return;
+			_isUnderStreetLight = value;
+			
+			if (value)
+				streetLampFlicker.Play();
+			else
+				streetLampFlicker.Stop();
+		}
 	}
 	
 	public bool IsOnSprayPaint {
@@ -79,10 +93,13 @@ public class Player : MyMonoBehaviour {
 		return "";
 	}
 	
+	AudioSource streetLampFlicker;
+	
 	// Use this for initialization
 	void Start () {
 		redDiscoveredRenderer = transform.Find("red_discovered").GetComponent<SpriteRenderer>();
 		Regions = GameObject.Find("Regions");
+		streetLampFlicker = transform.Find("StreetLampFlicker").GetComponent<AudioSource>();
 	}
 	
 	bool SpeedupMode;
