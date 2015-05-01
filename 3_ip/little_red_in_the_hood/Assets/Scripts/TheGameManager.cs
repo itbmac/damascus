@@ -51,6 +51,14 @@ public class TheGameManager : MonoBehaviour {
 		if (Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.L) && Input.anyKeyDown) {
 			Application.LoadLevel(Application.loadedLevel == 0 ? Application.levelCount - 1 : Application.loadedLevel - 1);
 		}
+		
+		if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.F) && Input.anyKeyDown) {
+			if (Mathf.Approximately(Time.timeScale, 2)) {
+				Time.timeScale = 1;
+			} else {
+				Time.timeScale = 4;
+			}
+		}
 	}
 	
 	public void Detected() {

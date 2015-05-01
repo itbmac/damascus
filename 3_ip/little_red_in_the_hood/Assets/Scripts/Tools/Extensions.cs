@@ -112,4 +112,8 @@ public static class Extensions {
 	public static float Distance(this Transform t, Transform other) {
 		return Vector2.Distance(t.position, other.position);
 	}
+	
+	public static float Distance(this Transform t, Vector2 other) {
+		return Vector2.Distance(t.position, other);
+	}
 }

@@ -178,10 +178,12 @@ public class Police : MyMonoBehaviour {
 	}
 	
 	void SetNewDestination() {
-		if (WilliamMode && (WPointsIndex == WPoints.Length - 1)) {
+		if (WilliamMode
+			&& (WPointsIndex == WPoints.Length - 1) 
+		    && (transform.Distance(WPoints[WPointsIndex]) < 5.0f)) {
 			anim.SetBool("Walking", false);
-			GameObject.FindGameObjectWithTag("TargetSystem").GetComponent<TargetSystem>().waitTimeToLaunchNextLevel = 3.0f;
-			GameObject.FindGameObjectWithTag("TargetSystem").GetComponent<TargetSystem>().TList[GameObject.FindGameObjectWithTag("TargetSystem").GetComponent<TargetSystem>().currentTarget].hasBeenPassed = true;
+			TargetSystem.Instance.waitTimeToLaunchNextLevel = 3.0f;
+			TargetSystem.Instance.TList[TargetSystem.Instance.currentTarget].hasBeenPassed = true;
 			return;
 		}
 
