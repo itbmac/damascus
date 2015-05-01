@@ -168,10 +168,10 @@ public class PolyNav2D : MonoBehaviour {
 		
 		CreatePolyMap(generateMaster);
 		CreateNodes();
-		if (DoLinkNodes) {
-			DoLinkNodes = false;
+//		if (DoLinkNodes) {
+//			DoLinkNodes = false;
 			LinkNodes(nodes);
-		}
+//		}
 		
 //		DateTime endTime = DateTime.Now;
 //		TimeSpan totalTimeTaken = endTime.Subtract(startTime);
