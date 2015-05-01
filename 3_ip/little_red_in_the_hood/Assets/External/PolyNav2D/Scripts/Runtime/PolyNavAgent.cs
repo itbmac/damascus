@@ -440,4 +440,14 @@ public class PolyNavAgent : MonoBehaviour{
 				Gizmos.DrawLine(activePath[i], activePath[(i == activePath.Count - 1)? i : i + 1]);
 		}	
     }
+
+	void OnDrawGizmosSelected() {
+		if (!hasPath || activePath.Count == 0)
+			return;
+
+		Gizmos.color = new Color(1f, 0f, 0f, 1f);
+		Gizmos.DrawLine(position, activePath[0]);
+		for (int i= 0; i < activePath.Count; i++)
+			Gizmos.DrawLine(activePath[i], activePath[(i == activePath.Count - 1)? i : i + 1]);
+	}
 }

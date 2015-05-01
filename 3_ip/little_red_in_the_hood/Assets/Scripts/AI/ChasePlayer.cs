@@ -5,6 +5,8 @@ using System.Collections;
 public class ChasePlayer : MyMonoBehaviour {
 
 	const float AngleOffset = 90;
+	const float updateRate = 0.5f;
+	float LastUpdateTime;
 
 	private PolyNavAgent _agent;
 	public PolyNavAgent agent{
@@ -18,7 +20,7 @@ public class ChasePlayer : MyMonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		LastUpdateTime = -updateRate;
 	
 	}
 	
@@ -29,21 +31,36 @@ public class ChasePlayer : MyMonoBehaviour {
 		var euler = transform.eulerAngles;
 		euler.z = Mathf.LerpAngle(euler.z, newAngle, .05f);
 		transform.eulerAngles = euler;	
-	
-		agent.SetDestination(Player.Instance.transform.position);
+
+		if (LastUpdateTime + updateRate <= Time.time) {	
+			agent.SetDestination(Player.Instance.transform.position);
+
+			LastUpdateTime = Time.time;
+		}
+	}
+
+	void OnDestinationInvalid() {
+		Debug.Log ("OnDestinationInvalid");
+		if (LastUpdateTime + updateRate <= Time.time) {	
+
+			var searchRadius = Random.insideUnitCircle * 12f;
+			agent.SetDestination((Vector2)Player.Instance.transform.position + searchRadius);
+			
+			LastUpdateTime = Time.time;
+		}
 	}
 	
-//	void OnEnable(){
-//		agent.OnDestinationReached += SetNewDestination;
-//		agent.OnDestinationInvalid += OnDestinationInvalid;
-//	}
-//	
-//	void OnDisable(){
-//		agent.OnDestinationReached -= SetNewDestination;
-//		agent.OnDestinationInvalid -= OnDestinationInvalid;
-//	}
-//	
-//	void SetNewDestination() {
-//		
-//	}
+	void OnEnable(){
+		agent.OnDestinationReached += OnDestinationReached;
+		agent.OnDestinationInvalid += OnDestinationInvalid;
+	}
+	
+	void OnDisable(){
+		agent.OnDestinationReached -= OnDestinationReached;
+		agent.OnDestinationInvalid -= OnDestinationInvalid;
+	}
+	
+	void OnDestinationReached() {
+		print ("Reached");
+	}
 }
