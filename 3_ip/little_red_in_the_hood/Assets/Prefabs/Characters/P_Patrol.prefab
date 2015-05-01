@@ -66,7 +66,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105178}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: -1.62920685e-07}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: .00999999978}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 427876}
@@ -78,8 +78,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.2299995, y: 23.8500004, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalPosition: {x: 68.1549988, y: -25.2000008, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 425434}
   - {fileID: 455420}
@@ -202,15 +202,15 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0, y: 0}
-      - {x: -3.5355289, y: 3.5355351}
-      - {x: -2.79596186, y: 4.14518833}
-      - {x: -1.95365369, y: 4.60252428}
-      - {x: -.954042733, y: 4.90813494}
-      - {x: 5.44390423e-06, y: 5}
-      - {x: .954045951, y: 4.90813398}
-      - {x: 1.95365679, y: 4.60252333}
-      - {x: 2.79596472, y: 4.14518642}
-      - {x: 3.5355351, y: 3.53553271}
+      - {x: -1.48492384, y: 1.48492479}
+      - {x: -1.17430055, y: 1.7409786}
+      - {x: -.820533097, y: 1.93305993}
+      - {x: -.400695115, y: 2.06141686}
+      - {x: 6.84266354e-07, y: 2.09999847}
+      - {x: .400696486, y: 2.06141639}
+      - {x: .820534408, y: 1.93305945}
+      - {x: 1.17430174, y: 1.74097788}
+      - {x: 1.48492479, y: 1.48492384}
 --- !u!82 &8277694
 AudioSource:
   m_ObjectHideFlags: 1
@@ -373,16 +373,88 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 6049498}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 6099390}
   - {fileID: 0}
   - {fileID: 0}
-  lightRadius: 2.5
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  lightRadius: 2.0999999
   lightSegments: 8
   Layer:
     serializedVersion: 2
@@ -390,7 +462,7 @@ MonoBehaviour:
   notifyGameObjectsReached: 0
   intelliderConvex: 0
   recalculateNormals: 1
-  vertexWorking: 0
+  vertexWorking: 5
   RangeAngle: 90
 --- !u!114 &11486276
 MonoBehaviour:
@@ -403,17 +475,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4485e910d58240d783b65311ca8469f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GotPlayer: {fileID: 8300000, guid: bf30723460ca342fc9fa92ae3a3d6fbf, type: 3}
+  PlayerSeen: {fileID: 8300000, guid: d8cf5b7afdcbb054599bbff717daa99c, type: 3}
   InvestigativeSpeedMultiplier: 2.25
   DebugMode: 1
   DogMode: 0
   WilliamMode: 0
   CircleNotifierPrefab: {fileID: 152274, guid: 1a980afc9092c4b91bc9900d02528549, type: 2}
   WPoints:
-  - {x: -2.5, y: 0}
-  - {x: 2, y: -1}
-  - {x: 3, y: -4}
-  - {x: -1, y: -2}
+  - {x: -2, y: 0}
+  - {x: 2, y: 0}
   ViceCopMode: 0
   WPointsIndex: 0
 --- !u!212 &21275238

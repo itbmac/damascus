@@ -15,7 +15,7 @@ public class Police : MyMonoBehaviour {
 	const float DetectionRange = 7.0f;
 	const float HealthToDrain = 1.0f; // per second
 
-	public AudioClip GotPlayer;
+	public AudioClip PlayerSeen;
 	public float InvestigativeSpeedMultiplier = 2.0f;
 	const float CommunicationRange = 0.0f;
 	public bool DebugMode;
@@ -45,7 +45,7 @@ public class Police : MyMonoBehaviour {
 				float dist = Vector2.Distance(transform.position, player.transform.position); 
 				
 				if ((dist < DetectionRange) && _currentState == State.Normal && value == State.PlayerVisible) {
-					GetComponent<AudioSource>().PlayOneShot(GotPlayer);
+					GetComponent<AudioSource>().PlayOneShot(PlayerSeen);
 					TheGameManager.Instance.Detected();
 				}
 			}
@@ -163,6 +163,9 @@ public class Police : MyMonoBehaviour {
 	Vector2 startPos;
 	Collider2D hearingRadius;
 	void Start(){
+		if (PlayerSeen == null)
+			PlayerSeen = (AudioClip)Resources.Load ("police-player-seen-edit");
+	
 		player = FindObjectOfType<Player>().gameObject;		
 		visionCone = transform.GetChild(0).GetComponent<Collider2D>();
 		maxSpeed = agent.maxSpeed;

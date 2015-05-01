@@ -24,6 +24,7 @@ public class Player : MyMonoBehaviour {
 	public AudioClip WalkSound;
 	public AudioClip RunSound;
 	public AudioClip StealthSound;
+	public AudioClip ArrestedSound;
 	
 	public static Player Instance {
 		get; private set;
@@ -148,6 +149,8 @@ public class Player : MyMonoBehaviour {
 			if (collider2D.IsTouchingLayers(LayerMask.GetMask("Police"))) {
 				gameOver = true;
 				FindObjectOfType<FadeToBlack>().Trigger();
+				audio.clip = ArrestedSound;
+				audio.Play();
 				return;
 			}
 		}

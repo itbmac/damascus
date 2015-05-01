@@ -229,6 +229,7 @@ MonoBehaviour:
   WalkSound: {fileID: 8300000, guid: 94e5005a6eeb5314c9d4b127c786c453, type: 3}
   RunSound: {fileID: 8300000, guid: affe3cfddecf90e4f99493d1c4771d1a, type: 3}
   StealthSound: {fileID: 8300000, guid: 2e4a14c5e3c1d1c4e80cf76992d657ac, type: 3}
+  ArrestedSound: {fileID: 8300000, guid: 56d301e966c54a54d9c4b17b1116622c, type: 3}
   HealthRegenRate: .100000001
 --- !u!212 &21212006
 SpriteRenderer:
