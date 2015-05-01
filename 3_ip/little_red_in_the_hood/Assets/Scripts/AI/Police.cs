@@ -189,7 +189,7 @@ public class Police : MyMonoBehaviour {
 	void SetNewDestination() {
 		if (WilliamMode
 			&& (WPointsIndex == WPoints.Length - 1) 
-		    && (transform.Distance(WPoints[WPointsIndex]) < 5.0f)) {
+		    && (transform.Distance(WPoints[WPointsIndex]) < 20.0f)) {
 			anim.SetBool("Walking", false);
 			TargetSystem.Instance.waitTimeToLaunchNextLevel = 3.0f;
 			TargetSystem.Instance.TList[TargetSystem.Instance.currentTarget].hasBeenPassed = true;
