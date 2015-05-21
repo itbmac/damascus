@@ -33,20 +33,18 @@ public class ChasePlayer : MyMonoBehaviour {
 		transform.eulerAngles = euler;	
 
 		if (LastUpdateTime + updateRate <= Time.time) {	
-			agent.SetDestination(Player.Instance.transform.position);
-
 			LastUpdateTime = Time.time;
+			agent.SetDestination(Player.Instance.transform.position);
 		}
 	}
 
 	void OnDestinationInvalid() {
 		Debug.Log ("OnDestinationInvalid");
-		if (LastUpdateTime + updateRate <= Time.time) {	
+		if (LastUpdateTime + updateRate <= Time.time) {
+			LastUpdateTime = Time.time;
 
 			var searchRadius = Random.insideUnitCircle * 12f;
 			agent.SetDestination((Vector2)Player.Instance.transform.position + searchRadius);
-			
-			LastUpdateTime = Time.time;
 		}
 	}
 	
