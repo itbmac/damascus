@@ -381,10 +381,11 @@ public class BoardManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+#if UNITY_EDITOR
 		if (Input.GetKeyDown(KeyCode.G))
 			GenerateBoard();
-//		else if (Input.GetKeyDown(KeyCode.S))
-//			NewBoard ();
+		//		else if (Input.GetKeyDown(KeyCode.S))
+		//			NewBoard ();
 		else if (Input.GetKeyDown(KeyCode.C)) {
 			int numSolutions = BoardSolver.CountSolutions(GetCurrentBoard(), GetSideTiles());
 			if (numSolutions == BoardSolver.MAX_SOLUTIONS_TO_FIND)
@@ -396,11 +397,12 @@ public class BoardManager : MonoBehaviour {
 			var solved = BoardSolver.SolveBoard(GetCurrentBoard(), GetSideTiles());
 			Debug.Log ("Solution to board as currently placed: \n" + BoardToString(solved));
 		}
-#if UNITY_EDITOR
+		
 		if (Input.GetKeyDown(KeyCode.H)) {
 			PlaceValidTile();
 		}
 #endif
+
 //		else if (Input.GetKeyDown(KeyCode.T))
 //			ShakeInvalidTiles();
 	}

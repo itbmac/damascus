@@ -31,6 +31,15 @@ public class GameManager : MonoBehaviour {
 
 	}
 	
+	void Update() {
+		if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.L) && Input.anyKeyDown)
+			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
+			
+		// GM = go to main, the last level
+		if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.M) && Input.anyKeyDown)
+			Application.LoadLevel(Application.levelCount - 1);
+	}
+	
 	public void AddClickBlock() {
 		clickBlockSemaphore += 1;
 	}
