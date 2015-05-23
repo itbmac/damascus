@@ -29,7 +29,7 @@ public class ClickForHint : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		sr = (SpriteRenderer)renderer;
+		sr = (SpriteRenderer)GetComponent<Renderer>();
 		
 		Reset();
 	}
@@ -42,7 +42,7 @@ public class ClickForHint : MonoBehaviour {
 	void OnMouseDown() {
 		if (remainingNumHints > 0) {
 			hintPopup.Trigger();
-			audio.PlayOneShot(HintNoisePopUp);
+			GetComponent<AudioSource>().PlayOneShot(HintNoisePopUp);
 		}
 	}
 
@@ -61,16 +61,16 @@ public class ClickForHint : MonoBehaviour {
 	public void UseAHint() {
 		remainingNumHints--;
 		sr.sprite = SpriteStates[remainingNumHints];
-		audio.PlayOneShot(HintNoiseUse);
+		GetComponent<AudioSource>().PlayOneShot(HintNoiseUse);
 	}
 
 	public void CancelHintUse() {
-		audio.PlayOneShot(HintNoiseCancel);
+		GetComponent<AudioSource>().PlayOneShot(HintNoiseCancel);
 	}
 	
 	public void Reset() {
 		remainingNumHints = startingNumHints; //SpriteStates.Count - 1;
-		sr = (SpriteRenderer)renderer;
+		sr = (SpriteRenderer)GetComponent<Renderer>();
 		sr.sprite = SpriteStates[remainingNumHints];
 	}
 }

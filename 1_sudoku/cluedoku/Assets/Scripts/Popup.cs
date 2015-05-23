@@ -22,17 +22,17 @@ public class Popup : MonoBehaviour {
 	
 	public Sprite MySprite {
 		set {
-			var sr = (SpriteRenderer)renderer;
+			var sr = (SpriteRenderer)GetComponent<Renderer>();
 			sr.sprite = value;
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
-		var sr = (SpriteRenderer)renderer;
+		var sr = (SpriteRenderer)GetComponent<Renderer>();
 		triggered = false;
 		sr.enabled = false;
-		collider2D.enabled = false;
+		GetComponent<Collider2D>().enabled = false;
 		
 		if (sr.sortingLayerName != "Popup")
 			Debug.LogWarning("Popup" + name + " must have renderer in sorting layer Popup -- and this must be fixed outside of play mode.");
@@ -53,11 +53,11 @@ public class Popup : MonoBehaviour {
 	public void Trigger() {		
 		triggered = true;
 		triggerTime = Time.time;
-		((SpriteRenderer)renderer).enabled = true;
-		collider2D.enabled = true;
+		((SpriteRenderer)GetComponent<Renderer>()).enabled = true;
+		GetComponent<Collider2D>().enabled = true;
 		GameManager.Instance.CurrentPopup = true;
 		if (TriggerSound)
-			audio.PlayOneShot(TriggerSound);
+			GetComponent<AudioSource>().PlayOneShot(TriggerSound);
 	}
 	
 	private IEnumerator YieldActionAfter(Action action, float seconds) {
@@ -78,12 +78,12 @@ public class Popup : MonoBehaviour {
 			return;
 	
 		triggered = false;
-		((SpriteRenderer)renderer).enabled = false;
-		collider2D.enabled = false;
+		((SpriteRenderer)GetComponent<Renderer>()).enabled = false;
+		GetComponent<Collider2D>().enabled = false;
 		GameManager.Instance.CurrentPopup = false;
 		
 		if (DismissSound)
-			audio.PlayOneShot(DismissSound);
+			GetComponent<AudioSource>().PlayOneShot(DismissSound);
 			
 		if (Dismissed != null)
 			Dismissed();

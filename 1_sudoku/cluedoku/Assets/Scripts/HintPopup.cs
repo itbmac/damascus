@@ -17,7 +17,7 @@ public class HintPopup : MonoBehaviour {
 	public void Trigger() {
 		GameManager.Instance.CurrentPopup = true;
 		gameObject.SetActive(true);	
-		((SpriteRenderer)renderer).enabled = true;
+		((SpriteRenderer)GetComponent<Renderer>()).enabled = true;
 		open = true;
 	}
 	
@@ -66,7 +66,7 @@ public class HintPopup : MonoBehaviour {
 	
 	void Dismiss() {
 		GameManager.Instance.CurrentPopup = false;	
-		((SpriteRenderer)renderer).enabled = false;	
+		((SpriteRenderer)GetComponent<Renderer>()).enabled = false;	
 		gameObject.SetActive(false);
 		open = false;
 	}

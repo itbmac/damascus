@@ -15,8 +15,8 @@ public class ClickToRestart : MonoBehaviour {
 		if (GameManager.Instance.ClickBlocked)
 			return;		
 	
-		if (renderer.enabled) {
-			audio.PlayOneShot(clearNoise);
+		if (GetComponent<Renderer>().enabled) {
+			GetComponent<AudioSource>().PlayOneShot(clearNoise);
 			board.GetComponent<BoardManager>().RecallTiles();
 		}
 	}

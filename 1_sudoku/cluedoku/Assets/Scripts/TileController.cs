@@ -27,7 +27,7 @@ public class TileController : MonoBehaviour {
 		pin.transform.localPosition = pos;
 		
 		if (GameManager.Instance.PinDrop != null)
-			audio.PlayOneShot(GameManager.Instance.PinDrop);
+			GetComponent<AudioSource>().PlayOneShot(GameManager.Instance.PinDrop);
 		
 		GameManager.Instance.RemoveClickBlock();
 	}
@@ -47,7 +47,7 @@ public class TileController : MonoBehaviour {
 	
 	private void SetLockedAndSlide(bool newLocked) {
 		locked = newLocked;
-		pin.renderer.enabled = locked;
+		pin.GetComponent<Renderer>().enabled = locked;
 		
 		if (locked) {
 			Vector3 pinDisplacement = (new Vector3(Random.Range(-2F, -1F), Random.Range(-2F, -1F), 0)) * pinRandomness;
@@ -58,7 +58,7 @@ public class TileController : MonoBehaviour {
 	
 	private void SetLocked(bool newLocked) {
 		locked = newLocked;
-		pin.renderer.enabled = locked;
+		pin.GetComponent<Renderer>().enabled = locked;
 		
 		if (locked) {
 			Vector3 pinDisplacement = (new Vector3(Random.Range(-2F, -1F), Random.Range(-2F, -1F), 0)) * pinRandomness;
@@ -106,8 +106,8 @@ public class TileController : MonoBehaviour {
 		pickedUp = true;
 		mouseDownStartPos = transform.position;
 		offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
-		audio.PlayOneShot(noisePickUp);
-		((SpriteRenderer)renderer).sortingLayerName = "ActiveTile";
+		GetComponent<AudioSource>().PlayOneShot(noisePickUp);
+		((SpriteRenderer)GetComponent<Renderer>()).sortingLayerName = "ActiveTile";
 	}
 	
 	void OnMouseDrag() {
@@ -129,7 +129,7 @@ public class TileController : MonoBehaviour {
 		activeSlide += 1;
 		int mySlide = activeSlide;
 	
-		((SpriteRenderer)renderer).sortingLayerName = "SlidingTile";
+		((SpriteRenderer)GetComponent<Renderer>()).sortingLayerName = "SlidingTile";
 		// Note: during sliding time, normal tile rules aren't enforced >.>
 		while (Vector2.Distance(transform.position, pos) > 0.1F) {
 			if (activeSlide != mySlide)
@@ -138,7 +138,7 @@ public class TileController : MonoBehaviour {
 			transform.position = Vector2.Lerp(transform.position, pos, 0.4f);
 			yield return new WaitForSeconds(0.025f);
 		}
-		((SpriteRenderer)renderer).sortingLayerName = "Default";
+		((SpriteRenderer)GetComponent<Renderer>()).sortingLayerName = "Default";
 		
 		if (resetAfter)
 			Reset (true);
@@ -219,11 +219,11 @@ public class TileController : MonoBehaviour {
 		if (infoCard && Vector3.Distance(transform.position, mouseDownStartPos) < CLICK_DISTANCE_THRESHOLD) {
 			FileViewer.Instance.Show(infoCard);
 		} else {
-			audio.PlayOneShot(noiseDropOff);
+			GetComponent<AudioSource>().PlayOneShot(noiseDropOff);
 		}
 		
 		SnapToNewPosIfOpen();
-		((SpriteRenderer)renderer).sortingLayerName = "Default";
+		((SpriteRenderer)GetComponent<Renderer>()).sortingLayerName = "Default";
 	}
 	
 	const int SHAKE_SIZE = 20;
@@ -264,7 +264,7 @@ public class TileController : MonoBehaviour {
 			yield return new WaitForSeconds(0.01f);
 		}
 
-		BoardManager.Instance.audio.loop = false;
+		BoardManager.Instance.GetComponent<AudioSource>().loop = false;
 
 		rot.z = 0;			
 		transform.eulerAngles = rot;

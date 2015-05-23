@@ -27,7 +27,7 @@ public class Submit : MonoBehaviour {
 		if (InvalidPair == null)
 			Debug.LogWarning("Missing InvalidPair");
 	
-		spriteRenderer = (SpriteRenderer)renderer;
+		spriteRenderer = (SpriteRenderer)GetComponent<Renderer>();
 		
 		PopupInvalid.GetComponent<Popup>().Dismissed += delegate() {
 			BoardManager.Instance.ShakeInvalidTiles(pinCorrectlyPlacedTilesOnSubmit);
@@ -53,7 +53,7 @@ public class Submit : MonoBehaviour {
 		if (submitEnabled)
 			SubmitBoard();
 		else if (ClickedWhenDisabled) {
-			audio.PlayOneShot(ClickedWhenDisabled);
+			GetComponent<AudioSource>().PlayOneShot(ClickedWhenDisabled);
 		}
 	}
 	

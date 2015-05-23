@@ -9,7 +9,7 @@ public class HighlightOnHover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		sr = (SpriteRenderer)renderer;
+		sr = (SpriteRenderer)GetComponent<Renderer>();
 	}
 	
 	// Update is called once per frame

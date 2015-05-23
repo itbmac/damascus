@@ -16,7 +16,7 @@ public class FileViewer : MonoBehaviour {
 	
 	public Sprite CurrentSprite {
 		get {
-			return ((SpriteRenderer)renderer).sprite;
+			return ((SpriteRenderer)GetComponent<Renderer>()).sprite;
 		}
 	}
 
@@ -41,9 +41,9 @@ public class FileViewer : MonoBehaviour {
 //			transform.position = AlternatePosition;
 //		}
 
-		collider2D.enabled = true;
+		GetComponent<Collider2D>().enabled = true;
 	
-		var sr = (SpriteRenderer)renderer;
+		var sr = (SpriteRenderer)GetComponent<Renderer>();
 		if (sprite == sr.sprite && sr.enabled) {
 			Hide();
 			return;
@@ -53,23 +53,23 @@ public class FileViewer : MonoBehaviour {
 		lastShown = Time.time;
 		
 		sr.sprite = sprite;
-		renderer.enabled = true;
-		audio.PlayOneShot(PickUpFile);
+		GetComponent<Renderer>().enabled = true;
+		GetComponent<AudioSource>().PlayOneShot(PickUpFile);
 	}
 	
 	void Hide(bool silent = false) {
 		if (Time.time - lastShown < TIME_THRESHOLD)
 			return;
 			
-		renderer.enabled = false;
-		collider2D.enabled = false;
+		GetComponent<Renderer>().enabled = false;
+		GetComponent<Collider2D>().enabled = false;
 		if (!silent)
-			audio.PlayOneShot(PutDownFile);
+			GetComponent<AudioSource>().PlayOneShot(PutDownFile);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (renderer.enabled && Input.GetMouseButtonDown(0)) {
+		if (GetComponent<Renderer>().enabled && Input.GetMouseButtonDown(0)) {
 			Hide ();
 		}
 	}

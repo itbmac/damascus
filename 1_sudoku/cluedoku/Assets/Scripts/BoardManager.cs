@@ -298,9 +298,9 @@ public class BoardManager : MonoBehaviour {
 		}
 		
 		if (numInvalidTiles > 0) {
-			audio.clip = HintSound;
-			audio.Play();
-			audio.loop = true;
+			GetComponent<AudioSource>().clip = HintSound;
+			GetComponent<AudioSource>().Play();
+			GetComponent<AudioSource>().loop = true;
 		}			
 		
 		return numInvalidTiles;

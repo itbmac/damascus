@@ -19,15 +19,15 @@ public class ClickToDisable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (renderer.enabled && !mustClickOnObject && Input.GetMouseButtonDown(0)) {
+		if (GetComponent<Renderer>().enabled && !mustClickOnObject && Input.GetMouseButtonDown(0)) {
 			ClickedOn();
 		}
-		else if (followingItem && renderer.enabled) {
+		else if (followingItem && GetComponent<Renderer>().enabled) {
 			followingItem.SetActive(false);
 		}
 
-		if (!prevRendererState && renderer.enabled && OnVisibleNoise) {
-			audio.PlayOneShot(OnVisibleNoise);
+		if (!prevRendererState && GetComponent<Renderer>().enabled && OnVisibleNoise) {
+			GetComponent<AudioSource>().PlayOneShot(OnVisibleNoise);
 
 			if (enableAllChildren) {
 				foreach (Transform child in transform) {
@@ -36,24 +36,24 @@ public class ClickToDisable : MonoBehaviour {
 			}
 		}
 
-		prevRendererState = renderer.enabled;
+		prevRendererState = GetComponent<Renderer>().enabled;
 	}
 
 	void OnMouseDown() {
-		if (renderer.enabled && mustClickOnObject)
+		if (GetComponent<Renderer>().enabled && mustClickOnObject)
 			ClickedOn();
 	}
 	
 	void Run() {
-		audio.PlayOneShot(AdvanceNoise);
+		GetComponent<AudioSource>().PlayOneShot(AdvanceNoise);
 		if (followingItem) {
 			followingItem.SetActive(true);
-			if (followingItem.renderer)
-				followingItem.renderer.enabled = true;
+			if (followingItem.GetComponent<Renderer>())
+				followingItem.GetComponent<Renderer>().enabled = true;
 		}
 		
 		if (disableRendererOnClick) {
-			renderer.enabled = false;
+			GetComponent<Renderer>().enabled = false;
 
 			if (enableAllChildren) {
 				foreach (Transform child in transform) {

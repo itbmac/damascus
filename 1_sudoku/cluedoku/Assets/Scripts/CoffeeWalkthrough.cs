@@ -13,7 +13,7 @@ public class CoffeeWalkthrough : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentStateNum = 0;
-		sr = (SpriteRenderer)renderer;
+		sr = (SpriteRenderer)GetComponent<Renderer>();
 		sr.sprite = SpriteStates[currentStateNum];
 		prevPopUpRenderState = false;
 	}

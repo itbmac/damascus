@@ -12,7 +12,7 @@ public class OverlayVerifyTileClick : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (FileViewerObj.renderer.enabled)
+		if (FileViewerObj.GetComponent<Renderer>().enabled)
 			gameObject.SetActive(false);
 	}
 }

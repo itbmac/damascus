@@ -8,9 +8,9 @@ public class MoviePlayer : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		renderer.material.mainTexture = movTexture;
+		GetComponent<Renderer>().material.mainTexture = movTexture;
 		movTexture.Play();
-		audio.Play();
+		GetComponent<AudioSource>().Play();
 		Debug.Log (movTexture.duration);
 		StartCoroutine(AdvanceToNextLevelAfter(movTexture.duration));
 	}
