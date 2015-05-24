@@ -12,11 +12,21 @@ public class MoviePlayer : MonoBehaviour {
 		movTexture.Play();
 		GetComponent<AudioSource>().Play();
 		Debug.Log (movTexture.duration);
+		Cursor.visible = false;
 		StartCoroutine(AdvanceToNextLevelAfter(movTexture.duration));
+	}
+	
+	bool isDone = false;
+	
+	void Update() {
+		if (!isDone)
+			Cursor.visible = false;
 	}
 	
 	IEnumerator AdvanceToNextLevelAfter(float seconds) {
 		yield return new WaitForSeconds(seconds - numSecondsToEndEarly);
+		isDone = true;
+		Cursor.visible = true;
 		Application.LoadLevel(Application.loadedLevel + 1);
 	}
 }

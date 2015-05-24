@@ -35,6 +35,12 @@ public class GameManager : MonoBehaviour {
 		if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.L) && Input.anyKeyDown)
 			Application.LoadLevel((Application.loadedLevel + 1) % Application.levelCount);
 			
+		if (Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.L) && Input.anyKeyDown)
+			Application.LoadLevel(Application.loadedLevel == 0 ? Application.levelCount - 1 : (Application.loadedLevel - 1) % Application.levelCount);
+			
+		if (Input.GetKeyDown(KeyCode.Escape))
+			Application.Quit();
+			
 		// GM = go to main, the last level
 		if (Input.GetKey(KeyCode.G) && Input.GetKey(KeyCode.M) && Input.anyKeyDown)
 			Application.LoadLevel(Application.levelCount - 1);

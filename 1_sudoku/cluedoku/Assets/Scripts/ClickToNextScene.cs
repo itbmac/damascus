@@ -10,8 +10,10 @@ public class ClickToNextScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
+		if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
+			Cursor.visible = true;
 			Application.LoadLevel(Application.loadedLevel + 1);
+		}
 	
 	}
 }

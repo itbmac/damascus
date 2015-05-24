@@ -133,12 +133,12 @@ PlayerSettings:
     height: 180
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
-  resolutionDialogBanner: {fileID: 2800000, guid: 8196c9bf7023b4951bb24a12f8c3551b,
+  resolutionDialogBanner: {fileID: 2800000, guid: 86a5a513f2cca489e98adee7022d3fbe,
     type: 3}
   m_BuildTargetIcons:
   - m_BuildTarget: 
     m_Icons:
-    - m_Icon: {fileID: 2800000, guid: 018326dab81304006b4c39c28eb37893, type: 3}
+    - m_Icon: {fileID: 2800000, guid: 59aae80a229a740a49ce9c0a7554ba10, type: 3}
       m_Size: 128
   m_BuildTargetBatching: []
   webPlayerTemplate: APPLICATION:Black Background
@@ -255,7 +255,9 @@ PlayerSettings:
   psp2InfoBarColor: 0
   psmSplashimage: {fileID: 0}
   spritePackerPolicy: 
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: 
+    2: 
   metroPackageName: cludoku
   metroPackageLogo: 
   metroPackageLogo140: 
