@@ -381,11 +381,19 @@ public class BoardManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (Input.GetKey(KeyCode.N) && Input.GetKey(KeyCode.B) && Input.anyKeyDown)
+			NewBoard ();
+			
+		if (Input.GetKey(KeyCode.P) && Input.GetKey(KeyCode.V) && Input.anyKeyDown) {
+			PlaceValidTile();
+		}
+		
+		if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.I) && Input.anyKeyDown)
+			ShakeInvalidTiles();
+	
 #if UNITY_EDITOR
 		if (Input.GetKeyDown(KeyCode.G))
 			GenerateBoard();
-		//		else if (Input.GetKeyDown(KeyCode.S))
-		//			NewBoard ();
 		else if (Input.GetKeyDown(KeyCode.C)) {
 			int numSolutions = BoardSolver.CountSolutions(GetCurrentBoard(), GetSideTiles());
 			if (numSolutions == BoardSolver.MAX_SOLUTIONS_TO_FIND)
@@ -398,13 +406,8 @@ public class BoardManager : MonoBehaviour {
 			Debug.Log ("Solution to board as currently placed: \n" + BoardToString(solved));
 		}
 		
-		if (Input.GetKeyDown(KeyCode.H)) {
-			PlaceValidTile();
-		}
+		
 #endif
-
-//		else if (Input.GetKeyDown(KeyCode.T))
-//			ShakeInvalidTiles();
 	}
 	
 	GameObject[] GetAllTiles() {

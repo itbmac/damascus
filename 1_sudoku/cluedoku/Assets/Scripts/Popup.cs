@@ -40,7 +40,7 @@ public class Popup : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (triggered && !MustClickOnObject && Input.anyKeyDown) {
+		if (triggered && !MustClickOnObject && (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))) {
 			Dismiss();
 		}
 	}
